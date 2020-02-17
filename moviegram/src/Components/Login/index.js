@@ -4,7 +4,7 @@ import React from 'react';
 class LoginScreen extends React.Component {
     render() {
       return (
-        <div>hi</div>
+        <div>Login</div>
       );
     }
   }

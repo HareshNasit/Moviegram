@@ -8,6 +8,10 @@ import './App.css';
 import Home from './Components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import LoginScreen from './Components/Login';
+import SignupScreen from './Components/Signup';
+
+
 class App extends React.Component {
 
   state = {
@@ -21,6 +25,10 @@ class App extends React.Component {
             { /* Each Route below shows a different component depending on the exact path in the URL  */ }
             <Route exact path='/' render={() => 
                             (<Home/>)}/>
+            <Route exact path='/login' render={() => 
+                            (<LoginScreen/>)}/>
+            <Route exact path='/signup' render={() => 
+                (<SignupScreen/>)}/>
           </Switch>
         </BrowserRouter>
       </div>
