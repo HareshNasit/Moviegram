@@ -6,7 +6,7 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 import Home from './Components/Home';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
 
