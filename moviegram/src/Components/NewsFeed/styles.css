@@ -1,0 +1,29 @@
+.pageFeed {
+	top: 10px;
+	bottom: 50px;
+	position: relative;
+}
+
+.searchMovieform {
+    width: 800px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 30px;
+    justify-content: center;
+}
+
+
+.pageHeader {
+    position: relative;
+    width: 800px;
+    top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headerText {
+	text-align: center;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
