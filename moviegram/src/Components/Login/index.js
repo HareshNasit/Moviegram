@@ -19,8 +19,8 @@ class LoginScreen extends React.Component {
             </Form.Group>
             
              
-              <Button variant="primary" type="submit" className="loginButton">
-                Submit
+              <Button variant="outline-primary" type="submit" className="loginButton">
+                Login
               </Button>
               
            
