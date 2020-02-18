@@ -1,23 +1,20 @@
-import React from 'react';
-import './styles.css';
-import { Button, Form } from 'react-bootstrap';
+import React from "react";
+import "./styles.css";
+import { Button, Form } from "react-bootstrap";
 
-class NewsFeed extends React.Component {
-
-  state = {
-  };
+class NewsFeedScreen extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <Grid id="webpage-menu" container spacing={4}>
-            <Button variant="outline-primary">Home</Button>
-            <Button variant="outline-primary">Profile</Button>
-            <Button variant="outline-primary">Add Review</Button>
-        </Grid>
+      <div className="pageFeed">
+
+        <Form className="webpage-menu">
+          <Button variant="outline-primary" type="submit">Signup</Button>
+        </Form>
+      
       </div>
     );
   }
 }
 
-export default NewsFeed;
+export default NewsFeedScreen;
