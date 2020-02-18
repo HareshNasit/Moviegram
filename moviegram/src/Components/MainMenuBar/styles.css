@@ -2,14 +2,14 @@
 	padding: 10px;
 	background-color: lightgray;
 	align-content: center;
-	width: 100%
+	width: 100%;
 }
 
 #mainMenuBar ul {
-	margin: 0px;
 	padding: 3px;
-	align-items: left;
-	margin-left: 390px;
+	align-items: center;
+	display: flex;
+  	justify-content: center;
 }
 
 #mainMenuBar ul li {
@@ -21,5 +21,5 @@
 }
 
 .mainMenu-btn {
-	width: 185px;
+	width: 300px;
 }
