@@ -15,7 +15,7 @@ class NewsFeedScreen extends React.Component {
         
         <Form className="searchMovieform">
           <Form.Group>
-            <Form.Control type="searchMovie" placeholder="Search Movie" />
+            <Form.Control type="searchMovie" placeholder="Search Movie/Review" />
           </Form.Group>
         </Form>
 
