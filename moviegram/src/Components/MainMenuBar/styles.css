@@ -1,0 +1,25 @@
+#mainMenuBar {
+	padding: 10px;
+	background-color: lightgray;
+	align-content: center;
+	width: 100%
+}
+
+#mainMenuBar ul {
+	margin: 0px;
+	padding: 3px;
+	align-items: left;
+	margin-left: 390px;
+}
+
+#mainMenuBar ul li {
+	margin-right: 20px;
+	font-weight: bold;
+	list-style: none;
+	text-align: center;
+	display: inline-block;
+}
+
+.mainMenu-btn {
+	width: 250px;
+}

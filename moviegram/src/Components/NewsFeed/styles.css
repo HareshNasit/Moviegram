@@ -1,16 +1,30 @@
 .pageFeed {
-	top: 100px;
+	top: 10px;
+	bottom: 50px;
 	position: relative;
 }
 
-.webpage-menu {
-  	width: 300px;
+.searchMovieform {
+    width: 800px;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 30px;
+}
+
+
+.pageHeader {
+    position: relative;
+    width: 800px;
+    border-width: 2px;
+    border-color: black;
+    top: 30px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .headerText {
-    text-align: center;
-    font-size: large;
- }
+	text-align: center;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
