@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Button, Form } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class SignupScreen extends React.Component {
   render() {
@@ -30,8 +31,10 @@ class SignupScreen extends React.Component {
             <Button variant="outline-primary" type="submit" className="loginButton">
               Signup
             </Button>
-            
-         
+            <div className="registeredButtonBox">
+              <Button className="alreadyRegisteredButton" as={Link} to="/login" type="submit">Already registered?</Button>
+            </div>
+                   
           
 
       </Form>

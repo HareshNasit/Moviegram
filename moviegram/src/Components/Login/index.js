@@ -17,15 +17,12 @@ class LoginScreen extends React.Component {
             <Form.Group controlId="formBasicPassword">
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
-            
-             
-              <Button variant="outline-primary" type="submit" className="loginButton">
+
+              <Button variant="outline-primary" 
+                      type="submit" 
+                      className="loginButton">
                 Login
               </Button>
-              
-           
-            
-
         </Form>
         </div>
           
