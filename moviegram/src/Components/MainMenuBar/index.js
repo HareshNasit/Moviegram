@@ -9,6 +9,7 @@ class MainMenuBar extends React.Component {
       <div id="mainMenuBar">
         <ul>
           <li><Button variant="outline-primary" className="mainMenu-btn">Home</Button></li>
+          <li><Button variant="outline-primary" className="mainMenu-btn">News Feed</Button></li>
           <li><Button variant="outline-primary" className="mainMenu-btn">Profile</Button></li>
           <li><Button variant="outline-primary" className="mainMenu-btn">Add Review</Button></li>
         </ul>
