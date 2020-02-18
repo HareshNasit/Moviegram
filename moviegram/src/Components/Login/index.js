@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Button, Form } from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 class LoginScreen extends React.Component {
     render() {
@@ -23,6 +24,10 @@ class LoginScreen extends React.Component {
                       className="loginButton">
                 Login
               </Button>
+              
+            <div className="notRegisteredButtonBox">
+              <Button className="notRegisteredButton" as={Link} to="/signup" type="submit">New to the site?</Button>
+            </div>
         </Form>
         </div>
           
