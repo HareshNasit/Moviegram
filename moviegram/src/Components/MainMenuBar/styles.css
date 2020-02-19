@@ -6,8 +6,8 @@
 	padding-right: 10px;
 	background-color: lightgray;
 	display: flex;
-   	align-items: center;
-   	justify-content: center;
+  align-items: center;
+  justify-content: center;
 	width: 100%;
 }
 
@@ -19,7 +19,7 @@
 }
 
 #menuItems ul li {
-	margin-right: 70px;
+	padding: 30px;
 	font-weight: bold;
 	list-style: none;
 	text-align: center;
