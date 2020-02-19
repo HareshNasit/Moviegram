@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginScreen from './Components/Login';
 import SignupScreen from './Components/Signup';
 import NewsFeedScreen from './Components/NewsFeed'
-
+import AddReview from './Components/AddReview'
 import Profile from './Components/Profile'
 
 
