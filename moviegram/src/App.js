@@ -12,6 +12,8 @@ import LoginScreen from './Components/Login';
 import SignupScreen from './Components/Signup';
 import NewsFeedScreen from './Components/NewsFeed'
 
+import Profile from './Components/Profile'
+
 
 class App extends React.Component {
 
@@ -32,6 +34,8 @@ class App extends React.Component {
                             (<SignupScreen/>)}/>
             <Route exact path='/NewsFeed' render={() => 
                             (<NewsFeedScreen/>)}/>
+            <Route exact path='/profile/:id' render={(props) => 
+                            (<Profile {...props} />)}/>
           </Switch>
         </BrowserRouter>
       </div>
