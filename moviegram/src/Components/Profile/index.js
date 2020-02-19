@@ -7,6 +7,14 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const profiles = {
+    'yosef98' : { description: "I like Pulp Fiction"
+    },
+    'bhavya' : { description: "I like documentaries about Messi"
+    }
+}
+
+
 class Profile extends React.Component {
 
     state = {
