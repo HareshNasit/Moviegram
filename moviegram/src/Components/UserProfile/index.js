@@ -9,18 +9,20 @@ class UserProfile extends React.Component {
 
   render() {
     return (
-      <div id="userProfile">
+      <div class="userProfile">
         <MainMenuBar/>
         <div class="profilePicContainer">
           <img class="profilePic" src={photo} />
+          <div class="profileInfo">
+            HALA MADRID
+          </div>
         </div>
-        <div id="profileInfo">
+        <div class="profileDescription">
           <h2>Profile Information</h2>
           <p class="grey">@movieFreak</p>
           <p>
               Marvel fan
           </p>
-
         </div>
       </div>
     );

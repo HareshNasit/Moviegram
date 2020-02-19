@@ -1,20 +1,13 @@
-body {
-	background-color: #e6ecf0;
-	margin: 0;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
+
+.userProfile {
+	top: 10px;
+	bottom: 50px;
+	position: relative;
 }
-
-#profileInfo {
-  background-color: white;
-	padding: 10px;
-
-	/* Add properties below */
-	width: 300px;
-	min-height: 300px;
-	margin-top: 190px;
-  margin-left: 40px;
+.profilePicContainer {
+  width: 1030px;
 	float: left;
-
+	position: relative;
 }
 
 .profilePic {
@@ -24,13 +17,24 @@ body {
 	margin-left: 80px;
 	margin-top: 0px;
   border: 3px solid white;
-  position: absolute;
-
-
+	position: relative;
 }
 
-.profilePicContainer {
-  width: 80px;
-	float: left;
+.profileInfo {
+	width: 400px;
+	height: 200px;
+	float: right;
+	position: relative;
+}
+
+.profileDescription {
+  background-color: green;
+
+	/* Add properties below */
+	width: 300px;
+	min-height: 300px;
+	margin-top: 200px;
+  margin-left: 40px;
+	position: relative;
 
 }
