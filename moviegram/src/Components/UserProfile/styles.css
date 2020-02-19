@@ -1,0 +1,36 @@
+body {
+	background-color: #e6ecf0;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#profileInfo {
+  background-color: white;
+	padding: 10px;
+
+	/* Add properties below */
+	width: 300px;
+	min-height: 300px;
+	margin-top: 190px;
+  margin-left: 40px;
+	float: left;
+
+}
+
+.profilePic {
+  height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	margin-left: 80px;
+	margin-top: 0px;
+  border: 3px solid white;
+  position: absolute;
+
+
+}
+
+.profilePicContainer {
+  width: 80px;
+	float: left;
+
+}
