@@ -12,6 +12,7 @@ import LoginScreen from './Components/Login';
 import SignupScreen from './Components/Signup';
 import NewsFeedScreen from './Components/NewsFeed'
 import UserProfile from './Components/UserProfile'
+import AddReview from './Components/AddReview'
 
 class App extends React.Component {
 
