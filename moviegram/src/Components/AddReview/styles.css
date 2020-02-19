@@ -1,5 +1,7 @@
 #addreviewmain {
 	width: 100%;
+	height: 100vh;
+	background-color: lightgray;
 }
 
 .headerText {
@@ -9,6 +11,7 @@
 
 .add-review {
     width: 1000px;
+		height: auto;
     min-height: 500px;
     position: relative;
     margin-left: auto;
@@ -18,6 +21,7 @@
     bottom: 20px;
     border: 2px solid black;
     border-radius: 10px;
+		background-color: #afeeee;
 }
 
 .add-review ul {
@@ -28,6 +32,7 @@
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 15px;
+		margin-left: 5px;
 }
 
 .add-review ul li {
@@ -40,3 +45,11 @@
     flex: 0 1 auto;
 }
 
+.reviewForm {
+	margin: 20px;
+}
+
+.saveReviewBtn {
+	position: absolute;
+	right: 20px
+}
