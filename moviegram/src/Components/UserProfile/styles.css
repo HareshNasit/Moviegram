@@ -2,12 +2,19 @@
 .userProfile {
 	top: 10px;
 	bottom: 50px;
-	position: relative;
+	/* position: relative; */
 }
-.profilePicContainer {
+
+/* .bodyHeader {
   width: 1030px;
-	float: left;
 	position: relative;
+} */
+
+#profilePicContainer {
+	height: 200px;
+	width: 500px;
+	float: left;
+	background-color: white;
 }
 
 .profilePic {
@@ -17,23 +24,23 @@
 	margin-left: 80px;
 	margin-top: 0px;
   border: 3px solid white;
-	position: relative;
+	/* position: relative; */
 }
 
-.profileInfo {
-	width: 400px;
+#profileInfo {
 	height: 200px;
-	float: right;
-	position: relative;
+	background-color: red;
+	/* float: right; */
+	/* position: relative; */
 }
 
 .profileDescription {
   background-color: green;
 
 	/* Add properties below */
-	width: 300px;
-	min-height: 300px;
-	margin-top: 200px;
+	/* width: 300px;
+	height: 300px; */
+	margin-top: 10px;
   margin-left: 40px;
 	position: relative;
 
