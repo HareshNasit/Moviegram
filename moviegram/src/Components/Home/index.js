@@ -21,8 +21,8 @@ class Home extends React.Component {
               </Form.Group>
         	</Form>
 
-        	<Button variant="outline-primary" 
-                      type="submit" 
+        	<Button variant="outline-primary"
+                      type="submit"
                       className="searchButton">
                 Search
             </Button>
@@ -33,7 +33,7 @@ class Home extends React.Component {
 
 
       	</div>
-          	     	
+
       );
     }
   }
