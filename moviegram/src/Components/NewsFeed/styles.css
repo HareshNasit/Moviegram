@@ -5,7 +5,7 @@
 }
 
 .searchMovieform {
-    width: 800px;
+    width: 1000px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -25,6 +25,7 @@
 .headerText {
 	text-align: center;
 	font-family: Impact, Charcoal, sans-serif;
+	font-size: 45px;
 }
 
 .reviewsFeedTbl {

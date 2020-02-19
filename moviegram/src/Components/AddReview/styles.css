@@ -1,6 +1,16 @@
-#add-review {
-	width: 800px;
-	position: relative;
+#addreviewmain {
+	width: 100%;
+}
+
+.headerText {
+    text-align: center;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.add-review {
+    width: 1000px;
+    min-height: 500px;
+    position: relative;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
@@ -8,5 +18,25 @@
     bottom: 20px;
     border: 2px solid black;
     border-radius: 10px;
+}
+
+.add-review ul {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+
+.add-review ul li {
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 20px;
+    list-style: none;
+    text-align: center;
+    display: inline-block;
+    flex: 0 1 auto;
 }
 
