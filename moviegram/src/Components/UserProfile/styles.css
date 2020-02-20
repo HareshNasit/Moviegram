@@ -1,20 +1,25 @@
-body {
-	background-color: #e6ecf0;
+
+#userProfile {
+	/* top: 10px;
+	bottom: 50px; */
+	height: 100vh;
+	width: 100%;
 	margin: 0;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	/* background-color: green; */
+	/* position: relative; */
 }
 
-#profileInfo {
-  background-color: white;
-	padding: 10px;
+#bodyHeader {
+  width: 100%;
+	height: 200px;
+	/* position: relative; */
+}
 
-	/* Add properties below */
+#profilePicContainer {
+	height: 200px;
 	width: 300px;
-	min-height: 300px;
-	margin-top: 190px;
-  margin-left: 40px;
 	float: left;
-
+	background-color: blue;
 }
 
 .profilePic {
@@ -24,13 +29,25 @@ body {
 	margin-left: 80px;
 	margin-top: 0px;
   border: 3px solid white;
-  position: absolute;
-
-
+	/* position: relative; */
 }
 
-.profilePicContainer {
-  width: 80px;
+#profileInfo {
+	background-color: red;
+	height: 200px;
+	width: 70%;
 	float: left;
+	/* position: relative; */
+}
+
+.profileDescription {
+  background-color: green;
+
+	/* Add properties below */
+	/* width: 300px;
+	height: 300px; */
+	/* margin-top: 10px; */
+  margin-left: 40px;
+	position: relative;
 
 }
