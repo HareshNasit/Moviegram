@@ -45,6 +45,20 @@ class UserProfile extends React.Component {
                   Edit Profile
                 </Button>
               </div>
+                <div id="infoStats">
+                <span id="totalReviews"> 12 </span>Reviews
+                <span id="totalFollowers">12 </span>Followers
+                <span id="totalFollowing">12 </span>Following
+              </div>
+              <div id="userDescription">
+                I am a movieFreak who enjoys action and Sci-fi movies such
+                as Marvel and X-men.
+                Madridista💚💚Programmer💖💖Footballfreak
+                Snapchat: HarshN12
+                🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦
+                Fear can hold you prisoner, Hope can set you free
+
+              </div>
             </div>
           </div>
           <div className="profileFeed">
