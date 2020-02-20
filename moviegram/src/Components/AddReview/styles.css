@@ -1,0 +1,55 @@
+#addreviewmain {
+	width: 100%;
+	height: 100vh;
+	background-color: lightgray;
+}
+
+.headerText {
+    text-align: center;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.add-review {
+    width: 1000px;
+		height: auto;
+    min-height: 500px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    top: 50px;
+    bottom: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+		background-color: #afeeee;
+}
+
+.add-review ul {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+		margin-left: 5px;
+}
+
+.add-review ul li {
+    font-weight: bold;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 20px;
+    list-style: none;
+    text-align: center;
+    display: inline-block;
+    flex: 0 1 auto;
+}
+
+.reviewForm {
+	margin: 20px;
+}
+
+.saveReviewBtn {
+	position: absolute;
+	right: 20px
+}
