@@ -1,11 +1,11 @@
 .pageFeed {
-	top: 10px;
+	top: 0px;
 	bottom: 50px;
 	position: relative;
 }
 
 .searchMovieform {
-    width: 800px;
+    width: 1000px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -17,7 +17,7 @@
 .pageHeader {
     position: relative;
     width: 800px;
-    top: 30px;
+    top: 35px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -25,5 +25,12 @@
 .headerText {
 	text-align: center;
 	font-family: Impact, Charcoal, sans-serif;
+	font-size: 45px;
 }
 
+.reviewsFeedTbl {
+	width: 800px;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+}
