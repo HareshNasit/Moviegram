@@ -41,12 +41,14 @@ class NewsFeedScreen extends React.Component {
          <h3 className="headerText">Reviews Feed</h3>
         </div>
 
-        {this.state.reviews.map(review => (
-          <Review username={review.username}
-                  movieName={review.movieName}
-                  reviewContent={review.reviewContent}
-                  commentsSection={review.commentsSection}/>
-        ))}
+        <div className="revs">
+          {this.state.reviews.map(review => (
+            <Review username={review.username}
+                    movieName={review.movieName}
+                    reviewContent={review.reviewContent}
+                    commentsSection={review.commentsSection}/>
+          ))}
+        </div>
 
       </div>
     );

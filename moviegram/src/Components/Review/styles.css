@@ -8,7 +8,9 @@
     bottom: 20px;
     border: 2px solid black;
     border-radius: 10px;
-    background-color: #afeeee;
+    background-color: #008080;
+		color: white;
+		justify-content: center;
 }
 
 #review ul {
@@ -46,5 +48,5 @@
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
-    border: 1px solid black;
+  border: 1px solid black;
 }
