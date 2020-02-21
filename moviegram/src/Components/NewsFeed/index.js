@@ -50,6 +50,7 @@ class NewsFeedScreen extends React.Component {
           ))}
         </div>
 
+>>>>>>> fa7302251e36cc12ccc534ba80fe205f097ebfc6
       </div>
     );
   }
