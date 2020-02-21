@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 class SignupScreen extends React.Component {
   render() {
     return (
-      <div className="pageM">
+      <div className="formContainer">
         <Form className="form">
           <Form.Group className="welcomeText">
             <Form.Label>Signup</Form.Label>
