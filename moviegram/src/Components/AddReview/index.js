@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
