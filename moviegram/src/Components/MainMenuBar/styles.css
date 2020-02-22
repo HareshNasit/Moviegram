@@ -27,9 +27,7 @@
 }
 
 .mainMenu-btn {
-<<<<<<< HEAD
 	width: 300px;
-=======
 	width: 50px;
 	height: 50px;
 	justify-content: center;
@@ -40,5 +38,4 @@
 	height: 50px;
 	text-align: center;
 	justify-content: center;
->>>>>>> fa7302251e36cc12ccc534ba80fe205f097ebfc6
 }

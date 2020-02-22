@@ -5,6 +5,7 @@ import MainMenuBar from './../MainMenuBar';
 import Image from 'react-bootstrap/Image'
 import photo from './ballon_dor.jpg'
 import Review from './../Review';
+import Dialog from 'react-bootstrap-dialog'
 
 // <MainMenuBar/>
 // <img class="profilePic" src={photo} />
@@ -27,8 +28,54 @@ import Review from './../Review';
 // </div>
 
 class UserProfile extends React.Component {
+  constructor(props) {
+    // When the componenet is created
+    super(props);
+    this.state = {
+      isUser: true,
+      isfollowing: false
+    };
+    this.onClick = this.onClick.bind(this)
+  }
+
+  // constructor () {
+  //   super()
+  //
+  // }
+
+  onClick () {
+    this.dialog.showAlert('Hello Dialog!')
+  }
 
   render() {
+    let follow_edit_button;
+    if (this.state.isUser) {
+      follow_edit_button = <Button variant="outline-primary"
+                    type="submit"
+                    className="editButton"
+                    onClick={this.onClick}
+                    >
+                    Edit Profile
+                  </Button>
+    }
+    else if(this.state.isfollowing){
+      follow_edit_button = <Button variant="outline-primary"
+                    type="submit"
+                    className="editButton"
+                    onClick={this.onClick}
+                    >
+                    UnFollow
+                  </Button>
+    }
+    else {
+      follow_edit_button = <Button variant="outline-primary"
+                    type="submit"
+                    className="editButton"
+                    onClick={this.onClick}
+                    >
+                    Follow
+                  </Button>
+    }
     return (
       <div id="userProfile">
           <MainMenuBar/>
@@ -39,16 +86,13 @@ class UserProfile extends React.Component {
             <div id="profileInfo">
               <div id="infoHeader">
                 <span id="userName">harshn12</span>
-                <Button variant="outline-primary"
-                        type="submit"
-                        className="editButton">
-                  Edit Profile
-                </Button>
+                {follow_edit_button}
+                <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
               </div>
                 <div id="infoStats">
-                <span id="totalReviews"> 12 </span>Reviews
-                <span id="totalFollowers">12 </span>Followers
-                <span id="totalFollowing">12 </span>Following
+                <span id="totalReviews" onClick={this.onClick}> 12 </span>Reviews
+                <span id="totalFollowers" onClick={this.onClick}>12 </span>Followers
+                <span id="totalFollowing" onClick={this.onClick}>12 </span>Following
               </div>
               <div id="userDescription">
                 I am a movieFreak who enjoys action and Sci-fi movies such
@@ -62,21 +106,21 @@ class UserProfile extends React.Component {
             </div>
           </div>
           <div className="profileFeed">
-            <Review username='Bhavya'
+            <Review username='harshn12'
                     movieName='Avengers'
-                    reviewContent='This movie is lit, and I mean lit af. My god what an awesome time I had and it was even more fun because I watched it with my close friends which made the experience amazing. 15/10 stars. Definitely go watch it pleaseeeeeeeee!!!!!!!!!!!'
+                    reviewContent='Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!'
                     commentsSection='Comments section Component goes here'/>
-            <Review username='Harsh'
-                    movieName='Messi Rocks'
-                    reviewContent="I think this movie is better than any movie ever made about any footballer or any movie that will be made about any footballer because Messi by far is the GOAT football player to ever live and anyone who disagrees and says Ronaldo is the best is RIGHT cause messi sucks HaHaHa tricked you there didn't I."
+            <Review username='harshn12'
+                    movieName='Intersteller'
+                    reviewContent="Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption."
                     commentsSection='Comments section Component goes here'/>
-            <Review username='Dhruv'
-                    movieName='Dangal'
-                    reviewContent="Ab toh dangal hoga dangal bhenchooodddddd !!!!!!"
+            <Review username='harshn12'
+                    movieName='Anabelle Comes Home'
+                    reviewContent="Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts."
                     commentsSection='Comments section Component goes here'/>
-            <Review username='Yosef'
-                    movieName='Stalingrad'
-                    reviewContent="Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot."
+            <Review username='harshn12'
+                    movieName='Shawshank Redemption'
+                    reviewContent="This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend."
                     commentsSection='Comments section Component goes here'/>
           </div>
       </div>

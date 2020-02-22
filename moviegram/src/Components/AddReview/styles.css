@@ -12,11 +12,7 @@
 .add-review {
     width: 1000px;
 		height: auto;
-<<<<<<< HEAD
-    min-height: 520px;
-=======
     min-height: 500px;
->>>>>>> fa7302251e36cc12ccc534ba80fe205f097ebfc6
     position: relative;
     margin-left: auto;
     margin-right: auto;

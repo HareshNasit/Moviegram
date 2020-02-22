@@ -70,14 +70,21 @@
 #totalFollowers {
 	font-weight: bold;
 	margin-left: 20px;
+	cursor: pointer;
 }
 
 #totalFollowing {
 	font-weight: bold;
 	margin-left: 20px;
+	cursor: pointer;
 }
 
 #userDescription {
 	margin-top: 20px;
 	/* background-color: blue; */
+}
+
+#editProfile {
+	width: 100px;
+	height: 200px;
 }
