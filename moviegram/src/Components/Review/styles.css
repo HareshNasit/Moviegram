@@ -30,7 +30,7 @@
 	list-style: none;
 	text-align: center;
 	display: inline-block;
-    flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .content {
@@ -49,4 +49,31 @@
 	margin-right: 10px;
 	margin-bottom: 10px;
   border: 1px solid black;
+	padding-left: 20px;
+}
+
+.newCom {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding-left: 20px;
+}
+
+.writeCom {
+	padding-left: 10px;
+}
+
+.writeIt {
+	width: 810px;
+	padding-right: 10px;
+}
+
+.comBar {
+	background-color: #303030;
+	color: white;
+}
+
+.showHideCom {
+	background-color: #008080;
+	border: 1px solid #008080;
 }

@@ -6,6 +6,7 @@ import { Button, Form } from "react-bootstrap";
 
 import MainMenuBar from './../MainMenuBar';
 import Review from './../Review';
+import Comment from './../Comment';
 
 class NewsFeedScreen extends React.Component {
 
@@ -13,17 +14,26 @@ class NewsFeedScreen extends React.Component {
     currUser: "",
     reviews: [{ username: "Bhavya" , movieName: "Avengers" ,
                 reviewContent: "This movie is lit, and I mean lit af. My god what an awesome time I had and it was even more fun because I watched it with my close friends which made the experience amazing. 15/10 stars. Definitely go watch it pleaseeeeeeeee!!!!!!!!!!!" ,
-                commentsSection: "Comments section Component goes here" },
+                commentsSection: [{datetime:"", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
                 { username: "Harsh" , movieName: "Messi Rocks" ,
                   reviewContent: "I think this movie is better than any movie ever made about any footballer or any movie that will be made about any footballer because Messi by far is the GOAT football player to ever live and anyone who disagrees and says Ronaldo is the best is RIGHT cause messi sucks HaHaHa tricked you there didn't I." ,
-                  commentsSection: "Comments section Component goes here" },
+                  commentsSection: [{datetime:"", username:"Mark", commentContent:"Messi is the best player i have witnessed tbh"}] },
                 { username: "Dhruv" , movieName: "Dangal" ,
                   reviewContent: "Ab toh dangal hoga dangal bhenchooodddddd !!!!!!" ,
-                  commentsSection: "Comments section Component goes here" },
+                  commentsSection: [] },
                 { username: "Yosef" , movieName: "Stalingrad" ,
                   reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot." ,
-                  commentsSection: "Comments section Component goes here" }]
+                  commentsSection: [] }]
   };
+
+  getCommentsSection(comments) {
+    return (
+      <div>
+        {comments.map(com => (<Comment username={com.username}
+                                       commentContent={com.commentContent}/>))}
+      </div>
+    )
+  }
 
   render() {
     return (
@@ -34,7 +44,7 @@ class NewsFeedScreen extends React.Component {
 
         <Form className="searchMovieform">
           <Form.Group>
-            <Form.Control type="searchMovie" placeholder="Search Movies/Reviews" />
+            <Form.Control type="searchMovie" placeholder="Search Movies/Reviews" className="searchBar"/>
           </Form.Group>
         </Form>
 
@@ -47,11 +57,10 @@ class NewsFeedScreen extends React.Component {
             <Review username={review.username}
                     movieName={review.movieName}
                     reviewContent={review.reviewContent}
-                    commentsSection={review.commentsSection}/>
+                    commentsSection={this.getCommentsSection(review.commentsSection)}/>
           ))}
         </div>
 
->>>>>>> fa7302251e36cc12ccc534ba80fe205f097ebfc6
       </div>
     );
   }
