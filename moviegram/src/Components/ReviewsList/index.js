@@ -13,7 +13,7 @@ import Comment from './../Comment';
 // Class for a Review Component
 class ReviewsList extends React.Component {
 
-  // Creates and returns a unique comments rection which contains the comments of each different review
+  // Creates and returns a unique comments section which contains the comments of each different review
   getCommentsSection(review) {
     const comments = review.commentsSection;
     return (
