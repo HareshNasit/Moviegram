@@ -1,6 +1,5 @@
 // import all react libraries
 import React from "react";
-import { uid } from "react-uid";
 import { Button, Form } from "react-bootstrap";
 // import all stylesheets
 import "./styles.css";
@@ -9,6 +8,7 @@ import "./../universalStyles.css"
 import MainMenuBar from './../MainMenuBar';
 import Review from './../Review';
 import Comment from './../Comment';
+import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
 // import constants file which carries user data
 // const constants = require("../../constants")
@@ -53,17 +53,6 @@ class NewsFeedScreen extends React.Component {
     }
   }
 
-  // Creates and returns a unique comments rection which contains the comments of each different review
-  getCommentsSection(comments) {
-    return (
-      <div>
-        {comments.map(com => (<Comment key={uid(com)}
-                                       username={com.username}
-                                       commentContent={com.commentContent}/>))}
-      </div>
-    )
-  }
-
   render() {
     return (
       <div className="pageFeed">
@@ -88,18 +77,9 @@ class NewsFeedScreen extends React.Component {
          <h3 className="headerText">Reviews Feed</h3>
         </div>
 
-        {/*Display all the reviews for the current logged in user that were posted by his friends */}
-        <div className="revs">
-          {this.state.reviews.map(review => (
-            <Review key={uid(review)}
-                    datetime="Datetime"
-                    username={review.username}
-                    userImg={review.profImg}
-                    movieName={review.movieName}
-                    reviewContent={review.reviewContent}
-                    commentsSection={this.getCommentsSection(review.commentsSection)}/>
-          ))}
-        </div>
+        {/* Reviews List here to display all reviews from friends of current user */}
+        <ReviewsList reviews={this.state.reviews}
+                     queueComponent={this}/>
 
       </div>
     );

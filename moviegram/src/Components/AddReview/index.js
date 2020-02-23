@@ -20,9 +20,13 @@ class AddReview extends React.Component {
   }
 
   saveReview() {
-    const review = {username: "CurrUser", movieName: this.state.movie, profImg: {profileimgdef},
-                    reviewContent: this.state.review, commentsSection:[]}
-    console.log(this.currUser + " wants to save a review " + review)
+    if(this.state.newComment === ""){
+      console.log("Can't post empty review")
+    } else {
+      const review = {username: "CurrUser", movieName: this.state.movie, profImg: {profileimgdef},
+                      reviewContent: this.state.review, commentsSection:[]}
+      console.log(this.currUser + " wants to save a review " + review)
+    }
   }
 
   render() {

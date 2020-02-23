@@ -19,14 +19,6 @@ class Review extends React.Component {
     this.postCommentToReview = this.postCommentToReview.bind(this)
   }
 
-  // comsOpen = false
-  // showComments(comSection) {
-  //   if (comsOpen == false) {
-  //       comsOpen = true
-  //       return ()
-  //   }
-  // }
-
   // Takes the content from a new comment written on the post and sets the review's this.state.newComment variable
   // to the entered comment
   newComContent(event) {
@@ -47,7 +39,7 @@ class Review extends React.Component {
 
   render() {
 
-    const { datetime, username, userImg, movieName, reviewContent, commentsSection} = this.props;
+    const { datetime, username, userImg, movieName, reviewContent, commentsSection, queueComponent} = this.props;
 
     return (
       <div id="review">
