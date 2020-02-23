@@ -1,9 +1,9 @@
+// import all react libraries
 import React from "react";
 import "./styles.css";
 
+// Class for a Comment Feed Component
 class Comment extends React.Component {
-
-  datetime = new Date().toLocaleString()
 
   render() {
 

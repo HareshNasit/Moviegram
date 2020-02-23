@@ -48,10 +48,10 @@ class SignupScreen extends React.Component {
             <Form.Control type="password" placeholder="Password" onChange={this.passwordChange} />
           </Form.Group>
 
-          
-          
-           
-            <Button variant="outline-primary" 
+
+
+
+            <Button variant="outline-primary"
                             onClick={this.buttonClick}
                              className="loginButton">
               Signup
@@ -59,14 +59,14 @@ class SignupScreen extends React.Component {
             <div className="registeredButtonBox">
               <Button className="alreadyRegisteredButton" as={Link} to="/login" type="submit">Already registered?</Button>
             </div>
-                   
-          
+
+
 
       </Form>
       </div>
-        
-      
-      
+
+
+
     );
   }
 }
