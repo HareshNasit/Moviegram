@@ -15,21 +15,18 @@ class Home extends React.Component {
       			<img src={require("./static/Banner.jpg")} />
       		</div>
 
-      		<Form className="searchMovieform">
+      		<Form className="searchMovie">
           	  <Form.Group>
             	<Form.Control type="searchMovie" placeholder="Search Movie" />
               </Form.Group>
         	</Form>
 
-        	<Button variant="outline-primary" 
-                      type="submit" 
-                      className="searchButton">
-                Search
-            </Button>
-
-            <div className="Login_Signup">
-              <Button className="Login_SignupButton" as={Link} to="/login" type="submit">Login/Signup</Button>
-            </div>
+          <div className="searchButton">
+              <Button type="submit" variant="outline-primary">Search</Button>
+          </div>
+          <div className="Login_Signup">
+              <Button as={Link} to="/login" type="submit">Login/Signup</Button>
+          </div>
 
 
       	</div>

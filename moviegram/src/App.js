@@ -12,8 +12,11 @@ import LoginScreen from './Components/Login';
 import SignupScreen from './Components/Signup';
 import NewsFeedScreen from './Components/NewsFeed'
 import UserProfile from './Components/UserProfile'
+import Review from './Components/Review'
+// import AddReview from './Components/AddReview'
 
 import Profile from './Components/Profile'
+
 
 
 class App extends React.Component {
@@ -35,8 +38,8 @@ class App extends React.Component {
                             (<SignupScreen/>)}/>
             <Route exact path='/NewsFeed' render={() =>
                             (<NewsFeedScreen/>)}/>
-            <Route exact path='/AddReview' render={() =>
-                            (<AddReview/>)}/>
+             <Route exact path='/Review' render={() =>
+                            (<Review/>)}/>
             <Route exact path='/profile/:id' render={(props) =>
                             (<Profile {...props} />)}/>
             <Route exact path='/userProfile' render={() =>

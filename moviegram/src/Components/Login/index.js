@@ -3,7 +3,19 @@ import './styles.css';
 import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
+const constants = require("../../constants")
+
 class LoginScreen extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {username: "", password: ""};
+
+    }
+    
+    buttonClick(){
+      console.log(constants)
+    }
+
     render() {
       return (
         <div className="pageM">
@@ -20,8 +32,8 @@ class LoginScreen extends React.Component {
             </Form.Group>
 
               <Button variant="outline-primary" 
-                      type="submit" 
-                      className="loginButton">
+                      className="loginButton"
+                      onClick={this.buttonClick}>
                 Login
               </Button>
               
