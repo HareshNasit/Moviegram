@@ -5,8 +5,6 @@ import {Link, Redirect} from 'react-router-dom';
 
 const constants = require("../../constants")
 
-const constants = require("../../constants")
-
 class LoginScreen extends React.Component {
     constructor(props) {
       super(props);
