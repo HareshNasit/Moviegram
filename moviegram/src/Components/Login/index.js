@@ -5,6 +5,8 @@ import {Link, Redirect} from 'react-router-dom';
 
 const constants = require("../../constants")
 
+const constants = require("../../constants")
+
 class LoginScreen extends React.Component {
     constructor(props) {
       super(props);
@@ -22,25 +24,25 @@ class LoginScreen extends React.Component {
     changeUser(e) {
       this.setState({username: e.target.value});
    }
-  
+
    passwordChange(e) {
       this.setState({password: e.target.value});
    }
 
     buttonClick(){
       console.log(constants)
-      if (this.state.username === "username1" && this.state.password === "password1") { 
-        constants.username = "username1"   
+      if (this.state.username === "username1" && this.state.password === "password1") {
+        constants.username = "username1"
         constants.acc.auth = true;
-        console.log(constants) 
+        console.log(constants)
         this.props.history.push("/NewsFeed")
-      }    
-      if (this.state.username === "username2" && this.state.password === "password2") { 
-        constants.username = "username2" 
+      }
+      if (this.state.username === "username2" && this.state.password === "password2") {
+        constants.username = "username2"
         constants.acc.auth = true;
-        console.log(constants)      
+        console.log(constants)
         this.props.history.push("/NewsFeed")
-      }    
+      }
     }
 
     render() {
@@ -59,20 +61,20 @@ class LoginScreen extends React.Component {
               <Form.Control type="password" placeholder="Password" onChange={this.passwordChange} />
             </Form.Group>
 
-              <Button variant="outline-primary" 
+              <Button variant="outline-primary"
                       className="loginButton"
                       onClick={this.buttonClick}>
                 Login
               </Button>
-              
+
             <div className="notRegisteredButtonBox">
               <Button className="notRegisteredButton" as={Link} to="/signup" type="submit">New to the site?</Button>
             </div>
         </Form>
         </div>
-          
-        
-        
+
+
+
       );
     }
   }

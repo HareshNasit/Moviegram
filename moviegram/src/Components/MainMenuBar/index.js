@@ -1,7 +1,5 @@
 import React from "react";
 import "./styles.css";
-import { Button, Form } from "react-bootstrap";
-import {Link} from 'react-router-dom';
 
 // import all the images for the menu bar
 import homeimg from './home.png'

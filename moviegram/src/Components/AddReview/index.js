@@ -1,16 +1,35 @@
 import React from "react";
 import "./styles.css";
+import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
+// import ReactDOM from 'react-dom';
+// import Modal from 'react-modal';
 
 import MainMenuBar from './../MainMenuBar';
+import profileimgdef from './../MainMenuBar/profile.png';
+
+const constants = require("../../constants")
 
 class AddReview extends React.Component {
 
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = { movie: "",
+                   review: ""};
+    this.currUser = constants.acc.username;
+  }
 
-    const { username } = this.props;
+  saveReview() {
+    if(this.state.newComment === ""){
+      console.log("Can't post empty review")
+    } else {
+      const review = {username: "CurrUser", movieName: this.state.movie, profImg: {profileimgdef},
+                      reviewContent: this.state.review, commentsSection:[]}
+      console.log(this.currUser + " wants to save a review " + review)
+    }
+  }
+
+  render() {
 
     return (
       <div id="addreviewmain">
@@ -22,7 +41,8 @@ class AddReview extends React.Component {
 
          <div className="add-review">
             <ul>
-              <li>User : {username}</li>
+              <li className="reviewUserPicLi"><img className="reviewUserPic" src={profileimgdef} alt="User DP"/></li>
+              <li>{this.currUser}</li>
             </ul>
             <Form className="reviewForm">
               <Form.Group controlId="review.movieName">
@@ -40,7 +60,7 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick="" type="submit">Post Review</Button>
+            <Button variant="primary" className="saveReviewBtn" onClick={this.saveReview} type="submit">Post Review</Button>
          </div>
 
       </div>
