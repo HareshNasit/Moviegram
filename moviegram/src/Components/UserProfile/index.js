@@ -7,27 +7,8 @@ import photo from './ballon_dor.jpg'
 import Review from './../Review';
 import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
-// import EditProfile from './../UserProfile';
-
-// <MainMenuBar/>
-// <img class="profilePic" src={photo} />
-// <div class="profileDescription">
-//   <h2>Profile Information</h2>
-//   <p class="grey">@movieFreak</p>
-//   <p>
-//       Marvel fan
-//   </p>
-// </div>
-
-// <div class="userProfile">
-//     <div id="profilePicContainer">
-//       CR7
-//     </div>
-//     <div id="profileInfo">
-//       HALA MADRID <br/>
-//       asmdjasbkdjsand
-//     </div>
-// </div>
+import PropTypes from "prop-types";
+// import FollowStatsModel from './../UserFollowStats';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -37,10 +18,6 @@ class UserProfile extends React.Component {
       show: false,
       isUser: true,
       isfollowing: false,
-      following: "Cristiano Ronaldo\n\
-      Bhavya Shah\n\
-      Dhruv Patel\n\
-      Yosef Leibman",
       showModal: false
     };
     this.onClick = this.onClick.bind(this)
@@ -48,9 +25,11 @@ class UserProfile extends React.Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
+  componentDidMount() {
+    Modal.setAppElement('body');
+  }
+
   onClick () {
-    // this.showModal();
-    this.dialog.showAlert('Hello Dialog!')
     this.dialog.show({
       title: 'Following',
       body: this.state.following,
@@ -112,9 +91,9 @@ class UserProfile extends React.Component {
 
     const people = ['Rowe', 'Prevost', 'Gare'];
 
-    const peopleLis = people.map(person =>
+    const peopleLis = people.map((person, index) =>
       // expression goes here:
-    <div>{person}</div>
+    <div key={index}>{person}</div>
     );
 
     return (
@@ -137,7 +116,6 @@ class UserProfile extends React.Component {
                  >
                  <div className = "followModelHeader">
                   Following
-                  <button onClick={this.handleCloseModal}>X</button>
                  </div>
                  <div className = "followModelBody">
                  {peopleLis}
@@ -156,7 +134,6 @@ class UserProfile extends React.Component {
                 Snapchat: HarshN12
                 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦
                 Fear can hold you prisoner, Hope can set you free
-
               </div>
             </div>
           </div>
@@ -182,5 +159,6 @@ class UserProfile extends React.Component {
     );
   }
 }
+
 
 export default UserProfile;
