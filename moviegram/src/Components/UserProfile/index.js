@@ -86,7 +86,7 @@ class UserProfile extends React.Component {
       follow_edit_button = <Button variant="outline-primary"
                     type="submit"
                     className="editButton"
-                    onClick={this.handleOpenModal}
+                    onClick={this.onClick}
                     >
                     Edit Profile
                   </Button>
@@ -109,6 +109,14 @@ class UserProfile extends React.Component {
                     Follow
                   </Button>
     }
+
+    const people = ['Rowe', 'Prevost', 'Gare'];
+
+    const peopleLis = people.map(person =>
+      // expression goes here:
+    <div>{person}</div>
+    );
+
     return (
       <div id="userProfile">
           <MainMenuBar/>
@@ -121,17 +129,25 @@ class UserProfile extends React.Component {
                 <span id="userName">harshn12</span>
                 {follow_edit_button}
                 <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
-                <Modal className = "editModel"
+                <Modal className = "numFollowModel"
                  overlayClassName="Overlay"
                  isOpen={this.state.showModal}
-                 contentLabel="Minimal Modal Example">
-                 <button onClick={this.handleCloseModal}>Close Modal</button>
+                 contentLabel="Minimal Modal Example"
+                 onRequestClose={this.handleCloseModal}
+                 >
+                 <div className = "followModelHeader">
+                  Following
+                  <button onClick={this.handleCloseModal}>X</button>
+                 </div>
+                 <div className = "followModelBody">
+                 {peopleLis}
+                  </div>
                </Modal>
               </div>
                 <div id="infoStats">
-                <span id="totalReviews" onClick={this.onClick}> 12 </span>Reviews
-                <span id="totalFollowers" onClick={this.onClick}>12 </span>Followers
-                <span id="totalFollowing" onClick={this.onClick}>12 </span>Following
+                <span id="totalReviews" onClick={this.handleOpenModal}> 12 </span>Reviews
+                <span id="totalFollowers" onClick={this.handleOpenModal}>12 </span>Followers
+                <span id="totalFollowing" onClick={this.handleOpenModal}>12 </span>Following
               </div>
               <div id="userDescription">
                 I am a movieFreak who enjoys action and Sci-fi movies such

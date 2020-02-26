@@ -89,7 +89,7 @@
 	height: 200px;
 }
 
-.editModel {
+.numFollowModel {
 	height: 400px;
 	width: 350px;
 	position: absolute;
@@ -109,3 +109,18 @@
     bottom: 0;
     background-color: rgba(0,0,0,.65);
   }
+
+.followModelHeader {
+	height: 20px;
+	width: 350px;
+	float: left;
+	/* background-color: green; */
+	border-color: black;
+	text-align: center;
+}
+
+.followModelBody {
+	width: 350px;
+	height: 380px;
+	float: left;
+}
