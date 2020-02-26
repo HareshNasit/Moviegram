@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Button, Form } from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 const constants = require("../../constants")
 console.log(constants)
@@ -30,6 +30,11 @@ class SignupScreen extends React.Component {
   this.props.history.push("/login")
  }
 
+ renderRedirect = () => {
+  if (constants.acc.auth) {
+    return <Redirect to='/NewsFeed' />
+  }
+}
   render() {
     return (
       <div className="formContainer">

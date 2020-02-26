@@ -16,7 +16,6 @@ class LoginScreen extends React.Component {
     }
     renderRedirect = () => {
       if (constants.acc.auth) {
-        console.log("Haha")
         return <Redirect to='/NewsFeed' />
       }
     }
