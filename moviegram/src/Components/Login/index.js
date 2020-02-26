@@ -3,7 +3,6 @@ import './styles.css';
 import { Button, Form } from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 
-const constants = require("../../constants")
 
 const constants = require("../../constants")
 
