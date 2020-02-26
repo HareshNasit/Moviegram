@@ -8,7 +8,28 @@ import Review from './../Review';
 import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
 import PropTypes from "prop-types";
+import ReviewsList from './../ReviewsList';
+import profileimgdef from './../MainMenuBar/profile.png';
 // import FollowStatsModel from './../UserFollowStats';
+
+
+// <Review username='harshn12'
+//         movieName='Avengers'
+//         reviewContent='Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!'
+//         commentsSection='Comments section Component goes here'/>
+// <Review username='harshn12'
+//         movieName='Intersteller'
+//         reviewContent="Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption."
+//         commentsSection='Comments section Component goes here'/>
+// <Review username='harshn12'
+//         movieName='Anabelle Comes Home'
+//         reviewContent="Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts."
+//         commentsSection='Comments section Component goes here'/>
+// <Review username='harshn12'
+//         movieName='Shawshank Redemption'
+//         reviewContent="This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend."
+//         commentsSection='Comments section Component goes here'/>
+
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -18,7 +39,19 @@ class UserProfile extends React.Component {
       isUser: true,
       isfollowing: false,
       showModalFollowing: false,
-      showModalFollows: false
+      showModalFollows: false,
+      reviews: [{ username: "HarshN12" , movieName: "Avengers" , profImg: photo,
+                 reviewContent: "Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!" ,
+                 commentsSection: [{datetime:"", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
+                 { username: "HarshN12" , movieName: "Intersteller" , profImg: photo,
+                   reviewContent: "Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption." ,
+                   commentsSection: [{datetime:"", username:"Mark", commentContent:"Messi is the best player i have witnessed tbh"}] },
+                 { username: "HarshN12" , movieName: "Anabelle Comes Home" , profImg: photo,
+                   reviewContent: "Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts." ,
+                   commentsSection: [] },
+                 { username: "HarshN12" , movieName: "Shawshank Redemption" , profImg: photo,
+                   reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
+                   commentsSection: [] }]
     };
     this.onClick = this.onClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -168,22 +201,8 @@ class UserProfile extends React.Component {
             </div>
           </div>
           <div className="profileFeed">
-            <Review username='harshn12'
-                    movieName='Avengers'
-                    reviewContent='Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!'
-                    commentsSection='Comments section Component goes here'/>
-            <Review username='harshn12'
-                    movieName='Intersteller'
-                    reviewContent="Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption."
-                    commentsSection='Comments section Component goes here'/>
-            <Review username='harshn12'
-                    movieName='Anabelle Comes Home'
-                    reviewContent="Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts."
-                    commentsSection='Comments section Component goes here'/>
-            <Review username='harshn12'
-                    movieName='Shawshank Redemption'
-                    reviewContent="This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend."
-                    commentsSection='Comments section Component goes here'/>
+            <ReviewsList reviews={this.state.reviews}
+                         queueComponent={this}/>
           </div>
       </div>
     );

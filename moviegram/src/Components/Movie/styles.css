@@ -1,0 +1,54 @@
+.movieContainer{
+    flex-direction: row;
+    width: 1000px;
+    height: 600px;
+    display: flex;
+}
+
+.imgContainer {
+    margin: 2px;
+    border-style: dashed;
+    height: 600px;
+    width: 500px;
+}
+
+.movieImage {
+
+    height:100%; width:100%;
+}
+
+
+.contentContainer{
+    height: 600px;
+    width: 500px;
+}
+
+
+
+.titleContainer{
+    border-top-style: ridge;
+    border-left-style: ridge;
+    border-right-style: ridge;
+
+    background-color: lightgrey;
+    display: flex;
+    height: 50px;
+    width: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.title{
+    font-size: xx-large;
+}
+
+.descriptionContainer{
+    border-style: ridge;
+    background-color: lightpink;
+    height: 550px;
+    width: 500px;
+}
+
+.description{
+    font-size: small;
+}
