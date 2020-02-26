@@ -33,6 +33,8 @@ class SignupScreen extends React.Component {
   render() {
     return (
       <div className="formContainer">
+        {this.renderRedirect()}
+
         <Form className="form">
           <Form.Group className="welcomeText">
             <Form.Label>Signup</Form.Label>
