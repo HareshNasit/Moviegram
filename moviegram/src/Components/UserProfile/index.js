@@ -15,14 +15,16 @@ class UserProfile extends React.Component {
     // When the componenet is created
     super(props);
     this.state = {
-      show: false,
       isUser: true,
       isfollowing: false,
-      showModal: false
+      showModalFollowing: false,
+      showModalFollows: false
     };
     this.onClick = this.onClick.bind(this)
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
+    this.handleCloseFollowingModal = this.handleCloseFollowingModal.bind(this);
+    this.handleOpenFollowersModal = this.handleOpenFollowersModal.bind(this);
+    this.handleCloseFollowersModal = this.handleCloseFollowersModal.bind(this);
   }
 
   componentDidMount() {
@@ -51,12 +53,20 @@ class UserProfile extends React.Component {
     })
   }
 
-  handleOpenModal () {
-    this.setState({ showModal: true });
+  handleOpenFollowingModal () {
+    this.setState({ showModalFollowing: true });
   }
 
-  handleCloseModal () {
-    this.setState({ showModal: false });
+  handleOpenFollowersModal () {
+    this.setState({ showModalFollowers: true });
+  }
+
+  handleCloseFollowingModal () {
+    this.setState({ showModalFollowing: false});
+  }
+
+  handleCloseFollowersModal () {
+    this.setState({showModalFollowers: false});
   }
 
   render() {
@@ -89,9 +99,16 @@ class UserProfile extends React.Component {
                   </Button>
     }
 
-    const people = ['Rowe', 'Prevost', 'Gare'];
+    const peopleFollowing = ['Cristiano Ronaldo', 'Isco', 'Leo Messi'];
 
-    const peopleLis = people.map((person, index) =>
+    const userFollowingList = peopleFollowing.map((person, index) =>
+      // expression goes here:
+    <div key={index}>{person}</div>
+    );
+
+    const peopleFollow = ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'];
+
+    const userFollowersList = peopleFollow.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
@@ -110,22 +127,35 @@ class UserProfile extends React.Component {
                 <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
                 <Modal className = "numFollowModel"
                  overlayClassName="Overlay"
-                 isOpen={this.state.showModal}
+                 isOpen={this.state.showModalFollowing}
                  contentLabel="Minimal Modal Example"
-                 onRequestClose={this.handleCloseModal}
+                 onRequestClose={this.handleCloseFollowingModal}
                  >
                  <div className = "followModelHeader">
                   Following
                  </div>
                  <div className = "followModelBody">
-                 {peopleLis}
+                 {userFollowingList}
                   </div>
                </Modal>
+               <Modal className = "numFollowModel"
+                overlayClassName="Overlay"
+                isOpen={this.state.showModalFollowers}
+                contentLabel="Minimal Modal Example"
+                onRequestClose={this.handleCloseFollowersModal}
+                >
+                <div className = "followModelHeader">
+                 Follows
+                </div>
+                <div className = "followModelBody">
+                {userFollowersList}
+                 </div>
+              </Modal>
               </div>
                 <div id="infoStats">
-                <span id="totalReviews" onClick={this.handleOpenModal}> 12 </span>Reviews
-                <span id="totalFollowers" onClick={this.handleOpenModal}>12 </span>Followers
-                <span id="totalFollowing" onClick={this.handleOpenModal}>12 </span>Following
+                <span id="totalReviews"> 4 </span>Reviews
+                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>5 </span>Followers
+                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>3 </span>Following
               </div>
               <div id="userDescription">
                 I am a movieFreak who enjoys action and Sci-fi movies such
