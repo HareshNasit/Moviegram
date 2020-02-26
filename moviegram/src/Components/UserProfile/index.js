@@ -5,7 +5,9 @@ import MainMenuBar from './../MainMenuBar';
 import Image from 'react-bootstrap/Image'
 import photo from './ballon_dor.jpg'
 import Review from './../Review';
-import Dialog from 'react-bootstrap-dialog'
+import Dialog from 'react-bootstrap-dialog';
+import Modal from 'react-modal';
+// import EditProfile from './../UserProfile';
 
 // <MainMenuBar/>
 // <img class="profilePic" src={photo} />
@@ -32,19 +34,50 @@ class UserProfile extends React.Component {
     // When the componenet is created
     super(props);
     this.state = {
+      show: false,
       isUser: true,
-      isfollowing: false
+      isfollowing: false,
+      following: "Cristiano Ronaldo\n\
+      Bhavya Shah\n\
+      Dhruv Patel\n\
+      Yosef Leibman",
+      showModal: false
     };
     this.onClick = this.onClick.bind(this)
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
-  // constructor () {
-  //   super()
-  //
-  // }
-
   onClick () {
+    // this.showModal();
     this.dialog.showAlert('Hello Dialog!')
+    this.dialog.show({
+      title: 'Following',
+      body: this.state.following,
+      bsSize: 'small',
+      actions: [
+        Dialog.Action(
+          'Update',
+          () => console.log('UPDATED!'),
+          'btn-info'
+        )
+      ],
+      onHide: (dialog) => {
+        dialog.hide()
+        console.log('closed by clicking background.')
+      },
+      prompt: [
+        Dialog.TextPrompt({initialValue: 'me@example.com', placeholder: 'description'})
+      ]
+    })
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -53,7 +86,7 @@ class UserProfile extends React.Component {
       follow_edit_button = <Button variant="outline-primary"
                     type="submit"
                     className="editButton"
-                    onClick={this.onClick}
+                    onClick={this.handleOpenModal}
                     >
                     Edit Profile
                   </Button>
@@ -81,13 +114,19 @@ class UserProfile extends React.Component {
           <MainMenuBar/>
           <div id="bodyHeader">
             <div id="profilePicContainer">
-              <img class="profilePic" src={photo} />
+              <img className="profilePic" src={photo} />
             </div>
             <div id="profileInfo">
               <div id="infoHeader">
                 <span id="userName">harshn12</span>
                 {follow_edit_button}
                 <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
+                <Modal className = "editModel"
+                 overlayClassName="Overlay"
+                 isOpen={this.state.showModal}
+                 contentLabel="Minimal Modal Example">
+                 <button onClick={this.handleCloseModal}>Close Modal</button>
+               </Modal>
               </div>
                 <div id="infoStats">
                 <span id="totalReviews" onClick={this.onClick}> 12 </span>Reviews
