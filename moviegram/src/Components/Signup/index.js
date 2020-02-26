@@ -11,6 +11,7 @@ class SignupScreen extends React.Component {
     this.state = {email: "", password: ""};
     this.changeEmail = this.changeEmail.bind(this);
     this.buttonClick = this.buttonClick.bind(this);
+    this.passwordChange = this.passwordChange.bind(this)
   }
 
   changeEmail(e) {
@@ -23,8 +24,10 @@ class SignupScreen extends React.Component {
  }
 
  buttonClick(){
-  constants.users.push({user: this.state.email})
-  console.log(constants);
+  constants.users.push({user: {email: this.state.email, 
+                              password: this.state.password, 
+                              username:this.state.username}});
+  this.props.history.push("/login")
  }
 
   render() {
@@ -48,8 +51,6 @@ class SignupScreen extends React.Component {
             <Form.Control type="password" placeholder="Password" onChange={this.passwordChange} />
           </Form.Group>
 
-          
-          
            
             <Button variant="outline-primary" 
                             onClick={this.buttonClick}
