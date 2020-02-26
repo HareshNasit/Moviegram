@@ -19,6 +19,11 @@ class Movie extends React.Component {
                 <div className="titleContainer">
                     <h1 class="title">{this.props.title}</h1>
                 </div>
+                <div className="ratingContainer">
+                    <p className="ratingText">
+                        Audience Rating: 50%
+                    </p>
+                </div>
                 <div className="descriptionContainer">
                     <p class="description">{this.props.description}</p>
                 </div>
