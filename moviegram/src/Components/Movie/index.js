@@ -1,6 +1,6 @@
 
 import React from 'react';
-
+import './styles.css';
 
 class Movie extends React.Component {
     constructor(props) {
@@ -10,19 +10,21 @@ class Movie extends React.Component {
                       imgsrc: this.props.imgsrc}
     }
     render() {
-
+        return(
         <div className="movieContainer">
             <div className="imgContainer">
-                <img src={this.props.imgsrc} alt="Movie Image"></img>
+                <img src={this.props.imgsrc} className="movieImage" alt="Movie Image"></img>
             </div>
             <div className="contentContainer">
                 <div className="titleContainer">
-                    <p>{this.props.title}</p>
+                    <h1 class="title">{this.props.title}</h1>
                 </div>
                 <div className="descriptionContainer">
-                    <p>{this.props.description}</p>
+                    <p class="description">{this.props.description}</p>
                 </div>
             </div>
-        </div>
+        </div>)
     }
 }
+
+export default Movie;
