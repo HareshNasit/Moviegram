@@ -70,14 +70,62 @@
 #totalFollowers {
 	font-weight: bold;
 	margin-left: 20px;
+	cursor: pointer;
 }
 
 #totalFollowing {
 	font-weight: bold;
 	margin-left: 20px;
+	cursor: pointer;
 }
 
 #userDescription {
 	margin-top: 20px;
 	/* background-color: blue; */
+}
+
+#editProfile {
+	width: 100px;
+	height: 200px;
+}
+
+.numFollowModel {
+	height: 400px;
+	width: 350px;
+	position: absolute;
+  top: 200px;
+  left: 400px;
+  right: 200px;
+  bottom: 200px;
+	background-color: #fff;
+	border-radius: 12px;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.65);
+  }
+
+.followModelHeader {
+	height: 30px;
+	width: 350px;
+	float: left;
+	/* background-color: green; */
+	border-color: black;
+	text-align: center;
+	/* margin-bottom: 10px; */
+	font-weight: bold;
+	border-bottom: 1px solid grey;
+	/* padding-bottom: 5px; */
+}
+
+.followModelBody {
+	width: 350px;
+	height: 360px;
+	float: left;
+	margin-top: 10px;
 }
