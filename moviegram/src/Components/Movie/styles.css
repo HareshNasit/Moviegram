@@ -1,11 +1,11 @@
 .movieContainer{
     flex-direction: row;
     width: 800px;
-    height: 400px;
+    height: 500px;
 }
 
 .imgContainer {
-    height: 400px;
+    height: 500px;
     width: 300px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .contentContainer{
-    height: 400px;
+    height: 500px;
     width: 500px;
 }
 
