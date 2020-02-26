@@ -15,7 +15,7 @@ class Movie extends React.Component {
             <div className="imgContainer">
                 <img src={this.props.imgsrc} alt="Movie Image"></img>
             </div>
-            <div className="titleDescriptionContainer">
+            <div className="contentContainer">
                 <div className="titleContainer">
                     <p>{this.props.title}</p>
                 </div>

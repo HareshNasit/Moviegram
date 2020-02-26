@@ -14,22 +14,26 @@
     width: 100%;
 }
 
-
-.titleDescriptionContainer{
+.contentContainer{
     height: 400px;
     width: 500px;
 }
 
-.titleDescriptionContainer.p{
-    font-size: large;
-}
 
 .titleContainer{
     height: 100px;
     width: 500px;
 }
 
+.titleContainer.p{
+    font-size: large;
+}
+
 .descriptionContainer{
     height: 200px;
     width: 500px;
+}
+
+.descriptionContainer.p{
+    font-size: small;
 }
