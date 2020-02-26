@@ -43,7 +43,7 @@ class App extends React.Component {
             <Route exact path='/userProfile' render={(props) =>
                             (<UserProfile {...props} />)}/>
             <Route exact path='/movie/dangal' render={(props) =>
-                            (<Movie description="This is a movie" title="Dangal" 
+                            (<Movie description="This is a movie" title="Dangal"
                             imgsrc="https://files.delhievents.com/images/events/2016/december/Dangal-movie-poster.jpg" {...props} />)}/>
           </Switch>
         </BrowserRouter>
