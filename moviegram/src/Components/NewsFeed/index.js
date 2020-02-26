@@ -6,8 +6,6 @@ import "./styles.css";
 import "./../universalStyles.css"
 // import all needed Components
 import MainMenuBar from './../MainMenuBar';
-import Review from './../Review';
-import Comment from './../Comment';
 import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
 // import constants file which carries user data

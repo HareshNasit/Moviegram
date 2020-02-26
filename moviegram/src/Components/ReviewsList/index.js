@@ -13,6 +13,11 @@ import Comment from './../Comment';
 // Class for a Review Component
 class ReviewsList extends React.Component {
 
+  // constructor(props) {
+  //   super(props)
+  //   this.buttonId = 0
+  // }
+
   // Creates and returns a unique comments section which contains the comments of each different review
   getCommentsSection(review) {
     const comments = review.commentsSection;
@@ -32,7 +37,7 @@ class ReviewsList extends React.Component {
     return (
 
       <div className="revs">
-        {reviews.map(review => (
+        {reviews.map((review) => (
           <Review key={uid(review)}
                   datetime="Datetime"
                   username={review.username}

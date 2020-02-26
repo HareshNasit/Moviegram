@@ -4,6 +4,8 @@ import { Button, Form } from "react-bootstrap";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
+// Importing required actions
+import { addCommentFunc } from "../../actionsOnReviews/reviewQueueMods";
 // import constants file which carries user data
 const constants = require("../../constants")
 
@@ -16,25 +18,13 @@ class Review extends React.Component {
     super(props)
     this.state = { newComment: ""};
     this.newComContent = this.newComContent.bind(this)
-    this.postCommentToReview = this.postCommentToReview.bind(this)
+    this.currUser = constants.acc.username;
   }
 
   // Takes the content from a new comment written on the post and sets the review's this.state.newComment variable
   // to the entered comment
   newComContent(event) {
     this.setState({newComment:event.target.value})
-
-  }
-
-  // Invoked when the post button for a comment is clicked
-  postCommentToReview() {
-    const datetime = new Date().toLocaleString()
-    if(this.state.newComment === ""){
-      console.log("Can't post empty comment")
-    } else {
-      const com = {datetime:datetime, username:constants.acc.username, commentContent:this.state.newComment}
-      console.log("posting " + com)
-    }
   }
 
   render() {
@@ -67,7 +57,11 @@ class Review extends React.Component {
               <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
             </Form.Group>
             <Form.Group className="postIt">
-              <Button variant="primary" onClick={this.postCommentToReview()}>Post Comment</Button>
+              <Button variant="primary" id="id here"
+                      onClick={() => addCommentFunc(queueComponent,
+                                                    {datetime:"", username:this.currUser, commentContent:this.state.newComment})}>
+              Post Comment
+              </Button>
             </Form.Group>
           </Form.Row>
         </Form>
