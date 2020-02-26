@@ -1,0 +1,35 @@
+.movieContainer{
+    flex-direction: row;
+    width: 800px;
+    height: 400px;
+}
+
+.imgContainer {
+    height: 400px;
+    width: 300px;
+}
+
+.imgContainer.img {
+    height: 100%;
+    width: 100%;
+}
+
+
+.titleDescriptionContainer{
+    height: 400px;
+    width: 500px;
+}
+
+.titleDescriptionContainer.p{
+    font-size: large;
+}
+
+.titleContainer{
+    height: 100px;
+    width: 500px;
+}
+
+.descriptionContainer{
+    height: 200px;
+    width: 500px;
+}
