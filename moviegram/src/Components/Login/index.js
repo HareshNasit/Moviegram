@@ -31,13 +31,13 @@ class LoginScreen extends React.Component {
       console.log(constants)
       if (this.state.username === "username1" && this.state.password === "password1") { 
         constants.username = "username1"   
-        constants.auth = true;
+        constants.acc.auth = true;
         console.log(constants) 
         this.props.history.push("/NewsFeed")
       }    
       if (this.state.username === "username2" && this.state.password === "password2") { 
         constants.username = "username2" 
-        constants.auth = true;
+        constants.acc.auth = true;
         console.log(constants)      
         this.props.history.push("/NewsFeed")
       }    
