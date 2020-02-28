@@ -8,7 +8,9 @@
     bottom: 20px;
     border: 2px solid black;
     border-radius: 10px;
-    background-color: #afeeee;
+    background-color: #008080;
+		color: white;
+		justify-content: center;
 }
 
 #review ul {
@@ -23,28 +25,62 @@
 
 #review ul li {
 	font-weight: bold;
-	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-family: "Garamond", cursive, sans-serif;
 	font-size: 20px;
 	list-style: none;
 	text-align: center;
 	display: inline-block;
-    flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .content {
 	display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    width: 100%;
-    padding: 15px;
-    text-align: justify;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px;
+	padding-bottom: 5px;
+  text-align: justify;
+}
+
+.datetime {
+	padding-left: 15px;
+	color: #484848;
 }
 
 .comments {
 	border-radius: 10px;
 	padding: 15px;
+	margin-top: 10px;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 10px;
-    border: 1px solid black;
+  border: 1px solid black;
+	padding-left: 20px;
+}
+
+.newCom {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding-left: 20px;
+}
+
+.writeCom {
+	padding-left: 10px;
+}
+
+.writeIt {
+	width: 810px;
+	padding-right: 10px;
+}
+
+.comBar {
+	background-color: #303030;
+	color: white;
+}
+
+.showHideCom {
+	background-color: #008080;
+	border: 1px solid #008080;
 }

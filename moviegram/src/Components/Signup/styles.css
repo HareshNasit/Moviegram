@@ -1,13 +1,14 @@
 .form {
+    top: 100px;
     width: 300px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
 }
 
-.pageM {
-    top: 100px;
-    position:relative;
+.formContainer {
+    width: 100%;
+    height: 100%;
 }
 
 .loginButton {

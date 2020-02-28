@@ -1,6 +1,5 @@
 import React from "react";
 import "./styles.css";
-import { Button, Form } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 
 // import all the images for the menu bar
@@ -18,27 +17,25 @@ class MainMenuBar extends React.Component {
         <div id="menuItems">
           <ul>
             <li>
-              <a href='/'>
-              <img src={homeimg} alt="Home" className="mainMenu-btn"/>
-              </a>
+            <Link to={'/'}><img src={homeimg} alt="Home" className="mainMenu-btn"/></Link>
             </li>
 
             <li>
-              <a href='/NewsFeed'>
+            <Link to={'/NewsFeed'}>
               <img src={newsFeedimg} alt="News Feed" className="mainMenu-btn"/>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href='/AddReview'>
+            <Link to={'/AddReview'}>
               <img src={addReviewimg} alt="Add Review" className="mainMenu-btn"/>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href='/UserProfile'>
+              <Link to='/UserProfile'>
               <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
-              </a>
+              </Link>
             </li>
 
           </ul>
