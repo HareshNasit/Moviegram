@@ -26,8 +26,8 @@ class Home extends React.Component {
       value: 'Interstellar',
     },
     {
-      key: 'fast and furious 8',
-      value: 'Fast and Furious 8',
+      key: 'fate of the furious',
+      value: 'Fate of The Furious',
     },
   ]
   handleEvent(movie) {
