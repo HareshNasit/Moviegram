@@ -10,6 +10,8 @@ import Modal from 'react-modal';
 import PropTypes from "prop-types";
 import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
+// import constants file which carries user data
+const constants = require("../../constants")
 // import FollowStatsModel from './../UserFollowStats';
 
 
@@ -40,16 +42,16 @@ class UserProfile extends React.Component {
       isfollowing: false,
       showModalFollowing: false,
       showModalFollows: false,
-      reviews: [{ username: "HarshN12" , movieName: "Avengers" , profImg: photo,
+      reviews: [{ id: 0, username: "HarshN12" , movieName: "Avengers" , profImg: photo, datetime: "1/28/2020, 11:57:15 PM",
                  reviewContent: "Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!" ,
                  commentsSection: [{datetime:"", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
-                 { username: "HarshN12" , movieName: "Intersteller" , profImg: photo,
+                 { id: 1, username: "HarshN12" , movieName: "Intersteller" , profImg: photo, datetime: "1/28/2020, 11:57:15 PM",
                    reviewContent: "Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption." ,
                    commentsSection: [{datetime:"", username:"Mark", commentContent:"Messi is the best player i have witnessed tbh"}] },
-                 { username: "HarshN12" , movieName: "Anabelle Comes Home" , profImg: photo,
+                 { id: 2, username: "HarshN12" , movieName: "Anabelle Comes Home" , profImg: photo, datetime: "1/28/2020, 11:57:15 PM",
                    reviewContent: "Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts." ,
                    commentsSection: [] },
-                 { username: "HarshN12" , movieName: "Shawshank Redemption" , profImg: photo,
+                 { id: 3, username: "HarshN12" , movieName: "Shawshank Redemption" , profImg: photo, datetime: "1/28/2020, 11:57:15 PM",
                    reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
                    commentsSection: [] }]
     };
@@ -58,6 +60,7 @@ class UserProfile extends React.Component {
     this.handleCloseFollowingModal = this.handleCloseFollowingModal.bind(this);
     this.handleOpenFollowersModal = this.handleOpenFollowersModal.bind(this);
     this.handleCloseFollowersModal = this.handleCloseFollowersModal.bind(this);
+    this.currUser = constants.acc.username;
   }
 
   componentDidMount() {

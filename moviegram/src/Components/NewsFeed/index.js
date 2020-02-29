@@ -9,7 +9,7 @@ import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
 // import constants file which carries user data
-// const constants = require("../../constants")
+const constants = require("../../constants")
 
 // Class for the Reviews News Feed Component
 class NewsFeedScreen extends React.Component {
@@ -34,6 +34,7 @@ class NewsFeedScreen extends React.Component {
                  };
     this.searchChange = this.searchChange.bind(this);
     this.searchMoviesReviews = this.searchMoviesReviews.bind(this)
+    this.currUser = constants.acc.username;
   }
 
   // function used to change the value of this.state.searched to store the searchBar query entered by user
