@@ -4,8 +4,6 @@ import { Button, Form } from "react-bootstrap";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
-// Importing required actions
-import { addCommentFunc } from "../../actionsOnReviews/reviewQueueMods";
 // import constants file which carries user data
 const constants = require("../../constants")
 
@@ -31,9 +29,6 @@ class Review extends React.Component {
   addCommentFunc(queue, comment, id) {
     let reviewsList = queue.state.reviews
     let review = reviewsList[id.reviewId]
-    console.log(reviewsList)
-    console.log(review)
-    console.log(comment)
     review.commentsSection.push(comment)
     queue.setState({
       reviews: reviewsList

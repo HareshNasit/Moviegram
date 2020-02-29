@@ -18,17 +18,26 @@ class AddReview extends React.Component {
                    review: ""};
     this.currUser = constants.acc.username;
     this.saveReview = this.saveReview.bind(this)
+    this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
+    this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
   }
 
-  saveReview(queue) {
+  saveReview() {
     if(this.state.newComment === ""){
       console.log("Can't post empty review")
     } else {
-      let newReview = { id: 4, username: this.currUser , movieName: this.state.movie , profImg: profileimgdef,
+      const newReview = { id: 4, username: this.currUser , movieName: this.state.movie , profImg: profileimgdef,
                         datetime: new Date().toLocaleString(), reviewContent: this.state.review, commentsSection: [] }
-      queue.state.reviews.push(newReview)
-      console.log(this.currUser + " saved a review " + newReview)
+      console.log(newReview)
     }
+  }
+
+  handleMovieNameChange(event) {
+    this.setState({movie:event.target.value})
+  }
+
+  handleReviewContentChange(event) {
+    this.setState({review:event.target.value})
   }
 
   render() {
@@ -49,11 +58,11 @@ class AddReview extends React.Component {
             <Form className="reviewForm">
               <Form.Group controlId="review.movieName">
                 <Form.Label>Movie</Form.Label>
-                <Form.Control type="name" placeholder="Movie Name" />
+                <Form.Control type="name" placeholder="Movie Name" onChange={this.handleMovieNameChange}/>
               </Form.Group>
               <Form.Group controlId="review.reviewContent">
                 <Form.Label>Review</Form.Label>
-                <Form.Control type="review" as="textarea" rows="8" placeholder="Add your Review here" />
+                <Form.Control type="review" as="textarea" rows="8" placeholder="Add your Review here" onChange={this.handleReviewContentChange}/>
               </Form.Group>
               <Form.Group controlId="review.reviewContent">
                 <Form.Check type="checkbox" className="spoilerCheck">
