@@ -50,7 +50,7 @@ class Review extends React.Component {
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li><span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}</li>
-          <li>Movie : {movieName}</li>
+          <li>{movieName}</li>
         </ul>
 
         {/* Content of the review and the datetime on which it was posted are displayed in the following elements */}

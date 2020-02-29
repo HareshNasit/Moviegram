@@ -40,7 +40,7 @@ class ReviewsList extends React.Component {
       <div className="revs">
         {reviews.map((review) => (
           <Review key={uid(review)}
-                  datetime="Datetime"
+                  datetime={review.datetime}
                   username={review.username}
                   userImg={review.profImg}
                   movieName={review.movieName}
