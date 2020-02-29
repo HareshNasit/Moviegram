@@ -18,6 +18,7 @@ class Review extends React.Component {
     super(props)
     this.state = { newComment: ""};
     this.newComContent = this.newComContent.bind(this)
+    this.addCommentFunc = this.addCommentFunc.bind(this)
     this.currUser = constants.acc.username;
   }
 
@@ -27,9 +28,21 @@ class Review extends React.Component {
     this.setState({newComment:event.target.value})
   }
 
+  addCommentFunc(queue, comment, id) {
+    let reviewsList = queue.state.reviews
+    let review = reviewsList[id.reviewId]
+    console.log(reviewsList)
+    console.log(review)
+    console.log(comment)
+    review.commentsSection.push(comment)
+    queue.setState({
+      reviews: reviewsList
+    });
+  }
+
   render() {
 
-    const { datetime, username, userImg, movieName, reviewContent, commentsSection, queueComponent} = this.props;
+    const { datetime, username, userImg, movieName, reviewContent, commentsSection, reviewId, queueComponent} = this.props;
 
     return (
       <div id="review">
@@ -57,9 +70,10 @@ class Review extends React.Component {
               <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
             </Form.Group>
             <Form.Group className="postIt">
-              <Button variant="primary" id="id here"
-                      onClick={() => addCommentFunc(queueComponent,
-                                                    {datetime:"", username:this.currUser, commentContent:this.state.newComment})}>
+              <Button variant="primary"
+                      onClick={() => this.addCommentFunc(queueComponent,
+                                                    {datetime: new Date().toLocaleString(), username:this.currUser, commentContent:this.state.newComment},
+                                                    {reviewId})}>
               Post Comment
               </Button>
             </Form.Group>

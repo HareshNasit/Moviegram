@@ -24,6 +24,7 @@ class ReviewsList extends React.Component {
     return (
       <div>
         {comments.map(com => (<Comment key={uid(com)}
+                                       datetime={com.datetime}
                                        username={com.username}
                                        commentContent={com.commentContent}/>))}
       </div>
@@ -45,6 +46,7 @@ class ReviewsList extends React.Component {
                   movieName={review.movieName}
                   reviewContent={review.reviewContent}
                   commentsSection={this.getCommentsSection(review)}
+                  reviewId={review.id}
                   queueComponent={queueComponent}/>
         ))};
       </div>
