@@ -17,15 +17,17 @@ class AddReview extends React.Component {
     this.state = { movie: "",
                    review: ""};
     this.currUser = constants.acc.username;
+    this.saveReview = this.saveReview.bind(this)
   }
 
-  saveReview() {
+  saveReview(queue) {
     if(this.state.newComment === ""){
       console.log("Can't post empty review")
     } else {
-      const review = {username: "CurrUser", movieName: this.state.movie, profImg: {profileimgdef},
-                      reviewContent: this.state.review, commentsSection:[]}
-      console.log(this.currUser + " wants to save a review " + review)
+      let newReview = { id: 4, username: this.currUser , movieName: this.state.movie , profImg: profileimgdef,
+                        datetime: new Date().toLocaleString(), reviewContent: this.state.review, commentsSection: [] }
+      queue.state.reviews.push(newReview)
+      console.log(this.currUser + " saved a review " + newReview)
     }
   }
 
@@ -60,7 +62,7 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={this.saveReview} type="submit">Post Review</Button>
+            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview()} type="submit">Post Review</Button>
          </div>
 
       </div>
