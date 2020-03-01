@@ -37,25 +37,31 @@ class Home extends React.Component {
     render() {
       return (
         <div className="Home">
-      	  <div className="Background center">
-          </div>
+      	  {/* <div className="Background center">
+          </div> */}
 
 
         	<div className="Banner">
       			<img src={require("./static/Banner.jpg")} />
       		</div>
+          <div className="searchContainer">
+            <div className="search">
+                <div className="searchMov">
+                <ReactSearchBox
+                placeholder="Search Movie"
+                data={this.data}
+                onSelect={event => this.handleEvent(event.value)}
+                />
+                </div>
+                <div className="searchBut">
+                <Button  type="submit" variant="outline-primary">Search</Button>
 
-      		<div className="searchMovie">
-            <ReactSearchBox
-            placeholder="Search Movie"
-            data={this.data}
-            onSelect={event => this.handleEvent(event.value)}
-            />
-        	</div>
-
-          <div className="searchButton">
-              <Button type="submit" variant="outline-primary">Search</Button>
+                </div>
+        
+            </div>
           </div>
+
+      		
           <div className="Login_Signup">
               <Button as={Link} to="/login" type="submit">Login/Signup</Button>
           </div>

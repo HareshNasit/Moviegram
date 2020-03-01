@@ -15,6 +15,35 @@
 
 }
 
+.Home{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.searchBut{
+  display: flex;
+  width: 25%;
+}
+.searchMov{
+  display: flex;
+
+}
+
+.search{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.searchContainer{
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .searchMovie{
     width: 800px;
     margin-left: auto;
@@ -34,20 +63,22 @@
 }
 
 .Login_Signup{
-	position: absolute;
-	width: 15%;
-	left: 45%;
-	top: 55%;
+  width: 15%;
+  display: flex;
+	/* left: 45%;
+	top: 55%; */
 }
 
 
 .Banner{
-	position: absolute;
+	/* position: absolute;
 	top: 15%;
-	left: 20%;
-
+  left: 20%; */
+  align-items: center;
+  display: flex;
 }
 .Banner img{
+  display: flex;
 	width: 75%;
 	height: 100%;
 }
