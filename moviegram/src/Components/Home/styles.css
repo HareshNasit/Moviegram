@@ -42,6 +42,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+
 }
 
 .searchMovie{
@@ -64,7 +66,7 @@
 
 .Login_Signup{
   width: 15%;
-  display: flex;
+  /* display: flex; */
 	/* left: 45%;
 	top: 55%; */
 }
