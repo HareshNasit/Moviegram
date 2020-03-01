@@ -1,14 +1,4 @@
 
-#userProfile {
-	/* top: 10px;
-	bottom: 50px; */
-	height: 100vh;
-	width: 100%;
-	margin: 0;
-	/* background-color: green; */
-	/* position: relative; */
-}
-
 #bodyHeader {
   width: 100%;
 	height: 220px;
@@ -128,4 +118,8 @@
 	height: 360px;
 	float: left;
 	margin-top: 10px;
+}
+
+.profileFeed{
+  margin: 20px;
 }

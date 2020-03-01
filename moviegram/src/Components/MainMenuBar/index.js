@@ -3,7 +3,6 @@ import "./styles.css";
 import {Link} from 'react-router-dom';
 
 // import all the images for the menu bar
-import homeimg from './home.png'
 import newsFeedimg from './newsFeed.png'
 import profileimg from './profile.png'
 import addReviewimg from './addReview.png'
@@ -16,10 +15,6 @@ class MainMenuBar extends React.Component {
 
         <div id="menuItems">
           <ul>
-            <li>
-            <Link to={'/'}><img src={homeimg} alt="Home" className="mainMenu-btn"/></Link>
-            </li>
-
             <li>
             <Link to={'/NewsFeed'}>
               <img src={newsFeedimg} alt="News Feed" className="mainMenu-btn"/>
