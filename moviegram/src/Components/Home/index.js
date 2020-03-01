@@ -10,26 +10,30 @@ import ReactSearchBox from 'react-search-box'
 class Home extends React.Component {
   data = [
     {
-      key: 'john',
-      value: 'John Doe',
+      key: 'dangal',
+      value: 'Dangal',
     },
     {
-      key: 'jane',
-      value: 'Jane Doe',
+      key: 'avengers endgame',
+      value: 'Avengers: Endgame',
     },
     {
-      key: 'mary',
-      value: 'Mary Phillips',
+      key: 'mission impossible 5',
+      value: 'Mission Impossible 5',
     },
     {
-      key: 'robert',
-      value: 'Robert',
+      key: 'interstellar',
+      value: 'Interstellar',
     },
     {
-      key: 'karius',
-      value: 'Karius',
+      key: 'fate of the furious',
+      value: 'Fate of The Furious',
     },
   ]
+  handleEvent(movie) {
+    console.log(movie);
+    window.location.href = "/movie/" + movie;
+  }
     render() {
       return (
         <div className="Home">
@@ -45,7 +49,7 @@ class Home extends React.Component {
             <ReactSearchBox
             placeholder="Search Movie"
             data={this.data}
-            onSelect={record => console.log(record)}
+            onSelect={event => this.handleEvent(event.value)}
             />
         	</div>
 
