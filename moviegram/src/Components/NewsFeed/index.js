@@ -1,6 +1,7 @@
 // import all react libraries
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import ReactSearchBox from 'react-search-box'
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css"
@@ -34,7 +35,11 @@ class NewsFeedScreen extends React.Component {
                  };
     this.searchChange = this.searchChange.bind(this);
     this.searchMoviesReviews = this.searchMoviesReviews.bind(this)
+    this.handleEvent = this.handleEvent.bind(this)
     this.currUser = constants.acc.username;
+    this.data = [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
+                 {key: 'mission impossible 5',value: 'Mission Impossible 5',},{key: 'interstellar',value: 'Interstellar',},
+                 {key: 'fate of the furious',value: 'Fate of The Furious',},]
   }
 
   // function used to change the value of this.state.searched to store the searchBar query entered by user
@@ -52,6 +57,11 @@ class NewsFeedScreen extends React.Component {
     }
   }
 
+  handleEvent(movie) {
+    console.log(movie);
+    window.location.href = "/movie/" + movie;
+  }
+
   render() {
     return (
       <div id="pageFeed">
@@ -67,16 +77,6 @@ class NewsFeedScreen extends React.Component {
           onSelect={event => this.handleEvent(event.value)}
           />
         </div>
-        <Form className="searchMovieform">
-          <Form.Row>
-            <Form.Group className="searchBar">
-              <Form.Control type="searchMovie" placeholder="Search Movies/Reviews" onChange={this.searchChange}/>
-            </Form.Group>
-            <Form.Group className="searchIt">
-              <Button variant="primary" onClick={this.searchMoviesReviews}>Search</Button>
-            </Form.Group>
-          </Form.Row>
-        </Form>
 
         {/*Title of the review news feed page */}
         <div className="pageHeader">
