@@ -60,6 +60,13 @@ class NewsFeedScreen extends React.Component {
         <MainMenuBar/>
 
         {/*Form that takes in the input of users to search movies and reviews of movies */}
+        <div className="searchMovieform">
+          <ReactSearchBox
+          placeholder="Search Movie"
+          data={this.data}
+          onSelect={event => this.handleEvent(event.value)}
+          />
+        </div>
         <Form className="searchMovieform">
           <Form.Row>
             <Form.Group className="searchBar">
