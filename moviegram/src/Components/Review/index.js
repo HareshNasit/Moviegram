@@ -4,8 +4,6 @@ import { Button, Form } from "react-bootstrap";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
-// Importing required actions
-import { addCommentFunc } from "../../actionsOnReviews/reviewQueueMods";
 // import constants file which carries user data
 const constants = require("../../constants")
 
@@ -18,6 +16,7 @@ class Review extends React.Component {
     super(props)
     this.state = { newComment: ""};
     this.newComContent = this.newComContent.bind(this)
+    this.addCommentFunc = this.addCommentFunc.bind(this)
     this.currUser = constants.acc.username;
   }
 
@@ -27,9 +26,18 @@ class Review extends React.Component {
     this.setState({newComment:event.target.value})
   }
 
+  addCommentFunc(queue, comment, id) {
+    let reviewsList = queue.state.reviews
+    let review = reviewsList[id.reviewId]
+    review.commentsSection.push(comment)
+    queue.setState({
+      reviews: reviewsList
+    });
+  }
+
   render() {
 
-    const { datetime, username, userImg, movieName, reviewContent, commentsSection, queueComponent} = this.props;
+    const { datetime, username, userImg, movieName, reviewContent, commentsSection, reviewId, queueComponent} = this.props;
 
     return (
       <div id="review">
@@ -37,7 +45,7 @@ class Review extends React.Component {
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li><span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}</li>
-          <li>Movie : {movieName}</li>
+          <li>{movieName}</li>
         </ul>
 
         {/* Content of the review and the datetime on which it was posted are displayed in the following elements */}
@@ -57,9 +65,10 @@ class Review extends React.Component {
               <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
             </Form.Group>
             <Form.Group className="postIt">
-              <Button variant="primary" id="id here"
-                      onClick={() => addCommentFunc(queueComponent,
-                                                    {datetime:"", username:this.currUser, commentContent:this.state.newComment})}>
+              <Button variant="primary"
+                      onClick={() => this.addCommentFunc(queueComponent,
+                                                    {datetime: new Date().toLocaleString(), username:queueComponent.currUser, commentContent:this.state.newComment},
+                                                    {reviewId})}>
               Post Comment
               </Button>
             </Form.Group>
