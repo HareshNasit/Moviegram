@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 import MainMenuBar from './../MainMenuBar';
 import Image from 'react-bootstrap/Image'
@@ -13,25 +14,6 @@ import profileimgdef from './../MainMenuBar/profile.png';
 // import constants file which carries user data
 const constants = require("../../constants")
 // import FollowStatsModel from './../UserFollowStats';
-
-
-// <Review username='harshn12'
-//         movieName='Avengers'
-//         reviewContent='Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!'
-//         commentsSection='Comments section Component goes here'/>
-// <Review username='harshn12'
-//         movieName='Intersteller'
-//         reviewContent="Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption."
-//         commentsSection='Comments section Component goes here'/>
-// <Review username='harshn12'
-//         movieName='Anabelle Comes Home'
-//         reviewContent="Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts."
-//         commentsSection='Comments section Component goes here'/>
-// <Review username='harshn12'
-//         movieName='Shawshank Redemption'
-//         reviewContent="This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend."
-//         commentsSection='Comments section Component goes here'/>
-
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -158,7 +140,7 @@ class UserProfile extends React.Component {
             </div>
             <div id="profileInfo">
               <div id="infoHeader">
-                <span id="userName">harshn12</span>
+                <span id="userName">{this.currUser}</span>
                 {follow_edit_button}
                 <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
                 <Modal className = "numFollowModel"

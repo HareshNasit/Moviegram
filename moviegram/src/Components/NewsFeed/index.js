@@ -54,7 +54,7 @@ class NewsFeedScreen extends React.Component {
 
   render() {
     return (
-      <div className="pageFeed">
+      <div id="pageFeed">
 
         {/*The menu bar is just reused from the Component MainMenuBar */}
         <MainMenuBar/>
