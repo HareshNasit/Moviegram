@@ -1,16 +1,12 @@
 import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import MainMenuBar from './../MainMenuBar';
-import Image from 'react-bootstrap/Image'
 import photo from './ballon_dor.jpg'
-import Review from './../Review';
 import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
-import PropTypes from "prop-types";
 import ReviewsList from './../ReviewsList';
-import profileimgdef from './../MainMenuBar/profile.png';
 // import constants file which carries user data
 const constants = require("../../constants")
 // import FollowStatsModel from './../UserFollowStats';
@@ -140,7 +136,7 @@ class UserProfile extends React.Component {
             </div>
             <div id="profileInfo">
               <div id="infoHeader">
-                <span id="userName">{this.currUser}</span>
+                <span id="userName">username1</span>
                 {follow_edit_button}
                 <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
                 <Modal className = "numFollowModel"

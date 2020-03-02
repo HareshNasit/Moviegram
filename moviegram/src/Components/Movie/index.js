@@ -5,7 +5,7 @@ import './styles.css';
 class Movie extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {description: this.props.description, 
+        this.state = {description: this.props.description,
                       title: this.props.title,
                       imgsrc: this.props.imgsrc}
     }
@@ -17,7 +17,7 @@ class Movie extends React.Component {
             </div>
             <div className="contentContainer">
                 <div className="titleContainer">
-                    <h1 class="title">{this.props.title}</h1>
+                    <h1 className="title">{this.props.title}</h1>
                 </div>
                 <div className="ratingContainer">
                     <p className="ratingText">
@@ -25,7 +25,7 @@ class Movie extends React.Component {
                     </p>
                 </div>
                 <div className="descriptionContainer">
-                    <p class="description">{this.props.description}</p>
+                    <p className="description">{this.props.description}</p>
                 </div>
             </div>
         </div>)
