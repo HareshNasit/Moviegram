@@ -92,7 +92,7 @@
   left: 400px;
   right: 200px;
   bottom: 200px;
-	background-color: #fff;
+	background-color: #008080;
 	border-radius: 12px;
 }
 
@@ -127,4 +127,16 @@
 
 .profileFeed{
   margin: 20px;
+}
+
+.updateProfile {
+	height: 400px;
+	width: 450px;
+	position: absolute;
+  top: 200px;
+  left: 400px;
+  right: 200px;
+  bottom: 200px;
+	background-color: #008080;
+	border-radius: 12px;
 }
