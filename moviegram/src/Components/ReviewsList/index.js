@@ -47,6 +47,7 @@ class ReviewsList extends React.Component {
                   reviewContent={review.reviewContent}
                   commentsSection={this.getCommentsSection(review)}
                   reviewId={review.id}
+                  admin={review.admin}
                   queueComponent={queueComponent}/>
         ))};
       </div>
