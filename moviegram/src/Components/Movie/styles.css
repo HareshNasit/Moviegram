@@ -58,7 +58,7 @@
 }
 
 .titleMovie{
-    font-size: xx-large;
+    font-size: large;
 }
 
 .ratingContainer{
@@ -119,10 +119,10 @@
     font-size: medium;
 }
 
-.descriptionContainer{
+.descriptionContainerM{
     border-style: ridge;
     background-color: lightpink;
-    height: 500px;
+    height: 250px;
     width: 500px;
 }
 

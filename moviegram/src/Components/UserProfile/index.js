@@ -8,9 +8,10 @@ import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
+import EditProfile from './../EditProfile';
 // import constants file which carries user data
 const constants = require("../../constants")
-import EditProfile from './../EditProfile';
+
 
 
 class UserProfile extends React.Component {
