@@ -2,14 +2,11 @@ import React from 'react';
 import './styles.css';
 import { Button, Form, Modal } from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
-import Dialog from 'react-bootstrap-dialog';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 
-const constants = require("../../constants")
-console.log(constants)
 class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -37,7 +34,6 @@ class SignupScreen extends React.Component {
 
   changeEmail(e) {
     this.setState({email: e.target.value});
-    console.log(this.state.email);
  }
 
   passwordChange(e) {
@@ -45,27 +41,24 @@ class SignupScreen extends React.Component {
   }
 
   buttonClick(){
-    constants.users.push({user: {email: this.state.email,
-                                password: this.state.password,
-                                username:this.state.username}});
     if(this.state.email != "" 
           && this.state.password != "" 
           && this.state.username != ""){
-            this.props.history.push("/login")
+            this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username}})
     }
   }
 
-  renderRedirect = () => {
-    if (constants.acc.auth) {
-      return <Redirect to='/NewsFeed' />
-    }
-  }
+  // renderRedirect = () => {
+  //   if (constants.acc.auth) {
+  //     return <Redirect to='/NewsFeed' />
+  //   }
+  // }
 
 
   render() {
     return (
       <div className="formContainer">
-        {this.renderRedirect()}
+        {/* {this.renderRedirect()} */}
      
         <Form className="form">
           <Form.Group className="welcomeText">

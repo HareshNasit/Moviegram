@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 
 
-const constants = require("../../constants")
+// const constants = require("../../constants")
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -14,11 +14,7 @@ class LoginScreen extends React.Component {
       this.passwordChange = this.passwordChange.bind(this)
       this.buttonClick = this.buttonClick.bind(this);
     }
-    renderRedirect = () => {
-      if (constants.acc.auth) {
-        return <Redirect to='/NewsFeed' />
-      }
-    }
+
     changeUser(e) {
       this.setState({username: e.target.value});
    }
@@ -28,25 +24,18 @@ class LoginScreen extends React.Component {
    }
 
     buttonClick(){
-      console.log(constants)
       if (this.state.username === "username1" && this.state.password === "password1") {
-        constants.acc.username = "username1"
-        constants.acc.auth = true;
-        console.log(constants)
-        this.props.history.push("/NewsFeed")
+        this.props.history.push({pathname: "/NewsFeed", state: {username: "username1"}})
       }
       if (this.state.username === "username2" && this.state.password === "password2") {
-        constants.acc.username = "username2"
-        constants.acc.auth = true;
-        console.log(constants)
-        this.props.history.push("/NewsFeed")
+        this.props.history.push({pathname: "/NewsFeed", state: {username: "username2"}})
       }
     }
 
     render() {
       return (
         <div className="pageM">
-          {this.renderRedirect()}
+          {/* {this.renderRedirect()} */}
           <Form className="form">
             <Form.Group className="welcomeText">
               <Form.Label >Welcome to MovieGram</Form.Label>
