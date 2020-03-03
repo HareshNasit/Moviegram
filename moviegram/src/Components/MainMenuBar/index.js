@@ -9,20 +9,25 @@ import addReviewimg from './addReview.png'
 
 class MainMenuBar extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
   render() {
+    const { username, auth } = this.props
+    const userProfileURL = '/UserProfile/'+  username ;
     return (
       <div id="mainMenuBar">
 
         <div id="menuItems">
           <ul>
             <li>
-            <Link to={'/NewsFeed'}>
+            <Link to={{pathname:'/NewsFeed', state: { username: username, auth: auth }}}>
               <img src={newsFeedimg} alt="News Feed" className="mainMenu-btn"/>
               </Link>
             </li>
 
             <li>
-              <Link to='/UserProfile'>
+              <Link to={{pathname:'/UserProfile/'+ username, state: { username: username, auth: auth }}}>
               <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
               </Link>
             </li>

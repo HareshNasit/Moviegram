@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
 
 
-// const constants = require("../../constants")
+const constants = require("../../constants")
 
 class LoginScreen extends React.Component {
     constructor(props) {
@@ -27,11 +27,15 @@ class LoginScreen extends React.Component {
       // Handles logging into the site.
       // Will handle authentication in Phase 2
       if (this.state.username === "username1" && this.state.password === "password1") {
-        this.props.history.push({pathname: "/NewsFeed", state: {username: "username1"}})
+        // constants.acc.auth = true;
+        this.props.history.push({pathname: "/NewsFeed", state: {username: "username1", auth: true}})
+      }
+      if (this.state.username === "username2" && this.state.password === "password2") {
+        this.props.history.push({pathname: "/NewsFeed", state: {username: "username2", auth: true}})
       }
       if (this.state.username === "admin" && this.state.password === "admin") {
         this.props.history.push({pathname: "/NewsFeed", state: {username: "admin"}})
-      }
+      };
     }
 
     render() {
@@ -43,13 +47,13 @@ class LoginScreen extends React.Component {
               <Form.Label >Welcome to MovieGram</Form.Label>
             </Form.Group>
             <Form.Group>
-              <Form.Control type="username" 
-                            placeholder="Enter username" 
+              <Form.Control type="username"
+                            placeholder="Enter username"
                             onChange={this.changeUser}/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Control type="password" 
+              <Form.Control type="password"
                             placeholder="Password"
                             onChange={this.passwordChange} />
             </Form.Group>
@@ -61,7 +65,7 @@ class LoginScreen extends React.Component {
               </Button>
 
             <div className="notRegisteredButtonBox">
-              <Button className="notRegisteredButton" as={Link} 
+              <Button className="notRegisteredButton" as={Link}
                       to="/signup" type="submit">New to the site?</Button>
             </div>
         </Form>

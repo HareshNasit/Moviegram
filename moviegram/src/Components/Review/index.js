@@ -1,6 +1,7 @@
 // import all react libraries
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
@@ -28,13 +29,16 @@ class Review extends React.Component {
   }
 
   addCommentFunc(queue, comment, id) {
-    let reviewsList = queue.state.reviews
-    let review = reviewsList[id.reviewId]
-    review.commentsSection.unshift(comment)
-    queue.setState({
-      reviews: reviewsList
-    });
+    if(comment.commentContent !== "") {
+      let reviewsList = queue.state.reviews
+      let review = reviewsList[id.reviewId]
+      review.commentsSection.unshift(comment)
+      queue.setState({
+        reviews: reviewsList
+      });
+    }
   }
+
   removeReview(queue, review) {
     console.log(review);
     let reviewList = queue.state.reviews;
@@ -46,17 +50,32 @@ class Review extends React.Component {
     queue.setState({reviews: reviewList}); // This will update the state and trigger a rerender of the components
   }
 
+  incrementUpvote(queue, reviewId) {
+    let reviewList = queue.state.reviews;
+    reviewList[reviewId].upvote += 1
+    queue.setState({reviews: reviewList})
+  }
+
+  incrementDownvote(queue, reviewId) {
+    let reviewList = queue.state.reviews;
+    reviewList[reviewId].downvote += 1
+    queue.setState({reviews: reviewList})
+  }
+
   render() {
 
-    const { admin, datetime, username, userImg, movieName, reviewContent, commentsSection, reviewId, queueComponent} = this.props;
-    console.log(admin);
+    const { admin, ups, downs, datetime, username, userImg, movieName, reviewContent, commentsSection, reviewId, queueComponent} = this.props;
     if (admin){
       return(
         <div id="review">
 
           {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
           <ul>
-            <li><span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}</li>
+            <Link to={{pathname:'/ProfileView/'+username, state: { username: username }}}>
+            <li>
+            <span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}
+            </li>
+            </Link>
             <li>{movieName}</li>
             <li><Button variant="primary" onClick={() => this.removeReview(queueComponent, this)}>
             Remove Review</Button></li>
@@ -99,7 +118,11 @@ class Review extends React.Component {
 
           {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
           <ul>
-            <li><span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}</li>
+            <li><span className="reviewUserPicLi">
+            <Link to={{pathname:'/ProfileView/'+username, state: { username: username }}}>
+            <img className="reviewUserPic" src={userImg} alt="User DP"/>
+            </Link>
+            </span>{username}</li>
             <li>{movieName}</li>
           </ul>
 
@@ -129,6 +152,12 @@ class Review extends React.Component {
               </Form.Group>
             </Form.Row>
           </Form>
+
+          {/* used to upvote or downvote a review */}
+          <div className="votes">
+            <Button className="votes-up" variant="primary" onClick={() => this.incrementUpvote(queueComponent, reviewId)}>Upvote ({ups})</Button>
+            <Button className="votes-down" variant="primary" onClick={() => this.incrementDownvote(queueComponent, reviewId)}>Downvote ({downs})</Button>
+          </div>
 
         </div>
       );

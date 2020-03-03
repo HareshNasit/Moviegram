@@ -33,7 +33,7 @@ class Movie extends React.Component {
                                                         " the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe. ",
                     director: "Director's Name", imgsrc: "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
                     stars: ["Robert Downey Jr.", "Chris Evans"]},
-                    "Fate of the Furious": 
+                    "Fate of the Furious":
                     {description: "When a mysterious woman seduces Dominic Toretto (Vin Diesel)" +
                     " into the world of terrorism and a betrayal of those closest to him, the crew face trials that will test" +
                     " them as never before. ",
