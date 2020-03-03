@@ -36,9 +36,9 @@ const user1 = {
 const user2 = {
             username: "username2",
             profilePic: messi_dp,
-            peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'],
-            peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'],
-            userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free",
+            peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
+            peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
+            userDescription: "I play professional football at FC Barcelona. After a tough match against hard teams like Real Madrid, I try to shift my mind by watching movies XD",
             reviews: [{ id: 0, username: "username2" , movieName: "Avengers" , profImg: messi_dp, datetime: "1/28/2020, 11:57:15 PM",
                    reviewContent: "Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!" ,
                    commentsSection: [{datetime:"2/28/2020, 8:57:15 PM ", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"2/04/2020, 8:17:00 AM", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"2/18/2020, 5:50:15 PM", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"2/02/2020, 4:37:15 PM", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
@@ -61,7 +61,7 @@ class UserProfile extends React.Component {
     // When the componenet is created
     super(props);
     this.state = {
-      username: "",
+      username: this.props.location.state.username,
       profilePic: null,
       isUser: true,
       isfollowing: false,
@@ -86,7 +86,7 @@ class UserProfile extends React.Component {
 
   componentDidMount() {
     const username = this.props.location.state.username
-    if (username["username"] === "username1") {
+    if (username === "username1") {
       this.setState({
         username: user1["username"],
         profilePic: user1["profilePic"],
@@ -96,7 +96,7 @@ class UserProfile extends React.Component {
         reviews: user1["reviews"]
       })
     }
-    else if (username["username"] === "username2") {
+    else if (username === "username2") {
       this.setState({
         username: user2["username"],
         profilePic: user2["profilePic"],
@@ -190,7 +190,6 @@ class UserProfile extends React.Component {
 
     const username = this.props.location.state.username;
     const auth = this.props.location.state.auth;
-    console.log(auth);
 
     if (auth["auth"] == false) {
       return (
@@ -201,14 +200,14 @@ class UserProfile extends React.Component {
     else {
     return (
       <div id="userProfile">
-          <MainMenuBar/>
+          <MainMenuBar username={username} auth={auth}/>
           <div id="bodyHeader">
             <div id="profilePicContainer">
               <img className="profilePic" src={this.state.profilePic} />
             </div>
             <div id="profileInfo">
               <div id="infoHeader">
-                <span id="userName">{username["username"]}</span>
+                <span id="userName">{username}</span>
                 {follow_edit_button}
 
                 {add_review_button}
