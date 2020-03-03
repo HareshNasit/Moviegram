@@ -20,10 +20,12 @@ class EditProfile extends React.Component {
     this.state = {
         username: "Harsh",
         showUpdateProfile: this.props.showFunction,
-        newDescription: ""
+        newDescription: "",
+        profilePic: "",
     };
     this.updateProfile = this.updateProfile.bind(this)
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
+    this.changeProfilePicFunction = this.changeProfilePicFunction.bind(this)
 
   }
 
@@ -32,15 +34,25 @@ class EditProfile extends React.Component {
   }
 
   updateProfile(queueComponent, closeFunc) {
-    if(this.state.newDescription === ""){
-      console.log("No new description provided")
+    if(this.state.newDescription === "" && this.state.profilePic === null){
+      console.log("No inputs provided")
     }
     else {
-      queueComponent.setState({
-        userDescription: this.state.newDescription});
+      if (this.state.newDescription != "") {
+        queueComponent.setState({
+          userDescription: this.state.newDescription});
+      }
+      else if (this.state.profilePic !== null) {
+        queueComponent.setState({
+          profilePic: this.state.profilePic});
+      }
     }
     closeFunc()
 
+  }
+
+  changeProfilePicFunction(event) {
+      this.setState({profilePic:  URL.createObjectURL(event.target.files[0])});
   }
 
   componentDidMount() {
@@ -56,12 +68,20 @@ class EditProfile extends React.Component {
         </div>
         <div className="editProfileBody">
           <div className="profileInput">
+          <input id="changeProfilePicBtn"
+              accept="image/*"
+              type="file"
+              onChange={this.changeProfilePicFunction}
+              value={this.profilePic}
+            />
+
           <Form className="reviewForm">
             <Form.Group controlId="review.movieName">
               <Form.Label>Description</Form.Label>
               <Form.Control type="review" as="textarea" rows="8" placeholder="Enter your Description" onChange={this.handleDescriptionChange}/>
             </Form.Group>
           </Form>
+
           </div>
           <div className="buttons">
           <Button variant="primary" id="updateButton" onClick={() => this.updateProfile(queueComponent, cancelFunction)} type="submit">Update Profile</Button>

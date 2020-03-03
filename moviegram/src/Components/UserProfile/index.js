@@ -13,18 +13,12 @@ const constants = require("../../constants")
 import EditProfile from './../EditProfile';
 
 
-// I am a movieFreak who enjoys action and Sci-fi movies such
-// as Marvel and X-men.
-// Madridista💚💚Programmer💖💖Footballfreak
-// Snapchat: HarshN12
-// 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦
-// Fear can hold you prisoner, Hope can set you free
-
 class UserProfile extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
     this.state = {
+      profilePic: photo,
       isUser: true,
       isfollowing: false,
       showModalFollowing: false,
@@ -45,7 +39,8 @@ class UserProfile extends React.Component {
       peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'],
       peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'],
       showUpdateProfile: false,
-      userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free"
+      userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free",
+
     };
     this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -146,7 +141,7 @@ class UserProfile extends React.Component {
           <MainMenuBar/>
           <div id="bodyHeader">
             <div id="profilePicContainer">
-              <img className="profilePic" src={photo} />
+              <img className="profilePic" src={this.state.profilePic} />
             </div>
             <div id="profileInfo">
               <div id="infoHeader">
@@ -159,7 +154,7 @@ class UserProfile extends React.Component {
                  isOpen={this.state.showModalAddRev}
                  contentLabel="Minimal Modal Example"
                  >
-                 <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={photo}/>
+                 <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={this.state.profilePic}/>
                 </Modal>
 
                 <Modal className = "updateProfile"

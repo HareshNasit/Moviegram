@@ -8,6 +8,7 @@
 #updateButton {
   position: relative;
 	margin-left: 30px;
+  margin-top: 20px;
 	display: inline-block;
 }
 
@@ -15,12 +16,14 @@
 	position: relative;
 	display: inline-block;
   margin-left: 140px;
+  margin-top: 20px;
 }
 
 #pageHeader {
   height: auto;
 	width: 450px;
 	float: left;
+  font-size: 20px;
 	/* background-color: green; */
 	border-color: black;
 	text-align: center;
@@ -47,4 +50,11 @@
   width: 450px;
 	height: 70px;
 	float: left;
+}
+
+#changeProfilePicBtn {
+  position: relative;
+  margin-left: 20px;
+  margin-top: 10px;
+  display: inline-block;
 }
