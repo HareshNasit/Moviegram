@@ -1,0 +1,40 @@
+#AddMovieMain {
+  height: 100vh;
+}
+
+.headerText {
+    text-align: center;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.Add-Movie {
+    width: 1000px;
+		height: auto;
+    min-height: 520px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    top: 50px;
+    bottom: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+		background-color: #008080;
+		color: white;
+}
+
+.MovieForm {
+	margin: 20px;
+}
+
+.saveReviewBtn {
+	position: absolute;
+	right: 20px;
+	display: inline-block;
+}
+
+.cancelAddMoviePage {
+	left: 770px;
+	position: absolute;
+	display: inline-block;
+}

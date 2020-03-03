@@ -1,10 +1,13 @@
 import React from 'react';
 import './styles.css'
+import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import ReactSearchBox from 'react-search-box'
 import MainMenuBar from './../MainMenuBar';
+import AddMovie from './../AddMovie';
 import ReviewsList from './../ReviewsList';
+import Modal from 'react-modal';
 import profileimgdef from './../MainMenuBar/profile.png';
 import photo from './../UserProfile/ballon_dor.jpg'
 
@@ -13,6 +16,7 @@ class Admin extends React.Component{
   constructor(props){
     super(props);
     this.state = {searched: "",
+                  showModalAddMovie: false,
                   reviews: [{ id: 0,admin: true, username: "Bhavya" , movieName: "Avengers" , profImg: profileimgdef, datetime: "1/28/2020, 11:57:15 PM",
                              reviewContent: "This movie is lit, and I mean lit af. My god what an awesome time I had and it was even more fun because I watched it with my close friends which made the experience amazing. 15/10 stars. Definitely go watch it pleaseeeeeeeee!!!!!!!!!!!" ,
                              commentsSection: [{datetime:"2/28/2020, 8:57:15 PM", username:"Hassan", commentContent:"Yess!!!!!"}] },
@@ -38,6 +42,17 @@ class Admin extends React.Component{
                                reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
                                commentsSection: [] }]
                  };
+    this.handleOpenAddMovieModal = this.handleOpenAddMovieModal.bind(this);
+    this.handleCloseAddMovieModal = this.handleCloseAddMovieModal.bind(this);
+
+  }
+
+  handleOpenAddMovieModal () {
+    this.setState({showModalAddMovie: true})
+  }
+
+  handleCloseAddMovieModal () {
+    this.setState({showModalAddMovie: false})
   }
 
 
@@ -45,9 +60,20 @@ class Admin extends React.Component{
     return (
       <div id="AdminFeed">
         <h1>Admin Dashboard</h1>
+        <Button variant="outline-primary"
+                 type="click"
+                 onClick={this.handleOpenAddMovieModal}>
+                 Add Movie
+                 </Button>
+        <Modal className = "addMovieModal"
+         overlayClassName="Overlay"
+         isOpen={this.state.showModalAddMovie}
+         contentLabel="Minimal Modal Example"
+         >
+         <AddMovie cancelFunction={this.handleCloseAddMovieModal} />
+        </Modal>
         <ReviewsList reviews={this.state.reviews}
                      queueComponent={this}/>
-
       </div>
 
     )
