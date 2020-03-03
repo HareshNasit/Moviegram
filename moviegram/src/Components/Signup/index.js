@@ -47,7 +47,13 @@ class SignupScreen extends React.Component {
             this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username}})
     }
   }
-
+  handleUpload(e){
+    const object = e.target.files[0]
+    // console.log(object)
+    const objectURL = URL.createObjectURL(object)
+    // console.log(objectURL)
+    this.setState({srcImage: objectURL})
+  }
   // renderRedirect = () => {
   //   if (constants.acc.auth) {
   //     return <Redirect to='/NewsFeed' />
@@ -89,6 +95,7 @@ class SignupScreen extends React.Component {
             <input
               accept="image/*"
               type="file"
+              onChange={ (event) => this.handleUpload(event) }
             />
           </Form.Group>
 
