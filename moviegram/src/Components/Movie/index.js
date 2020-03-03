@@ -71,7 +71,7 @@ class Movie extends React.Component {
                                         Audience Rating: 50%
                                     </p>
                                 </div>
-                                <div className="descriptionContainer">
+                                <div className="descriptionContainerM">
                                     <p class="description">{this.data[this.props.title].description}</p>
                                 </div>
                             </div>
