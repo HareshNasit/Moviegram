@@ -2,9 +2,14 @@ import React from 'react';
 import './styles.css';
 import { Button, Form } from 'react-bootstrap';
 import {Link, Redirect} from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
-const constants = require("../../constants")
-console.log(constants)
+>>>>>>> 7cdf4dd06b43f6fcef94e2e9c45b97ac02d13f45
+
 class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -16,13 +21,13 @@ class SignupScreen extends React.Component {
 
   changeEmail(e) {
     this.setState({email: e.target.value});
-    console.log(this.state.email);
  }
 
  passwordChange(e) {
     this.setState({password: e.target.value});
  }
 
+<<<<<<< HEAD
  buttonClick(){
   constants.users.push({user: {email: this.state.email,
                               password: this.state.password,
@@ -40,6 +45,28 @@ class SignupScreen extends React.Component {
       <div className="formContainer">
         {this.renderRedirect()}
 
+=======
+  buttonClick(){
+    if(this.state.email != "" 
+          && this.state.password != "" 
+          && this.state.username != ""){
+            this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username}})
+    }
+  }
+
+  // renderRedirect = () => {
+  //   if (constants.acc.auth) {
+  //     return <Redirect to='/NewsFeed' />
+  //   }
+  // }
+
+
+  render() {
+    return (
+      <div className="formContainer">
+        {/* {this.renderRedirect()} */}
+     
+>>>>>>> 7cdf4dd06b43f6fcef94e2e9c45b97ac02d13f45
         <Form className="form">
           <Form.Group className="welcomeText">
             <Form.Label>Signup</Form.Label>

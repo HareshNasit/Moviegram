@@ -1,12 +1,20 @@
 
+<<<<<<< HEAD
 .pageHeader{
+=======
+.pageHeaderMovie{
+>>>>>>> 7cdf4dd06b43f6fcef94e2e9c45b97ac02d13f45
     top: 0px;
     width: 100%;
     height: auto;
 }
 
 .movieContent{
+<<<<<<< HEAD
     align-items: center;
+=======
+    justify-content: center;
+>>>>>>> 7cdf4dd06b43f6fcef94e2e9c45b97ac02d13f45
     display: flex;
     background-color: lightblue;
 
@@ -59,7 +67,7 @@
     justify-content: center;
 }
 
-.title{
+.titleMovie{
     font-size: xx-large;
 }
 
@@ -96,21 +104,25 @@
     display: flex;
     height: 200px;
     width: 500px;
-    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
-#starringContainer,h1{
+
+#starringContainer.h1{
     text-align: center;
 }
 
 
-#starringContainer,div {
+.starringContainerDiv {
     display: flex;
     flex-direction: column;
+    text-align: center;
+    justify-content: center;
 }
-#starringContainer,div,h3{
+.starringText{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: medium;
+   
 }
 
 .ratingText{

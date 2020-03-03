@@ -20,21 +20,30 @@ class NewsFeedScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {searched: "",
-                  reviews: [{ id: 0, username: "Bhavya" , movieName: "Avengers" , profImg: profileimgdef, datetime: "1/28/2020, 11:57:15 PM",
+                  reviews: [{ id: 0, admin: false, username: "Bhavya" , movieName: "Avengers" , profImg: profileimgdef, datetime: "1/28/2020, 11:57:15 PM",
                              reviewContent: "This movie is lit, and I mean lit af. My god what an awesome time I had and it was even more fun because I watched it with my close friends which made the experience amazing. 15/10 stars. Definitely go watch it pleaseeeeeeeee!!!!!!!!!!!" ,
                              commentsSection: [{datetime:"2/28/2020, 8:57:15 PM", username:"Hassan", commentContent:"Yess!!!!!"}] },
-                             { id: 1, username: "Harsh" , movieName: "Messi Rocks" , profImg: profileimgdef, datetime: "1/26/2020, 9:57:15 AM",
+                             { id: 1, admin: false, username: "Harsh" , movieName: "Messi Rocks" , profImg: profileimgdef, datetime: "1/26/2020, 9:57:15 AM",
                                reviewContent: "I think this movie is better than any movie ever made about any footballer or any movie that will be made about any footballer because Messi by far is the GOAT football player to ever live and anyone who disagrees and says Ronaldo is the best is RIGHT cause messi sucks HaHaHa tricked you there didn't I." ,
                                commentsSection: [{datetime:"2/28/2020, 5:57:15 PM", username:"Mark", commentContent:"Messi is the best player i have witnessed tbh"}] },
-                             { id: 2, username: "Dhruv" , movieName: "Dangal" , profImg: profileimgdef, datetime: "12/20/2019, 9:00:15 AM",
+                             { id: 2, admin: false, username: "Dhruv" , movieName: "Dangal" , profImg: profileimgdef, datetime: "12/20/2019, 9:00:15 AM",
                                reviewContent: "Ab toh dangal hoga dangal bhenchooodddddd !!!!!!" ,
                                commentsSection: [] },
+<<<<<<< HEAD
                              { id: 3, username: "Yosef" , movieName: "Stalingrad" , profImg: profileimgdef, datetime: "12/31/2019, 12:00:15 AM",
                                reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot." ,
                                commentsSection: [] }]
                  };
     this.searchChange = this.searchChange.bind(this);
     this.searchMoviesReviews = this.searchMoviesReviews.bind(this)
+=======
+                             { id: 3, admin: false, username: "Yosef" , movieName: "Stalingrad" , profImg: profileimgdef, datetime: "12/31/2019, 12:00:15 AM",
+                               reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot." ,
+                               commentsSection: [] }],
+                   username: "",
+                 };
+    this.searchChange = this.searchChange.bind(this);
+>>>>>>> 7cdf4dd06b43f6fcef94e2e9c45b97ac02d13f45
     this.handleEvent = this.handleEvent.bind(this)
     this.currUser = constants.acc.username;
     this.data = [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
@@ -48,6 +57,7 @@ class NewsFeedScreen extends React.Component {
     console.log(event.target.value)
   }
 
+<<<<<<< HEAD
   // Function that is invoked when the search button next to the searchBar for movies/reviews is clicked
   searchMoviesReviews() {
     if(this.state.searched === ""){
@@ -57,6 +67,9 @@ class NewsFeedScreen extends React.Component {
     }
   }
 
+=======
+  // Function that handles input in search bar
+>>>>>>> 7cdf4dd06b43f6fcef94e2e9c45b97ac02d13f45
   handleEvent(movie) {
     console.log(movie);
     window.location.href = "/movie/" + movie;

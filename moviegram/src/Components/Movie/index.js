@@ -29,7 +29,7 @@ class Movie extends React.Component {
     
     render() {
         return(
-                <div className="pageHeader">
+                <div className="pageHeaderMovie">
                     <MainMenuBar/>
                     <div className="movieContent">
                         <div className="movieContainer">
@@ -41,15 +41,16 @@ class Movie extends React.Component {
                                     <h1 class="title">{this.props.title}</h1>
                                 </div>
                                 <div className="directorContainer">
-                                    <h1 class="title">Directed by {this.data[this.props.title].director}</h1>
+                                    <h1 class="titleMovie">Directed by {this.data[this.props.title].director}</h1>
                                 </div>
                                 <div id="starringContainer">
                                     <h1>Starring</h1>
-                                    <div>
+                                    <div className="starringContainerDiv">
                                         {
-                                            this.data[this.props.title].stars.map((obj) => {return(<h3>
+                                            this.data[this.props.title].stars.map((obj) => {return(<h4
+                                            className="starringText">
                                                 {obj}
-                                            </h3>);})
+                                            </h4>);})
                                         }
                                     </div>
                                     

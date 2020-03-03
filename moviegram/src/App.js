@@ -14,6 +14,8 @@ import NewsFeedScreen from './Components/NewsFeed'
 import AddReview from './Components/AddReview'
 import UserProfile from './Components/UserProfile'
 import Movie from './Components/Movie'
+import Admin from './Components/Admin'
+
 
 
 class App extends React.Component {
@@ -39,6 +41,8 @@ class App extends React.Component {
                             (<AddReview {...props} />)}/>
             <Route exact path='/userProfile' render={(props) =>
                             (<UserProfile {...props} />)}/>
+            <Route exact path='/admin' render={(props) =>
+                            (<Admin {...props} />)}/>
             <Route exact path='/movie/dangal' render={(props) =>
                             (<Movie title="Dangal" 
                             imgsrc="https://files.delhievents.com/images/events/2016/december/Dangal-movie-poster.jpg" {...props} />)}/>
