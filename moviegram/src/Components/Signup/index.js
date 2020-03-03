@@ -51,7 +51,7 @@ class SignupScreen extends React.Component {
     if(this.state.email != "" 
           && this.state.password != "" 
           && this.state.username != ""){
-            this.props.history.push("/login")
+            this.props.history.push("/newsfeed")
     }
   }
 
