@@ -15,6 +15,8 @@ import AddReview from './Components/AddReview'
 import UserProfile from './Components/UserProfile'
 import Profile from './Components/Profile'
 import Movie from './Components/Movie'
+import Admin from './Components/Admin'
+
 
 
 class App extends React.Component {
@@ -42,6 +44,8 @@ class App extends React.Component {
                             (<Profile {...props} />)}/>
             <Route exact path='/userProfile' render={(props) =>
                             (<UserProfile {...props} />)}/>
+            <Route exact path='/admin' render={(props) =>
+                            (<Admin {...props} />)}/>
             <Route exact path='/movie/dangal' render={(props) =>
                             (<Movie description="This is a movie" title="Dangal"
                             imgsrc="https://files.delhievents.com/images/events/2016/december/Dangal-movie-poster.jpg" {...props} />)}/>
