@@ -31,6 +31,7 @@ class AddMovie extends React.Component {
   handleDescriptionChange(event) {
     this.setState({description:event.target.value});
   }
+
   saveMovie (closeFunc) {
     closeFunc();
   }
@@ -40,11 +41,10 @@ class AddMovie extends React.Component {
     return(
       <div id = "AddMovieMain">
 
-        <div className="Header">
-           <h3 className="headerText">Add a New Movie</h3>
-        </div>
-
         <div className = "Add-Movie">
+          <div className="Header">
+            <h3 className="headerText">Add a New Movie</h3>
+          </div>
           <Form className="MovieForm">
             <Form.Group>
               <Form.Label>Movie</Form.Label>

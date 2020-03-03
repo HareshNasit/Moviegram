@@ -40,6 +40,8 @@ class ReviewsList extends React.Component {
       <div className="revs">
         {reviews.map((review) => (
           <Review key={uid(review)}
+                  ups={review.upvote}
+                  downs={review.downvote}
                   datetime={review.datetime}
                   username={review.username}
                   userImg={review.profImg}
