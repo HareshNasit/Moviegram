@@ -1,5 +1,5 @@
 
-.pageHeader{
+.pageHeaderMovie{
     top: 0px;
     width: 100%;
     height: auto;
@@ -58,7 +58,7 @@
     justify-content: center;
 }
 
-.title{
+.titleMovie{
     font-size: xx-large;
 }
 
