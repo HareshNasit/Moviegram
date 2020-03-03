@@ -1,6 +1,7 @@
 
 import React from 'react';
 import './styles.css';
+import MainMenuBar from './../MainMenuBar';
 
 class Movie extends React.Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class Movie extends React.Component {
                                             </h4>);})
                                         }
                                     </div>
-                                    
+
                                 </div>
                                 <div className="ratingContainer">
                                     <p className="ratingText">
