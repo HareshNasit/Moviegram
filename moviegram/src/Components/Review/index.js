@@ -1,6 +1,7 @@
 // import all react libraries
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
@@ -70,7 +71,11 @@ class Review extends React.Component {
 
           {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
           <ul>
-            <li><span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}</li>
+            <Link to={{pathname:'/ProfileView/'+username, state: { username: username }}}>
+            <li>
+            <span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}
+            </li>
+            </Link>
             <li>{movieName}</li>
             <li><Button variant="primary" onClick={() => this.removeReview(queueComponent, this)}>
             Remove Review</Button></li>
@@ -113,7 +118,11 @@ class Review extends React.Component {
 
           {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
           <ul>
-            <li><span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}</li>
+            <li><span className="reviewUserPicLi">
+            <Link to={{pathname:'/ProfileView/'+username, state: { username: username }}}>
+            <img className="reviewUserPic" src={userImg} alt="User DP"/>
+            </Link>
+            </span>{username}</li>
             <li>{movieName}</li>
           </ul>
 
