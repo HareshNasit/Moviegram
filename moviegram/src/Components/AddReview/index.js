@@ -30,7 +30,7 @@ class AddReview extends React.Component {
                           profImg: pic, datetime: new Date().toLocaleString(), reviewContent: this.state.review,
                           commentsSection: [] }
       let userReviews = queue.state.reviews
-      userReviews.push(newReview)
+      userReviews.unshift(newReview)
       queue.setState({
         reviews: userReviews
       });

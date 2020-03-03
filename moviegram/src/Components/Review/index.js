@@ -30,7 +30,7 @@ class Review extends React.Component {
   addCommentFunc(queue, comment, id) {
     let reviewsList = queue.state.reviews
     let review = reviewsList[id.reviewId]
-    review.commentsSection.push(comment)
+    review.commentsSection.unshift(comment)
     queue.setState({
       reviews: reviewsList
     });
