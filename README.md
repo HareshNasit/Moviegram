@@ -29,7 +29,7 @@ npm start
 * Logged in users can search for movies, view and edit their own profile, view other users profile (will be implementes in phase2) and can add a moview review of their own.
 
 * Once the admin is logged in, he can see all the movie reviews posted by all the users and has ability to comment, upvote/downvote and remove any movie reviews if the review is not appropriate and has too many spoilers.
-* The admin also has the ability to add movies to the database.]
+* The admin also has the ability to add movies to the database.
 
 ## Sample Usage
 1. Go to home screen
