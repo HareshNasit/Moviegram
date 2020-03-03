@@ -14,6 +14,12 @@ cd moviegram/
 npm install
 npm start
 ```
+## Core functionality
+1. The ability to signup/login
+2. The ability to add reviews, comment on reviews, and upvote reviews
+3. Admin - Add new movies and Remove movies
+4. View/Edit your profile
+
 ## How to use
 * You will be directed to the Home page initially where a user has an option of searching for a pre-existing movie review or login to their account (if they have one) or signup for an account. 
 * The signup page will ask you for your information but will not create an account for now.
