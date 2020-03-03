@@ -1,5 +1,4 @@
 import React from "react";
-import Modal from "react-modal";
 import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
@@ -36,8 +35,8 @@ class AddReview extends React.Component {
         reviews: userReviews
       });
       console.log("New Review Added")
-      closeFunc();
     }
+    closeFunc();
   }
 
   handleMovieNameChange(event) {

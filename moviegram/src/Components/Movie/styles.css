@@ -1,18 +1,4 @@
-
-.pageHeader{
-    top: 0px;
-    width: 100%;
-    height: auto;
-}
-
-.movieContent{
-    align-items: center;
-    display: flex;
-    background-color: lightblue;
-
-}
 .movieContainer{
-    
     border-style: solid;
     margin: 5px;
     flex-direction: row;
@@ -20,7 +6,6 @@
     height: 620px;
     display: flex;
 }
-
 
 .imgContainer {
     top: 5px;
@@ -76,43 +61,6 @@
     justify-content: center;
 }
 
-.directorContainer{
-    border-top-style: ridge;
-    border-left-style: ridge;
-    border-right-style: ridge;
-    background-color: lightcoral;
-    display: flex;
-    height: 50px;
-    width: 500px;
-    align-items: center;
-    justify-content: center;
-}
-
-#starringContainer{
-    border-top-style: ridge;
-    border-left-style: ridge;
-    border-right-style: ridge;
-    background-color: turquoise;
-    display: flex;
-    height: 200px;
-    width: 500px;
-    justify-content: center;
-    flex-direction: column;
-}
-#starringContainer,h1{
-    text-align: center;
-}
-
-
-#starringContainer,div {
-    display: flex;
-    flex-direction: column;
-}
-#starringContainer,div,h3{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: medium;
-}
-
 .ratingText{
     font-size: medium;
 }
@@ -120,11 +68,10 @@
 .descriptionContainer{
     border-style: ridge;
     background-color: lightpink;
-    height: 250px;
+    height: 500px;
     width: 500px;
 }
 
 .description{
     font-size: small;
 }
-
