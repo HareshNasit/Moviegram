@@ -28,13 +28,16 @@ class Review extends React.Component {
   }
 
   addCommentFunc(queue, comment, id) {
-    let reviewsList = queue.state.reviews
-    let review = reviewsList[id.reviewId]
-    review.commentsSection.unshift(comment)
-    queue.setState({
-      reviews: reviewsList
-    });
+    if(comment.commentContent !== "") {
+      let reviewsList = queue.state.reviews
+      let review = reviewsList[id.reviewId]
+      review.commentsSection.unshift(comment)
+      queue.setState({
+        reviews: reviewsList
+      });
+    }
   }
+
   removeReview(queue, review) {
     console.log(review);
     let reviewList = queue.state.reviews;
@@ -46,10 +49,21 @@ class Review extends React.Component {
     queue.setState({reviews: reviewList}); // This will update the state and trigger a rerender of the components
   }
 
+  incrementUpvote(queue, reviewId) {
+    let reviewList = queue.state.reviews;
+    reviewList[reviewId].upvote += 1
+    queue.setState({reviews: reviewList})
+  }
+
+  incrementDownvote(queue, reviewId) {
+    let reviewList = queue.state.reviews;
+    reviewList[reviewId].downvote += 1
+    queue.setState({reviews: reviewList})
+  }
+
   render() {
 
-    const { admin, datetime, username, userImg, movieName, reviewContent, commentsSection, reviewId, queueComponent} = this.props;
-    console.log(admin);
+    const { admin, ups, downs, datetime, username, userImg, movieName, reviewContent, commentsSection, reviewId, queueComponent} = this.props;
     if (admin){
       return(
         <div id="review">
@@ -129,6 +143,12 @@ class Review extends React.Component {
               </Form.Group>
             </Form.Row>
           </Form>
+
+          {/* used to upvote or downvote a review */}
+          <div className="votes">
+            <Button className="votes-up" variant="primary" onClick={() => this.incrementUpvote(queueComponent, reviewId)}>Upvote ({ups})</Button>
+            <Button className="votes-down" variant="primary" onClick={() => this.incrementDownvote(queueComponent, reviewId)}>Downvote ({downs})</Button>
+          </div>
 
         </div>
       );

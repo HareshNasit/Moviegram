@@ -62,7 +62,7 @@
 .newCom {
 	margin-left: 10px;
 	margin-right: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 1px;
 	padding-left: 20px;
 }
 
@@ -83,4 +83,14 @@
 .showHideCom {
 	background-color: #008080;
 	border: 1px solid #008080;
+}
+
+.votes-up{
+	margin: 5px;
+	margin-left: 10px;
+
+}
+
+.votes-down{
+	margin: 5px;
 }
