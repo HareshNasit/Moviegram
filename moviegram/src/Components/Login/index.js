@@ -24,6 +24,8 @@ class LoginScreen extends React.Component {
    }
 
     buttonClick(){
+      // Handles logging into the site.
+      // Will handle authentication in Phase 2
       if (this.state.username === "username1" && this.state.password === "password1") {
         this.props.history.push({pathname: "/NewsFeed", state: {username: "username1"}})
       }
@@ -41,11 +43,15 @@ class LoginScreen extends React.Component {
               <Form.Label >Welcome to MovieGram</Form.Label>
             </Form.Group>
             <Form.Group>
-              <Form.Control type="username" placeholder="Enter username" onChange={this.changeUser}/>
+              <Form.Control type="username" 
+                            placeholder="Enter username" 
+                            onChange={this.changeUser}/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
-              <Form.Control type="password" placeholder="Password" onChange={this.passwordChange} />
+              <Form.Control type="password" 
+                            placeholder="Password"
+                            onChange={this.passwordChange} />
             </Form.Group>
 
               <Button variant="outline-primary"
@@ -55,7 +61,8 @@ class LoginScreen extends React.Component {
               </Button>
 
             <div className="notRegisteredButtonBox">
-              <Button className="notRegisteredButton" as={Link} to="/signup" type="submit">New to the site?</Button>
+              <Button className="notRegisteredButton" as={Link} 
+                      to="/signup" type="submit">New to the site?</Button>
             </div>
         </Form>
         </div>

@@ -42,19 +42,22 @@ class SignupScreen extends React.Component {
   }
 
   buttonClick(){
+    // In Phase 2 Will check if username already exists in DB
+    // Will also upload img to DB
     if(this.state.email != "" 
           && this.state.password != "" 
           && this.state.username != ""){
-            this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username}})
+            this.props.history.push({pathname: "/NewsFeed", 
+            state: {username: this.state.username}})
     }
   }
   handleUpload(e){
+    // Change avatar image
     const object = e.target.files[0]
-    // console.log(object)
     const objectURL = URL.createObjectURL(object)
-    // console.log(objectURL)
     this.setState({srcImage: objectURL})
   }
+
   // renderRedirect = () => {
   //   if (constants.acc.auth) {
   //     return <Redirect to='/NewsFeed' />
@@ -102,17 +105,17 @@ class SignupScreen extends React.Component {
               onChange={ (event) => this.handleUpload(event) }
             />
           </Form.Group>
-
+          {/* When the user presses this button, the data will be sent to the 
+          database and create a new user */}
             <Button variant="outline-primary"
                             onClick={this.buttonClick}
                              className="loginButton">
               Signup
             </Button>
             <div className="registeredButtonBox">
-              <Button className="alreadyRegisteredButton" as={Link} to="/login" type="submit">Already registered?</Button>
+              <Button className="alreadyRegisteredButton" as={Link} to="/login" 
+              type="submit">Already registered?</Button>
             </div>
-
-
       </Form>
 
       <Modal
