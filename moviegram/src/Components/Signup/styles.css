@@ -8,6 +8,15 @@
 
     flex-direction: column;
 }
+.centerAvatar{
+    display: flex;
+    justify-content: center;
+}
+
+#avatar{
+    width: 100px;
+    height: 100px;
+}
 
 .formContainer {
     width: 100%;

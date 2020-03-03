@@ -6,6 +6,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
+import Avatar from '@material-ui/core/Avatar';
 
 class SignupScreen extends React.Component {
   constructor(props) {
@@ -90,6 +91,9 @@ class SignupScreen extends React.Component {
                     >
                     Add Genres
                   </Button>
+          <Form.Group className="centerAvatar">
+                <Avatar id="avatar" alt="Remy Sharp" src={this.state.srcImage}/>
+          </Form.Group>
           <Form.Group>
             <Form.Label className="selectImage">Select your profile picture</Form.Label>
             <input
