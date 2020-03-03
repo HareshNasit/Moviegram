@@ -40,7 +40,7 @@ class UserProfile extends React.Component {
       peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'],
       showUpdateProfile: false,
       userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free",
-
+      user: constants.acc
     };
     this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -135,7 +135,13 @@ class UserProfile extends React.Component {
       // expression goes here:
     <div key={index}>{person}</div>
     );
-
+    // if (!this.user.auth) {
+    //   return (
+    //     <div>USER NOT AUTHENTICATED
+    //     </div>
+    //   );
+    // }
+    // else {
     return (
       <div id="userProfile">
           <MainMenuBar/>
@@ -211,6 +217,7 @@ class UserProfile extends React.Component {
           </div>
       </div>
     );
+  // }
   }
 }
 
