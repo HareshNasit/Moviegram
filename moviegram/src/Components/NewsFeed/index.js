@@ -31,10 +31,10 @@ class NewsFeedScreen extends React.Component {
                                commentsSection: [] },
                              { id: 3, admin: false, username: "Yosef" , movieName: "Stalingrad" , profImg: profileimgdef, datetime: "12/31/2019, 12:00:15 AM",
                                reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot." ,
-                               commentsSection: [] }]
+                               commentsSection: [] }],
+                   username: "",
                  };
     this.searchChange = this.searchChange.bind(this);
-    this.searchMoviesReviews = this.searchMoviesReviews.bind(this)
     this.handleEvent = this.handleEvent.bind(this)
     this.currUser = constants.acc.username;
     this.data = [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
@@ -48,15 +48,7 @@ class NewsFeedScreen extends React.Component {
     console.log(event.target.value)
   }
 
-  // Function that is invoked when the search button next to the searchBar for movies/reviews is clicked
-  searchMoviesReviews() {
-    if(this.state.searched === ""){
-      console.log("empty input dont run search")
-    } else {
-      console.log("searching " + this.state.searched)
-    }
-  }
-
+  // Function that handles input in search bar
   handleEvent(movie) {
     console.log(movie);
     window.location.href = "/movie/" + movie;
