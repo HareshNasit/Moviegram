@@ -1,5 +1,6 @@
 // import all react libraries
 import React from "react";
+import { Button, Form } from "react-bootstrap";
 import ReactSearchBox from 'react-search-box'
 // import all stylesheets
 import "./styles.css";
@@ -29,31 +30,31 @@ class NewsFeedScreen extends React.Component {
                                reviewContent: "Ab toh dangal hoga dangal bhenchooodddddd !!!!!!" ,
                                commentsSection: [] },
                              { id: 3, username: "Yosef" , movieName: "Stalingrad" , profImg: profileimgdef, datetime: "12/31/2019, 12:00:15 AM",
-                               reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he amazing at playing the hero." ,
-                               commentsSection: [] },
-                             { id: 4, username: "Cristiano Ronaldo" , movieName: "Dunkirk" , profImg: profileimgdef, datetime: "11/18/2019, 1:00:15 AM",
-                               reviewContent: "Beautifully made movie, Nolan surprises me everytime. Got to learn alot about the great fact about the landings at Normandy during WW2." ,
-                               commentsSection: [] },
-                             { id: 5, username: "James" , movieName: "Harry Potter" , profImg: profileimgdef, datetime: "10/15/2019, 11:09:15 AM",
-                               reviewContent: "I know I am late to the party, about a decade late but harry potter is my new favourite series." ,
-                               commentsSection: [] },
-                             { id: 6, username: "Di Maria" , movieName: "Harry Potter" , profImg: profileimgdef, datetime: "10/15/2019, 10:19:15 PM",
-                               reviewContent: "I know I am late to the party too, about a decade late but harry potter is my new favourite series. I watched it last night with James" ,
-                               commentsSection: [] }],
-                 data: [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
-                        {key: 'mission impossible 5',value: 'Mission Impossible 5',},{key: 'interstellar',value: 'Interstellar',},
-                        {key: 'fate of the furious',value: 'Fate of The Furious',}]
+                               reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot." ,
+                               commentsSection: [] }]
                  };
     this.searchChange = this.searchChange.bind(this);
-    // this.searchMoviesReviews = this.searchMoviesReviews.bind(this)
+    this.searchMoviesReviews = this.searchMoviesReviews.bind(this)
     this.handleEvent = this.handleEvent.bind(this)
     this.currUser = constants.acc.username;
+    this.data = [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
+                 {key: 'mission impossible 5',value: 'Mission Impossible 5',},{key: 'interstellar',value: 'Interstellar',},
+                 {key: 'fate of the furious',value: 'Fate of The Furious',},]
   }
 
   // function used to change the value of this.state.searched to store the searchBar query entered by user
   searchChange(event) {
     this.setState({searched:event.target.value})
     console.log(event.target.value)
+  }
+
+  // Function that is invoked when the search button next to the searchBar for movies/reviews is clicked
+  searchMoviesReviews() {
+    if(this.state.searched === ""){
+      console.log("empty input dont run search")
+    } else {
+      console.log("searching " + this.state.searched)
+    }
   }
 
   handleEvent(movie) {
@@ -72,8 +73,9 @@ class NewsFeedScreen extends React.Component {
         <div className="searchMovieform">
           <ReactSearchBox
           placeholder="Search Movie"
-          data={this.state.data}
-          onSelect={(event) => this.handleEvent(event.value)}/>
+          data={this.data}
+          onSelect={event => this.handleEvent(event.value)}
+          />
         </div>
 
         {/*Title of the review news feed page */}

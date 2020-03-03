@@ -4,9 +4,6 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-
-    flex-direction: column;
 }
 
 .formContainer {
@@ -18,15 +15,9 @@
     width: 100%;
 }
 
-.addGenreButton{
-    margin-bottom: 5px;
-    width: 100%;
-}
-
 .welcomeText {
     text-align: center;
-    font-size: x-large;
-
+    font-size: large;
   }
 
 .registeredButtonBox {
@@ -37,19 +28,4 @@
     margin: 5px;
     right: 0px;
     position: absolute;
-}
-
-.checkBoxesContainer{
-    width: 100%;
-    height: 100%;
-}
-
-.selectImage{
-    width: 100%;
-    text-align: center;
-}
-
-.centerText{
-    width: 100%;
-    text-align: center;
 }

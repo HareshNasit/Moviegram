@@ -27,7 +27,7 @@ class Home extends React.Component {
     },
     {
       key: 'fate of the furious',
-      value: 'Fate of The Furious',
+      value: 'Fate of the Furious',
     },
   ]
   handleEvent(movie) {

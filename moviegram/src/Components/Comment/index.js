@@ -11,7 +11,7 @@ class Comment extends React.Component {
 
     return (
       <div id="comment">
-        <span>{ datetime } </span><span>| <b><i>{ username } : </i></b></span><span>{ commentContent }</span>
+        <span>{ datetime } | </span><span><b><i>{ username } : </i></b></span><span>{ commentContent }</span>
       </div>
     );
   }

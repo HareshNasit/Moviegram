@@ -22,21 +22,14 @@ class AddReview extends React.Component {
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
   }
 
-  saveReview(queue, closeFunc, pic) {
-    if(this.state.newComment === "" || this.state.movie === ""){
+  saveReview() {
+    if(this.state.newComment === ""){
       console.log("Can't post empty review")
     } else {
-      const newReview = { id: queue.state.reviews.length, username: "username1", movieName: this.state.movie ,
-                          profImg: pic, datetime: new Date().toLocaleString(), reviewContent: this.state.review,
-                          commentsSection: [] }
-      let userReviews = queue.state.reviews
-      userReviews.push(newReview)
-      queue.setState({
-        reviews: userReviews
-      });
-      console.log("New Review Added")
+      const newReview = { id: 4, username: this.currUser , movieName: this.state.movie , profImg: profileimgdef,
+                        datetime: new Date().toLocaleString(), reviewContent: this.state.review, commentsSection: [] }
+      console.log(newReview)
     }
-    closeFunc();
   }
 
   handleMovieNameChange(event) {
@@ -49,10 +42,9 @@ class AddReview extends React.Component {
 
   render() {
 
-    const {queueComponent,cancelFunction,profImg} = this.props
-
     return (
       <div id="addreviewmain">
+         <MainMenuBar/>
 
          <div className="pageHeader">
             <h3 className="headerText">Add a New Review</h3>
@@ -61,7 +53,7 @@ class AddReview extends React.Component {
          <div className="add-review">
             <ul>
               <li className="reviewUserPicLi"><img className="reviewUserPic" src={profileimgdef} alt="User DP"/></li>
-              <li>username1</li>
+              <li>{this.currUser}</li>
             </ul>
             <Form className="reviewForm">
               <Form.Group controlId="review.movieName">
@@ -79,9 +71,8 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, profImg)} type="submit">Post Review</Button>
-            <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
-        </div>
+            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview()} type="submit">Post Review</Button>
+         </div>
 
       </div>
     );
