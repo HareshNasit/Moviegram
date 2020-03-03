@@ -56,15 +56,6 @@ class NewsFeedScreen extends React.Component {
     console.log(event.target.value)
   }
 
-  // Function that is invoked when the search button next to the searchBar for movies/reviews is clicked
-  // searchMoviesReviews() {
-  //   if(this.state.searched === ""){
-  //     console.log("empty input dont run search")
-  //   } else {
-  //     console.log("searching " + this.state.searched)
-  //   }
-  // }
-
   handleEvent(movie) {
     console.log(movie);
     window.location.href = "/movie/" + movie;
