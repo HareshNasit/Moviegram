@@ -32,6 +32,7 @@ npm start
 * The admin also has the ability to add movies to the database.
 
 ## Sample Usage
+### Case 1. Normal User
 1. Go to home screen
 2. Press the login button
 3. Enter username1 and password1
@@ -40,3 +41,12 @@ npm start
 6. Try "Add a review"
 7. View the profile and then click on the "News" Icon to go back to the NewsFeed
 8. Try adding a comment
+9. Search for a movie using the search bar -- Try "Dangal"
+### Case 2. Admin
+1. Go to home screen
+2. Press the login button
+3. Enter admin and admin
+4. Go to the admin screen -- Third button on the menu bar
+5. Remove a review
+6. Add a movie
+
