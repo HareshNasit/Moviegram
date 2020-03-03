@@ -22,12 +22,6 @@ class MainMenuBar extends React.Component {
             </li>
 
             <li>
-            <Link to={'/AddReview'}>
-              <img src={addReviewimg} alt="Add Review" className="mainMenu-btn"/>
-              </Link>
-            </li>
-
-            <li>
               <Link to='/UserProfile'>
               <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
               </Link>

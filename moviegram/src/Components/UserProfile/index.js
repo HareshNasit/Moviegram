@@ -1,16 +1,13 @@
 import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import MainMenuBar from './../MainMenuBar';
-import Image from 'react-bootstrap/Image'
 import photo from './ballon_dor.jpg'
-import Review from './../Review';
 import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
-import PropTypes from "prop-types";
 import ReviewsList from './../ReviewsList';
-import profileimgdef from './../MainMenuBar/profile.png';
+import AddReview from './../AddReview';
 // import constants file which carries user data
 const constants = require("../../constants")
 // import FollowStatsModel from './../UserFollowStats';
@@ -24,6 +21,7 @@ class UserProfile extends React.Component {
       isfollowing: false,
       showModalFollowing: false,
       showModalFollows: false,
+      showModalAddRev: false,
       reviews: [{ id: 0, username: "username1" , movieName: "Avengers" , profImg: photo, datetime: "1/28/2020, 11:57:15 PM",
                  reviewContent: "Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!" ,
                  commentsSection: [{datetime:"2/28/2020, 8:57:15 PM ", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"2/04/2020, 8:17:00 AM", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"2/18/2020, 5:50:15 PM", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"2/02/2020, 4:37:15 PM", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
@@ -42,6 +40,8 @@ class UserProfile extends React.Component {
     this.handleCloseFollowingModal = this.handleCloseFollowingModal.bind(this);
     this.handleOpenFollowersModal = this.handleOpenFollowersModal.bind(this);
     this.handleCloseFollowersModal = this.handleCloseFollowersModal.bind(this);
+    this.handleOpenAddRevModal = this.handleOpenAddRevModal.bind(this);
+    this.handleCloseAddRevModal = this.handleCloseAddRevModal.bind(this);
     this.currUser = constants.acc.username;
   }
 
@@ -79,6 +79,10 @@ class UserProfile extends React.Component {
     this.setState({ showModalFollowers: true });
   }
 
+  handleOpenAddRevModal () {
+    this.setState({showModalAddRev: true})
+  }
+
   handleCloseFollowingModal () {
     this.setState({ showModalFollowing: false});
   }
@@ -87,8 +91,13 @@ class UserProfile extends React.Component {
     this.setState({showModalFollowers: false});
   }
 
+  handleCloseAddRevModal () {
+    this.setState({showModalAddRev: false})
+  }
+
   render() {
     let follow_edit_button;
+    let add_review_button;
     if (this.state.isUser) {
       follow_edit_button = <Button variant="outline-primary"
                     type="submit"
@@ -97,6 +106,12 @@ class UserProfile extends React.Component {
                     >
                     Edit Profile
                   </Button>
+      add_review_button = <Button variant="outline-primary"
+                           type="click"
+                           className="addRevButton"
+                           onClick={this.handleOpenAddRevModal}>
+                           Add Review
+                           </Button>
     }
     else if(this.state.isfollowing){
       follow_edit_button = <Button variant="outline-primary"
@@ -140,8 +155,17 @@ class UserProfile extends React.Component {
             </div>
             <div id="profileInfo">
               <div id="infoHeader">
-                <span id="userName">{this.currUser}</span>
+                <span id="userName">username1</span>
                 {follow_edit_button}
+
+                {add_review_button}
+                <Modal className = "addRevModal"
+                 overlayClassName="Overlay"
+                 isOpen={this.state.showModalAddRev}
+                 contentLabel="Minimal Modal Example">
+                 <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={photo}/>
+                </Modal>
+
                 <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
                 <Modal className = "numFollowModel"
                  overlayClassName="Overlay"
@@ -171,7 +195,7 @@ class UserProfile extends React.Component {
               </Modal>
               </div>
               <div id="infoStats">
-                <span id="totalReviews"> 4 </span>Reviews
+                <span id="totalReviews"> {this.state.reviews.length} </span>Reviews
                 <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{peopleFollow.length} </span>Followers
                 <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{peopleFollowing.length}</span>Following
               </div>
