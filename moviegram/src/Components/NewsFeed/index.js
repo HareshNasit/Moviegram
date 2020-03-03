@@ -31,8 +31,9 @@ class NewsFeedScreen extends React.Component {
                                commentsSection: [] },
                              { id: 3, admin: false, username: "Yosef" , movieName: "Stalingrad" , profImg: profileimgdef, datetime: "12/31/2019, 12:00:15 AM",
                                reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot." ,
-                               commentsSection: [] }],
-                   username: "",
+                               commentsSection: [] }]
+                   // username: "",
+                   // auth: false
                  };
     this.searchChange = this.searchChange.bind(this);
     this.handleEvent = this.handleEvent.bind(this)
@@ -40,8 +41,11 @@ class NewsFeedScreen extends React.Component {
     this.data = [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
                  {key: 'mission impossible 5',value: 'Mission Impossible 5',},{key: 'interstellar',value: 'Interstellar',},
                  {key: 'fate of the furious',value: 'Fate of The Furious',},]
-  }
 
+  }
+  // const {given_username, is_auth} = this.props.location.state
+
+  // this.setState({username: given_username, auth: is_auth})
   // function used to change the value of this.state.searched to store the searchBar query entered by user
   searchChange(event) {
     this.setState({searched:event.target.value})
@@ -55,11 +59,15 @@ class NewsFeedScreen extends React.Component {
   }
 
   render() {
+    const username = this.props.location.state.username;
+    const auth = this.props.location.state.auth;
+    console.log(username);
+    console.log(auth);
     return (
       <div id="pageFeed">
 
         {/*The menu bar is just reused from the Component MainMenuBar */}
-        <MainMenuBar/>
+        <MainMenuBar username={username} auth={auth}/>
 
         {/*Form that takes in the input of users to search movies and reviews of movies */}
         <div className="searchMovieform">

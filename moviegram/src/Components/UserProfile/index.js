@@ -40,8 +40,7 @@ class UserProfile extends React.Component {
       peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'],
       peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'],
       showUpdateProfile: false,
-      userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free",
-      user: constants.acc
+      userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free"
     };
     this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -52,6 +51,7 @@ class UserProfile extends React.Component {
     this.handleCloseAddRevModal = this.handleCloseAddRevModal.bind(this);
     this.handleCloseUpdateProfileModal = this.handleCloseUpdateProfileModal.bind(this);
     this.currUser = constants.acc.username;
+    this.user = constants.acc;
   }
 
   componentDidMount() {
@@ -136,13 +136,17 @@ class UserProfile extends React.Component {
       // expression goes here:
     <div key={index}>{person}</div>
     );
-    // if (!this.user.auth) {
-    //   return (
-    //     <div>USER NOT AUTHENTICATED
-    //     </div>
-    //   );
-    // }
-    // else {
+
+    const username = this.props.location.state.username;
+    const auth = this.props.location.state.auth;
+
+    if (!auth) {
+      return (
+        <div>USER NOT AUTHENTICATED
+        </div>
+      );
+    }
+    else {
     return (
       <div id="userProfile">
           <MainMenuBar/>
@@ -218,7 +222,7 @@ class UserProfile extends React.Component {
           </div>
       </div>
     );
-  // }
+  }
   }
 }
 
