@@ -10,13 +10,15 @@ import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 // import constants file which carries user data
 const constants = require("../../constants")
-// import FollowStatsModel from './../UserFollowStats';
+import EditProfile from './../EditProfile';
+
 
 class UserProfile extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
     this.state = {
+      profilePic: photo,
       isUser: true,
       isfollowing: false,
       showModalFollowing: false,
@@ -33,15 +35,21 @@ class UserProfile extends React.Component {
                    commentsSection: [] },
                  { id: 3, username: "username1" , movieName: "Shawshank Redemption" , profImg: photo, datetime: "1/6/2020, 4:57:15 PM",
                    reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
-                   commentsSection: [] }]
+                   commentsSection: [] }],
+      peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'],
+      peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'],
+      showUpdateProfile: false,
+      userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free",
+      user: constants.acc
     };
-    this.onClick = this.onClick.bind(this)
+    this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
     this.handleCloseFollowingModal = this.handleCloseFollowingModal.bind(this);
     this.handleOpenFollowersModal = this.handleOpenFollowersModal.bind(this);
     this.handleCloseFollowersModal = this.handleCloseFollowersModal.bind(this);
     this.handleOpenAddRevModal = this.handleOpenAddRevModal.bind(this);
     this.handleCloseAddRevModal = this.handleCloseAddRevModal.bind(this);
+    this.handleCloseUpdateProfileModal = this.handleCloseUpdateProfileModal.bind(this);
     this.currUser = constants.acc.username;
   }
 
@@ -49,26 +57,8 @@ class UserProfile extends React.Component {
     Modal.setAppElement('body');
   }
 
-  onClick () {
-    this.dialog.show({
-      title: 'Following',
-      body: this.state.following,
-      bsSize: 'small',
-      actions: [
-        Dialog.Action(
-          'Update',
-          () => console.log('UPDATED!'),
-          'btn-info'
-        )
-      ],
-      onHide: (dialog) => {
-        dialog.hide()
-        console.log('closed by clicking background.')
-      },
-      prompt: [
-        Dialog.TextPrompt({initialValue: 'me@example.com', placeholder: 'description'})
-      ]
-    })
+  updateProfileClick () {
+    this.setState({showUpdateProfile: true});
   }
 
   handleOpenFollowingModal () {
@@ -95,6 +85,10 @@ class UserProfile extends React.Component {
     this.setState({showModalAddRev: false})
   }
 
+  handleCloseUpdateProfileModal () {
+    this.setState({showUpdateProfile: false})
+  }
+
   render() {
     let follow_edit_button;
     let add_review_button;
@@ -102,7 +96,7 @@ class UserProfile extends React.Component {
       follow_edit_button = <Button variant="outline-primary"
                     type="submit"
                     className="editButton"
-                    onClick={this.onClick}
+                    onClick={this.updateProfileClick}
                     >
                     Edit Profile
                   </Button>
@@ -132,26 +126,28 @@ class UserProfile extends React.Component {
                   </Button>
     }
 
-    const peopleFollowing = ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'];
-
-    const userFollowingList = peopleFollowing.map((person, index) =>
+    const userFollowingList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
 
-    const peopleFollow = ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'];
-
-    const userFollowersList = peopleFollow.map((person, index) =>
+    const userFollowersList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
-
+    // if (!this.user.auth) {
+    //   return (
+    //     <div>USER NOT AUTHENTICATED
+    //     </div>
+    //   );
+    // }
+    // else {
     return (
       <div id="userProfile">
           <MainMenuBar/>
           <div id="bodyHeader">
             <div id="profilePicContainer">
-              <img className="profilePic" src={photo} />
+              <img className="profilePic" src={this.state.profilePic} />
             </div>
             <div id="profileInfo">
               <div id="infoHeader">
@@ -162,11 +158,18 @@ class UserProfile extends React.Component {
                 <Modal className = "addRevModal"
                  overlayClassName="Overlay"
                  isOpen={this.state.showModalAddRev}
-                 contentLabel="Minimal Modal Example">
-                 <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={photo}/>
+                 contentLabel="Minimal Modal Example"
+                 >
+                 <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={this.state.profilePic}/>
                 </Modal>
 
-                <Dialog id="editProfile" ref={(component) => { this.dialog = component }} />
+                <Modal className = "updateProfile"
+                 overlayClassName="Overlay"
+                 isOpen={this.state.showUpdateProfile}
+                 contentLabel="Minimal Modal Example"
+                 onRequestClose={this.handleCloseUpdateProfileModal}>
+                   <EditProfile queueComponent={this} cancelFunction={this.handleCloseUpdateProfileModal} />
+                </Modal>
                 <Modal className = "numFollowModel"
                  overlayClassName="Overlay"
                  isOpen={this.state.showModalFollowing}
@@ -196,20 +199,15 @@ class UserProfile extends React.Component {
               </div>
               <div id="infoStats">
                 <span id="totalReviews"> {this.state.reviews.length} </span>Reviews
-                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{peopleFollow.length} </span>Followers
-                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{peopleFollowing.length}</span>Following
+                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollow.length} </span>Followers
+                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollowing.length} </span>Following
               </div>
               <div>
               <br/>
               Favourite Genres : Action, Drama, Sports, Thriller
               </div>
               <div id="userDescription">
-                I am a movieFreak who enjoys action and Sci-fi movies such
-                as Marvel and X-men.
-                Madridista💚💚Programmer💖💖Footballfreak
-                Snapchat: HarshN12
-                🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦
-                Fear can hold you prisoner, Hope can set you free
+                {this.state.userDescription}
               </div>
             </div>
           </div>
@@ -219,6 +217,7 @@ class UserProfile extends React.Component {
           </div>
       </div>
     );
+  // }
   }
 }
 
