@@ -19,21 +19,25 @@ class Movie extends React.Component {
                         " and Babita come home after beating up two boys in response to derogatory comments, " +
                         " he realises their potential to become wrestlers and begins coaching them. ",
                         director:"Amir Fhan",
+                        imgsrc: "https://files.delhievents.com/images/events/2016/december/Dangal-movie-poster.jpg",
                     stars: ["Amir Khan", "Mahavir Phogat"]},
                     "Mission Impossible 5" : {description: "Ethan Hunt and his IMF team, along with some familiar allies, race against time after a mission gone wrong. ",
                                             director: "Christopher McQuarrie",
+                    imgsrc: "https://image.tmdb.org/t/p/original/z2sJd1OvAGZLxgjBdSnQoLCfn3M.jpg",
                                             stars: ["Tom Cruise", "Henry Cavill"]},
                     "Interstellar" : {description: " A team of explorers travel through a wormhole in space in an attempt "+
                                                     "to ensure humanity's survival. ", director: "Christopher Nolan",
+                                        imgsrc: "https://mir-s3-cdn-cf.behance.net/project_modules/2800_opt_1/b0f70f29979965.560d298403bc7.jpg",
                                                     stars: ["Matthew McConaughey", "Anne Hathaway"]},
                     "Avengers: Endgame":  {description: " After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, "+
                                                         " the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe. ",
-                    director: "Director's Name",
+                    director: "Director's Name", imgsrc: "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
                     stars: ["Robert Downey Jr.", "Chris Evans"]},
-                    "Fate of the Furious":
+                    "Fate of the Furious": 
                     {description: "When a mysterious woman seduces Dominic Toretto (Vin Diesel)" +
                     " into the world of terrorism and a betrayal of those closest to him, the crew face trials that will test" +
                     " them as never before. ",
+                    imgsrc: "https://m.media-amazon.com/images/M/MV5BMjMxODI2NDM5Nl5BMl5BanBnXkFtZTgwNjgzOTk1MTI@._V1_SY1000_CR0,0,631,1000_AL_.jpg",
                     director: "F. Gary Gray",
                     stars: ["Vin Diesel",  "Jason Statham", "Dwayne Johnson"]}}
     }
@@ -45,7 +49,7 @@ class Movie extends React.Component {
                     <div className="movieContent">
                         <div className="movieContainer">
                             <div className="imgContainer">
-                                <img src={this.props.imgsrc} className="movieImage" alt="Movie Image"></img>
+                                <img src={this.data[this.props.title].imgsrc} className="movieImage" alt="Movie Image"></img>
                             </div>
                             <div className="contentContainer">
                                 <div className="titleContainer">
