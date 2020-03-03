@@ -14,6 +14,7 @@ class MainMenuBar extends React.Component {
   }
   render() {
     const { username, auth } = this.props
+    const userProfileURL = '/UserProfile/'+  username ;
     return (
       <div id="mainMenuBar">
 
@@ -26,7 +27,7 @@ class MainMenuBar extends React.Component {
             </li>
 
             <li>
-              <Link to={{pathname:'/UserProfile', state: { username: {username}, auth: {auth} }}}>
+              <Link to={{pathname:'/UserProfile/'+ { username }, state: { username: {username}, auth: {auth} }}}>
               <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
               </Link>
             </li>

@@ -42,7 +42,7 @@ class App extends React.Component {
                             (<AddReview {...props} />)}/>
             <Route exact path='/profile/:id' render={(props) =>
                             (<Profile {...props} />)}/>
-            <Route exact path='/userProfile' render={(props) =>
+            <Route exact path='/userProfile/:id' render={(props) =>
                             (<UserProfile {...props} />)}/>
             <Route exact path='/admin' render={(props) =>
                             (<Admin {...props} />)}/>
