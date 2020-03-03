@@ -33,7 +33,9 @@ class UserProfile extends React.Component {
                    commentsSection: [] },
                  { id: 3, username: "username1" , movieName: "Shawshank Redemption" , profImg: photo, datetime: "1/6/2020, 4:57:15 PM",
                    reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
-                   commentsSection: [] }]
+                   commentsSection: [] }],
+      peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'],
+      peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv']
     };
     this.onClick = this.onClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -132,16 +134,16 @@ class UserProfile extends React.Component {
                   </Button>
     }
 
-    const peopleFollowing = ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'];
+    // const peopleFollowing = ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'];
 
-    const userFollowingList = peopleFollowing.map((person, index) =>
+    const userFollowingList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
 
-    const peopleFollow = ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'];
+    // const peopleFollow = ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'];
 
-    const userFollowersList = peopleFollow.map((person, index) =>
+    const userFollowersList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
@@ -196,8 +198,8 @@ class UserProfile extends React.Component {
               </div>
               <div id="infoStats">
                 <span id="totalReviews"> {this.state.reviews.length} </span>Reviews
-                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{peopleFollow.length} </span>Followers
-                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{peopleFollowing.length}</span>Following
+                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollow.length} </span>Followers
+                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollowing.length} </span>Following
               </div>
               <div>
               <br/>
