@@ -83,7 +83,8 @@ class NewsFeedScreen extends React.Component {
 
         {/* Reviews List here to display all reviews from friends of current user */}
         <ReviewsList reviews={this.state.reviews}
-                     queueComponent={this}/>
+                     queueComponent={this}
+                     authenticateduser= {username}/>
 
       </div>
     );

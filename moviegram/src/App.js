@@ -13,6 +13,7 @@ import SignupScreen from './Components/Signup';
 import NewsFeedScreen from './Components/NewsFeed'
 import AddReview from './Components/AddReview'
 import UserProfile from './Components/UserProfile'
+import ProfileView from './Components/ProfileView'
 import Profile from './Components/Profile'
 import Movie from './Components/Movie'
 import Admin from './Components/Admin'
@@ -61,6 +62,8 @@ class App extends React.Component {
             <Route exact path='/movie/fate of the furious' render={(props) =>
                             (<Movie description="This is a movie" title="Fate of the Furious"
                             {...props} />)}/>
+            <Route exact path='/ProfileView/:id' render={(props) =>
+                            (<ProfileView {...props} />)}/>
           </Switch>
         </BrowserRouter>
       </div>
