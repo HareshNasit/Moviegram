@@ -35,26 +35,33 @@ class ReviewsList extends React.Component {
 
     const { reviews, queueComponent, authenticateduser} = this.props;
 
-    return (
-
-      <div className="revs">
-        {reviews.map((review) => (
-          <Review key={uid(review)}
-                  ups={review.upvote}
-                  downs={review.downvote}
-                  datetime={review.datetime}
-                  username={review.username}
-                  userImg={review.profImg}
-                  movieName={review.movieName}
-                  reviewContent={review.reviewContent}
-                  commentsSection={this.getCommentsSection(review)}
-                  reviewId={review.id}
-                  admin={review.admin}
-                  queueComponent={queueComponent}
-                  authenticateduser= {authenticateduser}/>
-        ))};
-      </div>
-    );
+    if(reviews.length!=0) {
+      return (
+        <div className="revs">
+          {reviews.map((review) => (
+            <Review key={uid(review)}
+                    ups={review.upvote}
+                    downs={review.downvote}
+                    datetime={review.datetime}
+                    username={review.username}
+                    userImg={review.profImg}
+                    movieName={review.movieName}
+                    reviewContent={review.reviewContent}
+                    commentsSection={this.getCommentsSection(review)}
+                    reviewId={review.id}
+                    admin={review.admin}
+                    queueComponent={queueComponent}
+                    authenticateduser= {authenticateduser}/>
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div className="norevs">
+          <h4>User Has No Reviews</h4>
+        </div>
+      )
+    }
   }
 }
 
