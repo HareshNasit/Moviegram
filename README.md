@@ -39,6 +39,7 @@ npm start
 * When you add a review, it gets added to the bottom
 * We added a follow/unfollow button
 * If you click on a profile picture on a review in the newsfeed, it will take you to that user's page.
+* Signup page can add data to input fields and pick a profile pic. In phase 2, we will create a new user in the DB and verify the email
 ## Sample Usage
 ### Case 1. Normal User
 1. Go to home screen
