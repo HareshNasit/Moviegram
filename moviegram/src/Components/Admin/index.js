@@ -57,8 +57,10 @@ class Admin extends React.Component{
 
 
   render() {
+
     return (
       <div id="AdminFeed">
+
         <h1>Admin Dashboard</h1>
         <Button variant="outline-primary"
                  type="click"
