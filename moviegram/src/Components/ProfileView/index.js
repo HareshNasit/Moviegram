@@ -60,27 +60,23 @@ class ProfileView extends React.Component {
     // When the componenet is created
     super(props);
     this.state = {
+      followUnfollowText: "Follow",
+      isfollowing: false,
       username: this.props.location.state.username,
       profilePic: null,
-      isUser: true,
-      isfollowing: false,
       showModalFollowing: false,
       showModalFollows: false,
-      showModalAddRev: false,
       reviews: [],
       peopleFollow: [],
       peopleFollowing: [],
       showUpdateProfile: false,
       userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free"
     };
-    this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
     this.handleCloseFollowingModal = this.handleCloseFollowingModal.bind(this);
     this.handleOpenFollowersModal = this.handleOpenFollowersModal.bind(this);
     this.handleCloseFollowersModal = this.handleCloseFollowersModal.bind(this);
-    this.handleOpenAddRevModal = this.handleOpenAddRevModal.bind(this);
-    this.handleCloseAddRevModal = this.handleCloseAddRevModal.bind(this);
-    this.handleCloseUpdateProfileModal = this.handleCloseUpdateProfileModal.bind(this);
+    this.followUser = this.followUser.bind(this);
   }
 
   componentDidMount() {
@@ -108,9 +104,6 @@ class ProfileView extends React.Component {
     Modal.setAppElement('body');
   }
 
-  updateProfileClick () {
-    this.setState({showUpdateProfile: true});
-  }
 
   handleOpenFollowingModal () {
     this.setState({ showModalFollowing: true });
@@ -118,10 +111,6 @@ class ProfileView extends React.Component {
 
   handleOpenFollowersModal () {
     this.setState({ showModalFollowers: true });
-  }
-
-  handleOpenAddRevModal () {
-    this.setState({showModalAddRev: true})
   }
 
   handleCloseFollowingModal () {
@@ -132,39 +121,37 @@ class ProfileView extends React.Component {
     this.setState({showModalFollowers: false});
   }
 
-  handleCloseAddRevModal () {
-    this.setState({showModalAddRev: false})
+  followUser(event,authenticateduser, profileUser) {
+    console.log(event);
+      if (this.state.peopleFollow.includes(authenticateduser)) {
+        const peopleFollowNew = this.state.peopleFollow;
+        peopleFollowNew.pop(authenticateduser)
+        this.setState({peopleFollow: peopleFollowNew});
+        this.setState({followUnfollowText: "Follow"})
+      }
+      else {
+        const peopleFollowNew = this.state.peopleFollow;
+        peopleFollowNew.push(authenticateduser)
+        this.setState({peopleFollow: peopleFollowNew});
+        this.setState({followUnfollowText: "UnFollow"})
+      }
   }
-
-  handleCloseUpdateProfileModal () {
-    this.setState({showUpdateProfile: false})
-  }
-
-  // followUser() {
-  //
-  // }
 
   render() {
     let follow_edit_button;
     let add_review_button;
-    if (this.state.isfollowing){
-      follow_edit_button = <Button variant="outline-primary"
-                    type="submit"
-                    className="editButton"
-                    onClick={this.onClick}
-                    >
-                    UnFollow
-                  </Button>
-    }
-    else {
-      follow_edit_button = <Button variant="outline-primary"
-                    type="submit"
-                    className="editButton"
-                    onClick={this.onClick}
-                    >
-                    Follow
-                  </Button>
-    }
+    const authenticatedusername = this.props.location.state.username;
+    const profileUser = this.props.location.state.profileUser
+    console.log((authenticatedusername));
+    console.log(profileUser);
+
+    follow_edit_button = <Button variant="outline-primary"
+                  type="submit"
+                  className="editButton"
+                  onClick={(e) => this.followUser(e,authenticatedusername,profileUser)}
+                  >
+                  {this.state.followUnfollowText}
+                </Button>
 
     const userFollowingList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
@@ -176,10 +163,7 @@ class ProfileView extends React.Component {
     <div key={index}>{person}</div>
     );
 
-    const authenticatedusername = this.props.location.state.username;
-    const profileUser = this.props.location.state.profileUser
-    console.log((authenticatedusername));
-    console.log(profileUser);
+
 
     return (
       <div id="userProfile">
@@ -193,7 +177,6 @@ class ProfileView extends React.Component {
                 <span id="userName">{profileUser}</span>
                 {follow_edit_button}
 
-                {add_review_button}
                 <Modal className = "addRevModal"
                  overlayClassName="Overlay"
                  isOpen={this.state.showModalAddRev}
