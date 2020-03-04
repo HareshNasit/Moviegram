@@ -71,11 +71,12 @@ class Review extends React.Component {
 
           {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
           <ul>
-            <Link to={{pathname:'/ProfileView/'+username, state: { username: authenticateduser, profileUser: username }}}>
             <li>
-            <span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>{username}
+            <Link to={{pathname:'/ProfileView/'+username, state: { username: authenticateduser, profileUser: username }}}>
+            <span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
+            </Link>{username}
             </li>
-            </Link>
+
             <li>{movieName}</li>
             <li><Button variant="primary" onClick={() => this.removeReview(queueComponent, this)}>
             Remove Review</Button></li>
