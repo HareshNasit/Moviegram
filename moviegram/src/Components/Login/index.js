@@ -34,7 +34,7 @@ class LoginScreen extends React.Component {
         this.props.history.push({pathname: "/NewsFeed", state: {username: "username2", auth: true}})
       }
       if (this.state.username === "admin" && this.state.password === "admin") {
-        this.props.history.push({pathname: "/NewsFeed", state: {username: "admin"}})
+        this.props.history.push({pathname: "/NewsFeed", state: {username: "admin", auth: true}})
       };
     }
 

@@ -29,16 +29,16 @@ class Admin extends React.Component{
                              { id: 3,admin: true, username: "Yosef" , movieName: "Stalingrad" , profImg: profileimgdef, datetime: "12/31/2019, 12:00:15 AM",
                                reviewContent: "Thomas Kretschmann is the best actor I have ever witnessed in my whole damn life and man is he hot." ,
                                commentsSection: [] },
-                             { id: 4, username: "username1" , movieName: "Avengers" , profImg: photo, datetime: "1/28/2020, 11:57:15 PM",
+                             { id: 4,admin: true, username: "username1" , movieName: "Avengers" , profImg: photo, datetime: "1/28/2020, 11:57:15 PM",
                                reviewContent: "Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!" ,
                                commentsSection: [{datetime:"2/28/2020, 8:57:15 PM ", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"2/04/2020, 8:17:00 AM", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"2/18/2020, 5:50:15 PM", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"2/02/2020, 4:37:15 PM", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
-                             { id: 5, username: "username1" , movieName: "Intersteller" , profImg: photo, datetime: "1/25/2020, 9:57:15 PM",
+                             { id: 5,admin: true, username: "username1" , movieName: "Intersteller" , profImg: photo, datetime: "1/25/2020, 9:57:15 PM",
                                reviewContent: "Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption." ,
                                commentsSection: [{datetime:"1/28/2020, 3:50:05 PM ", username:"Mark", commentContent:"Messi is the best player i have witnessed tbh"}] },
-                             { id: 6, username: "username1" , movieName: "Anabelle Comes Home" , profImg: photo, datetime: "1/10/2020, 1:57:15 PM",
+                             { id: 6,admin: true, username: "username1" , movieName: "Anabelle Comes Home" , profImg: photo, datetime: "1/10/2020, 1:57:15 PM",
                                reviewContent: "Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts." ,
                                commentsSection: [] },
-                             { id: 7, username: "username1" , movieName: "Shawshank Redemption" , profImg: photo, datetime: "1/6/2020, 4:57:15 PM",
+                             { id: 7,admin: true, username: "username1" , movieName: "Shawshank Redemption" , profImg: photo, datetime: "1/6/2020, 4:57:15 PM",
                                reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
                                commentsSection: [] }]
                  };
@@ -57,8 +57,10 @@ class Admin extends React.Component{
 
 
   render() {
+
     return (
       <div id="AdminFeed">
+
         <h1>Admin Dashboard</h1>
         <Button variant="outline-primary"
                  type="click"
