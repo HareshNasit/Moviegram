@@ -36,7 +36,9 @@ npm start
 
 * Once the admin is logged in, he can see all the movie reviews posted by all the users and has ability to comment, upvote/downvote and remove any movie reviews if the review is not appropriate and has too many spoilers.
 * The admin also has the ability to add movies to the database.
-
+* When you add a review, it gets added to the bottom
+* We added a follow/unfollow button
+* If you click on a profile picture on a review in the newsfeed, it will take you to that user's page.
 ## Sample Usage
 ### Case 1. Normal User
 1. Go to home screen
