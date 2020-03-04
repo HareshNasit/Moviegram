@@ -44,12 +44,13 @@ class SignupScreen extends React.Component {
   buttonClick(){
     // In Phase 2 Will check if username already exists in DB
     // Will also upload img to DB
-    if(this.state.email != "" 
-          && this.state.password != "" 
-          && this.state.username != ""){
-            this.props.history.push({pathname: "/NewsFeed", 
-            state: {username: this.state.username}})
-    }
+    // The signup will get fully implemented in phase 2
+    // if(this.state.email != "" 
+    //       && this.state.password != "" 
+    //       && this.state.username != ""){
+    //         this.props.history.push({pathname: "/NewsFeed", 
+    //         state: {username: this.state.username}})
+    // }
   }
   handleUpload(e){
     // Change avatar image
