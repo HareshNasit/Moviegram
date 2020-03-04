@@ -3,56 +3,64 @@ import "./styles.css";
 import "./../universalStyles.css"
 import { Button } from "react-bootstrap";
 import MainMenuBar from './../MainMenuBar';
-import bhavya from './bhavya.jpg'
+import bhavyaPic from './bhavya.jpg'
 import messi_dp from './../UserProfile/messi_dp.jpg'
 import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
-// import constants file which carries user data
+import profileimgdef from './../MainMenuBar/profile.png';
 
-const user1 = {
+// All this user data variables will be improted from our database
+const bhavya = {
             username: "Bhavya",
-            profilePic: bhavya,
-            peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria'],
-            peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Bhavya', 'Harsh', 'Yosef', 'Dhruv'],
-            userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free",
-            reviews: [{ id: 0, username: "username1" , movieName: "Avengers" , profImg: bhavya, datetime: "1/28/2020, 11:57:15 PM",
-                   reviewContent: "Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!" ,
-                   commentsSection: [{datetime:"2/28/2020, 8:57:15 PM ", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"2/04/2020, 8:17:00 AM", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"2/18/2020, 5:50:15 PM", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"2/02/2020, 4:37:15 PM", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
-                   { id: 1, username: "username1" , movieName: "Intersteller" , profImg: bhavya, datetime: "1/25/2020, 9:57:15 PM",
-                     reviewContent: "Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption." ,
-                     commentsSection: [{datetime:"1/28/2020, 3:50:05 PM ", username:"Mark", commentContent:"Messi is the best player i have witnessed tbh"}] },
-                   { id: 2, username: "username1" , movieName: "Anabelle Comes Home" , profImg: bhavya, datetime: "1/10/2020, 1:57:15 PM",
-                     reviewContent: "Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts." ,
-                     commentsSection: [] },
-                   { id: 3, username: "username1" , movieName: "Shawshank Redemption" , profImg: bhavya, datetime: "1/6/2020, 4:57:15 PM",
-                     reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
-                     commentsSection: [] }]
+            profilePic: bhavyaPic,
+            peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria', 'Harsh', 'Yosef', 'Dhruv'],
+            peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Harsh', 'Yosef', 'Dhruv'],
+            userDescription: "I love movies, they help me escape into a different world and make me believe in the impossible",
+            reviews: [{ id: 0, upvote: 0, downvote: 0, username: "Bhavya" , movieName: "Jurassic World" , profImg: bhavyaPic, datetime: "1/28/2020, 11:59:15 PM",
+                   reviewContent: "So wonderful to see such beautiful creatures from millions of years ago." ,
+                   commentsSection: [{datetime:"2/28/2020, 8:57:15 PM ", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}]}]
            }
 
-const user2 = {
+const harsh = {
             username: "Harsh",
             profilePic: messi_dp,
             peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
             peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
             userDescription: "I play professional football at FC Barcelona. After a tough match against hard teams like Real Madrid, I try to shift my mind by watching movies XD",
-            reviews: [{ id: 0, username: "username2" , movieName: "Avengers" , profImg: messi_dp, datetime: "1/28/2020, 11:57:15 PM",
-                   reviewContent: "Endgame definitively closes a few chapters in the Avengers saga in highly satisfying fashion. It is a tremendously entertaining intergalactic trip. 15/10 stars. Definitely go watch it Marvel fans!" ,
-                   commentsSection: [{datetime:"2/28/2020, 8:57:15 PM ", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}, {datetime:"2/04/2020, 8:17:00 AM", username:"Dhruv", commentContent:"Yess!!!!! OMG yes!!!!!! it is the best movie ever"}, {datetime:"2/18/2020, 5:50:15 PM", username:"Hassan", commentContent:"Yess!!!!!"}, {datetime:"2/02/2020, 4:37:15 PM", username:"Ramesh", commentContent:"Nooooo!!!!! DC is a better universe"}] },
-                   { id: 1, username: "username2" , movieName: "Intersteller" , profImg: messi_dp, datetime: "1/25/2020, 9:57:15 PM",
-                     reviewContent: "Christopher Nolan's spectacular film is filled with frustration, anger, and guilt, and also strives for acceptance and even redemption." ,
-                     commentsSection: [{datetime:"1/28/2020, 3:50:05 PM ", username:"Mark", commentContent:"Messi is the best player i have witnessed tbh"}] },
-                   { id: 2, username: "username2" , movieName: "Anabelle Comes Home" , profImg: messi_dp, datetime: "1/10/2020, 1:57:15 PM",
-                     reviewContent: "Super scary, in a truly fun way, even if a bit over the top. I love diving into the world of the Warren families' 'room of evil things.' This made me want to see a movie about their daughter Judy, who already sees ghosts." ,
-                     commentsSection: [] },
-                   { id: 3, username: "username2" , movieName: "Shawshank Redemption" , profImg: messi_dp, datetime: "1/6/2020, 4:57:15 PM",
-                     reviewContent: "This is an engagingly simple, good-hearted film, with just enough darkness around the edges to give contrast and relief to its glowingly benign view of human nature. Morgan Freeman you are a legend." ,
-                     commentsSection: [] }]
+            reviews: [{ id: 0, upvote: 0, downvote: 0, username: "Harsh" , movieName: "Pele" , profImg: messi_dp, datetime: "1/28/2020, 11:57:15 PM",
+                   reviewContent: "One of the greatest football players to have lived" ,
+                   commentsSection: []}]
            }
 
+const yosef = {
+              username: "Yosef",
+              profilePic: profileimgdef,
+              peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
+              peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
+              userDescription: "Movies are my favourite passtime",
+              reviews: []
+          }
 
+const dhruv = {
+              username: "Dhruv",
+              profilePic: profileimgdef,
+              peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
+              peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
+              userDescription: "No comment....lol",
+              reviews: []
+            }
+
+const cristianoRonaldo = {
+              username: "Cristiano Ronaldo",
+              profilePic: profileimgdef,
+              peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
+              peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
+              userDescription: "Movies are my the best thing to come out of the 20th century",
+              reviews: []
+            }
 
 
 class ProfileView extends React.Component {
@@ -84,25 +92,45 @@ class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    const username = this.props.location.state.username
-    if (username === "username1") {
+    const username = this.props.location.state.profileUser
+    if (username === "Bhavya") {
       this.setState({
-        username: user1["username"],
-        profilePic: user1["profilePic"],
-        peopleFollow: user1["peopleFollow"],
-        peopleFollowing: user1["peopleFollowing"],
-        userDescription: user1["userDescription"],
-        reviews: user1["reviews"]
+        username: bhavya["username"],
+        profilePic: bhavya["profilePic"],
+        peopleFollow: bhavya["peopleFollow"],
+        peopleFollowing: bhavya["peopleFollowing"],
+        userDescription: bhavya["userDescription"],
+        reviews: bhavya["reviews"]
       })
     }
-    else if (username === "username2") {
+    else if (username === "Harsh") {
       this.setState({
-        username: user2["username"],
-        profilePic: user2["profilePic"],
-        peopleFollow: user2["peopleFollow"],
-        peopleFollowing: user2["peopleFollowing"],
-        userDescription: user2["userDescription"],
-        reviews: user2["reviews"]
+        username: harsh["username"],
+        profilePic: harsh["profilePic"],
+        peopleFollow: harsh["peopleFollow"],
+        peopleFollowing: harsh["peopleFollowing"],
+        userDescription: harsh["userDescription"],
+        reviews: harsh["reviews"]
+      })
+    }
+    else if (username === "Yosef") {
+      this.setState({
+        username: yosef["username"],
+        profilePic: yosef["profilePic"],
+        peopleFollow: yosef["peopleFollow"],
+        peopleFollowing: yosef["peopleFollowing"],
+        userDescription: yosef["userDescription"],
+        reviews: yosef["reviews"]
+      })
+    }
+    else if (username === "Dhruv") {
+      this.setState({
+        username: dhruv["username"],
+        profilePic: dhruv["profilePic"],
+        peopleFollow: dhruv["peopleFollow"],
+        peopleFollowing: dhruv["peopleFollowing"],
+        userDescription: dhruv["userDescription"],
+        reviews: dhruv["reviews"]
       })
     }
     Modal.setAppElement('body');
