@@ -33,7 +33,7 @@ class ReviewsList extends React.Component {
 
   render() {
 
-    const { reviews, queueComponent} = this.props;
+    const { reviews, queueComponent, authenticateduser} = this.props;
 
     return (
 
@@ -50,7 +50,8 @@ class ReviewsList extends React.Component {
                   commentsSection={this.getCommentsSection(review)}
                   reviewId={review.id}
                   admin={review.admin}
-                  queueComponent={queueComponent}/>
+                  queueComponent={queueComponent}
+                  authenticateduser= {authenticateduser}/>
         ))};
       </div>
     );
