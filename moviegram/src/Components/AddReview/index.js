@@ -26,7 +26,7 @@ class AddReview extends React.Component {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
     } else {
-      const newReview = { id: queue.state.reviews.length, username: "username1", movieName: this.state.movie ,
+      const newReview = { id: queue.state.reviews.length, upvote: 0, downvote:0, username: "username1", movieName: this.state.movie ,
                           profImg: pic, datetime: new Date().toLocaleString(), reviewContent: this.state.review,
                           commentsSection: [] }
       let userReviews = queue.state.reviews

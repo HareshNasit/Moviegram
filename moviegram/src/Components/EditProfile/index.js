@@ -38,11 +38,11 @@ class EditProfile extends React.Component {
       console.log("No inputs provided")
     }
     else {
-      if (this.state.newDescription != "") {
+       if (this.state.newDescription != "") {
         queueComponent.setState({
           userDescription: this.state.newDescription});
       }
-      else if (this.state.profilePic !== null) {
+       if (this.state.profilePic != null) {
         queueComponent.setState({
           profilePic: this.state.profilePic});
       }
