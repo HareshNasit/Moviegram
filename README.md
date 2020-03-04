@@ -50,7 +50,7 @@ npm start
 6. Try "Add a review"
 7. View the profile and then click on the "News" Icon to go back to the NewsFeed
 8. Try adding a comment
-9. Search for a movie using the search bar -- Try "Dangal"
+9. Search for a movie using the search bar -- Try "Dangal" or "Interstellar"
 ### Case 2. Admin
 1. Go to home screen
 2. Press the login button
