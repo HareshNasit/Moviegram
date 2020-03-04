@@ -57,10 +57,11 @@ class Admin extends React.Component{
 
 
   render() {
-
+    const username = this.props.location.state.username;
+    const auth = this.props.location.state.auth;
     return (
       <div id="AdminFeed">
-
+        <MainMenuBar username={username} auth={auth}></MainMenuBar>
         <h1>Admin Dashboard</h1>
         <Button variant="outline-primary"
                  type="click"
