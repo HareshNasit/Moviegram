@@ -2,12 +2,36 @@
 const mongoose = require('mongoose')
 
 const User = mongoose.model('User', {
-	name: {
+	username: {
 		type: String,
 		required: true,
-		minlegth: 1,
+		minlength: 1,
 		trim: true
-	}
+    },
+    password: {
+        type: String,
+		required: true,
+		minlength: 1
+    },
+    favoriteGenres: [{genre: {
+        type: String,
+		required: true,
+		minlength: 1
+    }}],
+    description:  {
+        type: String,
+		required: true,
+		minlength: 1
+    },
+    numfollowers: {
+        type: Number,
+        required: true
+    },
+    followers: [ { username: {
+        type: String,
+		required: true,
+		minlength: 1
+    }}]
 })
 
 module.exports = { User }
