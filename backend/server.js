@@ -8,7 +8,7 @@ const express = require('express')
 const app = express();
 
 // mongoose and mongo connection
-const { mongoose } = require('./db/mongoose')
+const { mongoose } = require('mongoose')
 
 // import the mongoose models
 // models
@@ -65,3 +65,6 @@ app.post('/reviews/:id', (req, res) => {
 /*************************************************/
 // Express server listening...
 const port = process.env.PORT || 5000
+app.listen(port, () => {
+	log(`Listening on port ${port}...`)
+}) 
