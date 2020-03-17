@@ -26,40 +26,9 @@ app.use(bodyParser.json())
 /*** API Routes below ************************************/
 
 
-/****** User routes ************************************ */
-app.get('/users/:id', (req, res) => {
-	
-})
-
-app.post('/users', (req, res) => {
-	
-})
-/*******************************************************/
-
-
-/****** Movie routes *************************************/
-app.get('/movies/:id', (req, res) => {
-	
-})
-
-app.get('/movies', (req, res) => {
-	
-})
-/*******************************************************/
-
-
-/****** Movie routes *************************************/
-
-app.get('/reviews/:id', (req, res) => {
-	
-})
-
-app.post('/reviews/:id', (req, res) => {
-	
-})
-/*******************************************************/
-
-
+app.use('/users', require('./routes/users'))
+app.use('/movies', require('./routes/movies'))
+app.use('/reviews', require('./routes/reviews'))
 
 
 /*************************************************/
