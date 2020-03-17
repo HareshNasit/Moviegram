@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const User = mongoose.model('Movie', {
+const Movie = mongoose.model('Movie', {
 	name: {
 		type: String,
 		required: true,
