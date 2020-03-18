@@ -31,7 +31,11 @@ const User = mongoose.model('User', {
         type: String,
 		required: true,
 		minlength: 1
-    }}]
+		}}],
+		isAdmin: {
+			type: Boolean,
+			required: true
+		}
 })
 
 module.exports = { User }
