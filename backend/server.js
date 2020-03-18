@@ -25,7 +25,7 @@ require('dotenv').config();
 
 
 /***********************************************/
-const uri = `mongodb+srv://harsh:${process.env.dbpass}@cluster0-mujm7.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`;
+const uri = `mongodb+srv://harsh:${process.env.dbpass}@cluster0-mujm7.mongodb.net/moviegram?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`;
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 /***********************************************/
 
