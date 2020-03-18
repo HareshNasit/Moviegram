@@ -14,7 +14,6 @@ import NewsFeedScreen from './Components/NewsFeed'
 import AddReview from './Components/AddReview'
 import UserProfile from './Components/UserProfile'
 import ProfileView from './Components/ProfileView'
-import Profile from './Components/Profile'
 import Movie from './Components/Movie'
 import Admin from './Components/Admin'
 
@@ -41,8 +40,6 @@ class App extends React.Component {
                             (<NewsFeedScreen {...props} />)}/>
              <Route exact path='/AddReview' render={(props) =>
                             (<AddReview {...props} />)}/>
-            <Route exact path='/profile/:id' render={(props) =>
-                            (<Profile {...props} />)}/>
             <Route exact path='/userProfile/:id' render={(props) =>
                             (<UserProfile {...props} />)}/>
             <Route exact path='/admin' render={(props) =>
