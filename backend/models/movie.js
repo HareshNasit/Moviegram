@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Movie = mongoose.model('Movie', {
+const Movies = mongoose.model('Movies', {
 	name: {
 		type: String,
 		required: true,
@@ -31,4 +31,4 @@ const Movie = mongoose.model('Movie', {
     }]
 })
 
-module.exports = { Movie }
+module.exports = { Movies }

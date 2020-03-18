@@ -8,7 +8,7 @@ const express = require('express')
 const app = express();
 
 // mongoose and mongo connection
-const { mongoose } = require('mongoose')
+const mongoose = require('mongoose')
 
 // import the mongoose models
 // models
@@ -19,6 +19,15 @@ const { ObjectID } = require('mongodb')
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require('body-parser') 
 app.use(bodyParser.json())
+
+
+require('dotenv').config();
+
+
+/***********************************************/
+const uri = `mongodb+srv://harsh:${process.env.dbpass}@cluster0-mujm7.mongodb.net/test?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`;
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
+/***********************************************/
 
 
 /*********************************************************/
