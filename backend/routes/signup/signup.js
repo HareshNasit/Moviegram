@@ -1,8 +1,8 @@
 const { User } = require('./../../models/user')
-
-const saltRounds = 10;
+const bcrypt = require('bcrypt');
 
 module.exports = async (req, res) => {
+    const saltRounds = 10;
     if(!req.body.password){
       res.status(400).send("Missing passsword")
     }
