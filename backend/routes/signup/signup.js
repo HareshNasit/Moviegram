@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
             res.status(500).send(error)
           } else {
             const newUser = {
-              username: username,
+              _id: username,
               password: hash,
               favoriteGenres: genres,
               email: email
