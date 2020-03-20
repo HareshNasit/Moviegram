@@ -21,27 +21,26 @@ const User = mongoose.model('User', {
     },
     favoriteGenres: [{genre: {
         type: String,
-		required: true,
 		minlength: 1
     }}],
     description:  {
         type: String,
-		required: true,
-		minlength: 1
+		default: "",
+		minlength: 0
     },
     numfollowers: {
         type: Number,
-        required: true
+        default: 0
     },
     followers: [ { username: {
         type: String,
 		required: true,
 		minlength: 1
 		}}],
-		isAdmin: {
-			type: Boolean,
-			required: true
-		}
+	isAdmin: {
+		type: Boolean,
+		default: False
+	}
 })
 
 module.exports = { User }
