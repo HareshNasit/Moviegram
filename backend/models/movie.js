@@ -24,7 +24,7 @@ const Movies = mongoose.model('Movies', {
 		minlength: 1,
 		trim: true
     },
-    actors: [{
+    stars: [{
         type: String,
 		required: true,
 		minlength: 1

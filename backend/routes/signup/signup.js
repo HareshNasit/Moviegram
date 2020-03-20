@@ -1,4 +1,4 @@
-const { User } = require('./../../models/user')
+const User = require('./../../models/user')
 const bcrypt = require('bcrypt');
 
 module.exports = async (req, res) => {
@@ -21,8 +21,8 @@ module.exports = async (req, res) => {
     const email = req.body.email
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
-          if (error) {
-            res.status(500).send(error)
+          if (err) {
+            res.status(500).send(err)
           } else {
             const newUser = {
               _id: username,
@@ -30,11 +30,12 @@ module.exports = async (req, res) => {
               favoriteGenres: genres,
               email: email
             }
-            User.insertOne(newUser, function(err, res) {
-              if (err){ 
-                res.status(500).send(error); 
-              }
-            });
+            const user = new User(newUser);
+            user.save().then((result) => {
+              res.send(result)
+            }, (error) => {
+              res.status(400).send(error) // 400 for bad request
+            })
           }
       });
     })

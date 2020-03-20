@@ -1,7 +1,7 @@
 /* Student mongoose model */
 const mongoose = require('mongoose')
-
-const UserSchema = mongoose.Schema({
+const Schema = mongoose.Schema
+const UserSchema = new Schema({
 	_id: {
 		type: String,
 		required: true,
@@ -66,6 +66,6 @@ UserSchema.statics.getUserByUsernamePassword = function(username, password) {
 		})
 	})
 }
-const User = mongoose.model('User', UserSchema)
+const User = mongoose.model('Users', UserSchema)
 
-module.exports = { User }
+module.exports = User
