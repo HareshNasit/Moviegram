@@ -3,9 +3,7 @@ import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 // import photo from './ballon_dor.jpg'
-import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
-
 
 // <Button variant="primary" id="updateButton" onClick={() => this.updateProfile(queueComponent, cancelFunction)} type="submit">Update Profile</Button>
 // <Button variant="primary" id="cancelButton" onClick={cancelFunction} type="submit">Cancel</Button>
@@ -34,7 +32,7 @@ class EditProfile extends React.Component {
       console.log("No inputs provided")
     }
     else {
-       if (this.state.newDescription != "") {
+       if (this.state.newDescription !== "") {
         queueComponent.setState({
           userDescription: this.state.newDescription});
       }
