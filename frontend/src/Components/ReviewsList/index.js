@@ -7,8 +7,8 @@ import "./../universalStyles.css";
 // import all needed Components
 import Review from './../Review';
 import Comment from './../Comment';
-// import constants file which carries user data
-// const constants = require("../../constants")
+
+
 
 // Class for a Review Component
 class ReviewsList extends React.Component {

@@ -6,13 +6,11 @@ import MainMenuBar from './../MainMenuBar';
 import ronaldo_dp from './ballon_dor.jpg'
 import messi_dp from './messi_dp.jpg'
 import admin_dp from './admin_dp.jpg'
-import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
-// import constants file which carries user data
-const constants = require("../../constants")
+
 
 const user1 = {
             username: "username1",

@@ -5,8 +5,6 @@ import {Link} from 'react-router-dom';
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
-// import constants file which carries user data
-const constants = require("../../constants")
 
 // Class for a Review Component
 class Review extends React.Component {
@@ -19,7 +17,6 @@ class Review extends React.Component {
     this.newComContent = this.newComContent.bind(this)
     this.addCommentFunc = this.addCommentFunc.bind(this)
     this.removeReview = this.removeReview.bind(this)
-    this.currUser = constants.acc.username;
   }
 
   // Takes the content from a new comment written on the post and sets the review's this.state.newComment variable

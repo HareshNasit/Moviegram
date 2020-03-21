@@ -1,9 +1,7 @@
 import React from 'react';
 import './styles.css'
 import "./../universalStyles.css"
-import { Button, Form } from "react-bootstrap";
-import {Link} from 'react-router-dom';
-import ReactSearchBox from 'react-search-box'
+import { Button} from "react-bootstrap";
 import MainMenuBar from './../MainMenuBar';
 import AddMovie from './../AddMovie';
 import ReviewsList from './../ReviewsList';

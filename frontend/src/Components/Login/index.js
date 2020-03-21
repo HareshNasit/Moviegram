@@ -1,11 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Button, Form } from 'react-bootstrap';
-import {Link, Redirect} from 'react-router-dom';
-
-
-const constants = require("../../constants")
-
+import {Link} from 'react-router-dom';
 class LoginScreen extends React.Component {
     constructor(props) {
       super(props);

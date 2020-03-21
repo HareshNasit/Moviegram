@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import MainMenuBar from './../MainMenuBar';
 import bhavyaPic from './bhavya.jpg'
 import messi_dp from './../UserProfile/messi_dp.jpg'
-import Dialog from 'react-bootstrap-dialog';
 import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';

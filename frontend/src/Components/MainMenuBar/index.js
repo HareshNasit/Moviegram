@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 // import all the images for the menu bar
 import newsFeedimg from './newsFeed.png'
 import profileimg from './profile.png'
-import addReviewimg from './addReview.png'
 import adminDashboard from './admin-dashboard.png'
 
 class MainMenuBar extends React.Component {

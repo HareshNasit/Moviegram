@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import { Button, Form, Modal } from 'react-bootstrap';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';

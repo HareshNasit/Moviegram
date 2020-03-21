@@ -5,10 +5,7 @@ import { Button, Form } from "react-bootstrap";
 // import ReactDOM from 'react-dom';
 // import Modal from 'react-modal';
 
-import MainMenuBar from './../MainMenuBar';
 import profileimgdef from './../MainMenuBar/profile.png';
-
-const constants = require("../../constants")
 
 class AddReview extends React.Component {
 
@@ -16,7 +13,6 @@ class AddReview extends React.Component {
     super(props);
     this.state = { movie: "",
                    review: ""};
-    this.currUser = constants.acc.username;
     this.saveReview = this.saveReview.bind(this)
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
