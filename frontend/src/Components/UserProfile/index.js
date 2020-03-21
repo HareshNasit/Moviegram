@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
-
+import { getAllReviews } from './../../services/api'
 
 const user1 = {
             username: "username1",
@@ -88,7 +88,9 @@ class UserProfile extends React.Component {
     this.handleCloseUpdateProfileModal = this.handleCloseUpdateProfileModal.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const data = await getAllReviews();
+    console.log(data.data[0])
     const username = this.props.location.state.username
     if (username === "username1") {
       this.setState({

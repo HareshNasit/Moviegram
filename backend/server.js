@@ -17,9 +17,10 @@ const mongoose = require('mongoose')
 const { ObjectID } = require('mongodb')
 
 // body-parser: middleware for parsing HTTP JSON body into a usable object
-const bodyParser = require('body-parser') 
+const bodyParser = require('body-parser')
 app.use(bodyParser.json())
-
+const cors = require('cors')
+app.use(cors());
 
 require('dotenv').config();
 
@@ -45,14 +46,14 @@ app.use(session({
     }
 }));
 
-// Our own express middleware to check for 
+// Our own express middleware to check for
 // an active user on the session cookie (indicating a logged in user.)
 const sessionChecker = (req, res, next) => {
     if (req.session.user) {
         res.redirect('/dashboard'); // redirect to dashboard if logged in.
     } else {
         next(); // next() moves on to the route.
-    }    
+    }
 };
 
 // Middleware for authentication of resources
@@ -90,4 +91,4 @@ app.use('/login', require('./routes/login'))
 const port = process.env.PORT || 5000
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
-}) 
+})

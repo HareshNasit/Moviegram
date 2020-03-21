@@ -2,8 +2,10 @@ const mongoose = require('mongoose')
 
 const Reviews = mongoose.model('Reviews', {
 	_id: {
-		type: Number,
+		type: String,
 		required: true,
+		minlength: 1,
+		trim: true
     },
 	username: {
 		type: String,
