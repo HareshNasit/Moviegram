@@ -7,6 +7,12 @@ const Review = mongoose.model('Review', {
 		minlength: 1,
 		trim: true
     },
+		movie_title:{
+			type: String,
+			required: true,
+			minlength: 1,
+			trim: true
+		},
     content: {
         type: String,
 		required: true,
@@ -15,6 +21,7 @@ const Review = mongoose.model('Review', {
     },
     date: {
         type: Date,
+				default: Date.now,
 		required: true,
 		minlength: 1,
 		trim: true
@@ -23,9 +30,9 @@ const Review = mongoose.model('Review', {
         type: Boolean,
 		required: true,
     },
-    comments: [{username: {type: String, 
+    comments: [{username: {type: String,
                            required: True},
-                date: Date, 
+                date: {type:Date, default: Date.now},
                 content: {
                     type: String,
                     required: true,
