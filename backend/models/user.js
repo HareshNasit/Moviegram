@@ -1,5 +1,7 @@
 /* Student mongoose model */
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt');
+
 const Schema = mongoose.Schema
 const UserSchema = new Schema({
 	_id: {
@@ -48,6 +50,7 @@ const UserSchema = new Schema({
 //  to a given one, for example when logging in.
 UserSchema.statics.getUserByUsernamePassword = function(username, password) {
 	const User = this // binds this to the User model
+    console.log("HAHAHA")
 
 	// First find the user by their email
 	return User.findOne({ _id: username }).then((user) => {
