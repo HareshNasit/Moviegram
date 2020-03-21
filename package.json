@@ -1,0 +1,20 @@
+{
+  "name": "team13",
+  "version": "1.0.0",
+  "description": "## Introduction Welcome to Moviegram. This is an interactive and social Movie Review Website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm install --prefix server && npm install --prefix frontend-app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csc309-winter-2020/team13.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csc309-winter-2020/team13/issues"
+  },
+  "homepage": "https://github.com/csc309-winter-2020/team13#readme"
+}
