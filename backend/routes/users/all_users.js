@@ -1,5 +1,5 @@
 
-const { User } = require('./../../models/user')
+const User = require('./../../models/user')
 
 module.exports = async (req, res) => {
     User.find().then((users) => {
