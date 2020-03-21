@@ -16,8 +16,7 @@ module.exports = async (req, res) => {
         } else {
             // Add the user's id to the session cookie.
             // We can check later if this exists to ensure we are logged in.
-            // req.session.user = user._id;
-            // res.redirect('/newsfeed');
+            req.session.user = user._id;
             res.redirect('/newsfeed')
         }
     }).catch((error) => {
