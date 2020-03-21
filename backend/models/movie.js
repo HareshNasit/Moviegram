@@ -11,11 +11,10 @@ const Movies = mongoose.model('Movies', {
 		minlength: 1,
 		trim: true
     },
-    genres: [{
-        type: String,
-		required: true,
-		minlength: 1
-    }],
+    genres: {
+		type: Object,
+		required: true
+	},
     director: {
 		type: String,
 		required: true,

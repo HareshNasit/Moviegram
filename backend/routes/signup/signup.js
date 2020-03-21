@@ -9,7 +9,8 @@ module.exports = async (req, res) => {
     if(!req.body.username){
       res.status(400).send("Missing username")
     }
-    if(!req.body.genres && req.body.genres != []){
+    console.log(req.body.genres)
+    if(!req.body.genres && req.body.genres != {}){
       res.status(400).send("Missing genres")
     }
     if(!req.body.email){

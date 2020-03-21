@@ -21,10 +21,10 @@ const UserSchema = new Schema({
 		required: true,
 		minlength: 1
     },
-    favoriteGenres: [{genre: {
-        type: String,
-		minlength: 1
-    }}],
+    favoriteGenres: {
+		type: Object,
+		required: true
+	},
     description:  {
         type: String,
 		default: "",
@@ -34,11 +34,7 @@ const UserSchema = new Schema({
         type: Number,
         default: 0
     },
-    followers: [ { username: {
-        type: String,
-		required: true,
-		minlength: 1
-		}}],
+    followers: {type: Object, default: {}, required: true},
 	isAdmin: {
 		type: Boolean,
 		default: false
