@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
-const Review = mongoose.model('Review', {
+const Reviews = mongoose.model('Reviews', {
+	_id: {
+		type: Number,
+		required: true,
+    },
 	username: {
 		type: String,
 		required: true,
@@ -31,7 +35,7 @@ const Review = mongoose.model('Review', {
 		required: true,
     },
     comments: [{username: {type: String,
-                           required: True},
+                           required: true},
                 date: {type:Date, default: Date.now},
                 content: {
                     type: String,
@@ -41,4 +45,4 @@ const Review = mongoose.model('Review', {
                 }}]
 })
 
-module.exports = { Review }
+module.exports = { Reviews }
