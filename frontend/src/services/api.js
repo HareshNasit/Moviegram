@@ -18,9 +18,9 @@ export const getUser = async id => {
     }
 }
 
-export const readCookie = (app) => {
+export const readCookie = async (app) => {
     return new Promise((resolve, reject) => {
-    const url = `${baseURL}/check-session`;
+    const url = `${baseURL}/session/`;
         fetch(url)
             .then(res => {
                 if (res.status === 200) {
@@ -35,9 +35,24 @@ export const readCookie = (app) => {
                 }
             })
             .catch(error => {
-                reject(error)
+                console.log(error)
             });
     })
+    // try {
+    //     axios.get(baseURL + '/session/').then(
+    //         json => {      
+    //             if (json && json.currentUser) {
+    //                 app.setState({ currentUser: json.data.currentUser });
+    //             } 
+    //         }
+            
+    //     )
+        
+    // } catch (err) {
+    //     console.log(err)
+    //     console.log(err)
+    // }
+
 };
 
 

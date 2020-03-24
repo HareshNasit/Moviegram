@@ -78,7 +78,7 @@ const authenticate = (req, res, next) => {
 
 /*** API Routes below ************************************/
 
-
+app.use('/session', require('./routes/session'))
 app.use('/users', require('./routes/users'))
 app.use('/movies', require('./routes/movies'))
 app.use('/reviews', require('./routes/reviews'))

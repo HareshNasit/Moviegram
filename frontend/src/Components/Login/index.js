@@ -30,7 +30,6 @@ l
         if(app.state.currentUser != null){
           this.props.history.push({pathname: "/NewsFeed", 
           state: {username: this.state.username, auth: true}})
-          console.log(app.state.currentUser)
         }
     }).catch(error => console.log(error))
       
