@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseURL = 'https://moviegram-back.herokuapp.com'
+// const baseURL = 'https://moviegram-back.herokuapp.com'
+const baseURL = 'http://localhost:5000'
 
 export const insertUserToMongo = async data => {
     try {

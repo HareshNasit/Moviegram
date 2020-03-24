@@ -16,16 +16,20 @@ class LoginScreen extends React.Component {
     changeUser(e) {
       this.setState({username: e.target.value});
    }
-
+l
    passwordChange(e) {
       this.setState({password: e.target.value});
    }
 
     buttonClick(app){
       // Handles logging into the site.
-      login(this, app)
-
-      // this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username, auth: true}})
+      login(this, app) // NEED TO PUT THIS INTO A PROMISE BECAUSE IT'S ASYNC AND 
+      // PUT THE NEXT FEW LINES INTO IT
+    
+      if(app.state.currentUser != null){
+        console.log("HA")
+        this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username, auth: true}})
+      }
     }
 
     render() {
@@ -51,7 +55,7 @@ class LoginScreen extends React.Component {
 
               <Button variant="outline-primary"
                       className="loginButton"
-                      onClick={this.buttonClick(app)}>
+                      onClick={() => this.buttonClick(app)}>
                 Login
               </Button>
 
