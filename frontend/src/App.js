@@ -38,7 +38,7 @@ class App extends React.Component {
             <Route exact path='/' render={(props) =>
                             (<Home {...props} />)}/>
             <Route exact path='/login' render={(props) =>
-                            (<LoginScreen {...props} />)}/>
+                            (<LoginScreen {...props} app={this} />)}/>
             <Route exact path='/signup' render={(props) =>
                             (<SignupScreen {...props} />)}/>
             <Route exact path='/NewsFeed' render={(props) =>

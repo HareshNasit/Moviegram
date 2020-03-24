@@ -2,6 +2,8 @@ import React from 'react';
 import './styles.css';
 import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import {login} from '../../services/api'
+
 class LoginScreen extends React.Component {
     constructor(props) {
       super(props);
@@ -19,22 +21,15 @@ class LoginScreen extends React.Component {
       this.setState({password: e.target.value});
    }
 
-    buttonClick(){
+    buttonClick(app){
       // Handles logging into the site.
-      // Will handle authentication in Phase 2
-      if (this.state.username === "username1" && this.state.password === "password1") {
-        // constants.acc.auth = true;
-        this.props.history.push({pathname: "/NewsFeed", state: {username: "username1", auth: true}})
-      }
-      if (this.state.username === "username2" && this.state.password === "password2") {
-        this.props.history.push({pathname: "/NewsFeed", state: {username: "username2", auth: true}})
-      }
-      if (this.state.username === "admin" && this.state.password === "admin") {
-        this.props.history.push({pathname: "/NewsFeed", state: {username: "admin", auth: true}})
-      };
+      login(this, app)
+
+      // this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username, auth: true}})
     }
 
     render() {
+      const { app } = this.props
       return (
         <div className="pageM">
           {/* {this.renderRedirect()} */}
@@ -56,7 +51,7 @@ class LoginScreen extends React.Component {
 
               <Button variant="outline-primary"
                       className="loginButton"
-                      onClick={this.buttonClick}>
+                      onClick={this.buttonClick(app)}>
                 Login
               </Button>
 
