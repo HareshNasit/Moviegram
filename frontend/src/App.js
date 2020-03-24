@@ -18,10 +18,15 @@ import Movie from './Components/Movie'
 import Admin from './Components/Admin'
 
 
+import { readCookie } from './services/api.js'
 
 class App extends React.Component {
-
+  constructor(props) {
+    super(props);
+    readCookie(this); // sees if a user is logged in.
+  }
   state = {
+    currentUser: null
   }
 
   render() {
