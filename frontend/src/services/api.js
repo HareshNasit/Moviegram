@@ -17,5 +17,24 @@ export const getUser = async id => {
     }
 }
 
+export const readCookie = (app) => {
+    const url = `${baseURL}/check-session`;
+
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json && json.currentUser) {
+                app.setState({ currentUser: json.currentUser });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
 
 export const getAllReviews = () => axios.get(baseURL + '/reviews')
