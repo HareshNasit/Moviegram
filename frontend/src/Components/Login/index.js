@@ -23,13 +23,17 @@ l
 
     buttonClick(app){
       // Handles logging into the site.
-      login(this, app) // NEED TO PUT THIS INTO A PROMISE BECAUSE IT'S ASYNC AND 
+      
+      // NEED TO PUT THIS INTO A PROMISE BECAUSE IT'S ASYNC AND 
       // PUT THE NEXT FEW LINES INTO IT
-    
-      if(app.state.currentUser != null){
-        console.log("HA")
-        this.props.history.push({pathname: "/NewsFeed", state: {username: this.state.username, auth: true}})
-      }
+      login(this, app).then(user => {
+        if(app.state.currentUser != null){
+          this.props.history.push({pathname: "/NewsFeed", 
+          state: {username: this.state.username, auth: true}})
+          console.log(app.state.currentUser)
+        }
+    }).catch(error => console.log(error))
+      
     }
 
     render() {

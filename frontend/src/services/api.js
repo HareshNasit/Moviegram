@@ -19,22 +19,25 @@ export const getUser = async id => {
 }
 
 export const readCookie = (app) => {
+    return new Promise((resolve, reject) => {
     const url = `${baseURL}/check-session`;
-
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            }
-        })
-        .then(json => {
-            if (json && json.currentUser) {
-                app.setState({ currentUser: json.currentUser });
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        fetch(url)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                }
+            })
+            .then(json => {
+                console.log(json)
+                if (json && json.currentUser) {
+                    app.setState({ currentUser: json.currentUser });
+                    resolve({ currentUser: json.currentUser })
+                }
+            })
+            .catch(error => {
+                reject(error)
+            });
+    })
 };
 
 
@@ -48,7 +51,7 @@ export const login = (loginComp, app) => {
             "Content-Type": "application/json"
         }
     });
-
+    return new Promise((resolve, reject) => {
     // Send the request with fetch()
     fetch(request)
         .then(res => {
@@ -59,11 +62,15 @@ export const login = (loginComp, app) => {
         .then(json => {
             if (json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser });
+                resolve({ currentUser: json.currentUser })
             }
         })
         .catch(error => {
+            
             console.log(error);
+            reject(error)
         });
+    })
 };
 
 

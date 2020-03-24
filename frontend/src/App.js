@@ -23,7 +23,7 @@ import { readCookie } from './services/api.js'
 class App extends React.Component {
   constructor(props) {
     super(props);
-    readCookie(this); // sees if a user is logged in.
+    readCookie(this).then().catch(console.log("No cookie yet")); // sees if a user is logged in.
   }
   state = {
     currentUser: null
