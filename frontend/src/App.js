@@ -13,7 +13,6 @@ import SignupScreen from './Components/Signup';
 import NewsFeedScreen from './Components/NewsFeed'
 import AddReview from './Components/AddReview'
 import UserProfile from './Components/UserProfile'
-import ProfileView from './Components/ProfileView'
 import Movie from './Components/Movie'
 import Admin from './Components/Admin'
 
