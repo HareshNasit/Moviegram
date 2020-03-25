@@ -52,39 +52,40 @@ export const signup = async (user, signupstate) => {
 }
 
 export const readCookie = async (app) => {
-    return new Promise((resolve, reject) => {
+
     const url = `${baseURL}/session/`;
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json();
-                }
-            })
-            .then(json => {
-                console.log(json)
-                if (json && json.currentUser) {
-                    app.setState({ currentUser: json.currentUser });
-                    resolve({ currentUser: json.currentUser })
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            });
-    })
-    // try {
-    //     axios.get(baseURL + '/session/').then(
-    //         json => {      
-    //             if (json && json.currentUser) {
-    //                 app.setState({ currentUser: json.data.currentUser });
-    //             } 
-    //         }
+    try {
+        let res = await axios.get(url)
+        console.log(res)
+        // .then(
+        //     json => {      
+        //         if (json && json.currentUser) {
+        //             app.setState({ currentUser: json.data.currentUser });
+        //         } 
+        //     }
             
-    //     )
-        
-    // } catch (err) {
-    //     console.log(err)
-    //     console.log(err)
-    // }
+        // )
+        console.log(res)
+    } catch (err) {
+        console.log(err)
+    }
+        // fetch(url)
+        //     .then(res => {
+        //         if (res.status === 200) {
+        //             return res.json();
+        //         }
+        //     })
+        //     .then(json => {
+        //         console.log(json)
+        //         if (json && json.currentUser) {
+        //             app.setState({ currentUser: json.currentUser });
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     });
+    
+    
 
 };
 
