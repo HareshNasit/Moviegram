@@ -53,13 +53,13 @@ class SignupScreen extends React.Component {
     
     if(this.state.username === ""){
       this.setState({turnAlert: true})
-      this.state.error = "Please enter your username."
+      this.setState({error: "Please enter your username."})
     } else if(this.state.email === ""){
       this.setState({turnAlert: true})
-      this.state.error = "Please enter your email."
+      this.setState({error: "Please enter your email."})
     } else if(this.state.password === ""){
       this.setState({turnAlert: true})
-      this.state.error = "Please enter your password."
+      this.setState({error: "Please enter your password."})
     } else{
       signup({username: this.state.username,
         email: this.state.email,
