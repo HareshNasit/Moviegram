@@ -1,5 +1,5 @@
 const User = require('./../../models/user')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 
 module.exports = async (req, res) => {
@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     // by their email and password
 
     User.getUserByUsernamePassword(username, password).then((user) => {
-        
+
 	    if (!user) {
             res.redirect('/login');
         } else {
