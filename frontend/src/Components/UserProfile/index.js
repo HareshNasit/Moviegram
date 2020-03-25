@@ -206,13 +206,13 @@ class UserProfile extends React.Component {
     const username = this.props.location.state.username;
     const auth = this.props.location.state.auth;
 
-    if (auth["auth"] == false) {
-      return (
-        <div>USER NOT AUTHENTICATED
-        </div>
-      );
-    }
-    else {
+    // if (auth["auth"] == false) {
+    //   return (
+    //     <div>USER NOT AUTHENTICATED
+    //     </div>
+    //   );
+    // }
+    // else {
     return (
       <div id="userProfile">
           <MainMenuBar username={username} auth={auth}/>
@@ -288,7 +288,7 @@ class UserProfile extends React.Component {
           </div>
       </div>
     );
-  }
+  // }
   }
 }
 
