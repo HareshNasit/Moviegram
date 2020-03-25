@@ -5,29 +5,6 @@ import {Link} from 'react-router-dom';
 import SearchBar from '../SearchBar'
 
 class Home extends React.Component {
-  data = [
-    {
-      key: 'dangal',
-      value: 'Dangal',
-    },
-    {
-      key: 'avengers endgame',
-      value: 'Avengers: Endgame',
-    },
-    {
-      key: 'mission impossible 5',
-      value: 'Mission Impossible 5',
-    },
-    {
-      key: 'interstellar',
-      value: 'Interstellar',
-    },
-    {
-      key: 'fate of the furious',
-      value: 'Fate of The Furious',
-    },
-  ]
-  
     render() {
       return (
         <div className="Home">

@@ -13,10 +13,17 @@ class SearchBar extends React.Component {
       }
     async componentDidMount(){
         const res = await getKeyMoviePairs()
-        const data = res.data
-        this.setState({data: data.map(obj => {
-            return {key: obj._id, value: obj.title}
-        })})
+        if(!res){
+            console.log("Backend server is not running.")
+            this.setState({data: []})
+        } else{
+            const data = res.data
+        
+            this.setState({data: data.map(obj => {
+                return {key: obj._id, value: obj.title}
+            })})
+        }
+        
     }
     render() {
         return (
