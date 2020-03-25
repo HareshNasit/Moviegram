@@ -18,7 +18,7 @@ export const getUser = async id => {
     }
 }
 
-export const getKeyMoviePairs = async => {
+export const getKeyMoviePairs = async _ => {
     try {
         let res = await axios.get(baseURL + '/movies/keypairs')
         return res

@@ -2,10 +2,7 @@ import React from 'react';
 import './styles.css'
 import { Button} from "react-bootstrap";
 import {Link} from 'react-router-dom';
-import ReactSearchBox from 'react-search-box'
-
-
-
+import SearchBar from '../SearchBar'
 
 class Home extends React.Component {
   data = [
@@ -30,10 +27,7 @@ class Home extends React.Component {
       value: 'Fate of The Furious',
     },
   ]
-  handleEvent(movie) {
-    console.log(movie);
-    window.location.href = "/movie/" + movie;
-  }
+  
     render() {
       return (
         <div className="Home">
@@ -44,11 +38,7 @@ class Home extends React.Component {
             
             </div>
             <div className="searchMovie">
-              <ReactSearchBox
-              placeholder="Search Movie"
-              data={this.data}
-              onSelect={event => this.handleEvent(event.value)}
-              />
+              <SearchBar/>
             </div>
             <div className="spacingBox">
 
