@@ -204,6 +204,7 @@ class UserProfile extends React.Component {
     );
 
     const username = this.props.location.state.username;
+    console.log(username)
     // const auth = this.props.location.state.auth;
 
     // if (auth["auth"] == false) {

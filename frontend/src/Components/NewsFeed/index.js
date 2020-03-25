@@ -10,8 +10,6 @@ import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
 import SearchBar from "../SearchBar";
-// import backend functions
-import { getAllReviews } from './../../services/api'
 // import constants file which carries user data
 const constants = require("../../constants")
 
@@ -59,6 +57,7 @@ class NewsFeedScreen extends React.Component {
 
   render() {
     const username = this.props.location.state.username;
+    console.log(username)
     // const auth = this.props.location.state.auth;
     return (
       <div id="pageFeed">
