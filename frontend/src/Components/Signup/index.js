@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import GenreSelector from '../GenreSelector'
-import SignupErrorModal from '../SignupErrorModal'
+import ErrorModal from '../ErrorModal'
 import {signup} from '../../services/api'
 
 class SignupScreen extends React.Component {
@@ -136,8 +136,8 @@ class SignupScreen extends React.Component {
             </div>
       </Form>
         <GenreSelector signup={this}></GenreSelector>
-        <SignupErrorModal closeModal={this.closeModal} show={this.state.turnAlert}
-                error={this.state.error}></SignupErrorModal>
+        <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert}
+                error={this.state.error}></ErrorModal>
       </div>
 
 

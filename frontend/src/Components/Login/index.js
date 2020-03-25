@@ -3,18 +3,25 @@ import './styles.css';
 import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {login} from '../../services/api'
+import ErrorModal from '../ErrorModal'
+
 
 class LoginScreen extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {username: "", password: ""};
+      this.state = {turnAlert: false, username: "", password: ""};
       this.changeUser = this.changeUser.bind(this);
       this.passwordChange = this.passwordChange.bind(this)
       this.buttonClick = this.buttonClick.bind(this);
+      this.closeModal = this.closeModal.bind(this)
+
     }
 
     changeUser(e) {
       this.setState({username: e.target.value});
+   }
+   closeModal(){
+    this.setState({turnAlert: false})
    }
 l
    passwordChange(e) {
@@ -23,17 +30,16 @@ l
 
     buttonClick(app){
       // Handles logging into the site.
-      
-      // NEED TO PUT THIS INTO A PROMISE BECAUSE IT'S ASYNC AND 
-      // PUT THE NEXT FEW LINES INTO IT
       login(this, app).then(user => {
         if(app.state.currentUser != null){
           this.props.history.push({pathname: "/NewsFeed", 
           state: {username: this.state.username}})
         }
-    }).catch(error => console.log(error))
-      
-    }
+    }).catch(error => {
+      console.log(error)
+      this.setState({turnAlert: true})
+      this.setState({error: "Either the username or password is wrong."})
+    })}
 
     render() {
       const { app } = this.props
@@ -67,6 +73,8 @@ l
                       to="/signup" type="submit">New to the site?</Button>
             </div>
         </Form>
+        <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert}
+                error={this.state.error}></ErrorModal>
         </div>
 
 

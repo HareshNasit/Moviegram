@@ -1,29 +1,33 @@
 
 import React from 'react';
 import {Modal } from 'react-bootstrap';
-
-class SignupErrorModal extends React.Component{
+import './styles.css'
+class ErrorModal extends React.Component{
     constructor(props) {
         super(props);
     }
 
     render(){
         return(
+          <div>
         <Modal
         show={this.props.show}
         onHide={() => this.props.closeModal()}
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title"
+        className="errorModal"
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">
-            Error
+            
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {this.props.error}
         </Modal.Body>
-      </Modal>);
+      </Modal>
+          </div>
+        );
     }
 }
-export default SignupErrorModal;
+export default ErrorModal;

@@ -99,16 +99,17 @@ export const login = (loginComp, app) => {
             }
         })
         .then(json => {
-            if (json.currentUser !== undefined) {
+            if (json && json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser });
                 resolve({ currentUser: json.currentUser })
+            } else {
+                reject("Login failed")
             }
         })
-        .catch(error => {
-            
-            console.log(error);
-            reject(error)
-        });
+        // .catch(error => {
+        //     console.log(error);
+        //     reject(error)
+        // });
     })
 };
 
