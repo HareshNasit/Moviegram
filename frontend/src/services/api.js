@@ -20,7 +20,8 @@ export const getUser = async id => {
 
 export const getKeyMoviePairs = async => {
     try {
-        await axios.get(baseURL + '/movies/keypairs')
+        let res = await axios.get(baseURL + '/movies/keypairs')
+        return res
     } catch (err) {
         console.log(err)
     }
