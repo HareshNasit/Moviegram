@@ -56,37 +56,27 @@ export const readCookie = async (app) => {
     const url = `${baseURL}/session/`;
     try {
         let res = await axios.get(url)
-        console.log(res)
-        // .then(
-        //     json => {      
-        //         if (json && json.currentUser) {
-        //             app.setState({ currentUser: json.data.currentUser });
-        //         } 
-        //     }
-            
-        // )
-        console.log(res)
+        if (res.data && res.data.currentUser) {
+            app.setState({ currentUser: res.data.currentUser });
+        }
     } catch (err) {
         console.log(err)
     }
-        // fetch(url)
-        //     .then(res => {
-        //         if (res.status === 200) {
-        //             return res.json();
-        //         }
-        //     })
-        //     .then(json => {
-        //         console.log(json)
-        //         if (json && json.currentUser) {
-        //             app.setState({ currentUser: json.currentUser });
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     });
-    
-    
-
+    // fetch(url)
+    //     .then(res => {
+    //         if (res.status === 200) {
+    //             return res.json();
+    //         }
+    //     })
+    //     .then(json => {
+    //         console.log(json)
+    //         if (json && json.currentUser) {
+    //             app.setState({ currentUser: json.currentUser });
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //     });
 };
 
 
