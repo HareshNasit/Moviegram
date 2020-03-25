@@ -3,19 +3,19 @@ const bcrypt = require('bcrypt');
 
 module.exports = async (req, res) => {
     const saltRounds = 10;
-    if(!req.body.password){
-      res.status(400).send("Missing passsword")
+    if(!req.body.password || req.body.password == ""){
+      res.status(400).json({error: "Missing passsword"})
     }
-    if(!req.body.username){
+    else if(!req.body.username){
       res.status(400).send("Missing username")
     }
-    console.log(req.body.genres)
-    if(!req.body.genres && req.body.genres != {}){
+    else if(!req.body.genres && req.body.genres != {}){
       res.status(400).send("Missing genres")
     }
-    if(!req.body.email){
+    else if(!req.body.email){
       res.status(400).send("Missing email")
     }
+    else{
     const password = req.body.password
     const username = req.body.username
     const genres = req.body.genres
@@ -39,5 +39,5 @@ module.exports = async (req, res) => {
             })
           }
       });
-    })
+    })}
   }
