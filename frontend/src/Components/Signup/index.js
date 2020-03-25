@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import GenreSelector from '../GenreSelector'
-
+import SignupErrorModal from '../SignupErrorModal'
 import {signup} from '../../services/api'
 
 class SignupScreen extends React.Component {
@@ -18,7 +18,8 @@ class SignupScreen extends React.Component {
                        "Horror",
                        "Thriller",
                        "Comedy"]
-    this.state = {username: "", email: "", password: "", genresShow: false, genres: 
+    this.state = {turnAlert: false, 
+      username: "", email: "", password: "", genresShow: false, genres: 
             {Supernatural: false, 
               Horror: false, 
               Fantasy: false, 
@@ -32,7 +33,7 @@ class SignupScreen extends React.Component {
 
     this.buttonClick = this.buttonClick.bind(this);
     this.passwordChange = this.passwordChange.bind(this)
-
+    this.closeModal = this.closeModal.bind(this)
   }
 
   changeEmail(e) {
@@ -41,7 +42,9 @@ class SignupScreen extends React.Component {
   changeUsername(e) {
   this.setState({username: e.target.value});
 }
-
+ closeModal(){
+   this.setState({turnAlert: false})
+ }
   passwordChange(e) {
       this.setState({password: e.target.value});
   }
@@ -49,13 +52,13 @@ class SignupScreen extends React.Component {
   buttonClick(){
     
     if(this.state.username === ""){
-      this.state.turnAlert = true
+      this.setState({turnAlert: true})
       this.state.error = "Please enter your username."
     } else if(this.state.email === ""){
-      this.state.turnAlert = true
+      this.setState({turnAlert: true})
       this.state.error = "Please enter your email."
     } else if(this.state.password === ""){
-      this.state.turnAlert = true
+      this.setState({turnAlert: true})
       this.state.error = "Please enter your password."
     } else{
       signup({username: this.state.username,
@@ -133,7 +136,8 @@ class SignupScreen extends React.Component {
             </div>
       </Form>
         <GenreSelector signup={this}></GenreSelector>
-
+        <SignupErrorModal closeModal={this.closeModal} show={this.state.turnAlert}
+                error={this.state.error}></SignupErrorModal>
       </div>
 
 
