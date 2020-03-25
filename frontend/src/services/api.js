@@ -18,6 +18,15 @@ export const getUser = async id => {
     }
 }
 
+export const getMovie = async id => {
+    try {
+        let res = await axios.get(baseURL + '/movies/movie/' + id)
+        return res
+    } catch (err) {
+        return err
+        console.log(err)
+    }
+}
 
 export const signup = async (user, signupstate) => {
     const url = `${baseURL}/signup/`

@@ -49,23 +49,7 @@ class App extends React.Component {
                             (<UserProfile {...props} />)}/>
             <Route exact path='/admin' render={(props) =>
                             (<Admin {...props} />)}/>
-            <Route exact path='/movie/dangal' render={(props) =>
-                            (<Movie description="This is a movie" title="Dangal"
-                            {...props} />)}/>
-            <Route exact path='/movie/avengers: endgame' render={(props) =>
-                            (<Movie description="This is a movie" title="Avengers: Endgame"
-                             {...props} />)}/>
-            <Route exact path='/movie/mission impossible 5' render={(props) =>
-                            (<Movie description="This is a movie" title="Mission Impossible 5"
-                            {...props} />)}/>
-            <Route exact path='/movie/interstellar' render={(props) =>
-                            (<Movie description="This is a movie" title="Interstellar"
-                             {...props} />)}/>
-            <Route exact path='/movie/fate of the furious' render={(props) =>
-                            (<Movie description="This is a movie" title="Fate of the Furious"
-                            {...props} />)}/>
-            <Route exact path='/ProfileView/:id' render={(props) =>
-                            (<ProfileView {...props} />)}/>
+            <Route path="/movie/:param1" component={Movie}/>
           </Switch>
         </BrowserRouter>
       </div>
