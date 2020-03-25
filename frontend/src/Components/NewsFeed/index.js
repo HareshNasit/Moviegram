@@ -10,6 +10,8 @@ import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
 import SearchBar from "../SearchBar";
+// import functions for backend stuff
+import { getAllReviews } from './../../services/api'
 // import constants file which carries user data
 const constants = require("../../constants")
 
