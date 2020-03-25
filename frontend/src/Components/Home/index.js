@@ -38,7 +38,7 @@ class Home extends React.Component {
             
             </div>
             <div className="searchMovie">
-              <SearchBar/>
+              <SearchBar history={this.props.history}/>
             </div>
             <div className="spacingBox">
 

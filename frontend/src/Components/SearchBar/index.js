@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
         this.state = {data: []}
     }
     handleEvent(movie) {
-        this.props.history.push("/movie/" + movie);
+        this.props.history.push({pathname: "/movie/" + movie})
       }
     async componentDidMount(){
         const res = await getKeyMoviePairs()
@@ -17,7 +17,6 @@ class SearchBar extends React.Component {
         this.setState({data: data.map(obj => {
             return {key: obj._id, value: obj.title}
         })})
-        console.log(this.state.data)
     }
     render() {
         return (
@@ -25,7 +24,9 @@ class SearchBar extends React.Component {
             <ReactSearchBox
               placeholder="Search Movie"
               data={this.state.data}
-              onSelect={event => this.handleEvent(event.value)}
+              onSelect={event =>{
+                this.handleEvent(event.key)
+              } }
               />);
             
             
