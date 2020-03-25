@@ -18,6 +18,15 @@ export const getUser = async id => {
     }
 }
 
+export const getKeyMoviePairs = async => {
+    try {
+        let res = await axios.get(baseURL + '/movies/keypairs')
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const getMovie = async id => {
     try {
         let res = await axios.get(baseURL + '/movies/movie/' + id)
@@ -52,40 +61,31 @@ export const signup = async (user, signupstate) => {
 }
 
 export const readCookie = async (app) => {
-    return new Promise((resolve, reject) => {
-    const url = `${baseURL}/session/`;
-        fetch(url)
-            .then(res => {
-                if (res.status === 200) {
-                    return res.json();
-                }
-            })
-            .then(json => {
-                console.log(json)
-                if (json && json.currentUser) {
-                    app.setState({ currentUser: json.currentUser });
-                    resolve({ currentUser: json.currentUser })
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            });
-    })
-    // try {
-    //     axios.get(baseURL + '/session/').then(
-    //         json => {      
-    //             if (json && json.currentUser) {
-    //                 app.setState({ currentUser: json.data.currentUser });
-    //             } 
-    //         }
-            
-    //     )
-        
-    // } catch (err) {
-    //     console.log(err)
-    //     console.log(err)
-    // }
 
+    const url = `${baseURL}/session/`;
+    try {
+        let res = await axios.get(url)
+        if (res.data && res.data.currentUser) {
+            app.setState({ currentUser: res.data.currentUser });
+        }
+    } catch (err) {
+        console.log(err)
+    }
+    // fetch(url)
+    //     .then(res => {
+    //         if (res.status === 200) {
+    //             return res.json();
+    //         }
+    //     })
+    //     .then(json => {
+    //         console.log(json)
+    //         if (json && json.currentUser) {
+    //             app.setState({ currentUser: json.currentUser });
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //     });
 };
 
 
@@ -108,16 +108,17 @@ export const login = (loginComp, app) => {
             }
         })
         .then(json => {
-            if (json.currentUser !== undefined) {
+            if (json && json.currentUser !== undefined) {
                 app.setState({ currentUser: json.currentUser });
                 resolve({ currentUser: json.currentUser })
+            } else {
+                reject("Login failed")
             }
         })
-        .catch(error => {
-            
-            console.log(error);
-            reject(error)
-        });
+        // .catch(error => {
+        //     console.log(error);
+        //     reject(error)
+        // });
     })
 };
 

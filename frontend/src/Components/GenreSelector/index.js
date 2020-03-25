@@ -27,7 +27,7 @@ class GenreSelector extends React.Component{
         <Modal.Body>
           <FormGroup className="checkBoxesContainer">
               {this.props.signup.genreNames.map( (obj) => {
-                 return(<FormControlLabel
+                 return(<FormControlLabel key={obj}
                  control={
                    <Checkbox 
                              checked={this.props.signup.state.genres[obj]} 
