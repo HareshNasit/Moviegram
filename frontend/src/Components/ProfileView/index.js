@@ -195,7 +195,7 @@ class ProfileView extends React.Component {
 
     return (
       <div id="userProfile">
-          <MainMenuBar username={authenticatedusername} auth={true}/>
+          <MainMenuBar username={authenticatedusername}/>
           <div id="bodyHeader">
             <div id="profilePicContainer">
               <img className="profilePic" src={this.state.profilePic} />

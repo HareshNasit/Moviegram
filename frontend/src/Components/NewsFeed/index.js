@@ -60,6 +60,7 @@ class NewsFeedScreen extends React.Component {
 
   render() {
     const username = this.props.location.state.username;
+    console.log(username)
     // const auth = this.props.location.state.auth;
     return (
       <div id="pageFeed">
