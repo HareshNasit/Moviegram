@@ -2,11 +2,11 @@ import React from 'react';
 import './styles.css';
 import { Button, Form, Modal } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 
 import Avatar from '@material-ui/core/Avatar';
+import GenreSelector from '../GenreSelector'
+
+import {signup} from '../../services/api'
 
 class SignupScreen extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class SignupScreen extends React.Component {
                        "Horror",
                        "Thriller",
                        "Comedy"]
-    this.state = {email: "", password: "", genresShow: false, genres: 
+    this.state = {username: "", email: "", password: "", genresShow: false, genres: 
             {Supernatural: false, 
               Horror: false, 
               Fantasy: false, 
@@ -28,6 +28,8 @@ class SignupScreen extends React.Component {
               Comedy: false
     }};
     this.changeEmail = this.changeEmail.bind(this);
+    this.changeUsername = this.changeUsername.bind(this);
+
     this.buttonClick = this.buttonClick.bind(this);
     this.passwordChange = this.passwordChange.bind(this)
 
@@ -36,21 +38,33 @@ class SignupScreen extends React.Component {
   changeEmail(e) {
     this.setState({email: e.target.value});
  }
+  changeUsername(e) {
+  this.setState({username: e.target.value});
+}
 
   passwordChange(e) {
       this.setState({password: e.target.value});
   }
 
   buttonClick(){
-    // In Phase 2 Will check if username already exists in DB
-    // Will also upload img to DB
-    // The signup will get fully implemented in phase 2
-    // if(this.state.email != "" 
-    //       && this.state.password != "" 
-    //       && this.state.username != ""){
-    //         this.props.history.push({pathname: "/NewsFeed", 
-    //         state: {username: this.state.username}})
-    // }
+    
+    if(this.state.username === ""){
+      this.state.turnAlert = true
+      this.state.error = "Please enter your username."
+    } else if(this.state.email === ""){
+      this.state.turnAlert = true
+      this.state.error = "Please enter your email."
+    } else if(this.state.password === ""){
+      this.state.turnAlert = true
+      this.state.error = "Please enter your password."
+    } else{
+      signup({username: this.state.username,
+        email: this.state.email,
+        genres: this.state.genres,
+        password: this.state.password}, this)
+    }
+    console.log(this.state.error)
+
   }
   handleUpload(e){
     // Change avatar image
@@ -77,7 +91,7 @@ class SignupScreen extends React.Component {
           </Form.Group>
           <Form.Group>
             <Form.Label>Username</Form.Label>
-            <Form.Control type="username" placeholder="Enter username"  />
+            <Form.Control type="username" placeholder="Enter username" onChange={this.changeUsername} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Email</Form.Label>
@@ -118,41 +132,8 @@ class SignupScreen extends React.Component {
               type="submit">Already registered?</Button>
             </div>
       </Form>
+        <GenreSelector signup={this}></GenreSelector>
 
-      <Modal
-        show={this.state.genresShow}
-        onHide={() => this.setState({genresShow: false})}
-        dialogClassName="modal-90w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
-            Select your favourite Genres
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <FormGroup className="checkBoxesContainer">
-              {this.genreNames.map( (obj) => {
-                 return(<FormControlLabel
-                 control={
-                   <Checkbox 
-                             checked={this.state.genres[obj]} 
-                             onChange={() => this.setState(prevState => {
-                               let genres = Object.assign({}, prevState.genres);  
-                               genres[obj] = !genres[obj]                  
-                               return { genres };                                 
-                             })} 
-                             value="Horror" />
-                           
-                 }
-                 label={obj}
-               />);
-              }
-              )}
-             
-          </FormGroup>
-        </Modal.Body>
-      </Modal>
       </div>
 
 

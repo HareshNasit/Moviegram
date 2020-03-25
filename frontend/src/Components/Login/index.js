@@ -29,7 +29,7 @@ l
       login(this, app).then(user => {
         if(app.state.currentUser != null){
           this.props.history.push({pathname: "/NewsFeed", 
-          state: {username: this.state.username, auth: true}})
+          state: {username: this.state.username}})
         }
     }).catch(error => console.log(error))
       

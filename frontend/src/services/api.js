@@ -18,6 +18,30 @@ export const getUser = async id => {
     }
 }
 
+
+export const signup = async (user, signupstate) => {
+    const url = `${baseURL}/signup/`
+    const request = new Request(url, {
+        method: "post",
+        body: JSON.stringify(user),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request).then(res =>{
+        console.log(res)
+        if(!res.ok){
+            throw new Error("Something went wrong...");
+        } else{
+            signupstate.props.history.push({pathname: "/login"})
+        }
+    }).catch(error => {
+        signupstate.setState({error: error})
+        signupstate.setState({turnAlert: true})
+    })
+}
+
 export const readCookie = async (app) => {
     return new Promise((resolve, reject) => {
     const url = `${baseURL}/session/`;
