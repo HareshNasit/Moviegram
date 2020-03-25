@@ -23,18 +23,18 @@ class MainMenuBar extends React.Component {
           <div id="menuItems">
             <ul>
               <li>
-              <Link to={{pathname:'/admin', state: { username: username, auth: auth }}}>
+              <Link to={{pathname:'/admin', state: { username: username }}}>
                 <img src={adminDashboard} alt="Admin" className="mainMenu-btn"/>
               </Link>
               </li>
               <li>
-              <Link to={{pathname:'/NewsFeed', state: { username: username, auth: auth }}}>
+              <Link to={{pathname:'/NewsFeed', state: { username: username }}}>
                 <img src={newsFeedimg} alt="News Feed" className="mainMenu-btn"/>
                 </Link>
               </li>
 
               <li>
-                <Link to={{pathname:'/UserProfile/'+ username, state: { username: username, auth: auth }}}>
+                <Link to={{pathname:'/UserProfile/'+ username, state: { username: username }}}>
                 <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
                 </Link>
               </li>
@@ -51,13 +51,13 @@ class MainMenuBar extends React.Component {
           <div id="menuItems">
             <ul>
               <li>
-              <Link to={{pathname:'/NewsFeed', state: { username: username, auth: auth }}}>
+              <Link to={{pathname:'/NewsFeed', state: { username: username }}}>
                 <img src={newsFeedimg} alt="News Feed" className="mainMenu-btn"/>
                 </Link>
               </li>
 
               <li>
-                <Link to={{pathname:'/UserProfile/'+ username, state: { username: username, auth: auth }}}>
+                <Link to={{pathname:'/UserProfile/'+ username, state: { username: username }}}>
                 <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
                 </Link>
               </li>

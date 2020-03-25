@@ -204,7 +204,7 @@ class UserProfile extends React.Component {
     );
 
     const username = this.props.location.state.username;
-    const auth = this.props.location.state.auth;
+    // const auth = this.props.location.state.auth;
 
     // if (auth["auth"] == false) {
     //   return (
@@ -215,7 +215,7 @@ class UserProfile extends React.Component {
     // else {
     return (
       <div id="userProfile">
-          <MainMenuBar username={username} auth={auth}/>
+          <MainMenuBar username={username} />
           <div id="bodyHeader">
             <div id="profilePicContainer">
               <img className="profilePic" src={this.state.profilePic} />

@@ -88,6 +88,7 @@ class ProfileView extends React.Component {
 
   componentDidMount() {
     const username = this.props.location.state.profileUser
+    console.log(username)
     if (username === "Bhavya") {
       this.setState({
         username: bhavya["username"],

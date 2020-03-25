@@ -15,6 +15,7 @@ import AddReview from './Components/AddReview'
 import UserProfile from './Components/UserProfile'
 import Movie from './Components/Movie'
 import Admin from './Components/Admin'
+import ProfileView from './Components/ProfileView'
 
 
 import { readCookie } from './services/api.js'
@@ -46,6 +47,8 @@ class App extends React.Component {
                             (<AddReview {...props} />)}/>
             <Route exact path='/userProfile/:id' render={(props) =>
                             (<UserProfile {...props} />)}/>
+            <Route exact path='/ProfileView/:id' render={(props) =>
+                            (<ProfileView {...props} />)}/>
             <Route exact path='/admin' render={(props) =>
                             (<Admin {...props} />)}/>
             <Route path="/movie/:param1" component={Movie}/>

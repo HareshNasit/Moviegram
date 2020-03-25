@@ -60,12 +60,12 @@ class NewsFeedScreen extends React.Component {
 
   render() {
     const username = this.props.location.state.username;
-    const auth = this.props.location.state.auth;
+    // const auth = this.props.location.state.auth;
     return (
       <div id="pageFeed">
 
         {/*The menu bar is just reused from the Component MainMenuBar */}
-        <MainMenuBar username={username} auth={auth}/>
+        <MainMenuBar username={username}/>
 
         {/*Form that takes in the input of users to search movies and reviews of movies */}
         <div className="searchMovieform">
