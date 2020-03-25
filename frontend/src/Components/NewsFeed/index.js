@@ -9,6 +9,7 @@ import "./../universalStyles.css"
 import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
+import SearchBar from "../SearchBar";
 // import constants file which carries user data
 const constants = require("../../constants")
 
@@ -70,11 +71,7 @@ class NewsFeedScreen extends React.Component {
 
         {/*Form that takes in the input of users to search movies and reviews of movies */}
         <div className="searchMovieform">
-          <ReactSearchBox
-          placeholder="Search Movie"
-          data={this.data}
-          onSelect={event => this.handleEvent(event.value)}
-          />
+          <SearchBar/>
         </div>
 
         {/*Title of the review news feed page */}
