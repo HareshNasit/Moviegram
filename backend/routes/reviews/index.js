@@ -8,7 +8,7 @@ app.get('/', require("./all_reviews"))
 app.get('/:id', (req, res) => {
 
 })
-app.get('/user_reviews/:id', require("./get_user_reviews"))
+app.get('/user_reviews/:username', require("./get_user_reviews"))
 app.post('/:id', (req, res) => {
 
 })
