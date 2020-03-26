@@ -93,37 +93,47 @@ class UserProfile extends React.Component {
     console.log(reviews.data)
     const username = this.props.location.state.username
     console.log(username)
-    const userReviews = await getUser(username);
-    console.log(userReviews)
-    if (username === "username1") {
-      this.setState({
-        username: user1["username"],
+    const userData = await getUser(username);
+    const userReviews = await getUserReviews(username);
+    console.log(userData.data);
+    console.log(userReviews.data)
+    this.setState({
+        username: username,
         profilePic: user1["profilePic"],
-        peopleFollow: user1["peopleFollow"],
-        peopleFollowing: user1["peopleFollowing"],
-        userDescription: user1["userDescription"],
-        reviews: reviews.data
+        peopleFollow: userData.data["following"],
+        peopleFollowing: userData.data["followers"],
+        userDescription: userData.data["description"],
+        reviews: userReviews.data
       })
-    }
-    else if (username === "username2") {
-      this.setState({
-        username: user2["username"],
-        profilePic: user2["profilePic"],
-        peopleFollow: user2["peopleFollow"],
-        peopleFollowing: user2["peopleFollowing"],
-        userDescription: user2["userDescription"],
-        reviews: user2["reviews"]
-      })
-    } else if (username === "admin") {
-      this.setState({
-        username: admin["username"],
-        profilePic: admin["profilePic"],
-        peopleFollow: admin["peopleFollow"],
-        peopleFollowing: admin["peopleFollowing"],
-        userDescription: admin["userDescription"],
-        reviews: admin["reviews"]
-      })
-    }
+    // if (username === "username1") {
+    //   this.setState({
+    //     username: user1["username"],
+    //     profilePic: user1["profilePic"],
+    //     peopleFollow: user1["peopleFollow"],
+    //     peopleFollowing: user1["peopleFollowing"],
+    //     userDescription: user1["userDescription"],
+    //     reviews: reviews.data
+    //   })
+    // }
+    // else if (username === "username2") {
+    //   this.setState({
+    //     username: user2["username"],
+    //     profilePic: user2["profilePic"],
+    //     peopleFollow: user2["peopleFollow"],
+    //     peopleFollowing: user2["peopleFollowing"],
+    //     userDescription: user2["userDescription"],
+    //     reviews: user2["reviews"]
+    //   })
+    // } else if (username === "admin") {
+    //   this.setState({
+    //     username: admin["username"],
+    //     profilePic: admin["profilePic"],
+    //     peopleFollow: admin["peopleFollow"],
+    //     peopleFollowing: admin["peopleFollowing"],
+    //     userDescription: admin["userDescription"],
+    //     reviews: admin["reviews"]
+    //   })
+    // }
     Modal.setAppElement('body');
   }
 

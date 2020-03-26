@@ -10,6 +10,7 @@ import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
 import profileimgdef from './../MainMenuBar/profile.png';
+import { getAllReviews, getUser, getUserReviews } from './../../services/api'
 
 // All this user data variables will be improted from our database
 const bhavya = {
@@ -86,49 +87,64 @@ class ProfileView extends React.Component {
     this.followUser = this.followUser.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const username = this.props.location.state.profileUser
     console.log(username)
-    if (username === "Bhavya") {
-      this.setState({
-        username: bhavya["username"],
+    // const reviews = await getAllReviews();
+    // console.log(reviews.data)
+    console.log(username)
+    const userData = await getUser(username);
+    const userReviews = await getUserReviews(username);
+    console.log(userData.data);
+    console.log(userReviews.data)
+    this.setState({
+        username: username,
         profilePic: bhavya["profilePic"],
-        peopleFollow: bhavya["peopleFollow"],
-        peopleFollowing: bhavya["peopleFollowing"],
-        userDescription: bhavya["userDescription"],
-        reviews: bhavya["reviews"]
+        peopleFollow: userData.data["following"],
+        peopleFollowing: userData.data["followers"],
+        userDescription: userData.data["description"],
+        reviews: userReviews.data
       })
-    }
-    else if (username === "Harsh") {
-      this.setState({
-        username: harsh["username"],
-        profilePic: harsh["profilePic"],
-        peopleFollow: harsh["peopleFollow"],
-        peopleFollowing: harsh["peopleFollowing"],
-        userDescription: harsh["userDescription"],
-        reviews: harsh["reviews"]
-      })
-    }
-    else if (username === "Yosef") {
-      this.setState({
-        username: yosef["username"],
-        profilePic: yosef["profilePic"],
-        peopleFollow: yosef["peopleFollow"],
-        peopleFollowing: yosef["peopleFollowing"],
-        userDescription: yosef["userDescription"],
-        reviews: yosef["reviews"]
-      })
-    }
-    else if (username === "Dhruv") {
-      this.setState({
-        username: dhruv["username"],
-        profilePic: dhruv["profilePic"],
-        peopleFollow: dhruv["peopleFollow"],
-        peopleFollowing: dhruv["peopleFollowing"],
-        userDescription: dhruv["userDescription"],
-        reviews: dhruv["reviews"]
-      })
-    }
+    // if (username === "Bhavya") {
+    //   this.setState({
+    //     username: bhavya["username"],
+    //     profilePic: bhavya["profilePic"],
+    //     peopleFollow: bhavya["peopleFollow"],
+    //     peopleFollowing: bhavya["peopleFollowing"],
+    //     userDescription: bhavya["userDescription"],
+    //     reviews: bhavya["reviews"]
+    //   })
+    // }
+    // else if (username === "Harsh") {
+    //   this.setState({
+    //     username: harsh["username"],
+    //     profilePic: harsh["profilePic"],
+    //     peopleFollow: harsh["peopleFollow"],
+    //     peopleFollowing: harsh["peopleFollowing"],
+    //     userDescription: harsh["userDescription"],
+    //     reviews: harsh["reviews"]
+    //   })
+    // }
+    // else if (username === "Yosef") {
+    //   this.setState({
+    //     username: yosef["username"],
+    //     profilePic: yosef["profilePic"],
+    //     peopleFollow: yosef["peopleFollow"],
+    //     peopleFollowing: yosef["peopleFollowing"],
+    //     userDescription: yosef["userDescription"],
+    //     reviews: yosef["reviews"]
+    //   })
+    // }
+    // else if (username === "Dhruv") {
+    //   this.setState({
+    //     username: dhruv["username"],
+    //     profilePic: dhruv["profilePic"],
+    //     peopleFollow: dhruv["peopleFollow"],
+    //     peopleFollowing: dhruv["peopleFollowing"],
+    //     userDescription: dhruv["userDescription"],
+    //     reviews: dhruv["reviews"]
+    //   })
+    // }
     Modal.setAppElement('body');
   }
 
