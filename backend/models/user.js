@@ -34,7 +34,8 @@ const UserSchema = new Schema({
         type: Number,
         default: 0
     },
-    followers: {type: Object, default: {}, required: true},
+  followers: [{type: String, default: "", minlength: 1}],
+	following: [{type: String, default: "", minlength: 1}],
 	isAdmin: {
 		type: Boolean,
 		default: false
