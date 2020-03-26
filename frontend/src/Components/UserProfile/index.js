@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
-import { getAllReviews } from './../../services/api'
+import { getAllReviews, getUser, getUserReviews } from './../../services/api'
 
 const user1 = {
             username: "username1",
@@ -89,9 +89,12 @@ class UserProfile extends React.Component {
   }
 
   async componentDidMount() {
-    const data = await getAllReviews();
-    console.log(data.data[0])
+    const reviews = await getAllReviews();
+    console.log(reviews.data)
     const username = this.props.location.state.username
+    console.log(username)
+    const userReviews = await getUser(username);
+    console.log(userReviews)
     if (username === "username1") {
       this.setState({
         username: user1["username"],
@@ -99,7 +102,7 @@ class UserProfile extends React.Component {
         peopleFollow: user1["peopleFollow"],
         peopleFollowing: user1["peopleFollowing"],
         userDescription: user1["userDescription"],
-        reviews: user1["reviews"]
+        reviews: reviews.data
       })
     }
     else if (username === "username2") {
@@ -285,7 +288,8 @@ class UserProfile extends React.Component {
           </div>
           <div className="profileFeed">
             <ReviewsList reviews={this.state.reviews}
-                         queueComponent={this}/>
+                         queueComponent={this}
+                         authenticateduser= {username}/>
           </div>
       </div>
     );

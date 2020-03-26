@@ -10,13 +10,7 @@ export const insertUserToMongo = async data => {
     }
 }
 
-export const getUser = async id => {
-    try {
-        await axios.get(baseURL + '/users/' + id)
-    } catch (err) {
-        console.log(err)
-    }
-}
+// export const getUser =  (id) => {  axios.get(baseURL + '/users/' + id) }
 
 export const getKeyMoviePairs = async _ => {
     try {
@@ -124,5 +118,6 @@ export const login = (loginComp, app) => {
 
 
 export const getAllReviews = () => axios.get(baseURL + '/reviews')
+export const getUser = (username) => axios.get(baseURL + '/users/'+username)
 
 export const getUserReviews = (username) => axios.get(baseURL + '/reviews'+'/user_reviews/'+username)
