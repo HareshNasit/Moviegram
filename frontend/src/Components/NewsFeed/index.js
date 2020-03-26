@@ -11,7 +11,7 @@ import ReviewsList from './../ReviewsList';
 import profileimgdef from './../MainMenuBar/profile.png';
 import SearchBar from "../SearchBar";
 // import functions for backend stuff
-import { getAllReviews,getUser,getMyNewsFeed } from './../../services/api'
+import { getAllReviews,getUser,getUserReviews,getFriendsOfUser } from './../../services/api'
 // import constants file which carries user data
 const constants = require("../../constants")
 
@@ -37,11 +37,16 @@ class NewsFeedScreen extends React.Component {
   }
 
   async componentDidMount() {
-    const data = await getAllReviews();
-    console.log(data.data)
-    this.setState({reviews: data.data})
-    console.log(getUser(this.props.location.state.username))
-    console.log(getMyNewsFeed(this.props.location.state.username))
+
+    const currUserFriendsTemp = await getFriendsOfUser(this.props.location.state.username)
+    const currUserFriends = currUserFriendsTemp.data
+    let myNewsFeed = []
+    for(let i=0; i<currUserFriends.length; i++) {
+      const currFriendReviews = await getUserReviews(currUserFriends[i])
+      const newReviews = currFriendReviews.data
+      myNewsFeed = myNewsFeed.concat(newReviews);
+    }
+    this.setState({reviews: myNewsFeed})
   }
 
   // const {given_username, is_auth} = this.props.location.state

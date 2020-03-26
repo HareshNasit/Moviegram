@@ -118,16 +118,9 @@ export const login = (loginComp, app) => {
 
 
 export const getAllReviews = () => axios.get(baseURL + '/reviews')
+
 export const getUser = (username) => axios.get(baseURL + '/users/'+username)
 
 export const getUserReviews = (username) => axios.get(baseURL + '/reviews'+'/user_reviews/'+username)
 
-export const getMyNewsFeed = (username) => {
-  const friends = axios.get(baseURL + '/users/get_friends/'+username)
-  const myNewsFeed = []
-  for(let i=0; i<friends.length; i++) {
-    const currFriendReviews = getUserReviews(friends[i])
-    myNewsFeed = myNewsFeed.concat(currFriendReviews);
-  }
-  return myNewsFeed;
-}
+export const getFriendsOfUser = (username) => axios.get(baseURL + '/users/get_friends/'+username)
