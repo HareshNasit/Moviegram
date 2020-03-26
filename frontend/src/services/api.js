@@ -124,3 +124,5 @@ export const login = (loginComp, app) => {
 
 
 export const getAllReviews = () => axios.get(baseURL + '/reviews')
+
+export const getUserReviews = (username) => axios.get(baseURL + '/reviews'+'/user_reviews/'+username)
