@@ -29,7 +29,7 @@ class Review extends React.Component {
     if(comment.commentContent !== "") {
       let reviewsList = queue.state.reviews
       let review = reviewsList[id.reviewId]
-      review.commentsSection.unshift(comment)
+      review.comments.unshift(comment)
       queue.setState({
         reviews: reviewsList
       });
@@ -105,6 +105,12 @@ class Review extends React.Component {
               </Form.Group>
             </Form.Row>
           </Form>
+
+          {/* used to upvote or downvote a review */}
+          <div className="votes">
+            <Button className="votes-up" variant="primary" onClick={() => this.incrementUpvote(queueComponent, reviewId)}>Upvote ({ups})</Button>
+            <Button className="votes-down" variant="primary" onClick={() => this.incrementDownvote(queueComponent, reviewId)}>Downvote ({downs})</Button>
+          </div>
 
         </div>
       )

@@ -19,13 +19,14 @@ class ReviewsList extends React.Component {
   // }
 
   // Creates and returns a unique comments section which contains the comments of each different review
-  getCommentsSection(review) {
+  getCommentsSection(review, authenticateduser) {
     const comments = review.comments;
     return (
       <div>
         {comments.map(com => (<Comment key={uid(com)}
                                        datetime={com.datetime}
                                        username={com.username}
+                                       authenticateduser={authenticateduser}
                                        commentContent={com.commentContent}/>))}
       </div>
     )
@@ -40,14 +41,14 @@ class ReviewsList extends React.Component {
         <div className="revs">
           {reviews.map((review) => (
             <Review key={uid(review)}
-                    ups= {0}
-                    downs={0}
-                    datetime={"review.datetime"}
+                    ups= {review.upvotes}
+                    downs= {review.downvotes}
+                    datetime={review.date}
                     username={review.username}
                     // userImg={review.profImg}
                     movieName={review.movie_title}
                     reviewContent={review.content}
-                    commentsSection={this.getCommentsSection(review)}
+                    commentsSection={this.getCommentsSection(review, authenticateduser)}
                     reviewId={review._id}
                     admin={false}
                     queueComponent={queueComponent}

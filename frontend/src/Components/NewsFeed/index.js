@@ -29,7 +29,6 @@ class NewsFeedScreen extends React.Component {
                  };
     this.searchChange = this.searchChange.bind(this);
     this.handleEvent = this.handleEvent.bind(this)
-    this.currUser = constants.acc.username;
     this.data = [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
                  {key: 'mission impossible 5',value: 'Mission Impossible 5',},{key: 'interstellar',value: 'Interstellar',},
                  {key: 'fate of the furious',value: 'Fate of The Furious',},]
@@ -37,15 +36,23 @@ class NewsFeedScreen extends React.Component {
   }
 
   async componentDidMount() {
-
+    // get all the reviews of the friends of the current user to display them in the NewsFeed
     const currUserFriendsTemp = await getFriendsOfUser(this.props.location.state.username)
     const currUserFriends = currUserFriendsTemp.data
     let myNewsFeed = []
     for(let i=0; i<currUserFriends.length; i++) {
       const currFriendReviews = await getUserReviews(currUserFriends[i])
       const newReviews = currFriendReviews.data
+      console.log(newReviews);
       myNewsFeed = myNewsFeed.concat(newReviews);
     }
+    // sort all the reviews from the curr users friends in order of latest to oldest
+    myNewsFeed = myNewsFeed.sort((a, b) => {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      return bDate - aDate
+    })
+    // set the state property "reviews" to equal to the array of reviews from curr users friends
     this.setState({reviews: myNewsFeed})
   }
 
