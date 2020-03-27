@@ -2,8 +2,14 @@
 const { Reviews } = require('./../../models/review')
 
 module.exports = async (req, res) => {
-  Reviews.findOne({"username": req.params.username}, {"movie_title": req.params.title}, {"date": req.params.date}).then((review) => {
-		res.send(review)
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+  Reviews.findOne({_id: req.params.id}).then((review) => {
+		res.send(review.downvoters)
 	}, (error) => {
 		res.status(404).send(error) // server error
 	})
