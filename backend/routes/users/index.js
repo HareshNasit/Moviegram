@@ -4,6 +4,6 @@ const app = module.exports = require('express')();
 app.get('/:id', require("./get_user"))
 app.get('/', require("./all_users"))
 app.get('/get_friends/:id', require("./get_user_following"))
-app.get('/get_followers/:id', require("./get_user_get_followers"))
+app.get('/get_followers/:id', require("./get_user_followers"))
 
 /*******************************************************/
