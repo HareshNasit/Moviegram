@@ -12,64 +12,12 @@ import EditProfile from './../EditProfile';
 import profileimgdef from './../MainMenuBar/profile.png';
 import { getAllReviews, getUser, getUserReviews } from './../../services/api'
 
-// All this user data variables will be improted from our database
-const bhavya = {
-            username: "Bhavya",
-            profilePic: bhavyaPic,
-            peopleFollow: ['Cristiano Ronaldo', 'Marcelo', 'Isco', 'James', 'Di maria', 'Harsh', 'Yosef', 'Dhruv'],
-            peopleFollowing: ['Cristiano Ronaldo', 'Isco', 'Leo Messi', 'Harsh', 'Yosef', 'Dhruv'],
-            userDescription: "I love movies, they help me escape into a different world and make me believe in the impossible",
-            reviews: [{ id: 0, upvote: 0, downvote: 0, username: "Bhavya" , movieName: "Jurassic World" , profImg: bhavyaPic, datetime: "1/28/2020, 11:59:15 PM",
-                   reviewContent: "So wonderful to see such beautiful creatures from millions of years ago." ,
-                   commentsSection: [{datetime:"2/28/2020, 8:57:15 PM ", username:"Harsh", commentContent:"That is so true i loved the movie so much it was amazing"}]}]
-           }
-
-const harsh = {
-            username: "Harsh",
-            profilePic: messi_dp,
-            peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
-            peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
-            userDescription: "I play professional football at FC Barcelona. After a tough match against hard teams like Real Madrid, I try to shift my mind by watching movies XD",
-            reviews: [{ id: 0, upvote: 0, downvote: 0, username: "Harsh" , movieName: "Pele" , profImg: messi_dp, datetime: "1/28/2020, 11:57:15 PM",
-                   reviewContent: "One of the greatest football players to have lived" ,
-                   commentsSection: []}]
-           }
-
-const yosef = {
-              username: "Yosef",
-              profilePic: profileimgdef,
-              peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
-              peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
-              userDescription: "Movies are my favourite passtime",
-              reviews: []
-          }
-
-const dhruv = {
-              username: "Dhruv",
-              profilePic: profileimgdef,
-              peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
-              peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
-              userDescription: "No comment....lol",
-              reviews: []
-            }
-
-const cristianoRonaldo = {
-              username: "Cristiano Ronaldo",
-              profilePic: profileimgdef,
-              peopleFollow: ['Cristiano Ronaldo', 'Suarez', 'Coutinho', 'Ronaldinho', 'Puyol', 'Zlatan'],
-              peopleFollowing: ['Cristiano Ronaldo', 'Harsh', 'Yosef', 'Dhruv', 'Ronaldinho', 'Marcelo', 'Zidane', 'Neymar'],
-              userDescription: "Movies are my the best thing to come out of the 20th century",
-              reviews: []
-            }
-
-
 class ProfileView extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
     this.state = {
       followUnfollowText: "Follow",
-      isfollowing: false,
       username: this.props.location.state.username,
       profilePic: null,
       showModalFollowing: false,
@@ -90,61 +38,19 @@ class ProfileView extends React.Component {
   async componentDidMount() {
     const username = this.props.location.state.profileUser
     console.log(username)
-    // const reviews = await getAllReviews();
-    // console.log(reviews.data)
-    console.log(username)
     const userData = await getUser(username);
     const userReviews = await getUserReviews(username);
     console.log(userData.data);
     console.log(userReviews.data)
     this.setState({
         username: username,
-        profilePic: bhavya["profilePic"],
+        profilePic: bhavyaPic,
         peopleFollow: userData.data["following"],
         peopleFollowing: userData.data["followers"],
         userDescription: userData.data["description"],
         reviews: userReviews.data
       })
-    // if (username === "Bhavya") {
-    //   this.setState({
-    //     username: bhavya["username"],
-    //     profilePic: bhavya["profilePic"],
-    //     peopleFollow: bhavya["peopleFollow"],
-    //     peopleFollowing: bhavya["peopleFollowing"],
-    //     userDescription: bhavya["userDescription"],
-    //     reviews: bhavya["reviews"]
-    //   })
-    // }
-    // else if (username === "Harsh") {
-    //   this.setState({
-    //     username: harsh["username"],
-    //     profilePic: harsh["profilePic"],
-    //     peopleFollow: harsh["peopleFollow"],
-    //     peopleFollowing: harsh["peopleFollowing"],
-    //     userDescription: harsh["userDescription"],
-    //     reviews: harsh["reviews"]
-    //   })
-    // }
-    // else if (username === "Yosef") {
-    //   this.setState({
-    //     username: yosef["username"],
-    //     profilePic: yosef["profilePic"],
-    //     peopleFollow: yosef["peopleFollow"],
-    //     peopleFollowing: yosef["peopleFollowing"],
-    //     userDescription: yosef["userDescription"],
-    //     reviews: yosef["reviews"]
-    //   })
-    // }
-    // else if (username === "Dhruv") {
-    //   this.setState({
-    //     username: dhruv["username"],
-    //     profilePic: dhruv["profilePic"],
-    //     peopleFollow: dhruv["peopleFollow"],
-    //     peopleFollowing: dhruv["peopleFollowing"],
-    //     userDescription: dhruv["userDescription"],
-    //     reviews: dhruv["reviews"]
-    //   })
-    // }
+
     Modal.setAppElement('body');
   }
 
@@ -206,8 +112,6 @@ class ProfileView extends React.Component {
       // expression goes here:
     <div key={index}>{person}</div>
     );
-
-
 
     return (
       <div id="userProfile">
