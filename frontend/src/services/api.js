@@ -116,6 +116,29 @@ export const login = (loginComp, app) => {
     })
 };
 
+export const updateUserFollowInfo = async (user) => {
+  const url = `${baseURL}/users/user_update_follow/` + user.username
+  const request = new Request(url, {
+      method: "put",
+      body: JSON.stringify(user),
+      headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+      }
+  });
+  fetch(request).then(res =>{
+      console.log(res)
+      if(!res.ok){
+          throw new Error("Something went wrong...");
+      } else{
+          console.log("IT WORKSS YAYY");
+      }
+  })
+  // .catch(error => {
+  //     signupstate.setState({error: error})
+  //     signupstate.setState({turnAlert: true})
+  // })
+}
 
 export const getAllReviews = () => axios.get(baseURL + '/reviews')
 

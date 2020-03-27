@@ -93,26 +93,26 @@ class UserProfile extends React.Component {
   render() {
     let follow_edit_button;
     let add_review_button;
-      follow_edit_button = <Button variant="outline-primary"
-                    type="submit"
-                    className="editButton"
-                    onClick={this.updateProfileClick}
-                    >
-                    Edit Profile
-                  </Button>
-      add_review_button = <Button variant="outline-primary"
-                           type="click"
-                           className="addRevButton"
-                           onClick={this.handleOpenAddRevModal}>
-                           Add Review
-                           </Button>
+    follow_edit_button = <Button variant="outline-primary"
+                  type="submit"
+                  className="editButton"
+                  onClick={this.updateProfileClick}
+                  >
+                  Edit Profile
+                </Button>
+    add_review_button = <Button variant="outline-primary"
+                         type="click"
+                         className="addRevButton"
+                         onClick={this.handleOpenAddRevModal}>
+                         Add Review
+                         </Button>
 
-    const userFollowingList = this.state.peopleFollowing.map((person, index) =>
+    const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
 
-    const userFollowersList = this.state.peopleFollow.map((person, index) =>
+    const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
@@ -175,8 +175,8 @@ class UserProfile extends React.Component {
               </div>
               <div id="infoStats">
                 <span id="totalReviews"> {this.state.reviews.length} </span>Reviews
-                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollow.length} </span>Followers
-                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollowing.length} </span>Following
+                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollowing.length} </span>Followers
+                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollow.length} </span>Following
               </div>
               <div>
               <br/>
