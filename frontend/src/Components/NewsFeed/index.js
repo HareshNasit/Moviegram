@@ -1,14 +1,11 @@
 // import all react libraries
 import React from "react";
-import { Button, Form } from "react-bootstrap";
-import ReactSearchBox from 'react-search-box'
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css"
 // import all needed Components
 import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
-import profileimgdef from './../MainMenuBar/profile.png';
 import SearchBar from "../SearchBar";
 // import functions for backend stuff
 import { getAllReviews,getUser,getUserReviews,getFriendsOfUser } from './../../services/api'
@@ -23,16 +20,7 @@ class NewsFeedScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {searched: "",
-                  reviews: []
-                   // username: "",
-                   // auth: false
-                 };
-    this.searchChange = this.searchChange.bind(this);
-    this.handleEvent = this.handleEvent.bind(this)
-    this.data = [{key: 'dangal',value: 'Dangal',}, {key: 'avengers endgame',value: 'Avengers: Endgame',},
-                 {key: 'mission impossible 5',value: 'Mission Impossible 5',},{key: 'interstellar',value: 'Interstellar',},
-                 {key: 'fate of the furious',value: 'Fate of The Furious',},]
-
+                  reviews: []};
   }
 
   async componentDidMount() {
@@ -59,17 +47,6 @@ class NewsFeedScreen extends React.Component {
   // const {given_username, is_auth} = this.props.location.state
 
   // this.setState({username: given_username, auth: is_auth})
-  // function used to change the value of this.state.searched to store the searchBar query entered by user
-  searchChange(event) {
-    this.setState({searched:event.target.value})
-    console.log(event.target.value)
-  }
-
-  // Function that handles input in search bar
-  handleEvent(movie) {
-    console.log(movie);
-    window.location.href = "/movie/" + movie;
-  }
 
   render() {
     const username = this.props.location.state.username;
