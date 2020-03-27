@@ -147,3 +147,5 @@ export const getUser = (username) => axios.get(baseURL + '/users/'+username)
 export const getUserReviews = (username) => axios.get(baseURL + '/reviews'+'/user_reviews/'+username)
 
 export const getFriendsOfUser = (username) => axios.get(baseURL + '/users/get_friends/'+username)
+
+export const getUserFollowers = (username) => axios.get(baseURL + 'users/get_followers/'+username)
