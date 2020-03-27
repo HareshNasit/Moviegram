@@ -1,20 +1,26 @@
 {
-  "name": "team13",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "## Introduction Welcome to Moviegram. This is an interactive and social Movie Review Website.",
-  "main": "index.js",
+  "description": "backend for moviegram",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "npm install --prefix backend && npm install --prefix frontend"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/csc309-winter-2020/team13.git"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/csc309-winter-2020/team13/issues"
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.5",
+    "path": "^0.12.7"
   },
-  "homepage": "https://github.com/csc309-winter-2020/team13#readme"
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }

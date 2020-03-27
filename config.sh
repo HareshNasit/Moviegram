@@ -11,5 +11,5 @@ NAME2=moviegram-back
 # heroku config:set -a $NAME2 PROCFILE=backend/Procfile
 
 # DEPLOYMENT COMMANDS
-git push https://git.heroku.com/$NAME1.git master
+# git push https://git.heroku.com/$NAME1.git master
 git push https://git.heroku.com/$NAME2.git master

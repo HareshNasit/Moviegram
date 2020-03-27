@@ -80,12 +80,22 @@ const authenticate = (req, res, next) => {
 
 /*** API Routes below ************************************/
 
-app.use('/session', require('./routes/session'))
-app.use('/users', require('./routes/users'))
-app.use('/movies', require('./routes/movies'))
-app.use('/reviews', require('./routes/reviews'))
-app.use('/signup', require('./routes/signup'))
-app.use('/login', require('./routes/login'))
+app.use('/api/session', require('./backend/routes/session'))
+app.use('/api/users', require('./backend/routes/users'))
+app.use('/api/movies', require('./backend/routes/movies'))
+app.use('/api/reviews', require('./backend/routes/reviews'))
+app.use('/api/signup', require('./backend/routes/signup'))
+app.use('/api/login', require('./backend/routes/login'))
+
+
+/*** Webpage routes below **********************************/
+// Serve the build
+app.use(express.static(__dirname + "/frontend/build"));
+
+// All routes other than above will go to index.html
+app.get("*", (req, res) => {
+    res.sendFile(__dirname + "/frontend/build/index.html");
+});
 
 
 /*************************************************/

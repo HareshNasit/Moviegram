@@ -52,6 +52,7 @@ class App extends React.Component {
             <Route exact path='/admin' render={(props) =>
                             (<Admin {...props} />)}/>
             <Route path="/movie/:param1" component={Movie}/>
+            <Route render={() => <div>404 Not found</div>} />
           </Switch>
         </BrowserRouter>
       </div>
