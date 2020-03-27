@@ -10,14 +10,19 @@ import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
 import profileimgdef from './../MainMenuBar/profile.png';
-import { getAllReviews, getUser, getUserReviews } from './../../services/api'
+import {
+  getAllReviews,
+  getUser,
+  getUserReviews,
+  updateUserFollowInfo
+} from './../../services/api'
 
 class ProfileView extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
     this.state = {
-      followUnfollowText: "Follow",
+      followUnfollowText: "",
       username: this.props.location.state.username,
       profilePic: null,
       showModalFollowing: false,
@@ -26,7 +31,7 @@ class ProfileView extends React.Component {
       peopleFollow: [],
       peopleFollowing: [],
       showUpdateProfile: false,
-      userDescription: "I am a movieFreak who enjoys action and Sci-fi movies such as Marvel and X-men. Madridista💚💚Programmer💖💖Footballfreak Snapchat: HarshN12 🇮🇳AKIS'17🇶🇦 -> UofT'21 🇨🇦Fear can hold you prisoner, Hope can set you free"
+      userDescription: ""
     };
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
     this.handleCloseFollowingModal = this.handleCloseFollowingModal.bind(this);
@@ -36,19 +41,30 @@ class ProfileView extends React.Component {
   }
 
   async componentDidMount() {
-    const username = this.props.location.state.profileUser
-    console.log(username)
-    const userData = await getUser(username);
-    const userReviews = await getUserReviews(username);
-    console.log(userData.data);
-    console.log(userReviews.data)
+    const profileUsername = this.props.location.state.profileUser
+    const authenticatedUsername = this.props.location.state.username;
+    // console.log(profileUsername)
+    const profileUserData = await getUser(profileUsername);
+    const profileUserReviews = await getUserReviews(profileUsername);
+    // console.log(profileUserData.data);
+    // console.log(profileUserReviews.data)
+    const authUserData = await getUser(authenticatedUsername);
+    const authUserFollowing = authUserData.data["following"]
+    let followUnfollowText = ""
+    if (authUserFollowing.includes(profileUsername)) {
+      followUnfollowText = "UnFollow";
+    }
+    else {
+      followUnfollowText = "Follow";
+    }
     this.setState({
-        username: username,
+        username: profileUsername,
         profilePic: bhavyaPic,
-        peopleFollow: userData.data["following"],
-        peopleFollowing: userData.data["followers"],
-        userDescription: userData.data["description"],
-        reviews: userReviews.data
+        peopleFollow: profileUserData.data["following"],
+        peopleFollowing: profileUserData.data["followers"],
+        userDescription: profileUserData.data["description"],
+        reviews: profileUserReviews.data,
+        followUnfollowText: followUnfollowText
       })
 
     Modal.setAppElement('body');
@@ -71,20 +87,63 @@ class ProfileView extends React.Component {
     this.setState({showModalFollowers: false});
   }
 
-  followUser(event,authenticateduser, profileUser) {
-    console.log(event);
-      if (this.state.peopleFollow.includes(authenticateduser)) {
-        const peopleFollowNew = this.state.peopleFollow;
-        peopleFollowNew.pop(authenticateduser)
-        this.setState({peopleFollow: peopleFollowNew});
-        this.setState({followUnfollowText: "Follow"})
-      }
-      else {
-        const peopleFollowNew = this.state.peopleFollow;
-        peopleFollowNew.push(authenticateduser)
-        this.setState({peopleFollow: peopleFollowNew});
-        this.setState({followUnfollowText: "UnFollow"})
-      }
+  async followUser(event,authenticateduser, profileUser) {
+
+    // updateUserFollowInfo({
+    //   username: authenticateduser,
+    //   isFollowers: true,
+    //   followers: ["CRISTIANO RONALDO"]})
+
+    const profileUserData = await getUser(profileUser);
+    const authUserData = await getUser(authenticateduser);
+    if (this.state.followUnfollowText === "Follow" && !(profileUserData.data.followers.includes(authenticateduser))) {
+      const profileFollowers = profileUserData.data.followers
+      profileFollowers.push(authenticateduser)
+      updateUserFollowInfo({
+        username: profileUser,
+        isFollowers: true,
+        followers: profileFollowers})
+      const authUserFollowing = authUserData.data.following
+      authUserFollowing.push(profileUser)
+      console.log(authUserFollowing);
+      updateUserFollowInfo({
+        username: authenticateduser,
+        isFollowers: false,
+        followers: authUserFollowing})
+      this.setState({followUnfollowText: "UnFollow"})
+    }
+    else if (this.state.followUnfollowText === "UnFollow") {
+      const profileFollowers = profileUserData.data.followers
+      const authUserIndex = profileFollowers.indexOf(authenticateduser);
+      profileFollowers.splice(authUserIndex,1)
+      updateUserFollowInfo({
+        username: profileUser,
+        isFollowers: true,
+        followers: profileFollowers})
+      const authUserFollowing = authUserData.data.following
+      const profileUserIndex = authUserFollowing.indexOf(profileUser);
+      authUserFollowing.splice(profileUserIndex,1)
+      console.log(authUserFollowing);
+      updateUserFollowInfo({
+        username: authenticateduser,
+        isFollowers: false,
+        followers: authUserFollowing})
+      this.setState({followUnfollowText: "Follow"})
+    }
+    window.location.reload(false);
+    // console.log(event);
+    //   if (this.state.peopleFollow.includes(authenticateduser)) {
+    //     const peopleFollowNew = this.state.peopleFollow;
+    //     peopleFollowNew.pop(authenticateduser)
+    //     this.setState({peopleFollow: peopleFollowNew});
+    //     this.setState({followUnfollowText: "Follow"})
+    //   }
+    //   else {
+    //     const peopleFollowNew = this.state.peopleFollow;
+    //     peopleFollowNew.push(authenticateduser)
+    //     this.setState({peopleFollow: peopleFollowNew});
+    //     this.setState({followUnfollowText: "UnFollow"})
+    //   }
   }
 
   render() {
@@ -103,12 +162,12 @@ class ProfileView extends React.Component {
                   {this.state.followUnfollowText}
                 </Button>
 
-    const userFollowingList = this.state.peopleFollowing.map((person, index) =>
+    const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
 
-    const userFollowersList = this.state.peopleFollow.map((person, index) =>
+    const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
     <div key={index}>{person}</div>
     );
@@ -169,8 +228,8 @@ class ProfileView extends React.Component {
               </div>
               <div id="infoStats">
                 <span id="totalReviews"> {this.state.reviews.length} </span>Reviews
-                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollow.length} </span>Followers
-                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollowing.length} </span>Following
+                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollowing.length} </span>Followers
+                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollow.length} </span>Following
               </div>
               <div>
               <br/>
