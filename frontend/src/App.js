@@ -40,17 +40,17 @@ class App extends React.Component {
             <Route exact path='/login' render={(props) =>
                             (<LoginScreen {...props} app={this} />)}/>
             <Route exact path='/signup' render={(props) =>
-                            (<SignupScreen {...props} />)}/>
+                            (<SignupScreen app={this} {...props} />)}/>
             <Route exact path='/NewsFeed' render={(props) =>
-                            (<NewsFeedScreen {...props} />)}/>
+                            (<NewsFeedScreen app={this} {...props} />)}/>
              <Route exact path='/AddReview' render={(props) =>
-                            (<AddReview {...props} />)}/>
+                            (<AddReview app={this} {...props} />)}/>
             <Route exact path='/userProfile/:id' render={(props) =>
-                            (<UserProfile {...props} />)}/>
+                            (<UserProfile app={this} {...props} />)}/>
             <Route exact path='/ProfileView/:id' render={(props) =>
-                            (<ProfileView {...props} />)}/>
+                            (<ProfileView app={this} {...props} />)}/>
             <Route exact path='/admin' render={(props) =>
-                            (<Admin {...props} />)}/>
+                            (<Admin app={this} {...props} />)}/>
             <Route path="/movie/:param1" component={Movie}/>
             <Route render={() => <div>404 Not found</div>} />
           </Switch>
