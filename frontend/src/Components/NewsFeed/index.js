@@ -7,7 +7,7 @@ import "./../universalStyles.css"
 import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import SearchBar from "../SearchBar";
-// import functions for backend stuff
+// import functions/api calls for backend and database requets to server
 import { getAllReviews,getUser,getUserReviews,getFriendsOfUser } from './../../services/api'
 // import constants file which carries user data
 const constants = require("../../constants")
@@ -19,8 +19,7 @@ class NewsFeedScreen extends React.Component {
   // used to bind the used methods to this class.
   constructor(props) {
     super(props);
-    this.state = {searched: "",
-                  reviews: []};
+    this.state = {reviews: []};
   }
 
   async componentDidMount() {
@@ -44,14 +43,10 @@ class NewsFeedScreen extends React.Component {
     this.setState({reviews: myNewsFeed})
   }
 
-  // const {given_username, is_auth} = this.props.location.state
-
-  // this.setState({username: given_username, auth: is_auth})
-
   render() {
+
     const username = this.props.location.state.username;
-    console.log(username)
-    // const auth = this.props.location.state.auth;
+
     return (
       <div id="pageFeed">
 
