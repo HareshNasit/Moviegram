@@ -1,16 +1,22 @@
 
+const { ObjectID } = require('mongodb')
 const { Reviews } = require('./../../models/review')
 
 module.exports = async (req, res) => {
 
-	if (!ObjectID.isValid(id)) {
+	const id = req.params.id
+
+	console.log(req.params.id);
+
+	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
 		return;
 	}
 
-  Reviews.findOne({_id: req.params.id}).then((review) => {
+	Reviews.findById(id).then((review) => {
+		console.log(review);
 		res.send(review.upvoters)
-	}, (error) => {
-		res.status(404).send(error) // server error
+	}).catch((error) => {
+		res.status(404).send(error)
 	})
 }
