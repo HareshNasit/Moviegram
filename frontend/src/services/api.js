@@ -150,8 +150,16 @@ export const getUserReviews = (username) => axios.get(baseURL + '/reviews'+'/use
 
 export const getFriendsOfUser = (username) => axios.get(baseURL + '/users/get_friends/'+username)
 
-export const getUserFollowers = (username) => axios.get(baseURL + 'users/get_followers/'+username)
+export const getUserFollowers = (username) => axios.get(baseURL + '/users/get_followers/'+username)
 
-export const getDownvoters = (id) => axios.get(baseURL + 'reviews/downvoters/'+id)
+export const getDownvoters = (id) => axios.get(baseURL + '/reviews/downvoters/'+id)
 
-export const getUpvoters = (id) => axios.get(baseURL + 'reviews/upvoters/'+id)
+export const getUpvoters = (id) => axios.get(baseURL + '/reviews/upvoters/'+id)
+
+export const addUpvoter = (id, upvoter) => axios.patch(baseURL + '/reviews/add_upvoter/'+id+'/'+upvoter)
+
+export const addDownvoter = (id, downvoter) => axios.patch(baseURL + '/reviews/add_downvoter/'+id+'/'+downvoter)
+
+export const deleteUpvoter = (id, upvoter) => axios.delete(baseURL + '/reviews/delete_upvoter/'+id+'/'+upvoter)
+
+export const deleteDownvoter = (id, downvoter) => axios.delete(baseURL + '/reviews/delete_downvoter/'+id+'/'+downvoter)
