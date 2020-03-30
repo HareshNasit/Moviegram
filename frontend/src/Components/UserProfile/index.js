@@ -49,7 +49,7 @@ class UserProfile extends React.Component {
     console.log(userReviews.data)
     this.setState({
         username: username,
-        profilePic: ronaldo_dp,
+        profilePic: userData.data["image_url"],
         peopleFollow: userData.data["following"],
         peopleFollowing: userData.data["followers"],
         userDescription: userData.data["description"],
@@ -87,6 +87,7 @@ class UserProfile extends React.Component {
   }
 
   handleCloseUpdateProfileModal () {
+    window.location.reload(false);
     this.setState({showUpdateProfile: false})
   }
 
@@ -109,12 +110,12 @@ class UserProfile extends React.Component {
 
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
-    <div key={index}>{person}</div>
+    <div key={index} className="followUserText">{person}</div>
     );
 
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
-    <div key={index}>{person}</div>
+    <div key={index} className="followUserText">{person}</div>
     );
 
     const username = this.props.location.state.username;

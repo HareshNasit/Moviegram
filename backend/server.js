@@ -86,6 +86,7 @@ app.use('/movies', require('./routes/movies'))
 app.use('/reviews', require('./routes/reviews'))
 app.use('/signup', require('./routes/signup'))
 app.use('/login', require('./routes/login'))
+app.use('/images', require('./routes/images'))
 
 
 /*************************************************/

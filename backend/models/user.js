@@ -39,7 +39,15 @@ const UserSchema = new Schema({
 	isAdmin: {
 		type: Boolean,
 		default: false
-	}
+	},
+	image_id: {
+        type: String,
+        required: true
+    },
+  image_url: {
+      type: String,
+      required: true
+  }
 })
 
 // A static method on the document model.

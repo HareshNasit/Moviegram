@@ -1,14 +1,15 @@
 
 #editProfileModal {
   width: 450px;
-	height: 400px;
+	height: 440px;
 	float: left;
+  background-color: #008080;
+  border-radius: 12px;
 }
 
 #updateButton {
   position: relative;
 	margin-left: 30px;
-  margin-top: 20px;
 	display: inline-block;
 }
 
@@ -16,7 +17,7 @@
 	position: relative;
 	display: inline-block;
   margin-left: 140px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 #pageHeader {
@@ -35,7 +36,7 @@
 
 .editProfileBody {
   width: 450px;
-	height: 360px;
+	height: 320px;
 	float: left;
 	/* margin-top: 10px; */
 }
@@ -57,4 +58,30 @@
   margin-left: 20px;
   margin-top: 10px;
   display: inline-block;
+}
+
+.image-form {
+  text-align: center;
+  height: 72;
+  width: 450;
+}
+
+.image-form-field {
+  width: 450;
+}
+
+#image {
+
+}
+
+#image-form-submit-button {
+  position: relative;
+  display: inline-block;
+}
+
+.descriptionForm {
+  width: 410;
+  height: 238;
+  margin-left: 20px;
+  margin-right: 20px;
 }

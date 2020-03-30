@@ -8,7 +8,7 @@ import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import SearchBar from "../SearchBar";
 // import functions/api calls for backend and database requets to server
-import { getAllReviews,getUser,getUserReviews,getFriendsOfUser } from './../../services/api'
+import { getAllReviews,getUser,getUserReviews,getFriendsOfUser, getUserImage } from './../../services/api'
 // import constants file which carries user data
 const constants = require("../../constants")
 
@@ -31,6 +31,8 @@ class NewsFeedScreen extends React.Component {
       const currFriendReviews = await getUserReviews(currUserFriends[i])
       const newReviews = currFriendReviews.data
       console.log(newReviews);
+      const userImg = await getUserImage(currUserFriends[i])
+      console.log(userImg.data);
       myNewsFeed = myNewsFeed.concat(newReviews);
     }
     // sort all the reviews from the curr users friends in order of latest to oldest

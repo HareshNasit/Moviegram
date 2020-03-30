@@ -130,7 +130,7 @@
 }
 
 .updateProfile {
-	height: 400px;
+	height: 450px;
 	width: 450px;
 	position: absolute;
   top: 200px;
@@ -139,4 +139,10 @@
   bottom: 200px;
 	background-color: #008080;
 	border-radius: 12px;
+}
+
+.followUserText {
+  font-weight: bold;
+  height: 20px;
+  width: 350px;
 }

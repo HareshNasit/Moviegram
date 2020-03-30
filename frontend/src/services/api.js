@@ -1,7 +1,7 @@
 import axios from 'axios'
 // const baseURL = 'https://moviegram-back.herokuapp.com'
 // const baseURL = 'http://localhost:5000/api'
-const baseURL = '/api'
+const baseURL = 'http://localhost:5000'
 
 
 export const insertUserToMongo = async data => {
@@ -163,3 +163,37 @@ export const addDownvoter = (id, downvoter) => axios.patch(baseURL + '/reviews/a
 export const deleteUpvoter = (id, upvoter) => axios.delete(baseURL + '/reviews/delete_upvoter/'+id+'/'+upvoter)
 
 export const deleteDownvoter = (id, downvoter) => axios.delete(baseURL + '/reviews/delete_downvoter/'+id+'/'+downvoter)
+
+export const getUserImage = (username) => axios.get(baseURL + '/Images/'+username)
+
+export const addImage = (form, user_id) => {
+    // the URL for the request
+    const url = `${baseURL}/images/` + user_id ;
+
+    // The data we are going to send in our request
+    const imageData = new FormData(form);
+    console.log(form);
+    // Create our request constructor with all the parameters we need
+    const request = new Request(url, {
+        method: "post",
+        body: imageData,
+    });
+
+    // Send the request with fetch()
+    fetch(request)
+        .then(function (res) {
+            // Handle response we get from the API.
+            // Usually check the error codes to see what happened.
+            if (res.status === 200) {
+                // If image was added successfully, tell the user.
+                console.log("YaYY SUCCESS");
+            } else {
+                // If server couldn't add the image, tell the user.
+                // Here we are adding a generic message, but you could be more specific in your app.
+                console.log("NO NO FAILURE");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
