@@ -3,6 +3,13 @@ import React from 'react';
 import './styles.css';
 import MainMenuBar from './../MainMenuBar';
 import {getMoviesByGenre} from '../../services/api'
+import "./../universalStyles.css"
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 
 class Genre extends React.Component {
@@ -32,13 +39,39 @@ class Genre extends React.Component {
            );
             }
         else{
-            const movieElements = this.state.data.map((movie) =>{
-                return <div id={movie._id}>{movie.stars}</div>})
-            return(<div>
+            const movieElements = this.state.data.map((movie) => {
+                return <Card className="genreCard" key={movie._id}>
+                        <CardActionArea>
+                            <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {movie.title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {movie.description}
+                            </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                            <Button size="small" color="primary">
+                            View
+                            </Button>
+                        </CardActions>
+                    </Card>
+                    })
+            return(
+                
+                <div id="pageFeed">
                 <MainMenuBar></MainMenuBar>
-                <div id="movieGenreTitle"><h4>{this.state.genre.toUpperCase()}</h4></div>
-                {movieElements}
-            </div>
+                
+
+                <div id="movieList">
+                    <div className="genreTitleBox">
+                    <h3 className="genreHeaderText">{this.state.genre}</h3>
+                    </div>
+                    {movieElements}
+                </div>
+                </div>
+                
             );
         }
         

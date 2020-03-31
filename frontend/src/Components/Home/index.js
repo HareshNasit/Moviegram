@@ -3,6 +3,7 @@ import './styles.css'
 import { Button} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import SearchBar from '../SearchBar'
+import GenreSearchBar from '../GenreSearchBar'
 
 class Home extends React.Component {
     render() {
@@ -16,6 +17,12 @@ class Home extends React.Component {
             </div>
             <div className="searchMovie">
               <SearchBar history={this.props.history}/>
+            </div>
+            <div className="spacingBox">
+
+            </div>
+            <div className="searchMovie">
+              <GenreSearchBar history={this.props.history}/>
             </div>
             <div className="spacingBox">
 
