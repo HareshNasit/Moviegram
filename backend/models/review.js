@@ -1,12 +1,6 @@
 const mongoose = require('mongoose')
 
 const Reviews = mongoose.model('Reviews', {
-	_id: {
-		type: String,
-		required: true,
-		minlength: 1,
-		trim: true
-    },
 	username: {
 		type: String,
 		required: true,
