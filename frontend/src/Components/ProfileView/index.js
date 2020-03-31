@@ -59,7 +59,7 @@ class ProfileView extends React.Component {
     }
     this.setState({
         username: profileUsername,
-        profilePic: bhavyaPic,
+        profilePic: profileUserData.data["image_url"],
         peopleFollow: profileUserData.data["following"],
         peopleFollowing: profileUserData.data["followers"],
         userDescription: profileUserData.data["description"],

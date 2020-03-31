@@ -45,7 +45,7 @@ class ReviewsList extends React.Component {
                     downs= {review.downvotes}
                     datetime={review.date}
                     username={review.username}
-                    // userImg={review.profImg}
+                    userImg={review.image_url}
                     movieName={review.movie_title}
                     reviewContent={review.content}
                     commentsSection={this.getCommentsSection(review, authenticateduser)}

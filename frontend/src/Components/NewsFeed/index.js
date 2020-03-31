@@ -32,7 +32,10 @@ class NewsFeedScreen extends React.Component {
       const newReviews = currFriendReviews.data
       console.log(newReviews);
       const userImg = await getUserImage(currUserFriends[i])
-      console.log(userImg.data);
+      for (let j =0; j < newReviews.length; j++) {
+          newReviews[j]["image_url"] = userImg.data;
+      }
+      console.log(newReviews);
       myNewsFeed = myNewsFeed.concat(newReviews);
     }
     // sort all the reviews from the curr users friends in order of latest to oldest
