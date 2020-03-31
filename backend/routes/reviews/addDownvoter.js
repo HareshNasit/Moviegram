@@ -16,12 +16,17 @@ module.exports = async (req, res) => {
   		if (!review) {
   			res.status(404).send()
   		} else {
-        review.downvoters.push(upvoter)
-  			review.save().then((result) => {
-  				res.send("Added upvoter: "+upvoter)
-  			}, (error) => {
-  				res.status(400).send(error)
-  			})
+        if(!review.downvoters.includes(downvoter)) {
+          review.downvoters.push(downvoter)
+          review.downvotes = review.downvotes + 1
+          review.save().then((result) => {
+    				res.send("Added downvoter")
+    			}, (error) => {
+    				res.status(400).send(error)
+    			})
+        } else {
+          res.send("Already exists")
+        }
   		}
   	}).catch((error) => {
   		console.log("500  error");

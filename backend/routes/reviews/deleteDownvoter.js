@@ -16,15 +16,18 @@ module.exports = async (req, res) => {
   		if (!review) {
   			res.status(404).send()
   		} else {
-
-        const index = review.downvoters.indexOf(downvoter)
-        review.downvoters.splice(index, 1)
-
-  			review.save().then((result) => {
-  				res.send("Deleted downvoter: "+downvoter)
-  			}, (error) => {
-  				res.status(400).send(error)
-  			})
+        if(review.downvoters.includes(downvoter)) {
+          const index = review.downvoters.indexOf(downvoter)
+          review.downvoters.splice(index, 1)
+          review.downvotes = review.downvotes - 1
+    			review.save().then((result) => {
+    				res.send("Deleted downvoter")
+    			}, (error) => {
+    				res.status(400).send(error)
+    			})
+        } else {
+          res.send("Does not exists")
+        }
   		}
   	}).catch((error) => {
   		console.log("500  error");

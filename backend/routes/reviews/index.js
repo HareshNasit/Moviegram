@@ -13,7 +13,7 @@ app.get('/:movie_title/movie_title', require("./get_reviews_by_movie_title"))
 app.get('/:movie_id/movie_id', require("./get_reviews_by_movie_id"))
 
 
-// Routes for upvoting and downvoting
+// Routes for modifying upvoting and downvoting
 app.delete('/delete_upvoter/:id/:upvoter', require('./deleteUpvoter'))
 app.delete('/delete_downvoter/:id/:downvoter', require('./deleteDownvoter'))
 app.patch('/add_upvoter/:id/:upvoter', require('./addUpvoter'))
