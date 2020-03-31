@@ -32,6 +32,37 @@ import { addImage } from './../../services/api'
 // <Button variant="primary" id="cancelButton" onClick={cancelFunction} type="submit">Cancel</Button>
 // </div>
 
+// <React.Fragment>
+//       <form className="image-form" onSubmit={(e) => {
+//           e.preventDefault();
+//           console.log(e.target);
+//           addImage(e.target, queueComponent.state.username);
+//       }}>
+//           <div className="image-form-field">
+//               <label>Choose Image:</label>
+//               <input id="image" type="file" />
+//           </div>
+//           <Button
+//               variant="primary"
+//               type="submit"
+//               id="image-form-submit-button"
+//           >
+//               Upload Profile Pic
+//           </Button>
+//       </form>
+//   </React.Fragment>
+//
+//   <Form className="descriptionForm">
+//     <Form.Group controlId="review.movieName">
+//       <Form.Label>Description:</Form.Label>
+//       <Form.Control type="review" as="textarea" rows="8" placeholder="Enter your Description" onChange={this.handleDescriptionChange}/>
+//     </Form.Group>
+//   </Form>
+//
+//   <div className="buttons">
+//   <Button variant="primary" id="updateButton" onClick={(e) => this.updateProfile(e, queueComponent, cancelFunction)} type="submit">Update Description</Button>
+//   <Button variant="primary" id="cancelButton" onClick={cancelFunction} type="submit">Cancel</Button>
+//   </div>
 
 
 // <Button variant="primary" id="updateButton" onClick={() => this.updateProfile(queueComponent, cancelFunction)} type="submit">Update Profile</Button>
@@ -97,20 +128,19 @@ class EditProfile extends React.Component {
                   console.log(e.target);
                   addImage(e.target, queueComponent.state.username);
               }}>
-                  <div className="image-form-field">
-                      <label>Choose Image:</label>
-                      <input id="image" type="file" />
+                  <div class="image-form__field">
+                      <label>Image:</label>
+                      <input name="image" type="file" />
                   </div>
                   <Button
                       variant="primary"
                       type="submit"
-                      id="image-form-submit-button"
+                      className="image-form__submit-button"
                   >
-                      Upload Profile Pic
+                      Upload
                   </Button>
               </form>
           </React.Fragment>
-
           <Form className="descriptionForm">
             <Form.Group controlId="review.movieName">
               <Form.Label>Description:</Form.Label>
