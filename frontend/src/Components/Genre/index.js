@@ -40,8 +40,7 @@ class Genre extends React.Component {
             }
         else{
             const movieElements = this.state.data.map((movie) => {
-                return <div>
-                    <Card className="genreCard" id={movie._id}>
+                return <Card className="genreCard" key={movie._id}>
                         <CardActionArea>
                             <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">
@@ -57,7 +56,7 @@ class Genre extends React.Component {
                             View
                             </Button>
                         </CardActions>
-                    </Card></div>
+                    </Card>
                     })
             return(
                 
