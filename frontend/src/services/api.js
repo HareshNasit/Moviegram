@@ -28,8 +28,18 @@ export const getMovie = async id => {
         let res = await axios.get(baseURL + '/movies/movie/' + id)
         return res
     } catch (err) {
-        return err
         console.log(err)
+        return err
+    }
+}
+
+export const getMoviesByGenre = async genre => {
+    try {
+        let res = await axios.get(baseURL + "/movies/genre/" + genre)
+        return res
+    } catch (err) {
+        console.log(err)
+        return err
     }
 }
 

@@ -16,6 +16,7 @@ import UserProfile from './Components/UserProfile'
 import Movie from './Components/Movie'
 import Admin from './Components/Admin'
 import ProfileView from './Components/ProfileView'
+import Genre from './Components/Genre'
 
 
 import { readCookie } from './services/api.js'
@@ -52,7 +53,7 @@ class App extends React.Component {
             <Route exact path='/admin' render={(props) =>
                             (<Admin app={this} {...props} />)}/>
             <Route path="/movie/:param1" component={Movie}/>
-            <Route render={() => <div>404 Not found</div>} />
+            <Route path="/genre/:genre" component={Genre}></Route>
           </Switch>
         </BrowserRouter>
       </div>

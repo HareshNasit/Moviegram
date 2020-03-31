@@ -14,7 +14,6 @@ class Movie extends React.Component {
     }
     async componentDidMount() {
         const res = await getMovie(this.props.match.params.param1)
-        console.log("HI" + this.props.match.params.param1)
         if(!res){
             this.props.history.push({pathname: "/NewsFeed"})
         }
