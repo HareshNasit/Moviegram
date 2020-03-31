@@ -10,7 +10,7 @@ import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
-import { getAllReviews, getUser, getUserReviews } from './../../services/api'
+import { getAllReviews, getUser, getUserReviews, getUserImage } from './../../services/api'
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -40,20 +40,24 @@ class UserProfile extends React.Component {
 
   async componentDidMount() {
     const reviews = await getAllReviews();
-    console.log(reviews.data)
     const username = this.props.location.state.username
-    console.log(username)
     const userData = await getUser(username);
-    const userReviews = await getUserReviews(username);
-    console.log(userData.data);
-    console.log(userReviews.data)
+    const userReviewsData = await getUserReviews(username);
+    const userReviews = userReviewsData.data;
+    const userImg = await getUserImage(username)
+    console.log(userReviews);
+    for (let j =0; j < userReviews.length; j++) {
+        console.log(userReviews[j]);
+        userReviews[j]["image_url"] = userImg.data;
+    }
+    // console.log(userReviews);
     this.setState({
         username: username,
         profilePic: userData.data["image_url"],
         peopleFollow: userData.data["following"],
         peopleFollowing: userData.data["followers"],
         userDescription: userData.data["description"],
-        reviews: userReviews.data
+        reviews: userReviews
       })
     Modal.setAppElement('body');
   }
