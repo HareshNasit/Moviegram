@@ -181,10 +181,6 @@ export const addUpvoter = (id, upvoter) => axios.patch(baseURL + '/reviews/add_u
 
 export const addDownvoter = (id, downvoter) => axios.patch(baseURL + '/reviews/add_downvoter/'+id+'/'+downvoter)
 
-export const deleteUpvoter = (id, upvoter) => axios.delete(baseURL + '/reviews/delete_upvoter/'+id+'/'+upvoter)
-
-export const deleteDownvoter = (id, downvoter) => axios.delete(baseURL + '/reviews/delete_downvoter/'+id+'/'+downvoter)
-
 export const getUserImage = (username) => axios.get(baseURL + '/Images/'+username)
 
 export const addImage = (form, user_id) => {
