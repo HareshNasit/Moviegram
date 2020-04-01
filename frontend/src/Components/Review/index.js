@@ -83,12 +83,14 @@ class Review extends React.Component {
 
     let profile_url = '';
     const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, commentsSection, queueComponent} = this.props;
+
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
     }
     else {
       profile_url = '/ProfileView/'
     }
+
     if (admin){
       return(
         <div id="review">

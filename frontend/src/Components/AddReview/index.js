@@ -21,11 +21,11 @@ class AddReview extends React.Component {
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
   }
 
-  async saveReview(closeFunc) {
+  async saveReview(closeFunc, username) {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
     } else {
-      const newReview = { username: "username1", movie_title: this.state.movie, content: this.state.review,
+      const newReview = { username: username, movie_title: this.state.movie, content: this.state.review,
                           spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
       await addReview(newReview, this)
     }
@@ -42,7 +42,7 @@ class AddReview extends React.Component {
 
   render() {
 
-    const {queueComponent,cancelFunction,profImg} = this.props
+    const { queueComponent, cancelFunction, profImg, username } = this.props
 
     return (
       <div id="addreviewmain">
@@ -54,7 +54,7 @@ class AddReview extends React.Component {
          <div className="add-review">
             <ul>
               <li className="reviewUserPicLi"><img className="reviewUserPic" src={profileimgdef} alt="User DP"/></li>
-              <li>username1</li>
+              <li>{username}</li>
             </ul>
             <Form className="reviewForm">
               <Form.Group controlId="review.movieName">
@@ -72,7 +72,7 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(cancelFunction)} type="submit">Post Review</Button>
+            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(cancelFunction, username)} type="submit">Post Review</Button>
             <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
         </div>
 

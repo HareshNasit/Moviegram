@@ -123,6 +123,7 @@ class UserProfile extends React.Component {
     );
 
     const username = this.props.location.state.username;
+
     return (
       <div id="userProfile">
           <MainMenuBar username={username} />
@@ -141,7 +142,9 @@ class UserProfile extends React.Component {
                  isOpen={this.state.showModalAddRev}
                  contentLabel="Minimal Modal Example"
                  >
-                 <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={this.state.profilePic}/>
+                 <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={this.state.profilePic}
+                            username={username}
+                 />
                 </Modal>
 
                 <Modal className = "updateProfile"

@@ -22,7 +22,7 @@ class GenreSearchBar extends React.Component {
                 return {key: obj, value: obj}
             })})
         }
-        
+
     }
     render() {
         return (
@@ -34,8 +34,8 @@ class GenreSearchBar extends React.Component {
                 this.handleEvent(event.key)
               } }
               />);
-            
-            
+
+
             }
 
         }
