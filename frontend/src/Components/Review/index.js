@@ -173,9 +173,7 @@ class Review extends React.Component {
               </Form.Group>
               <Form.Group className="postIt">
                 <Button variant="primary"
-                        onClick={() => this.addCommentFunc(queueComponent,
-                                                      {datetime: new Date().toLocaleString(), username:queueComponent.currUser, commentContent:this.state.newComment},
-                                                      {reviewId})}>
+                        onClick={() => this.addCommentFunc()}>
                 Post Comment
                 </Button>
               </Form.Group>

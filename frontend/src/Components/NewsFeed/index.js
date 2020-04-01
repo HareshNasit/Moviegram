@@ -8,9 +8,7 @@ import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import SearchBar from "../SearchBar";
 // import functions/api calls for backend and database requets to server
-import { getAllReviews,getUser,getUserReviews,getFriendsOfUser, getUserImage } from './../../services/api'
-// import constants file which carries user data
-const constants = require("../../constants")
+import { getUserReviews,getFriendsOfUser, getUserImage } from './../../services/api'
 
 // Class for the Reviews News Feed Component
 class NewsFeedScreen extends React.Component {
@@ -30,12 +28,10 @@ class NewsFeedScreen extends React.Component {
     for(let i=0; i<currUserFriends.length; i++) {
       const currFriendReviews = await getUserReviews(currUserFriends[i])
       const newReviews = currFriendReviews.data
-      console.log(newReviews);
       const userImg = await getUserImage(currUserFriends[i])
       for (let j =0; j < newReviews.length; j++) {
           newReviews[j]["image_url"] = userImg.data;
       }
-      console.log(newReviews);
       myNewsFeed = myNewsFeed.concat(newReviews);
     }
     // sort all the reviews from the curr users friends in order of latest to oldest

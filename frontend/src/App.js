@@ -11,6 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginScreen from './Components/Login';
 import SignupScreen from './Components/Signup';
 import NewsFeedScreen from './Components/NewsFeed'
+import NewsFeedGeneric from './Components/NewsFeedGeneric'
 import AddReview from './Components/AddReview'
 import UserProfile from './Components/UserProfile'
 import Movie from './Components/Movie'
@@ -44,7 +45,9 @@ class App extends React.Component {
                             (<SignupScreen app={this} {...props} />)}/>
             <Route exact path='/NewsFeed' render={(props) =>
                             (<NewsFeedScreen app={this} {...props} />)}/>
-             <Route exact path='/AddReview' render={(props) =>
+            <Route exact path='/NewsFeedGeneric' render={(props) =>
+                            (<NewsFeedGeneric app={this} {...props} />)}/>
+            <Route exact path='/AddReview' render={(props) =>
                             (<AddReview app={this} {...props} />)}/>
             <Route exact path='/userProfile/:id' render={(props) =>
                             (<UserProfile app={this} {...props} />)}/>
