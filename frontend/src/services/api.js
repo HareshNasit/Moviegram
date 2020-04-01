@@ -146,8 +146,7 @@ export const updateUserFollowInfo = async (user) => {
       body: JSON.stringify(user),
       headers: {
           Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"
-      }
+          "Content-Type": "application/json"}
   });
   fetch(request).then(res =>{
       console.log(res)
@@ -181,9 +180,27 @@ export const addUpvoter = (id, upvoter) => axios.patch(baseURL + '/reviews/add_u
 
 export const addDownvoter = (id, downvoter) => axios.patch(baseURL + '/reviews/add_downvoter/'+id+'/'+downvoter)
 
-export const deleteUpvoter = (id, upvoter) => axios.delete(baseURL + '/reviews/delete_upvoter/'+id+'/'+upvoter)
-
-export const deleteDownvoter = (id, downvoter) => axios.delete(baseURL + '/reviews/delete_downvoter/'+id+'/'+downvoter)
+export const addReview = async (review, addrevstate) => {
+    const url = `${baseURL}/reviews/add_review`
+    const request = new Request(url, {
+        method: "post",
+        body: JSON.stringify(review),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request).then(res =>{
+        console.log(res)
+        if(!res.ok){
+            throw new Error("Something went wrong...");
+        } else{
+          return true
+        }
+    }).catch(error => {
+        console.log("caught some error please solve me!!")
+    })
+}
 
 export const getUserImage = (username) => axios.get(baseURL + '/Images/'+username)
 

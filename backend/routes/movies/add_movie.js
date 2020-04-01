@@ -13,12 +13,6 @@ function autoIncr(seqName){
 
 
 module.exports = async (req, res) => {
-  // console.log(Counter)
-  // const x = new Counters({_id: "moviecounter", count: 2})
-  // x.save().then(
-  //   counter =>
-  //   console.log(counter)
-  // )
   Counters.findByIdAndUpdate("moviecounter",
     {$inc:{count:1}},
     {new:true}).then((counter) => {
@@ -31,6 +25,12 @@ module.exports = async (req, res) => {
         "genres": req.body.genres
       })
    return movie.save()
+<<<<<<< HEAD
  }).then(movie =>
   res.send(movie)).catch(error => console.log(error))
     }
+=======
+  }).then(movie =>
+  res.send(movie)).catch(error => res.send(error))
+}
+>>>>>>> 98dcd5099d1e8924c2415081013f9c6107fbb950

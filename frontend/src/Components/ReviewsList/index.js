@@ -41,18 +41,16 @@ class ReviewsList extends React.Component {
         <div className="revs">
           {reviews.map((review) => (
             <Review key={uid(review)}
-                    ups= {review.upvotes}
-                    downs= {review.downvotes}
+                    admin={false}
+                    reviewId={review._id}
+                    authenticateduser= {authenticateduser}
                     datetime={review.date}
                     username={review.username}
                     userImg={review.image_url}
                     movieName={review.movie_title}
                     reviewContent={review.content}
                     commentsSection={this.getCommentsSection(review, authenticateduser)}
-                    reviewId={review._id}
-                    admin={false}
-                    queueComponent={queueComponent}
-                    authenticateduser= {authenticateduser}/>
+                    queueComponent={queueComponent}/>
           ))}
         </div>
       );
