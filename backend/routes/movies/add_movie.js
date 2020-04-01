@@ -3,7 +3,7 @@ const {Movies} = require('./../../models/movie')
 function autoIncr(seqName){
     // inspiration:
     // https://blog.eduonix.com/web-programming-tutorials/learn-auto-increment-sequences-mongodb/
-    let seqCounter = Counter.findAndModify({
+    let seqCounter = Counter.findByIdAndUpdate({
        query:{_id: seqName },
        update: {$inc:{count:1}},
        new:true
