@@ -11,18 +11,18 @@ import {signup} from '../../services/api'
 class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.genreNames = ["Supernatural", 
-                       "Fantasy", 
-                       "Crime", 
+    this.genreNames = ["Supernatural",
+                       "Fantasy",
+                       "Crime",
                        "Action",
                        "Horror",
                        "Thriller",
                        "Comedy"]
-    this.state = {turnAlert: false, 
-      username: "", email: "", password: "", genresShow: false, genres: 
-            {Supernatural: false, 
-              Horror: false, 
-              Fantasy: false, 
+    this.state = {turnAlert: false,
+      username: "", email: "", password: "", genresShow: false, genres:
+            {Supernatural: false,
+              Horror: false,
+              Fantasy: false,
               Crime: false,
               Action: false,
               Thriller: false,
@@ -50,7 +50,7 @@ class SignupScreen extends React.Component {
   }
 
   buttonClick(){
-    
+
     if(this.state.username === ""){
       this.setState({turnAlert: true})
       this.setState({error: "Please enter your username."})
@@ -87,7 +87,7 @@ class SignupScreen extends React.Component {
     return (
       <div className="formContainer">
         {/* {this.renderRedirect()} */}
-     
+
         <Form className="form">
           <Form.Group className="welcomeText">
             <Form.Label className="centerText">Signup</Form.Label>
@@ -123,7 +123,7 @@ class SignupScreen extends React.Component {
               onChange={ (event) => this.handleUpload(event) }
             />
           </Form.Group>
-          {/* When the user presses this button, the data will be sent to the 
+          {/* When the user presses this button, the data will be sent to the
           database and create a new user */}
             <Button variant="outline-primary"
                             onClick={this.buttonClick}
@@ -131,7 +131,7 @@ class SignupScreen extends React.Component {
               Signup
             </Button>
             <div className="registeredButtonBox">
-              <Button className="alreadyRegisteredButton" as={Link} to="/login" 
+              <Button className="alreadyRegisteredButton" as={Link} to="/login"
               type="submit">Already registered?</Button>
             </div>
       </Form>

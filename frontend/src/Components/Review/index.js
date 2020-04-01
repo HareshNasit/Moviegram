@@ -61,7 +61,14 @@ class Review extends React.Component {
 
   render() {
 
+    let profile_url = '';
     const { admin, ups, downs, datetime, username, userImg, movieName, reviewContent, commentsSection, reviewId, queueComponent, authenticateduser} = this.props;
+    if (username === authenticateduser) {
+      profile_url = '/UserProfile/'
+    }
+    else {
+      profile_url = '/ProfileView/'
+    }
     if (admin){
       return(
         <div id="review">
@@ -69,7 +76,7 @@ class Review extends React.Component {
           {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
           <ul>
             <li>
-            <Link to={{pathname:'/ProfileView/'+username, state: { username: authenticateduser, profileUser: username }}}>
+            <Link to={{pathname:profile_url +username, state: { username: authenticateduser, profileUser: username }}}>
             <span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
             </Link>{username}
             </li>
@@ -123,7 +130,7 @@ class Review extends React.Component {
           {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
           <ul>
             <li><span className="reviewUserPicLi">
-            <Link to={{pathname:'/ProfileView/'+username, state: { username: authenticateduser, profileUser: username }}}>
+            <Link to={{pathname:profile_url +username, state: { username: authenticateduser, profileUser: username }}}>
             <img className="reviewUserPic" src={userImg} alt="User DP"/>
             </Link>
             </span>{username}</li>
