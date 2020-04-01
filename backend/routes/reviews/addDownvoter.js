@@ -17,13 +17,26 @@ module.exports = async (req, res) => {
   			res.status(404).send()
   		} else {
         if(!review.downvoters.includes(downvoter)) {
-          review.downvoters.push(downvoter)
-          review.downvotes = review.downvotes + 1
-          review.save().then((result) => {
-    				res.send("Added downvoter")
-    			}, (error) => {
-    				res.status(400).send(error)
-    			})
+          if(!review.downvoters.includes(downvoter) && !review.upvoters.includes(downvoter)) {
+            review.downvoters.push(downvoter)
+            review.downvotes = review.downvotes + 1
+            review.save().then((result) => {
+      				res.send("Added downvoter")
+      			}, (error) => {
+      				res.status(400).send(error)
+      			})
+          } else if (review.upvoters.includes(downvoter)) {
+            const index = review.upvoters.indexOf(downvoter)
+            review.upvoters.splice(index, 1)
+            review.upvotes = review.upvotes - 1
+            review.downvoters.push(downvoter)
+            review.downvotes = review.downvotes + 1
+            review.save().then((result) => {
+      				res.send("Added downvoter")
+      			}, (error) => {
+      				res.status(400).send(error)
+      			})
+          }
         } else {
           res.send("Already exists")
         }

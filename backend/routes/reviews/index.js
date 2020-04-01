@@ -14,9 +14,12 @@ app.get('/:movie_id/movie_id', require("./get_reviews_by_movie_id"))
 
 
 // Routes for modifying upvoting and downvoting
-app.delete('/delete_upvoter/:id/:upvoter', require('./deleteUpvoter'))
-app.delete('/delete_downvoter/:id/:downvoter', require('./deleteDownvoter'))
 app.patch('/add_upvoter/:id/:upvoter', require('./addUpvoter'))
 app.patch('/add_downvoter/:id/:downvoter', require('./addDownvoter'))
 
+// Routes related to review comenting
+app.patch('/add_comment/:id', require('./add_comment'))
+
+// Route to add review
+app.post('/add_review', require('./add_review'))
 /*******************************************************/

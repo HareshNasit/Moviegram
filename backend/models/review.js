@@ -19,13 +19,6 @@ const Reviews = mongoose.model('Reviews', {
 		minlength: 1,
 		trim: true
     },
-    date: {
-        type: Date,
-				default: Date.now,
-		required: true,
-		minlength: 1,
-		trim: true
-    },
     spoilers: {
         type: Boolean,
 		required: true,

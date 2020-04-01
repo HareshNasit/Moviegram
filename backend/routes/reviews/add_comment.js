@@ -3,32 +3,32 @@ const { ObjectID } = require('mongodb')
 const { Reviews } = require('./../../models/review')
 
 module.exports = async (req, res) => {
+	// Add code here
+	const rev_id = req.params.id
 
-    const comment = req.body
+	if (!ObjectID.isValid(rev_id)) {
+		res.status(404).send()
+		return;
+	}
 
-    if (!ObjectID.isValid(rev_id)) {
-  		res.status(404).send()
-  		return;
-  	}
+	Reviews.findById(rev_id).then((rev) => {
+		if (!rev) {
+			res.status(404).send()
+		} else {
+			rev.comments.push({
+				username: req.body.username,
+				date: req.body.date,
+        content: req.body.content
+			})
+			rev.save().then((result) => {
+				res.send("Added Comment")
+			}, (error) => {
+				res.status(400).send(error)
+			})
+		}
+	}).catch((error) => {
+		console.log("500  error");
+		res.status(500).send()
+	})
 
-  	Reviews.findById(rev_id).then((review) => {
-  		if (!review) {
-  			res.status(404).send()
-  		} else {
-        if(!review.upvoters.includes(upvoter)) {
-          review.upvoters.push(upvoter)
-          review.upvotes = review.upvotes + 1
-          review.save().then((result) => {
-    				res.send("Added upvoter")
-    			}, (error) => {
-    				res.status(400).send(error)
-    			})
-        } else {
-          res.send("Already exists")
-        }
-  		}
-  	}).catch((error) => {
-  		console.log("500  error");
-  		res.status(500).send()
-  	})
 }
