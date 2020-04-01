@@ -4,6 +4,9 @@ import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 // import ReactDOM from 'react-dom';
 // import Modal from 'react-modal';
+// import functions/api calls for backend and database requets to server
+import { addReview } from './../../services/api'
+
 
 import profileimgdef from './../MainMenuBar/profile.png';
 
@@ -18,19 +21,13 @@ class AddReview extends React.Component {
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
   }
 
-  saveReview(queue, closeFunc, pic) {
+  async saveReview(closeFunc) {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
     } else {
-      const newReview = { id: queue.state.reviews.length, upvote: 0, downvote:0, username: "username1", movieName: this.state.movie ,
-                          profImg: pic, datetime: new Date().toLocaleString(), reviewContent: this.state.review,
-                          commentsSection: [] }
-      let userReviews = queue.state.reviews
-      userReviews.push(newReview)
-      queue.setState({
-        reviews: userReviews
-      });
-      console.log("New Review Added")
+      const newReview = { username: "username1", movie_title: this.state.movie, content: this.state.review,
+                          spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
+      await addReview(newReview, this)
     }
     closeFunc();
   }
@@ -75,7 +72,7 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, profImg)} type="submit">Post Review</Button>
+            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(cancelFunction)} type="submit">Post Review</Button>
             <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
         </div>
 
