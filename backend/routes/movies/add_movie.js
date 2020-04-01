@@ -25,12 +25,6 @@ module.exports = async (req, res) => {
         "genres": req.body.genres
       })
    return movie.save()
-<<<<<<< HEAD
- }).then(movie =>
-  res.send(movie)).catch(error => console.log(error))
-    }
-=======
   }).then(movie =>
   res.send(movie)).catch(error => res.send(error))
 }
->>>>>>> 98dcd5099d1e8924c2415081013f9c6107fbb950
