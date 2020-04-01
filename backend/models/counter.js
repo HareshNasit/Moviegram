@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Counter = mongoose.model('Counter', {
+const Counters = mongoose.model('counters', {
 	_id: {
 		type: String,
 		required: true,
@@ -12,3 +12,5 @@ const Counter = mongoose.model('Counter', {
         required: true
     }
 })
+
+module.exports = { Counters }
