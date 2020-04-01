@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
 
   review.save().then((result) => {
     console.log(username);
-    res.send("Added Comment")
+    res.send("Added Review")
   }, (error) => {
     res.status(400).send(error)
   })
