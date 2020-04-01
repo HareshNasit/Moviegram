@@ -164,6 +164,8 @@ export const updateUserFollowInfo = async (user) => {
 
 export const getAllReviews = () => axios.get(baseURL + '/reviews')
 
+export const getReview = (id) => axios.get(baseURL + '/reviews/'+id)
+
 export const getUser = (username) => axios.get(baseURL + '/users/'+username)
 
 export const getUserReviews = (username) => axios.get(baseURL + '/reviews'+'/user_reviews/'+username)
@@ -185,6 +187,28 @@ export const addReview = async (review, addrevstate) => {
     const request = new Request(url, {
         method: "post",
         body: JSON.stringify(review),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request).then(res =>{
+        console.log(res)
+        if(!res.ok){
+            throw new Error("Something went wrong...");
+        } else{
+          return true
+        }
+    }).catch(error => {
+        console.log("caught some error please solve me!!")
+    })
+}
+
+export const addComment = async (comment, id, addrevstate) => {
+    const url = `${baseURL}/reviews/add_comment/${id}`
+    const request = new Request(url, {
+        method: "patch",
+        body: JSON.stringify(comment),
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-Type": "application/json"

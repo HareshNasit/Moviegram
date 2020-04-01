@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import "./styles.css";
 import "./../universalStyles.css";
 // backend db server api funcs
-import {getUpvoters,getDownvoters,addDownvoter,addUpvoter}  from './../../services/api'
+import {getUpvoters,getDownvoters,addDownvoter,addUpvoter,addComment,getReview}  from './../../services/api'
 
 // Class for a Review Component
 class Review extends React.Component {
@@ -38,8 +38,12 @@ class Review extends React.Component {
     this.setState({newComment:event.target.value})
   }
 
-  addCommentFunc() {
-    console.log("add comment")
+  async addCommentFunc(reviewId, user, content) {
+    console.log("adding comment")
+    if (this.state.newComment.trim() != "") {
+      var newCom = {username: user, date: new Date().toLocaleString, content: content}
+    }
+    const commentAdded = await addComment(newCom, reviewId, this)
   }
 
   removeReview(queue, review) {
@@ -126,7 +130,7 @@ class Review extends React.Component {
               </Form.Group>
               <Form.Group className="postIt">
                 <Button variant="primary"
-                        onClick={() => this.addCommentFunc()}>
+                        onClick={() => this.addCommentFunc(reviewId, authenticateduser, this.state.newComment)}>
                 Post Comment
                 </Button>
               </Form.Group>
@@ -175,7 +179,7 @@ class Review extends React.Component {
               </Form.Group>
               <Form.Group className="postIt">
                 <Button variant="primary"
-                        onClick={() => this.addCommentFunc()}>
+                        onClick={() => this.addCommentFunc(reviewId, authenticateduser, this.state.newComment)}>
                 Post Comment
                 </Button>
               </Form.Group>

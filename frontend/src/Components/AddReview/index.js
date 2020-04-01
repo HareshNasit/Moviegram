@@ -5,7 +5,7 @@ import { Button, Form } from "react-bootstrap";
 // import ReactDOM from 'react-dom';
 // import Modal from 'react-modal';
 // import functions/api calls for backend and database requets to server
-import { addReview } from './../../services/api'
+import { addReview,getUserReviews } from './../../services/api'
 
 
 import profileimgdef from './../MainMenuBar/profile.png';
@@ -21,15 +21,21 @@ class AddReview extends React.Component {
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
   }
 
-  async saveReview(closeFunc, username) {
+  async saveReview(queue, closeFunc, username) {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
     } else {
       const newReview = { username: username, movie_title: this.state.movie, content: this.state.review,
                           spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
-      await addReview(newReview, this)
+      const added = await addReview(newReview, this)
+      if (added != null) {
+        const userReviewsData = await getUserReviews(username);
+        const userReviews = userReviewsData.data;
+        console.log(userReviews);
+        queue.setState({reviews: userReviews})
+        closeFunc();
+      }
     }
-    closeFunc();
   }
 
   handleMovieNameChange(event) {
@@ -72,7 +78,7 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(cancelFunction, username)} type="submit">Post Review</Button>
+            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, username)} type="submit">Post Review</Button>
             <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
         </div>
 

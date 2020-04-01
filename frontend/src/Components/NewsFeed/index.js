@@ -7,6 +7,7 @@ import "./../universalStyles.css"
 import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import SearchBar from "../SearchBar";
+import GenreSearchBar from '../GenreSearchBar';
 // import functions/api calls for backend and database requets to server
 import { getUserReviews,getFriendsOfUser, getUserImage } from './../../services/api'
 
@@ -56,12 +57,15 @@ class NewsFeedScreen extends React.Component {
 
         {/*Form that takes in the input of users to search movies and reviews of movies */}
         <div className="searchMovieform">
-          <SearchBar/>
+          <SearchBar history={this.props.history}/>
+        </div>
+        <div className="searchMovieform">
+          <GenreSearchBar history={this.props.history}/>
         </div>
 
         {/*Title of the review news feed page */}
         <div className="pageHeader">
-         <h3 className="headerText">Reviews Feed</h3>
+         <h3 className="headerText">My Reviews Feed</h3>
         </div>
 
         {/* Reviews List here to display all reviews from friends of current user */}
