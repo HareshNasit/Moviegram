@@ -24,8 +24,12 @@ class Review extends React.Component {
   }
 
   async componentDidMount() {
-    this.setState({upvotes: await getUpvoters(this.props.reviewId).length})
-    this.setState({downvotes: await getDownvoters(this.props.reviewId).length})
+    let upvotes = await getUpvoters(this.props.reviewId)
+    let downvotes = await getDownvoters(this.props.reviewId)
+    upvotes = upvotes.data.length
+    downvotes = downvotes.data.length
+    this.setState({upvotes: upvotes})
+    this.setState({downvotes: downvotes})
   }
 
   // Takes the content from a new comment written on the post and sets the review's this.state.newComment variable
@@ -53,38 +57,32 @@ class Review extends React.Component {
 
   // increase the number upvotes the review has by 1
   async incrementUpvote(reviewId, user) {
-    const deleteDownvote = await deleteDownvoter(reviewId, user)
-    console.log(deleteDownvote)
-    if (deleteDownvote != null) {
-      if (deleteDownvote == "Deleted downvoter") {
-        this.setState({upvotes: this.state.upvotes + 1})
-        this.setState({downvotes: this.state.downvotes - 1})
-        await addUpvoter(reviewId, user)
-      } else {
-        this.setState({upvotes: this.state.upvotes + 1})
-        await addUpvoter(reviewId, user)
-      }
+    const upvoteAdded = await addUpvoter(reviewId, user)
+    if (upvoteAdded != null) {
+      let upvotes = await getUpvoters(this.props.reviewId)
+      let downvotes = await getDownvoters(this.props.reviewId)
+      upvotes = upvotes.data.length
+      downvotes = downvotes.data.length
+      this.setState({upvotes: upvotes})
+      this.setState({downvotes: downvotes})
     }
   }
 
   // increase the number downvotes the review has by 1
   async incrementDownvote(reviewId, user) {
-    const deleteUpvote = await deleteUpvoter(reviewId, user)
-    console.log(deleteUpvote)
-    if (deleteUpvote != null) {
-      if (deleteUpvote == "Deleted upvoter") {
-        this.setState({downvotes: this.state.downvotes + 1})
-        this.setState({upvotes: this.state.upvotes - 1})
-        await addDownvoter(reviewId, user)
-      } else {
-        this.setState({downvotes: this.state.downvotes + 1})
-        await addDownvoter(reviewId, user)
-      }
+    const downvoteAdded = await addDownvoter(reviewId, user)
+    if (downvoteAdded != null) {
+      let upvotes = await getUpvoters(this.props.reviewId)
+      let downvotes = await getDownvoters(this.props.reviewId)
+      upvotes = upvotes.data.length
+      downvotes = downvotes.data.length
+      this.setState({upvotes: upvotes})
+      this.setState({downvotes: downvotes})
     }
+  }
     // const downvoters = this.state.downvotes + 1
     // this.setState({downvotes: downvoters})
     // await addDownvoter(reviewId, user)
-  }
 
   render() {
 

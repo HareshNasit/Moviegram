@@ -43,8 +43,6 @@ class ReviewsList extends React.Component {
             <Review key={uid(review)}
                     admin={false}
                     reviewId={review._id}
-                    upvotes={review.upvotes}
-                    downvotes={review.downvotes}
                     authenticateduser= {authenticateduser}
                     datetime={review.date}
                     username={review.username}
