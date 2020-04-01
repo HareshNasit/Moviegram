@@ -24,6 +24,10 @@ module.exports = async (req, res) => {
         "description": req.body.description,
         "genres": req.body.genres
       })
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 7ca950dd99a3264ebb93eeb3bb639184719ea53e
    return movie.save()
   }).then(movie =>
   res.send(movie)).catch(error => res.send(error))
