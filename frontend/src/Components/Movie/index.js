@@ -23,7 +23,7 @@ class Movie extends React.Component {
 
     }
     state = {
-        data: {title: "", imgsrc: "", Director: "", genres: [], stars: []},
+        data: {title: "", imgsrc: "", director: "", genres: [], stars: []},
         thumbUp: false,
         thumbDown: false
     }
@@ -74,7 +74,10 @@ class Movie extends React.Component {
         if(upvoteAdded != null){
             this.setState({thumbUp: true})
             this.setState({thumbDown: false})
-            const newRating = await getRating(movie_id)
+            const data = {...this.state.data}
+            data.upvotes += 1
+            data.downvotes -= 1
+            this.setState({data: data})
             
         }
     }
@@ -85,9 +88,15 @@ class Movie extends React.Component {
 
         const downvoteAdded = await addMovieDownvoter(movie_id, user_id)
         if(downvoteAdded != null){
-            const newRating = await getRating(movie_id)
             this.setState({thumbDown: true})
             this.setState({thumbUp: false})
+            const down = this.state.data.downvotes
+            const data = {...this.state.data}
+            data.upvotes -= 1
+            data.downvotes += 1
+
+            this.setState({data: data})
+
 
         }
     }
@@ -118,7 +127,15 @@ class Movie extends React.Component {
                         </IconButton>
                     </CardContent>
         }
-        
+        let rating;
+        if(this.state.data.upvotes == 0 && this.state.data.downvotes == 0){
+            rating = "N/A"
+        } else{
+            const up = this.state.data.upvotes
+            const down = this.state.data.downvotes
+
+            rating = Math.round((up+ 1)/(2+up + down)*100) + "%"
+        }
         return(
         <div>
             <MainMenuBar/>
@@ -144,7 +161,10 @@ class Movie extends React.Component {
                             </CardContent>
                             <CardContent>
                                      <Typography align="center" variant="h4">
-                                            Directed by: {this.state.data.Director}
+                                            Directed by: {this.state.data.director}
+                                        </Typography>
+                                        <Typography align="center" variant="h4">
+                                             Audience Rating: {rating}
                                         </Typography>
                             </CardContent>
                             <CardContent align="center">
