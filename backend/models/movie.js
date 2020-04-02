@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 
 const Movies = mongoose.model('Movies', {
-	_id:{
+	_id: {
 		type: Number,
-		required: true
-	},
+		required: true,
+    },
 	title: {
 		type: String,
 		required: true,

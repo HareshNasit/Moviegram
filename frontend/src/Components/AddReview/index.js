@@ -2,10 +2,8 @@ import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
-// import ReactDOM from 'react-dom';
-// import Modal from 'react-modal';
-// import functions/api calls for backend and database requets to server
-import { addReview } from './../../services/api'
+import ErrorModal from './../ErrorModal';
+import { addReview,getUserReviews } from './../../services/api'
 
 
 import profileimgdef from './../MainMenuBar/profile.png';
@@ -15,21 +13,32 @@ class AddReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = { movie: "",
-                   review: ""};
+                   review: "",
+                   movies: [],
+                   turnAlert: false,
+                   error: ""};
     this.saveReview = this.saveReview.bind(this)
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
-  async saveReview(closeFunc) {
+  closeModal(){
+   this.setState({turnAlert: false})
+  }
+
+  async saveReview(queue, closeFunc, username) {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
+      this.setState({error: "Cannot post an empty/incomplete review. Make sure to fill in all fields"})
+      this.setState({turnAlert: true})
     } else {
-      const newReview = { username: "username1", movie_title: this.state.movie, content: this.state.review,
+      const newReview = { username: username, movie_title: this.state.movie, content: this.state.review,
                           spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
-      await addReview(newReview, this)
+      const added = await addReview(newReview)
+      queue.state.reviews.unshift(newReview)
+      closeFunc();
     }
-    closeFunc();
   }
 
   handleMovieNameChange(event) {
@@ -42,7 +51,7 @@ class AddReview extends React.Component {
 
   render() {
 
-    const {queueComponent,cancelFunction,profImg} = this.props
+    const { queueComponent, cancelFunction, profImg, username } = this.props
 
     return (
       <div id="addreviewmain">
@@ -53,8 +62,8 @@ class AddReview extends React.Component {
 
          <div className="add-review">
             <ul>
-              <li className="reviewUserPicLi"><img className="reviewUserPic" src={profileimgdef} alt="User DP"/></li>
-              <li>username1</li>
+              <li className="reviewUserPicLi"><img className="reviewUserPic" src={profImg} alt="User DP"/></li>
+              <li>{username}</li>
             </ul>
             <Form className="reviewForm">
               <Form.Group controlId="review.movieName">
@@ -72,8 +81,9 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(cancelFunction)} type="submit">Post Review</Button>
+            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, username)} type="submit">Post Review</Button>
             <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
+            <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert} error={this.state.error}></ErrorModal>
         </div>
 
       </div>

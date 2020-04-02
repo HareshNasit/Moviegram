@@ -9,7 +9,7 @@ import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
 import SearchBar from "../SearchBar";
 // import functions/api calls for backend and database requets to server
-import { getAllReviews } from './../../services/api'
+import { getAllReviews, getUserImage } from './../../services/api'
 
 // Class for a Review Component
 class NewsFeedGeneric extends React.Component {
@@ -24,6 +24,16 @@ class NewsFeedGeneric extends React.Component {
   async componentDidMount() {
     let reviews = await getAllReviews()
     reviews = reviews.data
+    // sort all the reviews from the curr users friends in order of latest to oldest
+    for(let i=0; i<reviews.length; i++) {
+      const userImg = await getUserImage(reviews[i].username)
+      reviews[i]["image_url"] = userImg.data;
+    }
+    reviews = reviews.sort((a, b) => {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      return bDate - aDate
+    })
     this.setState({reviews: reviews})
   }
 
@@ -43,11 +53,12 @@ class NewsFeedGeneric extends React.Component {
 
           {/*Title of the review news feed page */}
           <div className="pageHeader">
-          <h3 className="headerText">Reviews Feed</h3>
+          <h3 className="headerText">All Reviews</h3>
           </div>
 
           {/* Reviews List here to display all reviews from friends of current user */}
           <ReviewsList reviews={this.state.reviews}
+                    type={"generic"}
                     queueComponent={this}
                     authenticateduser= {username}/>
       </div>

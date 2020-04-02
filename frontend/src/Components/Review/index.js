@@ -2,11 +2,14 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import {Link} from 'react-router-dom';
+import { uid } from "react-uid";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
+// import needed components
+import Comment from './../Comment';
 // backend db server api funcs
-import {getUpvoters,getDownvoters,addDownvoter,addUpvoter}  from './../../services/api'
+import {getUpvoters,getDownvoters,addDownvoter,addUpvoter,addComment,getReview}  from './../../services/api'
 
 // Class for a Review Component
 class Review extends React.Component {
@@ -15,15 +18,17 @@ class Review extends React.Component {
   // used to bind the implemented methods to this class that need to access variables of defined inside the constructor.
   constructor(props) {
     super(props)
-    this.state = { newComment: "", upvotes: 0, downvotes: 0};
+    this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
     this.newComContent = this.newComContent.bind(this)
     this.addCommentFunc = this.addCommentFunc.bind(this)
     this.removeReview = this.removeReview.bind(this)
     this.incrementUpvote = this.incrementUpvote.bind(this)
     this.incrementDownvote = this.incrementDownvote.bind(this)
+    this.getCommentsSection = this.getCommentsSection.bind(this)
   }
 
   async componentDidMount() {
+    this.getCommentsSection()
     let upvotes = await getUpvoters(this.props.reviewId)
     let downvotes = await getDownvoters(this.props.reviewId)
     upvotes = upvotes.data.length
@@ -38,8 +43,24 @@ class Review extends React.Component {
     this.setState({newComment:event.target.value})
   }
 
-  addCommentFunc() {
-    console.log("add comment")
+  // adds a comment to the review and to the db
+  async addCommentFunc(reviewId, user, content) {
+    if (this.state.newComment.trim() != "") {
+      var newCom = {username: user, date: new Date().toLocaleString(), content: content}
+    }
+    const commentAdded = await addComment(newCom, reviewId)
+    let review = await getReview(this.props.reviewId)
+    review = review.data
+    this.setState({comments: review.comments})
+    this.commentForm.reset()
+    this.getCommentsSection()
+  }
+
+  // Gets the comments for the review from the db using api call
+  async getCommentsSection() {
+    let review = await getReview(this.props.reviewId)
+    review = review.data
+    this.setState({comments: review.comments})
   }
 
   removeReview(queue, review) {
@@ -82,13 +103,15 @@ class Review extends React.Component {
   render() {
 
     let profile_url = '';
-    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, commentsSection, queueComponent} = this.props;
+    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, queueComponent} = this.props;
+
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
     }
     else {
       profile_url = '/ProfileView/'
     }
+
     if (admin){
       return(
         <div id="review">
@@ -113,18 +136,26 @@ class Review extends React.Component {
           {/* The comments section for each review is displayed below */}
           <div className="comments">
             <h6><b><u>Comments:</u></b></h6>
-            <span>{commentsSection}</span>
+            <span>
+              <div>
+                {this.state.comments.map((com) => (<Comment key={uid(com)}
+                                                            date={com.date}
+                                                            username={com.username}
+                                                            content={com.content}
+                                                            authenticateduser={authenticateduser}/>))}
+              </div>
+            </span>
           </div>
 
           {/* Form into which user can enter a new comment into a post and post it to that review */}
-          <Form className="newCom">
+          <Form className="newCom" ref={commentForm => this.commentForm = commentForm}>
             <Form.Row className="writeCom">
               <Form.Group className="writeIt">
                 <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
               </Form.Group>
               <Form.Group className="postIt">
                 <Button variant="primary"
-                        onClick={() => this.addCommentFunc()}>
+                        onClick={() => this.addCommentFunc(reviewId, authenticateduser, this.state.newComment)}>
                 Post Comment
                 </Button>
               </Form.Group>
@@ -162,18 +193,26 @@ class Review extends React.Component {
           {/* The comments section for each review is displayed below */}
           <div className="comments">
             <h6><b><u>Comments:</u></b></h6>
-            <span>{commentsSection}</span>
+            <span>
+              <div>
+                {this.state.comments.map((com) => (<Comment key={uid(com)}
+                                                            date={com.date}
+                                                            username={com.username}
+                                                            content={com.content}
+                                                            authenticateduser={authenticateduser}/>))}
+              </div>
+            </span>
           </div>
 
           {/* Form into which user can enter a new comment into a post and post it to that review */}
-          <Form className="newCom">
+          <Form className="newCom" ref={commentForm => this.commentForm = commentForm}>
             <Form.Row className="writeCom">
               <Form.Group className="writeIt">
                 <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
               </Form.Group>
               <Form.Group className="postIt">
                 <Button variant="primary"
-                        onClick={() => this.addCommentFunc()}>
+                        onClick={() => this.addCommentFunc(reviewId, authenticateduser, this.state.newComment)}>
                 Post Comment
                 </Button>
               </Form.Group>

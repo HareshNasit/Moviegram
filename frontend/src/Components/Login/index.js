@@ -31,6 +31,8 @@ l
     buttonClick(app){
       // Handles logging into the site.
       login(this, app).then(user => {
+        console.log(user)
+        app.setState({currentUser: user.currentUser})
         if(app.state.currentUser != null){
           this.props.history.push({pathname: "/NewsFeed", 
           state: {username: this.state.username}})

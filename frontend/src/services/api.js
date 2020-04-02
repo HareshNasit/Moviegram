@@ -12,9 +12,9 @@ export const insertUserToMongo = async data => {
     }
 }
 
-// export const getUser =  (id) => {  axios.get(baseURL + '/users/' + id) }
+export const getAllMovies = axios.get(baseURL+'/movies')
 
-export const getKeyMoviePairs = async _ => {
+export const getKeyMoviePairs = async () => {
     try {
         let res = await axios.get(baseURL + '/movies/keypairs')
         return res
@@ -29,7 +29,6 @@ export const getMovie = async id => {
         return res
     } catch (err) {
         console.log(err)
-        return err
     }
 }
 
@@ -40,7 +39,6 @@ export const getGenres = async () => {
         return res
     } catch (err) {
         console.log(err)
-        return err
     }
 }
 
@@ -86,23 +84,10 @@ export const readCookie = async (app) => {
             app.setState({ currentUser: res.data.currentUser });
         }
     } catch (err) {
+        // FOR DEV
+        app.setState({ currentUser: "username1", auth: false});
         console.log(err)
     }
-    // fetch(url)
-    //     .then(res => {
-    //         if (res.status === 200) {
-    //             return res.json();
-    //         }
-    //     })
-    //     .then(json => {
-    //         console.log(json)
-    //         if (json && json.currentUser) {
-    //             app.setState({ currentUser: json.currentUser });
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     });
 };
 
 
@@ -116,27 +101,14 @@ export const login = (loginComp, app) => {
             "Content-Type": "application/json"
         }
     });
-    return new Promise((resolve, reject) => {
     // Send the request with fetch()
-    fetch(request)
+    
+    return fetch(request)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             }
         })
-        .then(json => {
-            if (json && json.currentUser !== undefined) {
-                app.setState({ currentUser: json.currentUser });
-                resolve({ currentUser: json.currentUser })
-            } else {
-                reject("Login failed")
-            }
-        })
-        // .catch(error => {
-        //     console.log(error);
-        //     reject(error)
-        // });
-    })
 };
 
 export const updateUserFollowInfo = async (user) => {
@@ -164,6 +136,8 @@ export const updateUserFollowInfo = async (user) => {
 
 export const getAllReviews = () => axios.get(baseURL + '/reviews')
 
+export const getReview = (id) => axios.get(baseURL + '/reviews/'+id)
+
 export const getUser = (username) => axios.get(baseURL + '/users/'+username)
 
 export const getUserReviews = (username) => axios.get(baseURL + '/reviews'+'/user_reviews/'+username)
@@ -180,7 +154,7 @@ export const addUpvoter = (id, upvoter) => axios.patch(baseURL + '/reviews/add_u
 
 export const addDownvoter = (id, downvoter) => axios.patch(baseURL + '/reviews/add_downvoter/'+id+'/'+downvoter)
 
-export const addReview = async (review, addrevstate) => {
+export const addReview = async (review) => {
     const url = `${baseURL}/reviews/add_review`
     const request = new Request(url, {
         method: "post",
@@ -191,7 +165,27 @@ export const addReview = async (review, addrevstate) => {
         }
     });
     fetch(request).then(res =>{
-        console.log(res)
+        if(!res.ok){
+            throw new Error("Something went wrong...");
+        } else{
+          return true
+        }
+    }).catch(error => {
+        console.log("caught some error please solve me!!")
+    })
+}
+
+export const addComment = async (comment, id) => {
+    const url = `${baseURL}/reviews/add_comment/${id}`
+    const request = new Request(url, {
+        method: "PATCH",
+        body: JSON.stringify(comment),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+    fetch(request).then(res =>{
         if(!res.ok){
             throw new Error("Something went wrong...");
         } else{

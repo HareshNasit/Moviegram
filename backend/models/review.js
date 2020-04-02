@@ -25,7 +25,7 @@ const Reviews = mongoose.model('Reviews', {
     },
     comments: [{username: {type: String,
                            required: true},
-                date: {type:Date, default: Date.now},
+                date: {type:String, default: Date.now},
                 content: {
                     type: String,
                     required: true,

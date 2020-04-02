@@ -1,5 +1,5 @@
-// import all react libraries
 import React from "react";
+import {Link} from 'react-router-dom';
 import "./styles.css";
 
 // Class for a Comment Feed Component
@@ -7,11 +7,23 @@ class Comment extends React.Component {
 
   render() {
 
-    const { datetime, commentContent, authenticateduser } = this.props
-    // { username }
+    const { date, content, username, authenticateduser } = this.props
+
+    let profile_url = '';
+    if (username === authenticateduser) {
+      profile_url = '/UserProfile/'
+    }
+    else {
+      profile_url = '/ProfileView/'
+    }
+
     return (
       <div id="comment">
-        <span>{ datetime } </span><span>| <b><i>{authenticateduser} : </i></b></span><span>{ commentContent }</span>
+        <span>{ date } </span><span>| <b><i>
+        <Link id="link" to={{pathname:profile_url + username, state: { username: authenticateduser, profileUser: username }}}>
+        {username} :
+        </Link>
+        </i></b></span><span>{ content }</span>
       </div>
     );
   }
