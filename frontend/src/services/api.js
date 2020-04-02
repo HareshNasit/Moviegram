@@ -12,7 +12,7 @@ export const insertUserToMongo = async data => {
     }
 }
 
-// export const getUser =  (id) => {  axios.get(baseURL + '/users/' + id) }
+export const getAllMovies = axios.get(baseURL+'/movies')
 
 export const getKeyMoviePairs = async () => {
     try {
