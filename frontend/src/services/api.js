@@ -193,7 +193,6 @@ export const addReview = async (review) => {
         }
     });
     fetch(request).then(res =>{
-        console.log(res)
         if(!res.ok){
             throw new Error("Something went wrong...");
         } else{
@@ -215,7 +214,6 @@ export const addComment = async (comment, id) => {
         }
     });
     fetch(request).then(res =>{
-        console.log(res)
         if(!res.ok){
             throw new Error("Something went wrong...");
         } else{
