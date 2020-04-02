@@ -14,9 +14,8 @@ class Movie extends React.Component {
     }
     async componentDidMount() {
         const res = await getMovie(this.props.match.params.param1)
-        console.log(res)
-        if(!res){
-            if(this.props.app.state.username){
+        if(!res.data){
+            if(this.state.username){
                 this.props.history.push({pathname: "/Newsfeed"})
             }else{
                 this.props.history.push({pathname: "/"})

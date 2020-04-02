@@ -29,7 +29,6 @@ export const getMovie = async id => {
         return res
     } catch (err) {
         console.log(err)
-        return err
     }
 }
 

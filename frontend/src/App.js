@@ -55,8 +55,8 @@ class App extends React.Component {
                             (<ProfileView app={this} {...props} />)}/>
             <Route exact path='/admin' render={(props) =>
                             (<Admin app={this} {...props} />)}/>
-            <Route path="/movie/:param1" component={Movie}></Route>
-            <Route path="/genre/:genre" component={Genre}></Route>
+            <Route path="/movie/:param1" app={this} component={Movie}></Route>
+            <Route path="/genre/:genre" app={this} component={Genre}></Route>
           </Switch>
         </BrowserRouter>
       </div>
