@@ -41,7 +41,7 @@ class Review extends React.Component {
   async addCommentFunc(reviewId, user, content) {
     console.log("adding comment")
     if (this.state.newComment.trim() != "") {
-      var newCom = {username: user, date: new Date().toLocaleString, content: content}
+      var newCom = {username: user, date: new Date().toLocaleString(), content: content}
     }
     const commentAdded = await addComment(newCom, reviewId, this)
   }

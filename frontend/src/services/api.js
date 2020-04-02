@@ -207,7 +207,7 @@ export const addReview = async (review, addrevstate) => {
 export const addComment = async (comment, id, addrevstate) => {
     const url = `${baseURL}/reviews/add_comment/${id}`
     const request = new Request(url, {
-        method: "patch",
+        method: "PATCH",
         body: JSON.stringify(comment),
         headers: {
             Accept: "application/json, text/plain, */*",
