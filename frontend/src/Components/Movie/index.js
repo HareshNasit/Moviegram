@@ -2,7 +2,7 @@
 import React from 'react';
 import './styles.css';
 import MainMenuBar from './../MainMenuBar';
-import {getMovie, readCookie, isUpvoted, addMovieDownvoter, addMovieUpvoter, getReviewsByMovieID} from '../../services/api'
+import {getMovie, readCookie, isUpvoted, addMovieDownvoter, addMovieUpvoter, getReviewsByMovieID, getUserImage} from '../../services/api'
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
@@ -31,8 +31,13 @@ class Movie extends React.Component {
     async componentDidMount() {
         const movie_id = this.props.match.params.param1
         const res = await getMovie(movie_id)
-        const reviews = await getReviewsByMovieID(movie_id)
-        this.setState({reviews: reviews.data})
+        const reviewsData = await getReviewsByMovieID(movie_id)
+        const reviews = reviewsData.data;
+        for (let j =0; j < reviews.length; j++) {
+            const userImg = await getUserImage(reviews[j].username)
+            reviews[j]["image_url"] = userImg.data;
+        }
+        this.setState({reviews: reviews})
 
         if(this.state.currentUser){
             const res2 = await isUpvoted(movie_id, this.state.currentUser)
@@ -40,7 +45,7 @@ class Movie extends React.Component {
             if(res2){
                 if(res2.data.thumbDown){
                     this.setState({thumbDown: true})
-                } 
+                }
                 if(res2.data.thumbUp){
                     this.setState({thumbUp: true})
                 }
@@ -52,7 +57,7 @@ class Movie extends React.Component {
             // }else{
             //     this.props.history.push({pathname: "/"})
             // }
-            
+
         } else{
             this.setState({data: res.data});
         }
@@ -84,7 +89,7 @@ class Movie extends React.Component {
                 data.downvotes -= 1
             }
             this.setState({data: data})
-            
+
         }
     }
 
@@ -123,12 +128,12 @@ class Movie extends React.Component {
         let thumbs;
         if(this.state.currentUser){
             thumbs = <CardContent id="thumbs">
-                        <IconButton 
+                        <IconButton
                          onClick={() => this.downVote()}
                          disabled={this.state.thumbDown}>
                             <ThumbDownIcon  fontSize="large"/>
                         </IconButton>
-                        <IconButton 
+                        <IconButton
                         onClick={() => this.upVote()}
                         disabled={this.state.thumbUp} >
                             <ThumbUpIcon fontSize="large"  />
@@ -152,7 +157,7 @@ class Movie extends React.Component {
                 <Card id="movieContainer">
                     <CardContent id="imgContainer">
                             <img src={this.state.data.imgsrc}
-                            className="movieImage" 
+                            className="movieImage"
                             alt="Movie Image"></img>
                     </CardContent>
                     <CardContent id="movieDetails">
@@ -181,7 +186,7 @@ class Movie extends React.Component {
                                         </Typography>
                                         <CardContent id="stars">
                                         {
-                                            this.state.data.stars.map((obj) => 
+                                            this.state.data.stars.map((obj) =>
                         {return(<Typography key={obj} gutterBottom variant="h6">
                                                 {obj}
                                             </Typography>
@@ -201,7 +206,7 @@ class Movie extends React.Component {
                     authenticateduser= {this.state.currentUser}/>
 
             </div>
-            
+
         </div>
         );
     }
