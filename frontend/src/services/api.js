@@ -39,7 +39,6 @@ export const getGenres = async () => {
         return res
     } catch (err) {
         console.log(err)
-        return err
     }
 }
 
