@@ -57,9 +57,14 @@ class ProfileView extends React.Component {
     else {
       followUnfollowText = "Follow";
     }
+    const reviews = profileUserReviews.data;
+    const image_url = profileUserData.data["image_url"]
+    for(let i=0; i<reviews.length; i++) {
+      reviews[i]["image_url"] = image_url;
+    }
     this.setState({
         username: profileUsername,
-        profilePic: profileUserData.data["image_url"],
+        profilePic: image_url,
         peopleFollow: profileUserData.data["following"],
         peopleFollowing: profileUserData.data["followers"],
         userDescription: profileUserData.data["description"],

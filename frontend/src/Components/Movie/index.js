@@ -2,14 +2,14 @@
 import React from 'react';
 import './styles.css';
 import MainMenuBar from './../MainMenuBar';
-import {getMovie} from '../../services/api'
+import {getMovie, readCookie, isUpvoted, addMovieDownvoter, addMovieUpvoter, getRating} from '../../services/api'
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
+import IconButton from '@material-ui/core/IconButton';
 
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 
@@ -17,14 +17,32 @@ import Typography from "@material-ui/core/Typography";
 class Movie extends React.Component {
     constructor(props) {
         super(props);
+        readCookie(this);
+        this.upVote = this.upVote.bind(this)
+        this.downVote = this.downVote.bind(this)
+
     }
     state = {
-        data: {title: "", imgsrc: "", Director: "", genres: [], stars: []}
+        data: {title: "", imgsrc: "", director: "", genres: [], stars: []},
+        thumbUp: false,
+        thumbDown: false
     }
     async componentDidMount() {
-        const res = await getMovie(this.props.match.params.param1)
-        console.log(res)
-        if(!res.data){
+        const movie_id = this.props.match.params.param1
+        const res = await getMovie(movie_id)
+        if(this.state.currentUser){
+            const res2 = await isUpvoted(movie_id, this.state.currentUser)
+            console.log(res2)
+            if(res2){
+                if(res2.data.thumbDown){
+                    this.setState({thumbDown: true})
+                } 
+                if(res2.data.thumbUp){
+                    this.setState({thumbUp: true})
+                }
+            }
+        }
+        if(!res){
             // if(this.state.username){
             //     this.props.history.push({pathname: "/Newsfeed"})
             // }else{
@@ -47,6 +65,42 @@ class Movie extends React.Component {
         }
         return string
     }
+
+    async upVote(){
+        const movie_id = this.state.data._id
+        const user_id = this.state.currentUser
+
+        const upvoteAdded = await addMovieUpvoter(movie_id, user_id)
+        if(upvoteAdded != null){
+            this.setState({thumbUp: true})
+            this.setState({thumbDown: false})
+            const data = {...this.state.data}
+            data.upvotes += 1
+            data.downvotes -= 1
+            this.setState({data: data})
+            
+        }
+    }
+
+    async downVote(){
+        const movie_id = this.state.data._id
+        const user_id = this.state.currentUser
+
+        const downvoteAdded = await addMovieDownvoter(movie_id, user_id)
+        if(downvoteAdded != null){
+            this.setState({thumbDown: true})
+            this.setState({thumbUp: false})
+            const down = this.state.data.downvotes
+            const data = {...this.state.data}
+            data.upvotes -= 1
+            data.downvotes += 1
+
+            this.setState({data: data})
+
+
+        }
+    }
+
     render() {
         if(this.state.data.title == ""){
             return(<div>
@@ -58,9 +112,34 @@ class Movie extends React.Component {
                 </div>
             </div>);
         }
+        let thumbs;
+        if(this.state.currentUser){
+            thumbs = <CardContent id="thumbs">
+                        <IconButton 
+                         onClick={() => this.downVote()}
+                         disabled={this.state.thumbDown}>
+                            <ThumbDownIcon  fontSize="large"/>
+                        </IconButton>
+                        <IconButton 
+                        onClick={() => this.upVote()}
+                        disabled={this.state.thumbUp} >
+                            <ThumbUpIcon fontSize="large"  />
+                        </IconButton>
+                    </CardContent>
+        }
+        let rating;
+        if(this.state.data.upvotes == 0 && this.state.data.downvotes == 0){
+            rating = "N/A"
+        } else{
+            const up = this.state.data.upvotes
+            const down = this.state.data.downvotes
+
+            rating = Math.round((up+ 1)/(2+up + down)*100) + "%"
+        }
         return(
         <div>
             <MainMenuBar/>
+
             <div id="movieContent">
                 <Card id="movieContainer">
                     <CardContent id="imgContainer">
@@ -82,7 +161,10 @@ class Movie extends React.Component {
                             </CardContent>
                             <CardContent>
                                      <Typography align="center" variant="h4">
-                                            Directed by: {this.state.data.Director}
+                                            Directed by: {this.state.data.director}
+                                        </Typography>
+                                        <Typography align="center" variant="h4">
+                                             Audience Rating: {rating}
                                         </Typography>
                             </CardContent>
                             <CardContent align="center">
@@ -91,59 +173,20 @@ class Movie extends React.Component {
                                         </Typography>
                                         <CardContent id="stars">
                                         {
-                                            this.state.data.stars.map((obj) => {return(<Typography key={obj} gutterBottom variant="h6">
+                                            this.state.data.stars.map((obj) => 
+                        {return(<Typography key={obj} gutterBottom variant="h6">
                                                 {obj}
                                             </Typography>
                                             );})
                                         }
                                         </CardContent>
-                            
                             </CardContent>
+                            {thumbs}
 
                     </CardContent>
                 </Card>
             </div>
-
         </div>
-            
-                // <div className="pageHeaderMovie">
-                //     <MainMenuBar/>
-                //     <div className="movieContent">
-                //         <div className="movieContainer">
-                //             <div className="imgContainer">
-                //                 <img src={this.state.data.imgsrc} className="movieImage" alt="Movie Image"></img>
-                //             </div>
-                //             <div className="contentContainer">
-                //                 <div className="titleContainer">
-                //                     <h1 className="title">{this.state.data.title}</h1>
-                //                 </div>
-                //                 <div className="directorContainer">
-                //                     <h1 className="titleMovie">Directed by {this.state.data.director}</h1>
-                //                 </div>
-                //                 <div id="starringContainer">
-                //                     <h1>Starring</h1>
-                //                     <div className="starringContainerDiv">
-                //                         {
-                //                             this.state.data.stars.map((obj) => {return(<h4
-                //                             className="starringText">
-                //                                 {obj}
-                //                             </h4>);})
-                //                         }
-                //                     </div>
-
-                //                 </div>
-                //                 <div className="ratingContainer">
-                //                     <p className="ratingText">
-                //                         Audience Rating: 50%
-                //                     </p>
-                //                 </div>
-                //                 <div className="descriptionContainerM">
-                //                     <p className="description">{this.state.data.description}</p>
-                //                 </div>
-                //             </div>
-                //        </div>
-                //     </div>
-                //     </div>
         );
     }
 }

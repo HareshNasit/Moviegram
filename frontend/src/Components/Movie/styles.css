@@ -19,7 +19,23 @@
     width: 500px;
 }
 
+#thumbs{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 500px
+}
 
+.thumbContainer{
+    height: 200px;
+    width: 200px;
+}
+
+.thumb{
+    height: 150px;
+    width: 150px;
+}
 
 #movieContent{
     justify-content: center;
@@ -142,30 +158,3 @@
     text-align: center;
 }
 
-
-.starringContainerDiv {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-}
-.starringText{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: medium;
-
-}
-
-.ratingText{
-    font-size: medium;
-}
-
-.descriptionContainerM{
-    border-style: ridge;
-    background-color: lightpink;
-    height: 250px;
-    width: 500px;
-}
-
-.description{
-    font-size: small;
-}
