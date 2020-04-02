@@ -15,10 +15,15 @@ class AddReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = { movie: "",
-                   review: ""};
+                   review: "",
+                   movies: []};
     this.saveReview = this.saveReview.bind(this)
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
+  }
+
+  async componentDidMount() {
+
   }
 
   async saveReview(queue, closeFunc, username) {
