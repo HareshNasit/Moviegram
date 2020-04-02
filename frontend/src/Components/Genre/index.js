@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 class Genre extends React.Component {
     constructor(props) {
         super(props);
+        this.goToMoviePage = this.goToMoviePage.bind(this)
     }
     state = {
         data: [],
@@ -31,7 +32,7 @@ class Genre extends React.Component {
     }
 
     goToMoviePage(id){
-        
+     this.props.history.push({pathname: "/movie/" + id})   
     }
 
     render(){
@@ -56,7 +57,7 @@ class Genre extends React.Component {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
+                            <Button onClick={() => this.goToMoviePage(movie._id)} size="small" color="primary">
                             View
                             </Button>
                         </CardActions>
