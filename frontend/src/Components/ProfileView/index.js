@@ -9,12 +9,14 @@ import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
+import {Link} from 'react-router-dom';
 import profileimgdef from './../MainMenuBar/profile.png';
 import {
   getAllReviews,
   getUser,
   getUserReviews,
-  updateUserFollowInfo
+  updateUserFollowInfo,
+  getUserImage
 } from './../../services/api'
 
 class ProfileView extends React.Component {
@@ -62,11 +64,27 @@ class ProfileView extends React.Component {
     for(let i=0; i<reviews.length; i++) {
       reviews[i]["image_url"] = image_url;
     }
+    const userFollowersList = profileUserData.data["following"]
+    const userFollowingList = profileUserData.data["followers"]
+    const userFollowers = [];
+    const usersFollowing = [];
+    for (let j =0; j < userFollowersList.length; j++) {
+        const userFollower = {username: userFollowersList[j]}
+        const followerUserImg = await getUserImage(userFollowersList[j])
+        userFollower["image_url"] = followerUserImg.data;
+        userFollowers.push(userFollower)
+    }
+    for (let j =0; j < userFollowingList.length; j++) {
+        const userFollowing = {username: userFollowingList[j]}
+        const followingUserImg = await getUserImage(userFollowingList[j])
+        userFollowing["image_url"] = followingUserImg.data;
+        usersFollowing.push(userFollowing)
+    }
     this.setState({
         username: profileUsername,
         profilePic: image_url,
-        peopleFollow: profileUserData.data["following"],
-        peopleFollowing: profileUserData.data["followers"],
+        peopleFollow: userFollowers,
+        peopleFollowing: usersFollowing,
         userDescription: profileUserData.data["description"],
         reviews: profileUserReviews.data,
         followUnfollowText: followUnfollowText
@@ -169,12 +187,22 @@ class ProfileView extends React.Component {
 
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
-    <div key={index}>{person}</div>
+      <div key={index} className="followUserText">
+          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          {person.username}
+          </Link>
+      </div>
     );
 
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
-    <div key={index}>{person}</div>
+      <div key={index} className="followUserText">
+          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          {person.username}
+          </Link>
+      </div>
     );
 
     return (
