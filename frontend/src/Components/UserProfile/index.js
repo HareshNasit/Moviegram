@@ -43,12 +43,16 @@ class UserProfile extends React.Component {
     const username = this.props.location.state.username
     const userData = await getUser(username);
     const userReviewsData = await getUserReviews(username);
-    const userReviews = userReviewsData.data;
+    let userReviews = userReviewsData.data;
     const userImg = await getUserImage(username)
     for (let j =0; j < userReviews.length; j++) {
         userReviews[j]["image_url"] = userImg.data;
     }
-    // console.log(userReviews);
+    userReviews = userReviews.sort((a, b) => {
+      const aDate = new Date(a.date)
+      const bDate = new Date(b.date)
+      return bDate - aDate
+    })
     this.setState({
         username: username,
         profilePic: userData.data["image_url"],

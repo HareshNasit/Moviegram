@@ -19,10 +19,6 @@ class AddReview extends React.Component {
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
   }
 
-  async componentDidMount() {
-
-  }
-
   async saveReview(queue, closeFunc, username) {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
@@ -30,13 +26,8 @@ class AddReview extends React.Component {
       const newReview = { username: username, movie_title: this.state.movie, content: this.state.review,
                           spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
       const added = await addReview(newReview)
-      if (added != null) {
-        const userReviewsData = await getUserReviews(username);
-        const userReviews = userReviewsData.data;
-        console.log(userReviews);
-        queue.setState({reviews: userReviews})
-        closeFunc();
-      }
+      queue.state.reviews.unshift(newReview)
+      closeFunc();
     }
   }
 
@@ -61,7 +52,7 @@ class AddReview extends React.Component {
 
          <div className="add-review">
             <ul>
-              <li className="reviewUserPicLi"><img className="reviewUserPic" src={profileimgdef} alt="User DP"/></li>
+              <li className="reviewUserPicLi"><img className="reviewUserPic" src={profImg} alt="User DP"/></li>
               <li>{username}</li>
             </ul>
             <Form className="reviewForm">
