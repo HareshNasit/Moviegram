@@ -39,7 +39,6 @@ export const getGenres = async () => {
         return res
     } catch (err) {
         console.log(err)
-        return err
     }
 }
 
@@ -85,23 +84,10 @@ export const readCookie = async (app) => {
             app.setState({ currentUser: res.data.currentUser });
         }
     } catch (err) {
+        // FOR DEV
+        app.setState({ currentUser: "username1", auth: false});
         console.log(err)
     }
-    // fetch(url)
-    //     .then(res => {
-    //         if (res.status === 200) {
-    //             return res.json();
-    //         }
-    //     })
-    //     .then(json => {
-    //         console.log(json)
-    //         if (json && json.currentUser) {
-    //             app.setState({ currentUser: json.currentUser });
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     });
 };
 
 
@@ -115,27 +101,14 @@ export const login = (loginComp, app) => {
             "Content-Type": "application/json"
         }
     });
-    return new Promise((resolve, reject) => {
     // Send the request with fetch()
-    fetch(request)
+    
+    return fetch(request)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             }
         })
-        .then(json => {
-            if (json && json.currentUser !== undefined) {
-                app.setState({ currentUser: json.currentUser });
-                resolve({ currentUser: json.currentUser })
-            } else {
-                reject("Login failed")
-            }
-        })
-        // .catch(error => {
-        //     console.log(error);
-        //     reject(error)
-        // });
-    })
 };
 
 export const updateUserFollowInfo = async (user) => {

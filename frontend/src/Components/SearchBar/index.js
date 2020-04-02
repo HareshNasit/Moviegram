@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
     async componentDidMount(){
         const res = await getKeyMoviePairs()
         console.log(res)
-        if(!res.data){
+        if(!res){
             console.log("Backend server is not running.")
             this.setState({data: []})
         } else{
