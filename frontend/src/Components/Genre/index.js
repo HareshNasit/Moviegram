@@ -30,6 +30,10 @@ class Genre extends React.Component {
         }
     }
 
+    goToMoviePage(id){
+        
+    }
+
     render(){
         if(this.state.data == []){
             return(<div>

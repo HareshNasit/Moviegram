@@ -14,10 +14,17 @@ class Movie extends React.Component {
     }
     async componentDidMount() {
         const res = await getMovie(this.props.match.params.param1)
+        console.log(res)
         if(!res){
-            this.props.history.push({pathname: "/NewsFeed"})
+            if(this.props.app.state.users){
+                this.props.history.push({pathname: "/Newsfeed"})
+            }else{
+                this.props.history.push({pathname: "/"})
+            }
+            
+        } else{
+            this.setState({data: res.data});
         }
-        this.setState({data: res.data});
     }
 
     render() {

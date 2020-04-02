@@ -14,7 +14,7 @@ export const insertUserToMongo = async data => {
 
 // export const getUser =  (id) => {  axios.get(baseURL + '/users/' + id) }
 
-export const getKeyMoviePairs = async _ => {
+export const getKeyMoviePairs = async () => {
     try {
         let res = await axios.get(baseURL + '/movies/keypairs')
         return res
