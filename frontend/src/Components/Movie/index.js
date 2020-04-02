@@ -2,7 +2,7 @@
 import React from 'react';
 import './styles.css';
 import MainMenuBar from './../MainMenuBar';
-import {getMovie, readCookie, isUpvoted, addMovieDownvoter, addMovieUpvoter, getRating} from '../../services/api'
+import {getMovie, readCookie, isUpvoted, addMovieDownvoter, addMovieUpvoter, getReviewsByMovieID} from '../../services/api'
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 
@@ -12,7 +12,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
-
+import ReviewsList from '../ReviewsList'
 
 class Movie extends React.Component {
     constructor(props) {
@@ -25,11 +25,15 @@ class Movie extends React.Component {
     state = {
         data: {title: "", imgsrc: "", director: "", genres: [], stars: []},
         thumbUp: false,
-        thumbDown: false
+        thumbDown: false,
+        reviews: []
     }
     async componentDidMount() {
         const movie_id = this.props.match.params.param1
         const res = await getMovie(movie_id)
+        const reviews = await getReviewsByMovieID(movie_id)
+        this.setState({reviews: reviews.data})
+
         if(this.state.currentUser){
             const res2 = await isUpvoted(movie_id, this.state.currentUser)
             console.log(res2)
@@ -141,7 +145,7 @@ class Movie extends React.Component {
             rating = Math.round((up)/(up + down)*100) + "%"
         }
         return(
-        <div>
+        <div id="bigMovieContainer">
             <MainMenuBar/>
 
             <div id="movieContent">
@@ -188,7 +192,16 @@ class Movie extends React.Component {
                             {thumbs}
                     </CardContent>
                 </Card>
+
             </div>
+            <div>
+            <ReviewsList reviews={this.state.reviews}
+                    type={"generic"}
+                    queueComponent={this}
+                    authenticateduser= {this.state.currentUser}/>
+
+            </div>
+            
         </div>
         );
     }
