@@ -56,7 +56,7 @@ class Review extends React.Component {
     this.getCommentsSection()
   }
 
-  // Creates and returns a unique comments section which contains the comments of each different review
+  // Gets the comments for the review from the db using api call
   async getCommentsSection() {
     let review = await getReview(this.props.reviewId)
     review = review.data
