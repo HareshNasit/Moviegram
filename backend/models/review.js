@@ -37,7 +37,8 @@ const Reviews = mongoose.model('Reviews', {
 		upvoters: [{type:String, required:true}],
 		downvoters: [{type:String, required:true}],
 		date: {type: String, required:true},
-		movie_id: {type: Number, required: true}
+		movie_id: {type: Number, required: true},
+		admin: {type: Boolean, default: false}
 })
 
 module.exports = { Reviews }
