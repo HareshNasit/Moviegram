@@ -86,21 +86,6 @@ export const readCookie = async (app) => {
     } catch (err) {
         console.log(err)
     }
-    // fetch(url)
-    //     .then(res => {
-    //         if (res.status === 200) {
-    //             return res.json();
-    //         }
-    //     })
-    //     .then(json => {
-    //         console.log(json)
-    //         if (json && json.currentUser) {
-    //             app.setState({ currentUser: json.currentUser });
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     });
 };
 
 
