@@ -102,7 +102,7 @@ export const login = (loginComp, app) => {
         }
     });
     // Send the request with fetch()
-    
+
     return fetch(request)
         .then(res => {
             if (res.status === 200) {
@@ -134,7 +134,7 @@ export const updateUserFollowInfo = async (user) => {
   // })
 }
 
-export const getAllReviews = () => axios.get(baseURL + '/reviews')
+export const getAllReviews = () => axios.get(baseURL + '/admin')
 
 export const getReview = (id) => axios.get(baseURL + '/reviews/'+id)
 

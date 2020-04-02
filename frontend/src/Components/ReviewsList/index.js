@@ -7,6 +7,7 @@ import "./../universalStyles.css";
 // import all needed Components
 import Review from './../Review';
 import ReviewGeneric from './../ReviewGeneric';
+import ReviewAdmin from './../ReviewAdmin';
 
 
 
@@ -35,12 +36,31 @@ class ReviewsList extends React.Component {
             ))}
           </div>
         );
-      } else {
+      }
+      if (type=="admin"){
+        return (
+          <div className="revs">
+            {reviews.map((review) => (
+              <ReviewAdmin key={uid(review)}
+                      admin={review.admin}
+                      reviewId={review._id}
+                      authenticateduser= {authenticateduser}
+                      datetime={review.date}
+                      username={review.username}
+                      userImg={review.image_url}
+                      movieName={review.movie_title}
+                      reviewContent={review.content}
+                      queueComponent={queueComponent}/>
+            ))}
+          </div>
+        );
+      }
+      else {
         return (
           <div className="revs">
             {reviews.map((review) => (
               <Review key={uid(review)}
-                      admin={false}
+                      admin={review.admin}
                       reviewId={review._id}
                       authenticateduser= {authenticateduser}
                       datetime={review.date}

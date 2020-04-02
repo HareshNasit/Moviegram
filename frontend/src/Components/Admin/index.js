@@ -26,6 +26,7 @@ class Admin extends React.Component{
   async componentDidMount() {
     let allReviews = await getAllReviews()
     allReviews = allReviews.data
+    console.log(allReviews)
     allReviews = allReviews.sort((a, b) => {
       const aDate = new Date(a.date)
       const bDate = new Date(b.date)
@@ -57,6 +58,7 @@ class Admin extends React.Component{
         </div>
 
         <ReviewsList reviews={this.state.reviews}
+                     type = "admin"
                      queueComponent={this}
                      authenticateduser= {username}/>
       </div>

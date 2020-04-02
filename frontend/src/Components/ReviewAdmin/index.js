@@ -1,4 +1,3 @@
-// import all react libraries
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import {Link} from 'react-router-dom';
@@ -11,8 +10,7 @@ import Comment from './../Comment';
 // backend db server api funcs
 import {getUpvoters,getDownvoters,addDownvoter,addUpvoter,addComment,getReview}  from './../../services/api'
 
-// Class for a Review Component
-class Review extends React.Component {
+class AdminReview extends React.Component {
 
   // Constructor function that stores the react STATE variable that holds dynamically changing data. Constructor
   // used to bind the implemented methods to this class that need to access variables of defined inside the constructor.
@@ -112,7 +110,7 @@ class Review extends React.Component {
       profile_url = '/ProfileView/'
     }
 
-    return (
+    return(
       <div id="review">
 
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
@@ -123,6 +121,8 @@ class Review extends React.Component {
           </Link>
           </span>{username}</li>
           <li>{movieName}</li>
+          <li><Button variant="primary" onClick={() => this.removeReview(queueComponent, this)}>
+          Remove Review</Button></li>
         </ul>
 
         {/* Content of the review and the datetime on which it was posted are displayed in the following elements */}
@@ -165,8 +165,9 @@ class Review extends React.Component {
         </div>
 
       </div>
-    );
+    )
+
   }
 }
 
-export default Review;
+export default AdminReview;
