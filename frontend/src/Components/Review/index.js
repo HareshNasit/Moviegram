@@ -51,7 +51,6 @@ class Review extends React.Component {
     const commentAdded = await addComment(newCom, reviewId)
     let review = await getReview(this.props.reviewId)
     review = review.data
-    console.log(review);
     this.setState({comments: review.comments})
     this.commentForm.reset()
     this.getCommentsSection()
