@@ -28,9 +28,7 @@ class Review extends React.Component {
   }
 
   async componentDidMount() {
-    let review = await getReview(this.props.reviewId)
-    review = review.data
-    this.setState({comments: review.comments})
+    this.getCommentsSection()
     let upvotes = await getUpvoters(this.props.reviewId)
     let downvotes = await getDownvoters(this.props.reviewId)
     upvotes = upvotes.data.length
@@ -53,20 +51,17 @@ class Review extends React.Component {
     const commentAdded = await addComment(newCom, reviewId)
     let review = await getReview(this.props.reviewId)
     review = review.data
+    console.log(review);
     this.setState({comments: review.comments})
+    this.commentForm.reset()
+    this.getCommentsSection()
   }
 
   // Creates and returns a unique comments section which contains the comments of each different review
-  getCommentsSection() {
-    const comments = this.state.comments;
-    return (
-      <div>
-        {comments.map((com) => (<Comment key={uid(com)}
-                                       date={com.date}
-                                       username={com.username}
-                                       content={com.content}/>))}
-      </div>
-    )
+  async getCommentsSection() {
+    let review = await getReview(this.props.reviewId)
+    review = review.data
+    this.setState({comments: review.comments})
   }
 
   removeReview(queue, review) {
@@ -142,11 +137,18 @@ class Review extends React.Component {
           {/* The comments section for each review is displayed below */}
           <div className="comments">
             <h6><b><u>Comments:</u></b></h6>
-            <span>{this.getCommentsSection()}</span>
+            <span>
+              <div>
+                {this.state.comments.map((com) => (<Comment key={uid(com)}
+                                                            date={com.date}
+                                                            username={com.username}
+                                                            content={com.content}/>))}
+              </div>
+            </span>
           </div>
 
           {/* Form into which user can enter a new comment into a post and post it to that review */}
-          <Form className="newCom">
+          <Form className="newCom" ref={commentForm => this.commentForm = commentForm}>
             <Form.Row className="writeCom">
               <Form.Group className="writeIt">
                 <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
@@ -191,11 +193,18 @@ class Review extends React.Component {
           {/* The comments section for each review is displayed below */}
           <div className="comments">
             <h6><b><u>Comments:</u></b></h6>
-            <span>{this.getCommentsSection()}</span>
+            <span>
+              <div>
+                {this.state.comments.map((com) => (<Comment key={uid(com)}
+                                                            date={com.date}
+                                                            username={com.username}
+                                                            content={com.content}/>))}
+              </div>
+            </span>
           </div>
 
           {/* Form into which user can enter a new comment into a post and post it to that review */}
-          <Form className="newCom">
+          <Form className="newCom" ref={commentForm => this.commentForm = commentForm}>
             <Form.Row className="writeCom">
               <Form.Group className="writeIt">
                 <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
