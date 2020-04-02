@@ -2,7 +2,7 @@
 const User = require('./../../models/user')
 
 module.exports = async (req, res) => {
-    res.send(req.body.username)
+    // res.send(req.body.username)
     const username = req.body.username
     const isFollowers = req.body.isFollowers
     const followers = req.body.followers

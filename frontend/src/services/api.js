@@ -102,7 +102,7 @@ export const login = (loginComp, app) => {
         }
     });
     // Send the request with fetch()
-    
+
     return fetch(request)
         .then(res => {
             if (res.status === 200) {
@@ -204,7 +204,7 @@ export const addImage = (form, user_id) => {
 
     // The data we are going to send in our request
     const imageData = new FormData(form);
-    console.log(form);
+    // console.log(form);
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
         method: "post",
@@ -229,3 +229,24 @@ export const addImage = (form, user_id) => {
             console.log(error);
         });
 };
+
+export const updateDescription = async (username, newDescription) => {
+  const url = `${baseURL}/users/user_update_description/` + username
+  console.log(newDescription);
+  // const body = {newDescription: newDescription}
+  const request = new Request(url, {
+      method: "put",
+      body: JSON.stringify({newDescription}),
+      headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"}
+  });
+  fetch(request).then(res =>{
+      console.log(res)
+      if(!res.ok){
+          throw new Error("Something went wrong...");
+      } else{
+          console.log("IT WORKSS YAYY");
+      }
+  })
+}

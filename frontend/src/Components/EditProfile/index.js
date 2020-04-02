@@ -4,7 +4,7 @@ import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 // import photo from './ballon_dor.jpg'
 import Modal from 'react-modal';
-import { addImage } from './../../services/api'
+import { addImage, updateDescription } from './../../services/api'
 
 
 // <div className="profileInput">
@@ -89,17 +89,14 @@ class EditProfile extends React.Component {
 
   updateProfile(e, queueComponent, closeFunc) {
     console.log(e.target);
-    if(this.state.newDescription === "" && this.state.profilePic === ""){
+    if(this.state.newDescription === ""){
       console.log("No inputs provided")
     }
     else {
        if (this.state.newDescription !== "") {
-        queueComponent.setState({
-          userDescription: this.state.newDescription});
-      }
-       if (this.state.profilePic !== "") {
-        queueComponent.setState({
-          profilePic: this.state.profilePic});
+         updateDescription(queueComponent.state.username, this.state.newDescription)
+      //   queueComponent.setState({
+      //     userDescription: this.state.newDescription});
       }
     }
     closeFunc()
