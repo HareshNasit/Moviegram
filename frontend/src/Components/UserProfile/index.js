@@ -46,9 +46,26 @@ class UserProfile extends React.Component {
     const userReviewsData = await getUserReviews(username);
     let userReviews = userReviewsData.data;
     const userImg = await getUserImage(username)
+    const userFollowersList = userData.data["following"]
+    const userFollowingList = userData.data["followers"]
     for (let j =0; j < userReviews.length; j++) {
         userReviews[j]["image_url"] = userImg.data;
     }
+    const userFollowers = [];
+    const usersFollowing = [];
+    for (let j =0; j < userFollowersList.length; j++) {
+        const userFollower = {username: userFollowersList[j]}
+        const followerUserImg = await getUserImage(userFollowersList[j])
+        userFollower["image_url"] = followerUserImg.data;
+        userFollowers.push(userFollower)
+    }
+    for (let j =0; j < userFollowingList.length; j++) {
+        const userFollowing = {username: userFollowingList[j]}
+        const followingUserImg = await getUserImage(userFollowingList[j])
+        userFollowing["image_url"] = followingUserImg.data;
+        usersFollowing.push(userFollowing)
+    }
+    // console.log(userFollowers);
     userReviews = userReviews.sort((a, b) => {
       const aDate = new Date(a.date)
       const bDate = new Date(b.date)
@@ -57,8 +74,8 @@ class UserProfile extends React.Component {
     this.setState({
         username: username,
         profilePic: userData.data["image_url"],
-        peopleFollow: userData.data["following"],
-        peopleFollowing: userData.data["followers"],
+        peopleFollow: userFollowers,
+        peopleFollowing: usersFollowing,
         userDescription: userData.data["description"],
         reviews: userReviews
       })
@@ -118,8 +135,9 @@ class UserProfile extends React.Component {
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
-          {person}
+          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          {person.username}
           </Link>
       </div>
     );
@@ -127,20 +145,14 @@ class UserProfile extends React.Component {
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-      <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
-      {person}
-      </Link>
+          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          {person.username}
+          </Link>
       </div>
     );
 
     const username = this.props.location.state.username;
-    // let profile_url = '';
-    // if (username === authenticateduser) {
-    //   profile_url = '/UserProfile/'
-    // }
-    // else {
-    //   profile_url = '/ProfileView/'
-    // }
     return (
       <div id="userProfile">
           <MainMenuBar username={username} />
