@@ -42,7 +42,7 @@ class Movie extends React.Component {
                 }
             }
         }
-        if(!res.data){
+        if(!res){
             // if(this.state.username){
             //     this.props.history.push({pathname: "/Newsfeed"})
             // }else{
