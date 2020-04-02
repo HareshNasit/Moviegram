@@ -84,6 +84,8 @@ export const readCookie = async (app) => {
             app.setState({ currentUser: res.data.currentUser });
         }
     } catch (err) {
+        // FOR DEV
+        app.setState({ currentUser: "username1", auth: false});
         console.log(err)
     }
 };
@@ -107,19 +109,6 @@ export const login = (loginComp, app) => {
                 return res.json();
             }
         })
-    //     .then(json => {
-    //         if (json && json.currentUser !== undefined) {
-    //             app.setState({ currentUser: json.currentUser });
-    //             resolve({ currentUser: json.currentUser })
-    //         } else {
-    //             reject("Login failed")
-    //         }
-    //     })
-    //     // .catch(error => {
-    //     //     console.log(error);
-    //     //     reject(error)
-    //     // });
-    // })
 };
 
 export const updateUserFollowInfo = async (user) => {
