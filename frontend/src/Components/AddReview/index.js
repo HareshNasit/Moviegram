@@ -27,7 +27,7 @@ class AddReview extends React.Component {
     } else {
       const newReview = { username: username, movie_title: this.state.movie, content: this.state.review,
                           spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
-      const added = await addReview(newReview, this)
+      const added = await addReview(newReview)
       if (added != null) {
         const userReviewsData = await getUserReviews(username);
         const userReviews = userReviewsData.data;

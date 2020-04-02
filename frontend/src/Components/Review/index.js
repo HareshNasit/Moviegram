@@ -43,7 +43,7 @@ class Review extends React.Component {
     if (this.state.newComment.trim() != "") {
       var newCom = {username: user, date: new Date().toLocaleString(), content: content}
     }
-    const commentAdded = await addComment(newCom, reviewId, this)
+    const commentAdded = await addComment(newCom, reviewId)
   }
 
   removeReview(queue, review) {

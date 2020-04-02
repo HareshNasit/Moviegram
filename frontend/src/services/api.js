@@ -182,7 +182,7 @@ export const addUpvoter = (id, upvoter) => axios.patch(baseURL + '/reviews/add_u
 
 export const addDownvoter = (id, downvoter) => axios.patch(baseURL + '/reviews/add_downvoter/'+id+'/'+downvoter)
 
-export const addReview = async (review, addrevstate) => {
+export const addReview = async (review) => {
     const url = `${baseURL}/reviews/add_review`
     const request = new Request(url, {
         method: "post",
@@ -204,7 +204,7 @@ export const addReview = async (review, addrevstate) => {
     })
 }
 
-export const addComment = async (comment, id, addrevstate) => {
+export const addComment = async (comment, id) => {
     const url = `${baseURL}/reviews/add_comment/${id}`
     const request = new Request(url, {
         method: "PATCH",
