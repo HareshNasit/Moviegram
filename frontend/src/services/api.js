@@ -99,27 +99,27 @@ export const login = (loginComp, app) => {
             "Content-Type": "application/json"
         }
     });
-    return new Promise((resolve, reject) => {
     // Send the request with fetch()
-    fetch(request)
+    
+    return fetch(request)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
             }
         })
-        .then(json => {
-            if (json && json.currentUser !== undefined) {
-                app.setState({ currentUser: json.currentUser });
-                resolve({ currentUser: json.currentUser })
-            } else {
-                reject("Login failed")
-            }
-        })
-        // .catch(error => {
-        //     console.log(error);
-        //     reject(error)
-        // });
-    })
+    //     .then(json => {
+    //         if (json && json.currentUser !== undefined) {
+    //             app.setState({ currentUser: json.currentUser });
+    //             resolve({ currentUser: json.currentUser })
+    //         } else {
+    //             reject("Login failed")
+    //         }
+    //     })
+    //     // .catch(error => {
+    //     //     console.log(error);
+    //     //     reject(error)
+    //     // });
+    // })
 };
 
 export const updateUserFollowInfo = async (user) => {
