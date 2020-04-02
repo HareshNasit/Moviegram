@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
+import ErrorModal from './../ErrorModal';
 import { addReview,getUserReviews } from './../../services/api'
 
 
@@ -13,15 +14,24 @@ class AddReview extends React.Component {
     super(props);
     this.state = { movie: "",
                    review: "",
-                   movies: []};
+                   movies: [],
+                   turnAlert: false,
+                   error: ""};
     this.saveReview = this.saveReview.bind(this)
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+  }
+
+  closeModal(){
+   this.setState({turnAlert: false})
   }
 
   async saveReview(queue, closeFunc, username) {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
+      this.setState({error: "Cannot post an empty/incomplete review. Make sure to fill in all fields"})
+      this.setState({turnAlert: true})
     } else {
       const newReview = { username: username, movie_title: this.state.movie, content: this.state.review,
                           spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
@@ -73,6 +83,7 @@ class AddReview extends React.Component {
             </Form>
             <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, username)} type="submit">Post Review</Button>
             <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
+            <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert} error={this.state.error}></ErrorModal>
         </div>
 
       </div>

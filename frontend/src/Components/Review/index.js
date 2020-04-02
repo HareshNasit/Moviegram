@@ -141,7 +141,8 @@ class Review extends React.Component {
                 {this.state.comments.map((com) => (<Comment key={uid(com)}
                                                             date={com.date}
                                                             username={com.username}
-                                                            content={com.content}/>))}
+                                                            content={com.content}
+                                                            authenticateduser={authenticateduser}/>))}
               </div>
             </span>
           </div>
@@ -197,7 +198,8 @@ class Review extends React.Component {
                 {this.state.comments.map((com) => (<Comment key={uid(com)}
                                                             date={com.date}
                                                             username={com.username}
-                                                            content={com.content}/>))}
+                                                            content={com.content}
+                                                            authenticateduser={authenticateduser}/>))}
               </div>
             </span>
           </div>
