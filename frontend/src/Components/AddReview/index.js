@@ -2,9 +2,6 @@ import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
-// import ReactDOM from 'react-dom';
-// import Modal from 'react-modal';
-// import functions/api calls for backend and database requets to server
 import { addReview,getUserReviews } from './../../services/api'
 
 
