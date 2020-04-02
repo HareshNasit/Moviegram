@@ -76,7 +76,9 @@ class Movie extends React.Component {
             this.setState({thumbDown: false})
             const data = {...this.state.data}
             data.upvotes += 1
-            data.downvotes -= 1
+            if(data.downvotes != 0){
+                data.downvotes -= 1
+            }
             this.setState({data: data})
             
         }
@@ -92,7 +94,9 @@ class Movie extends React.Component {
             this.setState({thumbUp: false})
             const down = this.state.data.downvotes
             const data = {...this.state.data}
-            data.upvotes -= 1
+            if(data.upvotes != 0){
+                data.upvotes -= 1
+            }
             data.downvotes += 1
 
             this.setState({data: data})
@@ -134,7 +138,7 @@ class Movie extends React.Component {
             const up = this.state.data.upvotes
             const down = this.state.data.downvotes
 
-            rating = Math.round((up+ 1)/(2+up + down)*100) + "%"
+            rating = Math.round((up)/(up + down)*100) + "%"
         }
         return(
         <div>
@@ -182,7 +186,6 @@ class Movie extends React.Component {
                                         </CardContent>
                             </CardContent>
                             {thumbs}
-
                     </CardContent>
                 </Card>
             </div>
