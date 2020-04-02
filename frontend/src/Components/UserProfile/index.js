@@ -45,9 +45,7 @@ class UserProfile extends React.Component {
     const userReviewsData = await getUserReviews(username);
     const userReviews = userReviewsData.data;
     const userImg = await getUserImage(username)
-    console.log(userReviews);
     for (let j =0; j < userReviews.length; j++) {
-        console.log(userReviews[j]);
         userReviews[j]["image_url"] = userImg.data;
     }
     // console.log(userReviews);

@@ -6,26 +6,12 @@ import "./styles.css";
 import "./../universalStyles.css";
 // import all needed Components
 import Review from './../Review';
-import Comment from './../Comment';
 import ReviewGeneric from './../ReviewGeneric';
 
 
 
 // Class for a Review Component
 class ReviewsList extends React.Component {
-
-  // Creates and returns a unique comments section which contains the comments of each different review
-  getCommentsSection(review) {
-    const comments = review.comments;
-    return (
-      <div>
-        {comments.map((com) => (<Comment key={uid(com)}
-                                       date={com.date}
-                                       username={com.username}
-                                       content={com.content}/>))}
-      </div>
-    )
-  }
 
   render() {
 
@@ -45,7 +31,6 @@ class ReviewsList extends React.Component {
                       userImg={review.image_url}
                       movieName={review.movie_title}
                       reviewContent={review.content}
-                      commentsSection={this.getCommentsSection(review, authenticateduser)}
                       queueComponent={queueComponent}/>
             ))}
           </div>
@@ -63,7 +48,6 @@ class ReviewsList extends React.Component {
                       userImg={review.image_url}
                       movieName={review.movie_title}
                       reviewContent={review.content}
-                      commentsSection={this.getCommentsSection(review)}
                       queueComponent={queueComponent}/>
             ))}
           </div>
