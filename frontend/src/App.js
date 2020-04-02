@@ -57,6 +57,7 @@ class App extends React.Component {
                             (<Admin app={this} {...props} />)}/>
             <Route path="/movie/:param1" app={this} component={Movie}></Route>
             <Route path="/genre/:genre" app={this} component={Genre}></Route>
+            <Route render={() => <div>404 Not found</div>} />
           </Switch>
         </BrowserRouter>
       </div>
