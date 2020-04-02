@@ -2,9 +2,12 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import {Link} from 'react-router-dom';
+import { uid } from "react-uid";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
+// import needed components
+import Comment from './../Comment';
 // backend db server api funcs
 import {getUpvoters,getDownvoters,addDownvoter,addUpvoter,addComment,getReview}  from './../../services/api'
 
@@ -15,15 +18,19 @@ class Review extends React.Component {
   // used to bind the implemented methods to this class that need to access variables of defined inside the constructor.
   constructor(props) {
     super(props)
-    this.state = { newComment: "", upvotes: 0, downvotes: 0};
+    this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
     this.newComContent = this.newComContent.bind(this)
     this.addCommentFunc = this.addCommentFunc.bind(this)
     this.removeReview = this.removeReview.bind(this)
     this.incrementUpvote = this.incrementUpvote.bind(this)
     this.incrementDownvote = this.incrementDownvote.bind(this)
+    this.getCommentsSection = this.getCommentsSection.bind(this)
   }
 
   async componentDidMount() {
+    let review = await getReview(this.props.reviewId)
+    review = review.data
+    this.setState({comments: review.comments})
     let upvotes = await getUpvoters(this.props.reviewId)
     let downvotes = await getDownvoters(this.props.reviewId)
     upvotes = upvotes.data.length
@@ -38,12 +45,28 @@ class Review extends React.Component {
     this.setState({newComment:event.target.value})
   }
 
+  // adds a comment to the review and to the db
   async addCommentFunc(reviewId, user, content) {
-    console.log("adding comment")
     if (this.state.newComment.trim() != "") {
       var newCom = {username: user, date: new Date().toLocaleString(), content: content}
     }
     const commentAdded = await addComment(newCom, reviewId)
+    let review = await getReview(this.props.reviewId)
+    review = review.data
+    this.setState({comments: review.comments})
+  }
+
+  // Creates and returns a unique comments section which contains the comments of each different review
+  getCommentsSection() {
+    const comments = this.state.comments;
+    return (
+      <div>
+        {comments.map((com) => (<Comment key={uid(com)}
+                                       date={com.date}
+                                       username={com.username}
+                                       content={com.content}/>))}
+      </div>
+    )
   }
 
   removeReview(queue, review) {
@@ -86,7 +109,7 @@ class Review extends React.Component {
   render() {
 
     let profile_url = '';
-    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, commentsSection, queueComponent} = this.props;
+    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -119,7 +142,7 @@ class Review extends React.Component {
           {/* The comments section for each review is displayed below */}
           <div className="comments">
             <h6><b><u>Comments:</u></b></h6>
-            <span>{commentsSection}</span>
+            <span>{this.getCommentsSection()}</span>
           </div>
 
           {/* Form into which user can enter a new comment into a post and post it to that review */}
@@ -168,7 +191,7 @@ class Review extends React.Component {
           {/* The comments section for each review is displayed below */}
           <div className="comments">
             <h6><b><u>Comments:</u></b></h6>
-            <span>{commentsSection}</span>
+            <span>{this.getCommentsSection()}</span>
           </div>
 
           {/* Form into which user can enter a new comment into a post and post it to that review */}

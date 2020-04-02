@@ -2,11 +2,14 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
 import {Link} from 'react-router-dom';
+import { uid } from "react-uid";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
+// import needed components
+import Comment from './../Comment';
 // backend db server api funcs
-import { getUpvoters,getDownvoters }  from './../../services/api'
+import { getUpvoters,getDownvoters,getReview }  from './../../services/api'
 
 
 
@@ -17,10 +20,14 @@ class ReviewGeneric extends React.Component {
   // used to bind the implemented methods to this class that need to access variables of defined inside the constructor.
   constructor(props) {
     super(props)
-    this.state = { newComment: "", upvotes: 0, downvotes: 0};
+    this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
+    this.getCommentsSection = this.getCommentsSection.bind(this)
   }
 
   async componentDidMount() {
+    let review = await getReview(this.props.reviewId)
+    review = review.data
+    this.setState({comments: review.comments})
     let upvotes = await getUpvoters(this.props.reviewId)
     let downvotes = await getDownvoters(this.props.reviewId)
     upvotes = upvotes.data.length
@@ -29,10 +36,23 @@ class ReviewGeneric extends React.Component {
     this.setState({downvotes: downvotes})
   }
 
+  // Creates and returns a unique comments section which contains the comments of each different review
+  getCommentsSection() {
+    const comments = this.state.comments;
+    return (
+      <div>
+        {comments.map((com) => (<Comment key={uid(com)}
+                                       date={com.date}
+                                       username={com.username}
+                                       content={com.content}/>))}
+      </div>
+    )
+  }
+
   render() {
 
     let profile_url = '';
-    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, commentsSection, queueComponent} = this.props;
+    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -62,7 +82,7 @@ class ReviewGeneric extends React.Component {
         {/* The comments section for each review is displayed below */}
         <div className="comments">
           <h6><b><u>Comments:</u></b></h6>
-          <span>{commentsSection}</span>
+          <span>{this.getCommentsSection()}</span>
         </div>
 
         {/* used to upvote or downvote a review */}
