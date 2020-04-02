@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
 import { Button } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 import MainMenuBar from './../MainMenuBar';
 import ronaldo_dp from './ballon_dor.jpg'
 import messi_dp from './messi_dp.jpg'
@@ -116,16 +117,30 @@ class UserProfile extends React.Component {
 
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
-    <div key={index} className="followUserText">{person}</div>
+      <div key={index} className="followUserText">
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
+          {person}
+          </Link>
+      </div>
     );
 
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
-    <div key={index} className="followUserText">{person}</div>
+      <div key={index} className="followUserText">
+      <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
+      {person}
+      </Link>
+      </div>
     );
 
     const username = this.props.location.state.username;
-
+    // let profile_url = '';
+    // if (username === authenticateduser) {
+    //   profile_url = '/UserProfile/'
+    // }
+    // else {
+    //   profile_url = '/ProfileView/'
+    // }
     return (
       <div id="userProfile">
           <MainMenuBar username={username} />
