@@ -154,6 +154,20 @@ export const addUpvoter = (id, upvoter) => axios.patch(baseURL + '/reviews/add_u
 
 export const addDownvoter = (id, downvoter) => axios.patch(baseURL + '/reviews/add_downvoter/'+id+'/'+downvoter)
 
+export const addMovieUpvoter = (id, upvoter) => axios.patch(baseURL + '/movies/add_upvoter/'+id+'/'+upvoter)
+
+export const addMovieDownvoter = (id, downvoter) => axios.patch(baseURL + '/movies/add_downvoter/'+id+'/'+downvoter)
+
+
+export const isUpvoted = async (movie_id, user_id) => {
+    try {
+        let res = await axios.get(baseURL + "/movies/vote/" + movie_id + '/' + user_id)
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const addReview = async (review) => {
     const url = `${baseURL}/reviews/add_review`
     const request = new Request(url, {
@@ -250,3 +264,14 @@ export const updateDescription = async (username, newDescription) => {
       }
   })
 }
+
+
+export const getRating = async id =>{
+    try {
+        let res = await axios.get(baseURL + '/movies/rating/' + id)
+        return res
+    } catch (err) {
+        console.log(err)
+    }
+}
+
