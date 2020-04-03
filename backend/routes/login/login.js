@@ -11,7 +11,6 @@ module.exports = async (req, res) => {
     // by their email and password
 
     User.getUserByUsernamePassword(username, password).then((user) => {
-
 	    if (!user) {
             res.redirect('/login');
         } else {

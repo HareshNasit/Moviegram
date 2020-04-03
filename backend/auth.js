@@ -18,8 +18,16 @@ const authenticate = (req, res, next) => {
 	}
 }
 
-const sessionCheckerRequestUsername = (req, res, next) => {
-    if (req.session.user != req.username) {
+const sessionCheckerReqUserParam = (req, res, next) => {
+    if (!req.session.user || req.session.user != req.params.username) {
+        res.redirect('/'); 
+    } else {
+        next(); // next() moves on to the route.
+    }
+};
+
+const sessionCheckerReqUserBody = (req, res, next) => {
+    if (!req.session.user || req.session.user != req.body.username) {
         res.redirect('/'); 
     } else {
         next(); // next() moves on to the route.
@@ -28,6 +36,7 @@ const sessionCheckerRequestUsername = (req, res, next) => {
 
 const sessionCheckerAdmin = (req, res, next) => {
     if (req.session.user != "admin") {
+		console.log(req.session)
         res.redirect('/'); 
     } else {
         next(); // next() moves on to the route.
@@ -36,4 +45,4 @@ const sessionCheckerAdmin = (req, res, next) => {
 
 
 
-module.exports = { sessionCheckerRequestUsername, authenticate, sessionCheckerAdmin}
+module.exports = { sessionCheckerReqUserBody, sessionCheckerReqUserParam, authenticate, sessionCheckerAdmin}
