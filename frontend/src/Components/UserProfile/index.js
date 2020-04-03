@@ -162,7 +162,7 @@ class UserProfile extends React.Component {
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <img className="followUserPic" src={person.image_url}/>
           <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.currentUser, profileUser: person.username }}}>
           {person.username}
           </Link>
@@ -172,7 +172,7 @@ class UserProfile extends React.Component {
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <img className="followUserPic" src={person.image_url}/>
           <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.currentUser, profileUser: person.username }}}>
           {person.username}
           </Link>
