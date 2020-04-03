@@ -1,5 +1,5 @@
 
-.searchMovieform {
+#searchMovieform, #searchGenreform {
     width: 1000px;
     position: relative;
     margin-left: auto;
@@ -11,7 +11,7 @@
     color: black;
 }
 
-.pageHeader {
+#pageHeaderNF {
     position: relative;
     width: 1000px;
     top: 35px;
@@ -19,7 +19,7 @@
     margin-right: auto;
 }
 
-.headerText {
+#headerTextNF {
 	text-align: center;
 	font-family: Impact, Charcoal, sans-serif;
 	font-size: 45px;
