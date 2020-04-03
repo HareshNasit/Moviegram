@@ -99,12 +99,12 @@ export const readCookie = (app) => {
     .then(json => {
         if (json && json.currentUser) {
             app.setState({ currentUser: json.currentUser });
-        } 
+        }
     })
     .catch(error => {
         app.setState({ currentUser: "username1" });
         console.log(error);
-        
+
     });
 };
 
