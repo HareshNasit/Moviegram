@@ -47,8 +47,8 @@ class NewsFeedGeneric extends React.Component {
         <MainMenuBar username={authenticateduser}/>
 
           {/*Title of the review news feed page */}
-          <div className="pageHeader">
-          <h3 className="headerText">All Reviews</h3>
+          <div id="pageHeaderNFG">
+          <h3 id="headerTextNFG">All Reviews</h3>
           </div>
 
           {/* Reviews List here to display all reviews from friends of current user */}

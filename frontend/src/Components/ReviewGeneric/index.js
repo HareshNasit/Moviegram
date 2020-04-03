@@ -70,7 +70,7 @@ class ReviewGeneric extends React.Component {
         <ul>
           <li>
           <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
-          <span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
+          <span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
           </Link>{username}
           </li>
 
@@ -82,19 +82,19 @@ class ReviewGeneric extends React.Component {
         </ul>
 
         {/* Content of the review and the datetime on which it was posted are displayed in the following elements */}
-        <span className="content">{reviewContent}</span>
-        <span className="datetime">Posted on : {datetime}</span>
+        <span id="contentRG">{reviewContent}</span>
+        <span id="datetimeRG">Posted on : {datetime}</span>
 
         {/* The comments section for each review is displayed below */}
-        <div className="comments">
+        <div id="commentsRG">
           <h6><b><u>Comments:</u></b></h6>
           <span>{this.getCommentsSection()}</span>
         </div>
 
         {/* used to upvote or downvote a review */}
-        <div className="votes">
-          <Button className="votes-up" variant="primary">Upvotes ({this.state.upvotes})</Button>
-          <Button className="votes-down" variant="primary">Downvotes ({this.state.downvotes})</Button>
+        <div>
+          <Button id="votes-upRG" variant="primary">Upvotes ({this.state.upvotes})</Button>
+          <Button id="votes-downRG" variant="primary">Downvotes ({this.state.downvotes})</Button>
         </div>
 
       </div>
