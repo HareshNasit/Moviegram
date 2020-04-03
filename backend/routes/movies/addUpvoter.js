@@ -4,7 +4,7 @@ const { Movies } = require('./../../models/movie')
 module.exports = async (req, res) => {
 
     const movie_id = req.params.id
-    const upvoter = req.params.upvoter
+    const upvoter = req.params.username
 
   	Movies.findById(movie_id).then((movie) => {
   		if (!movie) {

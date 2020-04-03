@@ -13,7 +13,7 @@ app.get('/vote/:id/:upvoter', require('./get_voter'))
 app.get('/rating/:id', require('./getRating'))
 
 // Routes for modifying upvoting and downvoting
-app.patch('/add_upvoter/:id/:upvoter', require('./addUpvoter'))
-app.patch('/add_downvoter/:id/:downvoter', require('./addDownvoter'))
+app.patch('/add_upvoter/:id/:username', require('./addUpvoter'))
+app.patch('/add_downvoter/:id/:username', require('./addDownvoter'))
 
 /*******************************************************/

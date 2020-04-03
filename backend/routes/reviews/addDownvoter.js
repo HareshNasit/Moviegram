@@ -5,7 +5,7 @@ const { Reviews } = require('./../../models/review')
 module.exports = async (req, res) => {
 
     const rev_id = req.params.id
-    const downvoter = req.params.downvoter
+    const downvoter = req.params.username
 
     if (!ObjectID.isValid(rev_id)) {
   		res.status(404).send()
