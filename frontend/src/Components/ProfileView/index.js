@@ -261,8 +261,8 @@ class ProfileView extends React.Component {
               </div>
               <div id="infoStats">
                 <span id="totalReviews"> {this.state.reviews.length} </span>Reviews
-                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollowing.length} </span>Followers
-                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollow.length} </span>Following
+                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollowing.length} Followers</span>
+                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollow.length} Following</span>
               </div>
               <div>
               <br/>
