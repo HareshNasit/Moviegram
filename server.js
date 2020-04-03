@@ -58,7 +58,7 @@ app.use('/api/movies', require('./backend/routes/movies'))
 app.use('/api/reviews', require('./backend/routes/reviews'))
 app.use('/api/signup', require('./backend/routes/signup'))
 app.use('/api/login', require('./backend/routes/login'))
-app.use('/api/admin', require('./backend/routes/admin')
+app.use('/api/admin', require('./backend/routes/admin'))
 
 /*** Webpage routes below **********************************/
 // Serve the build
