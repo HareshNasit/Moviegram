@@ -117,11 +117,12 @@ class Review extends React.Component {
 
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
-          <li><span className="reviewUserPicLi">
+          <li><span>
           <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
           <img className="reviewUserPic" src={userImg} alt="User DP"/>
           </Link>
-          </span>{username}</li>
+          </span>
+          {username}</li>
           <li>
             <Link id="link" to={{pathname: "/movie/" + movieId, state: { currentUser: authenticateduser }}}>
               {movieName}
@@ -130,11 +131,11 @@ class Review extends React.Component {
         </ul>
 
         {/* Content of the review and the datetime on which it was posted are displayed in the following elements */}
-        <span className="content">{reviewContent}</span>
-        <span className="datetime">Posted on : {datetime}</span>
+        <span id="contentR">{reviewContent}</span>
+        <span id="datetimeR">Posted on : {datetime}</span>
 
         {/* The comments section for each review is displayed below */}
-        <div className="comments">
+        <div id="commentsR">
           <h6><b><u>Comments:</u></b></h6>
           <span>
             <div>
@@ -148,12 +149,12 @@ class Review extends React.Component {
         </div>
 
         {/* Form into which user can enter a new comment into a post and post it to that review */}
-        <Form className="newCom" ref={commentForm => this.commentForm = commentForm}>
-          <Form.Row className="writeCom">
-            <Form.Group className="writeIt">
-              <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
+        <Form id="newCom" ref={commentForm => this.commentForm = commentForm}>
+          <Form.Row id="writeCom">
+            <Form.Group id="writeIt">
+              <Form.Control type="newComment" placeholder="Write a Comment" id="comBarR" onChange={this.newComContent}/>
             </Form.Group>
-            <Form.Group className="postIt">
+            <Form.Group>
               <Button variant="primary"
                       onClick={() => this.addCommentFunc(reviewId, authenticateduser, this.state.newComment)}>
               Post Comment
@@ -163,9 +164,9 @@ class Review extends React.Component {
         </Form>
 
         {/* used to upvote or downvote a review */}
-        <div className="votes">
-          <Button className="votes-up" variant="primary" onClick={() => this.incrementUpvote(reviewId, authenticateduser)}>Upvote ({this.state.upvotes})</Button>
-          <Button className="votes-down" variant="primary" onClick={() => this.incrementDownvote(reviewId, authenticateduser)}>Downvote ({this.state.downvotes})</Button>
+        <div>
+          <Button id="votes-upR" variant="primary" onClick={() => this.incrementUpvote(reviewId, authenticateduser)}>Upvote ({this.state.upvotes})</Button>
+          <Button id="votes-downR" variant="primary" onClick={() => this.incrementDownvote(reviewId, authenticateduser)}>Downvote ({this.state.downvotes})</Button>
         </div>
 
       </div>

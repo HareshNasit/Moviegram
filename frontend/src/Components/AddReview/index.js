@@ -73,19 +73,19 @@ class AddReview extends React.Component {
     const { queueComponent, cancelFunction, profImg, authenticateduser } = this.props
 
     return (
-      <div id="addreviewmain">
+      <div id="addRevMain">
 
-         <div className="pageHeader">
-            <h3 className="headerText">Add a New Review</h3>
+         <div id="pageTitle">
+            <h3 id="header">Add a New Review</h3>
          </div>
 
-         <div className="add-review">
+         <div id="add-review">
             <ul>
-              <li className="reviewUserPicLi"><img className="reviewUserPic" src={profImg} alt="User DP"/></li>
+              <li><img className="reviewUserPic" src={profImg} alt="User DP"/></li>
               <li>{authenticateduser}</li>
             </ul>
 
-            <div className="reviewMovieName">
+            <div id="reviewMovieName">
               <span>Movie</span>
               <ReactSearchBox
                 placeholder="Movie Name"
@@ -93,20 +93,20 @@ class AddReview extends React.Component {
                 onSelect={event =>{ this.handleMovieSelectEvent(event.key) }}/>
             </div>
 
-            <Form className="reviewForm">
+            <Form id="addReviewForm">
               <Form.Group controlId="review.reviewContent">
                 <Form.Label>Review</Form.Label>
                 <Form.Control type="review" as="textarea" rows="8" placeholder="Add your Review here" onChange={this.handleReviewContentChange}/>
               </Form.Group>
               <Form.Group controlId="review.spoiler">
-                <Form.Check type="checkbox" className="spoilerCheck">
+                <Form.Check type="checkbox" id="spoilerCheck">
                   <Form.Check.Input type="checkbox" isValid />
                   <Form.Check.Label>Spoilers?</Form.Check.Label>
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, this.state.currentUser)} type="submit">Post Review</Button>
-            <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
+            <Button variant="primary" id="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, this.state.currentUser)} type="submit">Post Review</Button>
+            <Button variant="primary" id="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
             <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert} error={this.state.error}></ErrorModal>
         </div>
 
