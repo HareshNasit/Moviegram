@@ -19,11 +19,12 @@ class NewsFeedScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {reviews: []};
-    readCookie(this)
+    
   }
 
   async componentDidMount() {
     // get all the reviews of the friends of the current user to display them in the NewsFeed
+    await readCookie(this)
     const authenticateduser = this.state.currentUser
     const currUserFriendsTemp = await getFriendsOfUser(authenticateduser)
     const currUserFriends = currUserFriendsTemp.data
@@ -48,9 +49,7 @@ class NewsFeedScreen extends React.Component {
   }
 
   render() {
-
     const authenticateduser = this.state.currentUser;
-    console.log(authenticateduser);
     return (
       <div id="pageFeed">
 
