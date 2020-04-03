@@ -106,6 +106,7 @@ class UserProfile extends React.Component {
         favoriteGenres: favGenText
       })
     Modal.setAppElement('body');
+    console.log(userReviews)
   }
 
   updateProfileClick () {
