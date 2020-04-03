@@ -43,7 +43,7 @@
 	font-size: 30px;
 	/* font-family: "Comic Sans MS", cursive, sans-serif; */
 }
-.editButton {
+.editButtonUserProfile {
 	margin-left: 50px;
 	margin-bottom: 10px;
 }
@@ -161,7 +161,7 @@
 	margin-top: 0px; */
 }
 
-.editGenres {
+/* .editGenres {
 	margin-left: 10px;
 	margin-bottom: 10px;
-}
+} */
