@@ -134,7 +134,7 @@ export const updateUserFollowInfo = async (user) => {
   // })
 }
 
-export const getAllReviews = () => axios.get(baseURL + '/admin')
+export const getAllReviews = () => axios.get(baseURL + '/reviews')
 
 export const getReview = (id) => axios.get(baseURL + '/reviews/'+id)
 
@@ -274,4 +274,3 @@ export const getRating = async id =>{
         console.log(err)
     }
 }
-
