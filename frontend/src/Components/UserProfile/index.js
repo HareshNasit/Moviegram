@@ -11,14 +11,13 @@ import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
-import { getAllReviews, getUser, getUserReviews, getUserImage } from './../../services/api'
+import { getAllReviews, getUser, getUserReviews, getUserImage, readCookie } from './../../services/api'
 
 class UserProfile extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
     this.state = {
-      username: this.props.location.state.username,
       profilePic: null,
       showModalFollowing: false,
       showModalFollows: false,
@@ -27,7 +26,8 @@ class UserProfile extends React.Component {
       peopleFollow: [],
       peopleFollowing: [],
       showUpdateProfile: false,
-      userDescription: ""
+      userDescription: "",
+      favoriteGenres: ""
     };
     this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -40,27 +40,55 @@ class UserProfile extends React.Component {
   }
 
   async componentDidMount() {
+    await readCookie(this)
     const reviews = await getAllReviews();
-    const username = this.props.location.state.username
+    const username = this.state.currentUser
     const userData = await getUser(username);
     const userReviewsData = await getUserReviews(username);
     let userReviews = userReviewsData.data;
     const userImg = await getUserImage(username)
+    const userFollowersList = userData.data["following"]
+    const userFollowingList = userData.data["followers"]
     for (let j =0; j < userReviews.length; j++) {
         userReviews[j]["image_url"] = userImg.data;
     }
+    const userFollowers = [];
+    const usersFollowing = [];
+    for (let j =0; j < userFollowersList.length; j++) {
+        const userFollower = {username: userFollowersList[j]}
+        const followerUserImg = await getUserImage(userFollowersList[j])
+        userFollower["image_url"] = followerUserImg.data;
+        userFollowers.push(userFollower)
+    }
+    for (let j =0; j < userFollowingList.length; j++) {
+        const userFollowing = {username: userFollowingList[j]}
+        const followingUserImg = await getUserImage(userFollowingList[j])
+        userFollowing["image_url"] = followingUserImg.data;
+        usersFollowing.push(userFollowing)
+    }
+    // console.log(userFollowers);
     userReviews = userReviews.sort((a, b) => {
       const aDate = new Date(a.date)
       const bDate = new Date(b.date)
       return bDate - aDate
     })
+    let favGenText = "";
+    const favoriteGenres = userData.data["favoriteGenres"]
+    for (const key of Object.keys(favoriteGenres)) {
+        if (favoriteGenres[key]) {
+          favGenText = favGenText + key +  ", "
+        }
+    }
+    favGenText = favGenText.slice(0,favGenText.length - 2)
+
     this.setState({
-        username: username,
+        currentUser: username,
         profilePic: userData.data["image_url"],
-        peopleFollow: userData.data["following"],
-        peopleFollowing: userData.data["followers"],
+        peopleFollow: userFollowers,
+        peopleFollowing: usersFollowing,
         userDescription: userData.data["description"],
-        reviews: userReviews
+        reviews: userReviews,
+        favoriteGenres: favGenText
       })
     Modal.setAppElement('body');
   }
@@ -118,8 +146,9 @@ class UserProfile extends React.Component {
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
-          {person}
+          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          {person.username}
           </Link>
       </div>
     );
@@ -127,20 +156,15 @@ class UserProfile extends React.Component {
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-      <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
-      {person}
-      </Link>
+          <img className="followUserPic" src={person.image_url} alt="User DP"/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          {person.username}
+          </Link>
       </div>
     );
 
-    const username = this.props.location.state.username;
-    // let profile_url = '';
-    // if (username === authenticateduser) {
-    //   profile_url = '/UserProfile/'
-    // }
-    // else {
-    //   profile_url = '/ProfileView/'
-    // }
+    const username = this.state.currentUser;
+
     return (
       <div id="userProfile">
           <MainMenuBar username={username} />
@@ -160,7 +184,7 @@ class UserProfile extends React.Component {
                  contentLabel="Minimal Modal Example"
                  >
                  <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={this.state.profilePic}
-                            username={username}
+                            authenticateduser={username}
                  />
                 </Modal>
 
@@ -200,12 +224,12 @@ class UserProfile extends React.Component {
               </div>
               <div id="infoStats">
                 <span id="totalReviews"> {this.state.reviews.length} </span>Reviews
-                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollowing.length} </span>Followers
-                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollow.length} </span>Following
+                <span id="totalFollowers" onClick={this.handleOpenFollowersModal}>{this.state.peopleFollowing.length} Followers</span>
+                <span id="totalFollowing" onClick={this.handleOpenFollowingModal}>{this.state.peopleFollow.length} Following</span>
               </div>
               <div>
               <br/>
-              Favourite Genres : Action, Drama, Sports, Thriller
+              Favourite Genres : {this.state.favoriteGenres}
               </div>
               <div id="userDescription">
                 {this.state.userDescription}

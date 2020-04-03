@@ -44,7 +44,8 @@ class ReviewGeneric extends React.Component {
         {comments.map((com) => (<Comment key={uid(com)}
                                        date={com.date}
                                        username={com.username}
-                                       content={com.content}/>))}
+                                       content={com.content}
+                                       authenticateduser={this.props.authenticateduser}/>))}
       </div>
     )
   }
@@ -52,7 +53,8 @@ class ReviewGeneric extends React.Component {
   render() {
 
     let profile_url = '';
-    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, queueComponent} = this.props;
+    const { admin, reviewId, authenticateduser, datetime, username,
+            userImg, movieName, movieId, reviewContent, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -67,12 +69,16 @@ class ReviewGeneric extends React.Component {
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li>
-          <Link to={{pathname:profile_url +username, state: { username: authenticateduser, profileUser: username }}}>
+          <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
           <span className="reviewUserPicLi"><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
           </Link>{username}
           </li>
 
-          <li>{movieName}</li>
+          <li>
+            <Link id="link" to={{pathname: "/movie/" + movieId, state: { currentUser: authenticateduser }}}>
+              {movieName}
+            </Link>
+          </li>
         </ul>
 
         {/* Content of the review and the datetime on which it was posted are displayed in the following elements */}
