@@ -7,10 +7,6 @@ import {Modal } from 'react-bootstrap';
 
 
 class GenreSelector extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-
     render(){
         return(
         <Modal

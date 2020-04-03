@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';

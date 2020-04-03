@@ -65,7 +65,7 @@ class Movie extends React.Component {
 
     makeGenresString(genres_object){
         const genres = Object.keys(genres_object).filter((val) => genres_object[val])
-        if(genres == []){
+        if(genres === []){
             return "None"
         }
         let string = genres[0]
@@ -80,12 +80,12 @@ class Movie extends React.Component {
         const user_id = this.state.currentUser
 
         const upvoteAdded = await addMovieUpvoter(movie_id, user_id)
-        if(upvoteAdded != null){
+        if(upvoteAdded !== null){
             this.setState({thumbUp: true})
             this.setState({thumbDown: false})
             const data = {...this.state.data}
             data.upvotes += 1
-            if(data.downvotes != 0){
+            if(data.downvotes !== 0){
                 data.downvotes -= 1
             }
             this.setState({data: data})
@@ -98,12 +98,11 @@ class Movie extends React.Component {
         const user_id = this.state.currentUser
 
         const downvoteAdded = await addMovieDownvoter(movie_id, user_id)
-        if(downvoteAdded != null){
+        if(downvoteAdded !== null){
             this.setState({thumbDown: true})
             this.setState({thumbUp: false})
-            const down = this.state.data.downvotes
             const data = {...this.state.data}
-            if(data.upvotes != 0){
+            if(data.upvotes !== 0){
                 data.upvotes -= 1
             }
             data.downvotes += 1
@@ -115,7 +114,7 @@ class Movie extends React.Component {
     }
 
     render() {
-        if(this.state.data.title == ""){
+        if(this.state.data.title === ""){
             return(<div>
                 <MainMenuBar username={this.state.currentUser}/>
                 <div>
@@ -142,7 +141,7 @@ class Movie extends React.Component {
         }
 
         let reviews;
-        if(this.state.reviews == []){
+        if(this.state.reviews === []){
             reviews = <ReviewsList reviews={this.state.reviews}
             type={"generic"}
             queueComponent={this}
@@ -150,7 +149,7 @@ class Movie extends React.Component {
         }
 
         let rating;
-        if(this.state.data.upvotes == 0 && this.state.data.downvotes == 0){
+        if(this.state.data.upvotes === 0 && this.state.data.downvotes === 0){
             rating = "N/A"
         } else{
             const up = this.state.data.upvotes

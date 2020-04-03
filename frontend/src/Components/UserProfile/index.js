@@ -4,9 +4,6 @@ import "./../universalStyles.css"
 import { Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import MainMenuBar from './../MainMenuBar';
-import ronaldo_dp from './ballon_dor.jpg'
-import messi_dp from './messi_dp.jpg'
-import admin_dp from './admin_dp.jpg'
 import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';

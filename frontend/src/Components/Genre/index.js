@@ -36,7 +36,7 @@ class Genre extends React.Component {
     }
 
     render(){
-        if(this.state.data == []){
+        if(this.state.data === []){
             return(<div>
                 <MainMenuBar></MainMenuBar>
                 <div>404 No Movies With This Genre Were Found</div>
