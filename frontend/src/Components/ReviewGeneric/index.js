@@ -63,15 +63,25 @@ class ReviewGeneric extends React.Component {
       profile_url = '/ProfileView/'
     }
 
+    const nulUserImage = () => {
+      if (authenticateduser==null) {
+        return (<span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>);
+      } else if (authenticateduser != null) {
+        return (
+          <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
+          <span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
+          </Link>
+        )
+      }
+    }
+
     return (
       <div id="review">
 
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li>
-          <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
-          <span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
-          </Link>{username}
+            {nulUserImage}{username}
           </li>
 
           <li>
