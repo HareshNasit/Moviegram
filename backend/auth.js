@@ -20,7 +20,15 @@ const authenticate = (req, res, next) => {
 
 const sessionCheckerRequestUsername = (req, res, next) => {
     if (req.session.user == req.username) {
-        res.redirect('/'); // redirect to dashboard if logged in.
+        res.redirect('/'); 
+    } else {
+        next(); // next() moves on to the route.
+    }
+};
+
+const sessionCheckerAdmin = (req, res, next) => {
+    if (req.session.user == "admin") {
+        res.redirect('/'); 
     } else {
         next(); // next() moves on to the route.
     }
@@ -28,4 +36,4 @@ const sessionCheckerRequestUsername = (req, res, next) => {
 
 
 
-module.exports = { sessionCheckerRequestUsername, authenticate}
+module.exports = { sessionCheckerRequestUsername, authenticate, sessionCheckerAdmin}
