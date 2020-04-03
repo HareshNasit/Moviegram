@@ -3,7 +3,7 @@ import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 import ErrorModal from './../ErrorModal';
-import { addReview,getUserReviews } from './../../services/api'
+import { addReview,getUserReviews,getMovieByName } from './../../services/api'
 
 class AddReview extends React.Component {
 
@@ -26,12 +26,13 @@ class AddReview extends React.Component {
 
   async saveReview(queue, closeFunc, authenticateduser) {
     if(this.state.newComment === "" || this.state.movie === ""){
-      console.log("Can't post empty review")
       this.setState({error: "Cannot post an empty/incomplete review. Make sure to fill in all fields"})
       this.setState({turnAlert: true})
     } else {
+      let movie = await getMovieByName(this.state.movie)
+      movie = movie.data
       const newReview = { username: authenticateduser, movie_title: this.state.movie, content: this.state.review,
-                          spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
+                          spoilers: false, date: new Date().toLocaleString(), movie_id: movie._id}
       const added = await addReview(newReview)
       queue.state.reviews.unshift(newReview)
       closeFunc();
