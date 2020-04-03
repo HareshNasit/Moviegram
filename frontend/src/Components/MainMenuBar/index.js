@@ -7,6 +7,7 @@ import newsFeedimg from './newsFeed.png'
 import profileimg from './profile.png'
 import adminDashboard from './admin-dashboard.png'
 import backBtn from './back-btn.png'
+import newsGeneric from './newsGeneric.png'
 
 class MainMenuBar extends React.Component {
 
@@ -40,6 +41,12 @@ class MainMenuBar extends React.Component {
                 </Link>
               </li>
 
+              <li>
+                <Link to={{pathname:'/NewsFeedGeneric', state: { currentUser: username }}}>
+                  <img src={newsGeneric} alt="News Feed Generic" className="mainMenu-btn"/>
+                </Link>
+              </li>
+
             </ul>
           </div>
 
@@ -60,6 +67,12 @@ class MainMenuBar extends React.Component {
               <li>
                 <Link to={{pathname:'/UserProfile/'+ username, state: { username: username }}}>
                   <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
+                </Link>
+              </li>
+
+              <li>
+                <Link to={{pathname:'/NewsFeedGeneric', state: { currentUser: username }}}>
+                  <img src={newsGeneric} alt="News Feed Generic" className="mainMenu-btn"/>
                 </Link>
               </li>
 
