@@ -107,7 +107,7 @@ class SignupScreen extends React.Component {
           </Form.Group>
 
           <Button variant="outline-primary"
-                    className="addGenreButton"
+                    id="addGenreButton"
                     onClick={() => this.setState({genresShow: true})}
                     >
                     Add Genres

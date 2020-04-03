@@ -146,7 +146,7 @@ class UserProfile extends React.Component {
     let add_review_button;
     follow_edit_button = <Button variant="outline-primary"
                   type="submit"
-                  className="editButton"
+                  className="editButtonUserProfile"
                   onClick={this.updateProfileClick}
                   >
                   Edit Profile
@@ -193,13 +193,6 @@ class UserProfile extends React.Component {
                 {follow_edit_button}
 
                 {add_review_button}
-                <Button variant="outline-primary"
-                              type="submit"
-                              className="editGenres"
-                              onClick={() => this.setState({genresShow: true})}
-                              >
-                              Edit Genres
-                </Button>
                 <GenreSelector signup={this}></GenreSelector>
                 <Modal className = "addRevModal"
                  overlayClassName="Overlay"

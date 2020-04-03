@@ -1,7 +1,7 @@
 
 const app = module.exports = require('express')();
 
-const {sessionCheckerAdmin, sessionCheckerRequestUsername} = require("../../auth")
+const {sessionCheckerReqUserBody, sessionCheckerReqUserParam} = require("../../auth")
 
 /****** Review routes *************************************/
 
@@ -17,12 +17,12 @@ app.get('/:movie_id/movie_id', require("./get_reviews_by_movie_id"))
 
 
 // Routes for modifying upvoting and downvoting
-app.patch('/add_upvoter/:id/:username', require('./addUpvoter'))
-app.patch('/add_downvoter/:id/:username', require('./addDownvoter'))
+app.patch('/add_upvoter/:id/:username', sessionCheckerReqUserParam, require('./addUpvoter'))
+app.patch('/add_downvoter/:id/:username', sessionCheckerReqUserParam,require('./addDownvoter'))
 
 // Routes related to review comenting
-app.patch('/add_comment/:id', require('./add_comment'))
+app.patch('/add_comment/:id', sessionCheckerReqUserParam, require('./add_comment'))
 
 // Route to add review
-app.post('/add_review', require('./add_review'))
+app.post('/add_review', sessionCheckerReqUserBody, require('./add_review'))
 /*******************************************************/
