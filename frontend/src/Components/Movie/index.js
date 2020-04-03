@@ -140,6 +140,15 @@ class Movie extends React.Component {
                         </IconButton>
                     </CardContent>
         }
+
+        let reviews;
+        if(this.state.reviews == []){
+            reviews = <ReviewsList reviews={this.state.reviews}
+            type={"generic"}
+            queueComponent={this}
+            authenticateduser= {this.state.currentUser}/>
+        }
+
         let rating;
         if(this.state.data.upvotes == 0 && this.state.data.downvotes == 0){
             rating = "N/A"
@@ -200,10 +209,7 @@ class Movie extends React.Component {
 
             </div>
             <div>
-            <ReviewsList reviews={this.state.reviews}
-                    type={"generic"}
-                    queueComponent={this}
-                    authenticateduser= {this.state.currentUser}/>
+            {reviews}
 
             </div>
 
