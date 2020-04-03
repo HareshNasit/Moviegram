@@ -6,10 +6,9 @@ import MainMenuBar from './../MainMenuBar';
 import AddMovie from './../AddMovie';
 import ReviewsList from './../ReviewsList';
 import Modal from 'react-modal';
-import profileimgdef from './../MainMenuBar/profile.png';
 import photo from './../UserProfile/ballon_dor.jpg';
 
-import { getAllReviews } from './../../services/api';
+import { getAllReviews, readCookie } from './../../services/api';
 
 
 class Admin extends React.Component{
@@ -24,6 +23,7 @@ class Admin extends React.Component{
   }
 
   async componentDidMount() {
+    await readCookie(this)
     let allReviews = await getAllReviews()
     allReviews = allReviews.data
     console.log(allReviews)
@@ -46,12 +46,12 @@ class Admin extends React.Component{
 
 
   render() {
-    const username = this.props.location.state.username;
-    const auth = this.props.location.state.auth;
+    const username = this.state.currentUser;
+
     return (
       <div id="AdminFeed">
 
-        <MainMenuBar username={username} auth={auth}></MainMenuBar>
+        <MainMenuBar username={username}></MainMenuBar>
 
         <div className="pageHeader">
          <h3 className="headerText">Admin Dashboard</h3>

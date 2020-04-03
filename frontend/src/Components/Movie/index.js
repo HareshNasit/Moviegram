@@ -17,7 +17,6 @@ import ReviewsList from '../ReviewsList'
 class Movie extends React.Component {
     constructor(props) {
         super(props);
-        readCookie(this);
         this.upVote = this.upVote.bind(this)
         this.downVote = this.downVote.bind(this)
 
@@ -29,6 +28,7 @@ class Movie extends React.Component {
         reviews: []
     }
     async componentDidMount() {
+        await readCookie(this);
         const movie_id = this.props.match.params.param1
         const res = await getMovie(movie_id)
         const reviewsData = await getReviewsByMovieID(movie_id)
@@ -117,7 +117,7 @@ class Movie extends React.Component {
     render() {
         if(this.state.data.title == ""){
             return(<div>
-                <MainMenuBar/>
+                <MainMenuBar username={this.state.currentUser}/>
                 <div>
                     <h1>
                     404 Movie Not Found
@@ -160,7 +160,7 @@ class Movie extends React.Component {
         }
         return(
         <div id="bigMovieContainer">
-            <MainMenuBar/>
+            <MainMenuBar username={this.state.currentUser}/>
 
             <div id="movieContent">
                 <Card id="movieContainer">

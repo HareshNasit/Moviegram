@@ -10,13 +10,14 @@ import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
 import {Link} from 'react-router-dom';
-import profileimgdef from './../MainMenuBar/profile.png';
+
 import {
   getAllReviews,
   getUser,
   getUserReviews,
   updateUserFollowInfo,
-  getUserImage
+  getUserImage,
+  readCookie
 } from './../../services/api'
 
 class ProfileView extends React.Component {
@@ -43,13 +44,11 @@ class ProfileView extends React.Component {
   }
 
   async componentDidMount() {
+    await readCookie(this)
     const profileUsername = this.props.location.state.profileUser
     const authenticatedUsername = this.props.location.state.username;
-    // console.log(profileUsername)
     const profileUserData = await getUser(profileUsername);
     const profileUserReviews = await getUserReviews(profileUsername);
-    // console.log(profileUserData.data);
-    // console.log(profileUserReviews.data)
     const authUserData = await getUser(authenticatedUsername);
     const authUserFollowing = authUserData.data["following"]
     let followUnfollowText = ""
@@ -112,11 +111,6 @@ class ProfileView extends React.Component {
 
   async followUser(event,authenticateduser, profileUser) {
 
-    // updateUserFollowInfo({
-    //   username: authenticateduser,
-    //   isFollowers: true,
-    //   followers: ["CRISTIANO RONALDO"]})
-
     const profileUserData = await getUser(profileUser);
     const authUserData = await getUser(authenticateduser);
     if (this.state.followUnfollowText === "Follow" && !(profileUserData.data.followers.includes(authenticateduser))) {
@@ -172,7 +166,7 @@ class ProfileView extends React.Component {
   render() {
     let follow_edit_button;
     let add_review_button;
-    const authenticatedusername = this.props.location.state.username;
+    const authenticatedusername = this.state.currentUser;
     const profileUser = this.props.location.state.profileUser
     console.log((authenticatedusername));
     console.log(profileUser);

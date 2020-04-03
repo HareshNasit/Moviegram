@@ -17,7 +17,6 @@ class UserProfile extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
-    readCookie(this)
     this.state = {
       profilePic: null,
       showModalFollowing: false,
@@ -40,6 +39,7 @@ class UserProfile extends React.Component {
   }
 
   async componentDidMount() {
+    await readCookie(this)
     const reviews = await getAllReviews();
     const username = this.state.currentUser
     const userData = await getUser(username);
@@ -152,7 +152,8 @@ class UserProfile extends React.Component {
       </div>
     );
 
-    const username = this.props.location.state.username;
+    const username = this.state.currentUser;
+
     return (
       <div id="userProfile">
           <MainMenuBar username={username} />
