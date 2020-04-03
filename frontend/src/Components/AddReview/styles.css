@@ -50,8 +50,10 @@
 	margin: 20px;
 }
 
-#reviewMovieName {
-	margin: 20px;
+#selectMovie, #option {
+	font-size: 20px;
+	width: 100%;
+	height: 40px;
 }
 
 #spoilerCheck {

@@ -23,7 +23,7 @@ class Comment extends React.Component {
         <Link id="link" to={{pathname:profile_url + username, state: { username: authenticateduser, profileUser: username }}}>
         {username} :
         </Link>
-        </i></b></span><span>{ content }</span>
+        </i></b></span><span> { content } </span>
       </div>
     );
   }
