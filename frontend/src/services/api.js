@@ -75,19 +75,37 @@ export const signup = async (user, signupstate) => {
     })
 }
 
-export const readCookie = async (app) => {
+export const readCookie = (app) => {
 
     const url = `${baseURL}/session/`;
-    try {
-        let res = await axios.get(url)
-        if (res.data && res.data.currentUser) {
-            app.setState({ currentUser: res.data.currentUser });
+    // try {
+    //     let res = await axios.get(url)
+    //     if (res.data && res.data.currentUser) {
+    //         app.setState({ currentUser: res.data.currentUser });
+    //     }
+    // } catch (err) {
+    //     // FOR DEV
+    //     app.setState({ currentUser: "username1", auth: false});
+    //     console.log(err)
+    // }
+
+    fetch(url)
+    .then(res => {
+        if (res.status === 200) {
+            return res.json();
         }
-    } catch (err) {
-        // FOR DEV
-        app.setState({ currentUser: "username1", auth: false});
-        console.log(err)
-    }
+        throw new Error("Not Auth")
+    })
+    .then(json => {
+        if (json && json.currentUser) {
+            app.setState({ currentUser: json.currentUser });
+        } 
+    })
+    .catch(error => {
+        app.setState({ currentUser: "username1" });
+        console.log(error);
+        
+    });
 };
 
 
