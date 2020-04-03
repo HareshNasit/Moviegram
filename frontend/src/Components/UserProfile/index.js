@@ -26,7 +26,8 @@ class UserProfile extends React.Component {
       peopleFollow: [],
       peopleFollowing: [],
       showUpdateProfile: false,
-      userDescription: ""
+      userDescription: "",
+      favoriteGenres: ""
     };
     this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -71,13 +72,23 @@ class UserProfile extends React.Component {
       const bDate = new Date(b.date)
       return bDate - aDate
     })
+    let favGenText = "";
+    const favoriteGenres = userData.data["favoriteGenres"]
+    for (const key of Object.keys(favoriteGenres)) {
+        if (favoriteGenres[key]) {
+          favGenText = favGenText + key +  ", "
+        }
+    }
+    favGenText = favGenText.slice(0,favGenText.length - 2)
+
     this.setState({
         currentUser: username,
         profilePic: userData.data["image_url"],
         peopleFollow: userFollowers,
         peopleFollowing: usersFollowing,
         userDescription: userData.data["description"],
-        reviews: userReviews
+        reviews: userReviews,
+        favoriteGenres: favGenText
       })
     Modal.setAppElement('body');
   }
@@ -218,7 +229,7 @@ class UserProfile extends React.Component {
               </div>
               <div>
               <br/>
-              Favourite Genres : Action, Drama, Sports, Thriller
+              Favourite Genres : {this.state.favoriteGenres}
               </div>
               <div id="userDescription">
                 {this.state.userDescription}
