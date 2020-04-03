@@ -19,12 +19,12 @@ class SearchBar extends React.Component {
             this.setState({data: []})
         } else{
             const data = res.data
-        
+
             this.setState({data: data.map(obj => {
                 return {key: obj._id, value: obj.title}
             })})
         }
-        
+
     }
     render() {
         return (
@@ -36,8 +36,8 @@ class SearchBar extends React.Component {
                 this.handleEvent(event.key)
               } }
               />);
-            
-            
+
+
             }
 
         }

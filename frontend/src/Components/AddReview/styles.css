@@ -46,6 +46,10 @@
 	margin: 20px;
 }
 
+.reviewMovieName {
+	margin: 20px;
+}
+
 .saveReviewBtn {
 	position: absolute;
 	right: 20px;
