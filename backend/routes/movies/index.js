@@ -1,5 +1,6 @@
 const app = module.exports = require('express')();
 
+const {sessionCheckerAdmin, sessionCheckerRequestUsername} = require("../../auth")
 
 /****** Movie routes *************************************/
 app.get('/', require("./all_movies"))
