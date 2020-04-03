@@ -133,6 +133,7 @@ export const updateUserFollowInfo = async (user) => {
   //     signupstate.setState({turnAlert: true})
   // })
 }
+export const logout = () => axios.get(baseURL + "/session/logout")
 
 export const getAllReviews = () => axios.get(baseURL + '/admin')
 
