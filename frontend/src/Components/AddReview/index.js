@@ -5,9 +5,6 @@ import { Button, Form } from "react-bootstrap";
 import ErrorModal from './../ErrorModal';
 import { addReview,getUserReviews } from './../../services/api'
 
-
-import profileimgdef from './../MainMenuBar/profile.png';
-
 class AddReview extends React.Component {
 
   constructor(props) {

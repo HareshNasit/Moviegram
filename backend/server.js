@@ -40,11 +40,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Create a session cookie
 app.use(session({
     secret: 'moviesarefun',
-    resave: false,
-    saveUninitialized: false,
+    // resave: false,
+    // saveUninitialized: false,
     cookie: {
-        expires: 60000,
-        httpOnly: true
+        httpOnly: true,
+        // maxAge: 600000
     }
 }));
 

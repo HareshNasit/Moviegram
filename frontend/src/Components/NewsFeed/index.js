@@ -19,7 +19,7 @@ class NewsFeedScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {reviews: []};
-    
+
   }
 
   async componentDidMount() {
@@ -49,7 +49,9 @@ class NewsFeedScreen extends React.Component {
   }
 
   render() {
+    
     const authenticateduser = this.state.currentUser;
+
     return (
       <div id="pageFeed">
 
