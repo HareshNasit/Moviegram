@@ -10,6 +10,10 @@
     width: 500px;
 }
 
+.movieImage {
+    height:100%; width:100%;
+}
+
 #thumbs{
     align-items: center;
     display: flex;
