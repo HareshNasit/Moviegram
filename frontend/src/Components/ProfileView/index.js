@@ -47,11 +47,12 @@ class ProfileView extends React.Component {
   async componentDidMount() {
     await readCookie(this)
     const profileUsername = this.props.location.state.profileUser
-    const authenticatedUsername = this.props.location.state.username;
+    const authenticatedUsername = this.state.currentUser;
     const profileUserData = await getUser(profileUsername);
     const profileUserReviews = await getUserReviews(profileUsername);
     const authUserData = await getUser(authenticatedUsername);
     const authUserFollowing = authUserData.data["following"]
+    console.log(authenticatedUsername);
     let followUnfollowText = ""
     if (authUserFollowing.includes(profileUsername)) {
       followUnfollowText = "UnFollow";
@@ -280,7 +281,8 @@ class ProfileView extends React.Component {
           </div>
           <div className="profileFeed">
             <ReviewsList reviews={this.state.reviews}
-                         queueComponent={this}/>
+                         queueComponent={this}
+                         authenticateduser= {authenticatedusername}/>
           </div>
       </div>
     );

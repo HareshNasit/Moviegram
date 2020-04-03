@@ -144,7 +144,7 @@ class UserProfile extends React.Component {
       // expression goes here:
       <div key={index} className="followUserText">
           <img className="followUserPic" src={person.image_url} alt="User DP"/>
-          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.currentUser, profileUser: person.username }}}>
           {person.username}
           </Link>
       </div>
@@ -154,7 +154,7 @@ class UserProfile extends React.Component {
       // expression goes here:
       <div key={index} className="followUserText">
           <img className="followUserPic" src={person.image_url} alt="User DP"/>
-          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.currentUser, profileUser: person.username }}}>
           {person.username}
           </Link>
       </div>

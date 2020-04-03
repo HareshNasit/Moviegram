@@ -49,9 +49,7 @@ class NewsFeedScreen extends React.Component {
   }
 
   render() {
-    
     const authenticateduser = this.state.currentUser;
-
     return (
       <div id="pageFeed">
 
