@@ -33,6 +33,11 @@
   flex: 0 1 auto;
 }
 
+#link {
+	color: white;
+  text-decoration: none;
+}
+
 .content {
 	display: flex;
   align-items: stretch;

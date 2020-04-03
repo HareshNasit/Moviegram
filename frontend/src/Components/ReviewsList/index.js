@@ -35,6 +35,7 @@ class ReviewsList extends React.Component {
                       username={review.username}
                       userImg={review.image_url}
                       movieName={review.movie_title}
+                      movieId={review.movie_id}
                       reviewContent={review.content}
                       queueComponent={queueComponent}/>
             ))}
@@ -52,6 +53,7 @@ class ReviewsList extends React.Component {
                       username={review.username}
                       userImg={review.image_url}
                       movieName={review.movie_title}
+                      movieId={review.movie_id}
                       reviewContent={review.content}
                       queueComponent={queueComponent}/>
             ))}
@@ -70,6 +72,7 @@ class ReviewsList extends React.Component {
                       username={review.username}
                       userImg={review.image_url}
                       movieName={review.movie_title}
+                      movieId={review.movie_id}
                       reviewContent={review.content}
                       queueComponent={queueComponent}/>
             ))}
