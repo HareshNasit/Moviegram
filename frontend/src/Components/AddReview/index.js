@@ -3,6 +3,7 @@ import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 import ReactSearchBox from 'react-search-box';
+import { uid } from "react-uid";
 import ErrorModal from './../ErrorModal';
 import { addReview,getUserReviews,getMovieByName,getKeyMoviePairs,readCookie } from './../../services/api'
 
@@ -14,7 +15,8 @@ class AddReview extends React.Component {
                    review: "",
                    movies: [],
                    turnAlert: false,
-                   error: ""};
+                   error: "",
+                   spoiler: false};
     this.saveReview = this.saveReview.bind(this)
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
@@ -30,10 +32,9 @@ class AddReview extends React.Component {
         this.setState({movies: []})
     } else{
         const data = res.data
-
-        this.setState({movies: data.map(obj => {
-            return {key: obj._id, value: obj.title}
-        })})
+        const movieNames = data.map(obj => {return obj.title})
+        movieNames.unshift("--Select Movie--")
+        this.setState({movies: movieNames})
     }
   }
 
@@ -42,35 +43,43 @@ class AddReview extends React.Component {
   }
 
   async saveReview(queue, closeFunc, authenticateduser) {
-    if(this.state.newComment === "" || this.state.movie === ""){
+    if(this.state.newComment === "" || this.state.movie === "" || this.state.movie === "--Select Movie--"){
+      console.log(this.state.movie);
       this.setState({error: "Cannot post an empty/incomplete review. Make sure to fill in all fields"})
       this.setState({turnAlert: true})
     } else {
+
       let movie = await getMovieByName(this.state.movie)
       movie = movie.data
+      console.log(movie);
       const newReview = { username: authenticateduser, movie_title: this.state.movie, content: this.state.review,
-                          spoilers: false, date: new Date().toLocaleString(), movie_id: movie._id}
+                          spoilers: this.state.spoiler, date: new Date().toLocaleString(), movie_id: movie._id}
+      console.log(newReview)
       const added = await addReview(newReview)
       queue.state.reviews.unshift(newReview)
       closeFunc();
     }
   }
 
-  handleMovieSelectEvent(movie) {
-    this.setState({movie: movie})
-  }
-
   handleMovieNameChange(event) {
-    this.setState({movie:event.target.value})
+    console.log(event.target.value);
+    this.setState({movie:event.target.value.trim()})
   }
 
   handleReviewContentChange(event) {
     this.setState({review:event.target.value})
   }
 
+  handleSpoilerChange() {
+    this.setState({spoiler: !this.state.spoiler})
+  }
+
   render() {
 
     const { queueComponent, cancelFunction, profImg, authenticateduser } = this.props
+
+    // variables needed for dropdown menu
+    const Data = this.state.movies
 
     return (
       <div id="addRevMain">
@@ -85,15 +94,15 @@ class AddReview extends React.Component {
               <li>{authenticateduser}</li>
             </ul>
 
-            <div id="reviewMovieName">
-              <span>Movie</span>
-              <ReactSearchBox
-                placeholder="Movie Name"
-                data={this.state.movies}
-                onSelect={event =>{ this.handleMovieSelectEvent(event.key) }}/>
-            </div>
-
             <Form id="addReviewForm">
+              <Form.Group controlId="review.movie">
+                <Form.Label>Movie</Form.Label>
+                <select id="selectMovie" onChange={this.handleMovieNameChange}>
+                  {Data.map(function(X) {
+                              return <option key={uid(X)}>{X}</option>;
+                  })}
+                </select>
+              </Form.Group>
               <Form.Group controlId="review.reviewContent">
                 <Form.Label>Review</Form.Label>
                 <Form.Control type="review" as="textarea" rows="8" placeholder="Add your Review here" onChange={this.handleReviewContentChange}/>
@@ -105,7 +114,7 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" id="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, this.state.currentUser)} type="submit">Post Review</Button>
+            <Button variant="primary" id="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, authenticateduser)} type="submit">Post Review</Button>
             <Button variant="primary" id="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
             <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert} error={this.state.error}></ErrorModal>
         </div>
