@@ -2,20 +2,48 @@ import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
+import GenreSelector from '../GenreSelector'
+import ErrorModal from './../ErrorModal';
+import { addMovie } from './../../services/api'
+
 
 class AddMovie extends React.Component {
   constructor(props){
     super(props);
+    this.genreNames = ["Supernatural",
+                       "Fantasy",
+                       "Crime",
+                       "Action",
+                       "Horror",
+                       "Thriller",
+                       "Comedy"]
     this.state = {title: "",
                   director: "",
                   stars: [],
-                  description: ""}
+                  description: "",
+                  turnAlert: false,
+                  error: "",
+                  genresShow: false,
+                  genres:
+                     {Supernatural: false,
+                      Horror: false,
+                      Fantasy: false,
+                      Crime: false,
+                      Action: false,
+                      Thriller: false,
+                      Comedy: false}
+                }
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleDirectorChange = this.handleDirectorChange.bind(this)
     this.handleCastChange = this.handleCastChange.bind(this)
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this)
-    this.saveMovie = this.saveMovie.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.save_Movie = this.save_Movie.bind(this)
 
+  }
+
+  closeModal(){
+   this.setState({turnAlert: false})
   }
 
   handleMovieNameChange(event) {
@@ -32,8 +60,15 @@ class AddMovie extends React.Component {
     this.setState({description:event.target.value});
   }
 
-  saveMovie (closeFunc) {
-    closeFunc();
+  async save_Movie (title, director, stars, description, genres, closeFunction) {
+    if(this.state.director === "" || this.state.title === ""){
+      console.log("Can't post empty movie")
+      this.setState({error: "Cannot post an empty/incomplete movie. Make sure to fill in all fields"})
+      this.setState({turnAlert: true})
+    } else {
+      const added = await addMovie(title, director, stars, description, genres)
+      closeFunction();
+    }
   }
 
   render() {
@@ -63,8 +98,14 @@ class AddMovie extends React.Component {
               <Form.Control type="description" as="textarea" rows="8" placeholder="Add a description for the movie" onChange={this.handleDescriptionChange}/>
             </Form.Group>
           </Form>
-          <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveMovie(cancelFunction)} type="submit">Add Movie</Button>
+          <GenreSelector signup={this}></GenreSelector>
+          <Button variant="primary" className="addGenreButton" onClick={() => this.setState({genresShow: true})}>
+            Add Genres
+          </Button>
+          <Button variant="primary" className="saveReviewBtn" onClick={() => this.save_Movie(this.state.title, this.state.director, this.state.stars,
+          this.state.description, this.state.genres, cancelFunction)} type="submit">Add Movie</Button>
           <Button variant="primary" className="cancelAddMoviePage" onClick={cancelFunction} type="submit">Cancel</Button>
+          <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert} error={this.state.error}></ErrorModal>
         </div>
       </div>
     )

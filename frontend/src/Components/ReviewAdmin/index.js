@@ -8,7 +8,7 @@ import "./../universalStyles.css";
 // import needed components
 import Comment from './../Comment';
 // backend db server api funcs
-import {getUpvoters,getDownvoters,addDownvoter,addUpvoter,addComment,getReview}  from './../../services/api'
+import {getUpvoters,getDownvoters,addDownvoter,addUpvoter,addComment,getReview, removeReview}  from './../../services/api'
 
 class AdminReview extends React.Component {
 
@@ -19,7 +19,7 @@ class AdminReview extends React.Component {
     this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
     this.newComContent = this.newComContent.bind(this)
     this.addCommentFunc = this.addCommentFunc.bind(this)
-    this.removeReview = this.removeReview.bind(this)
+    this.remove_Review = this.remove_Review.bind(this)
     this.incrementUpvote = this.incrementUpvote.bind(this)
     this.incrementDownvote = this.incrementDownvote.bind(this)
     this.getCommentsSection = this.getCommentsSection.bind(this)
@@ -61,15 +61,9 @@ class AdminReview extends React.Component {
     this.setState({comments: review.comments})
   }
 
-  removeReview(queue, review) {
-    console.log(review);
-    let reviewList = queue.state.reviews;
-    let index = reviewList.findIndex(a => a.reviewID === review.reviewID);
-
-    if (index === -1) return;
-    reviewList.splice(index, 1);
-
-    queue.setState({reviews: reviewList}); // This will update the state and trigger a rerender of the components
+  async remove_Review(username, movie) {
+    const removed = await removeReview(username, movie)
+    window.location.reload(false);
   }
 
   // increase the number upvotes the review has by 1
@@ -111,7 +105,7 @@ class AdminReview extends React.Component {
     }
 
     return(
-      <div id="review">
+      <div id="reviews">
 
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
@@ -121,16 +115,16 @@ class AdminReview extends React.Component {
           </Link>
           </span>{username}</li>
           <li>{movieName}</li>
-          <li><Button variant="primary" onClick={() => this.removeReview(queueComponent, this)}>
+          <li><Button variant="primary" onClick={() => this.remove_Review(username, movieName)}>
           Remove Review</Button></li>
         </ul>
 
         {/* Content of the review and the datetime on which it was posted are displayed in the following elements */}
-        <span className="content">{reviewContent}</span>
-        <span className="datetime">Posted on : {datetime}</span>
+        <span id="contents">{reviewContent}</span>
+        <span id="datetimes">Posted on : {datetime}</span>
 
         {/* The comments section for each review is displayed below */}
-        <div className="comments">
+        <div id="comment">
           <h6><b><u>Comments:</u></b></h6>
           <span>
             <div>
@@ -144,12 +138,12 @@ class AdminReview extends React.Component {
         </div>
 
         {/* Form into which user can enter a new comment into a post and post it to that review */}
-        <Form className="newCom" ref={commentForm => this.commentForm = commentForm}>
-          <Form.Row className="writeCom">
-            <Form.Group className="writeIt">
-              <Form.Control type="newComment" placeholder="Write a Comment" className="comBar" onChange={this.newComContent}/>
+        <Form id="newComm" ref={commentForm => this.commentForm = commentForm}>
+          <Form.Row id="writeComm">
+            <Form.Group id="writesIt">
+              <Form.Control type="newComment" placeholder="Write a Comment" id="comBar" onChange={this.newComContent}/>
             </Form.Group>
-            <Form.Group className="postIt">
+            <Form.Group id="postIt">
               <Button variant="primary"
                       onClick={() => this.addCommentFunc(reviewId, authenticateduser, this.state.newComment)}>
               Post Comment
@@ -159,9 +153,9 @@ class AdminReview extends React.Component {
         </Form>
 
         {/* used to upvote or downvote a review */}
-        <div className="votes">
-          <Button className="votes-up" variant="primary" onClick={() => this.incrementUpvote(reviewId, authenticateduser)}>Upvote ({this.state.upvotes})</Button>
-          <Button className="votes-down" variant="primary" onClick={() => this.incrementDownvote(reviewId, authenticateduser)}>Downvote ({this.state.downvotes})</Button>
+        <div id="votes">
+          <Button id="vote-up" variant="primary" onClick={() => this.incrementUpvote(reviewId, authenticateduser)}>Upvote ({this.state.upvotes})</Button>
+          <Button id="vote-down" variant="primary" onClick={() => this.incrementDownvote(reviewId, authenticateduser)}>Downvote ({this.state.downvotes})</Button>
         </div>
 
       </div>

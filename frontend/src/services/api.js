@@ -168,6 +168,50 @@ export const isUpvoted = async (movie_id, user_id) => {
     }
 }
 
+export const addMovie = async (title, director, stars, description, genres) => {
+    const url = `${baseURL}/admin/add_movie`
+    const request = new Request(url, {
+      method: "post",
+      body: JSON.stringify({title: title, director: director, stars: stars, description: description, genres: genres}),
+      headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+      }
+    })
+    fetch(request).then(res =>{
+        if(!res.ok){
+            throw new Error("Something went wrong...");
+        } else{
+          return true
+        }
+    }).catch(error => {
+        console.log("caught some error please solve me!!")
+    })
+}
+
+export const removeReview = async (username, movie) => {
+    const url = `${baseURL}/admin/remove_review`
+  //  const body = {username: username), movie: JSON.stringify(movie)}
+    const request = new Request(url, {
+      method: "delete",
+      body: JSON.stringify({username: username, movie: movie}),
+      headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+      }
+    });
+    fetch(request).then(res =>{
+        if(!res.ok){
+            throw new Error("Something went wrong...");
+        } else{
+          return true
+        }
+    }).catch(error => {
+        console.log("caught some error please solve me!!")
+    })
+}
+
+
 export const addReview = async (review) => {
     const url = `${baseURL}/reviews/add_review`
     const request = new Request(url, {
@@ -274,4 +318,3 @@ export const getRating = async id =>{
         console.log(err)
     }
 }
-

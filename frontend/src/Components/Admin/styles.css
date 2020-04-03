@@ -1,9 +1,4 @@
-#AdminFeed Button {
-  margin-left: 48%;
-  
-}
-
-.pageHeader {
+#pagesHeader {
     position: relative;
     width: 1000px;
     top: 35px;
@@ -11,9 +6,19 @@
     margin-right: auto;
 }
 
-.headerText {
+#headersText {
 	text-align: center;
 	font-family: Impact, Charcoal, sans-serif;
 	font-size: 45px;
 	color: black;
+}
+
+.Revs {
+
+}
+
+.AddMovieButton {
+  position: relative;
+  top:30px;
+  left: 47%;
 }
