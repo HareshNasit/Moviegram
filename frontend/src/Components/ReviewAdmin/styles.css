@@ -1,4 +1,4 @@
-#review {
+#reviews {
 	width: 1000px;
 	position: relative;
     margin-left: auto;
@@ -13,7 +13,7 @@
 		justify-content: center;
 }
 
-#review ul {
+#reviews ul {
 	display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -23,7 +23,7 @@
     padding-top: 15px;
 }
 
-#review ul li {
+#reviews ul li {
 	font-weight: bold;
 	font-family: "Garamond", cursive, sans-serif;
 	font-size: 20px;
@@ -33,7 +33,7 @@
   flex: 0 1 auto;
 }
 
-.content {
+#contents {
 	display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -43,12 +43,12 @@
   text-align: justify;
 }
 
-.datetime {
+#datetimes {
 	padding-left: 15px;
 	color: #484848;
 }
 
-.comments {
+#comment {
 	border-radius: 10px;
 	padding: 15px;
 	margin-top: 10px;
@@ -59,38 +59,38 @@
 	padding-left: 20px;
 }
 
-.newCom {
+#newComm {
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 1px;
 	padding-left: 20px;
 }
 
-.writeCom {
+#writeComm {
 	padding-left: 10px;
 }
 
-.writeIt {
+#writesIt {
 	width: 810px;
 	padding-right: 10px;
 }
 
-.comBar {
+#commBar {
 	background-color: #303030;
 	color: white;
 }
 
-.showHideCom {
+#showHideComm {
 	background-color: #008080;
 	border: 1px solid #008080;
 }
 
-.votes-up{
+#vote-up{
 	margin: 5px;
 	margin-left: 10px;
 
 }
 
-.votes-down{
+#vote-down{
 	margin: 5px;
 }

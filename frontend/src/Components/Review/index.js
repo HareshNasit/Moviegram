@@ -112,7 +112,6 @@ class Review extends React.Component {
     else {
       profile_url = '/ProfileView/'
     }
-    console.log(authenticateduser);
     return (
       <div id="review">
 

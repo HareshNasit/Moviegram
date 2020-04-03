@@ -34,7 +34,8 @@ class ProfileView extends React.Component {
       peopleFollow: [],
       peopleFollowing: [],
       showUpdateProfile: false,
-      userDescription: ""
+      userDescription: "",
+      favoriteGenres: ""
     };
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
     this.handleCloseFollowingModal = this.handleCloseFollowingModal.bind(this);
@@ -79,6 +80,15 @@ class ProfileView extends React.Component {
         userFollowing["image_url"] = followingUserImg.data;
         usersFollowing.push(userFollowing)
     }
+
+    let favGenText = "";
+    const favoriteGenres = profileUserData.data["favoriteGenres"]
+    for (const key of Object.keys(favoriteGenres)) {
+        if (favoriteGenres[key]) {
+          favGenText = favGenText + key +  ", "
+        }
+    }
+    favGenText = favGenText.slice(0,favGenText.length - 2)
     this.setState({
         username: profileUsername,
         profilePic: image_url,
@@ -86,7 +96,8 @@ class ProfileView extends React.Component {
         peopleFollowing: usersFollowing,
         userDescription: profileUserData.data["description"],
         reviews: profileUserReviews.data,
-        followUnfollowText: followUnfollowText
+        followUnfollowText: followUnfollowText,
+        favoriteGenres: favGenText
       })
 
     Modal.setAppElement('body');
@@ -260,7 +271,7 @@ class ProfileView extends React.Component {
               </div>
               <div>
               <br/>
-              Favourite Genres : Action, Drama, Sports, Thriller
+              Favourite Genres : {this.state.favoriteGenres}
               </div>
               <div id="userDescription">
                 {this.state.userDescription}

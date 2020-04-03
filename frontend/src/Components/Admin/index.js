@@ -53,28 +53,33 @@ class Admin extends React.Component{
 
         <MainMenuBar username={username}></MainMenuBar>
 
-        <div className="pageHeader">
-         <h3 className="headerText">Admin Dashboard</h3>
+        <div id="pagesHeader">
+         <h3 id="headersText">Admin Dashboard</h3>
         </div>
-
+        <div className="AddMovieButton">
+        <Button variant="primary"
+                 type="click"
+                 onClick={this.handleOpenAddMovieModal}>
+                 Add Movie
+        </Button>
+        </div>
+        <div className="Revs">
         <ReviewsList reviews={this.state.reviews}
                      type = "admin"
                      queueComponent={this}
                      authenticateduser= {username}/>
-      </div>
-        // <Button variant="outline-primary"
-        //          type="click"
-        //          onClick={this.handleOpenAddMovieModal}>
-        //          Add Movie
-        // </Button>
+        </div>
 
-        // <Modal className = "addMovieModal"
-        //  overlayClassName="Overlay"
-        //  isOpen={this.state.showModalAddMovie}
-        //  contentLabel="Minimal Modal Example"
-        //  >
-        //  <AddMovie cancelFunction={this.handleCloseAddMovieModal} />
-        // </Modal>
+
+         <Modal className = "addMovieModal"
+          overlayClassName="Overlay"
+          isOpen={this.state.showModalAddMovie}
+          contentLabel="Minimal Modal Example"
+          >
+          <AddMovie cancelFunction={this.handleCloseAddMovieModal} />
+         </Modal>
+      </div>
+
     )
   }
 }
