@@ -19,7 +19,7 @@ const authenticate = (req, res, next) => {
 }
 
 const sessionCheckerRequestUsername = (req, res, next) => {
-    if (req.session.user == req.username) {
+    if (req.session.user != req.username) {
         res.redirect('/'); 
     } else {
         next(); // next() moves on to the route.
@@ -27,7 +27,7 @@ const sessionCheckerRequestUsername = (req, res, next) => {
 };
 
 const sessionCheckerAdmin = (req, res, next) => {
-    if (req.session.user == "admin") {
+    if (req.session.user != "admin") {
         res.redirect('/'); 
     } else {
         next(); // next() moves on to the route.
