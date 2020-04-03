@@ -1,8 +1,7 @@
 import axios from 'axios'
 // const baseURL = 'https://moviegram-back.herokuapp.com'
 // const baseURL = 'http://localhost:5000/api'
-// const baseURL = 'http://localhost:5000'
-const baseURL = '/api'
+const baseURL = 'http://localhost:5000'
 
 
 export const insertUserToMongo = async data => {
@@ -135,7 +134,7 @@ export const updateUserFollowInfo = async (user) => {
   // })
 }
 
-export const getAllReviews = () => axios.get(baseURL + '/reviews')
+export const getAllReviews = () => axios.get(baseURL + '/admin')
 
 export const getReview = (id) => axios.get(baseURL + '/reviews/'+id)
 
@@ -159,7 +158,6 @@ export const addMovieUpvoter = (id, upvoter) => axios.patch(baseURL + '/movies/a
 
 export const addMovieDownvoter = (id, downvoter) => axios.patch(baseURL + '/movies/add_downvoter/'+id+'/'+downvoter)
 
-export const getReviewsByMovieID = async (id) => axios.get(baseURL + '/reviews/' + id + '/movie_id')
 
 export const isUpvoted = async (movie_id, user_id) => {
     try {
