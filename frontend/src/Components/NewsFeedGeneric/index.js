@@ -7,7 +7,6 @@ import "./../universalStyles.css";
 // import all needed Components
 import MainMenuBar from './../MainMenuBar';
 import ReviewsList from './../ReviewsList';
-import SearchBar from "../SearchBar";
 // import functions/api calls for backend and database requets to server
 import { getAllReviews, getUserImage,readCookie } from './../../services/api'
 
@@ -18,11 +17,11 @@ class NewsFeedGeneric extends React.Component {
   // used to bind the implemented methods to this class that need to access variables of defined inside the constructor.
   constructor(props) {
     super(props)
-    readCookie(this)
     this.state = { reviews: [] };
   }
 
   async componentDidMount() {
+    await readCookie(this)
     let reviews = await getAllReviews()
     reviews = reviews.data
     // sort all the reviews from the curr users friends in order of latest to oldest
@@ -46,11 +45,6 @@ class NewsFeedGeneric extends React.Component {
       <div id="pageFeed">
         {/*The menu bar is just reused from the Component MainMenuBar */}
         <MainMenuBar username={authenticateduser}/>
-
-        {/*Form that takes in the input of users to search movies and reviews of movies */}
-        <div className="searchMovieform">
-          <SearchBar/>
-          </div>
 
           {/*Title of the review news feed page */}
           <div className="pageHeader">
