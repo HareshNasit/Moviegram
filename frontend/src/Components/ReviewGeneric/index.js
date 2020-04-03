@@ -44,7 +44,8 @@ class ReviewGeneric extends React.Component {
         {comments.map((com) => (<Comment key={uid(com)}
                                        date={com.date}
                                        username={com.username}
-                                       content={com.content}/>))}
+                                       content={com.content}
+                                       authenticateduser={this.props.authenticateduser}/>))}
       </div>
     )
   }

@@ -44,9 +44,9 @@ class Review extends React.Component {
   }
 
   // adds a comment to the review and to the db
-  async addCommentFunc(reviewId, user, content) {
+  async addCommentFunc(reviewId, authenticateduser, content) {
     if (this.state.newComment.trim() != "") {
-      var newCom = {username: user, date: new Date().toLocaleString(), content: content}
+      var newCom = {username: authenticateduser, date: new Date().toLocaleString(), content: content}
     }
     const commentAdded = await addComment(newCom, reviewId)
     let review = await getReview(this.props.reviewId)
@@ -75,8 +75,8 @@ class Review extends React.Component {
   }
 
   // increase the number upvotes the review has by 1
-  async incrementUpvote(reviewId, user) {
-    const upvoteAdded = await addUpvoter(reviewId, user)
+  async incrementUpvote(reviewId, authenticateduser) {
+    const upvoteAdded = await addUpvoter(reviewId, authenticateduser)
     if (upvoteAdded != null) {
       let upvotes = await getUpvoters(this.props.reviewId)
       let downvotes = await getDownvoters(this.props.reviewId)
@@ -88,8 +88,8 @@ class Review extends React.Component {
   }
 
   // increase the number downvotes the review has by 1
-  async incrementDownvote(reviewId, user) {
-    const downvoteAdded = await addDownvoter(reviewId, user)
+  async incrementDownvote(reviewId, authenticateduser) {
+    const downvoteAdded = await addDownvoter(reviewId, authenticateduser)
     if (downvoteAdded != null) {
       let upvotes = await getUpvoters(this.props.reviewId)
       let downvotes = await getDownvoters(this.props.reviewId)
@@ -103,7 +103,8 @@ class Review extends React.Component {
   render() {
 
     let profile_url = '';
-    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, queueComponent} = this.props;
+    const { admin, authenticateduser, reviewId, datetime, username,
+            userImg, movieName, reviewContent, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -111,7 +112,7 @@ class Review extends React.Component {
     else {
       profile_url = '/ProfileView/'
     }
-
+    console.log(authenticateduser);
     return (
       <div id="review">
 

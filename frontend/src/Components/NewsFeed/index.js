@@ -9,7 +9,7 @@ import ReviewsList from './../ReviewsList';
 import SearchBar from "../SearchBar";
 import GenreSearchBar from '../GenreSearchBar';
 // import functions/api calls for backend and database requets to server
-import { getUserReviews,getFriendsOfUser, getUserImage } from './../../services/api'
+import { getUserReviews,getFriendsOfUser,getUserImage,readCookie } from './../../services/api'
 
 // Class for the Reviews News Feed Component
 class NewsFeedScreen extends React.Component {
@@ -19,11 +19,13 @@ class NewsFeedScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {reviews: []};
+    readCookie(this)
   }
 
   async componentDidMount() {
     // get all the reviews of the friends of the current user to display them in the NewsFeed
-    const currUserFriendsTemp = await getFriendsOfUser(this.props.location.state.username)
+    const authenticateduser = this.state.currentUser
+    const currUserFriendsTemp = await getFriendsOfUser(authenticateduser)
     const currUserFriends = currUserFriendsTemp.data
     let myNewsFeed = []
     for(let i=0; i<currUserFriends.length; i++) {
@@ -47,13 +49,13 @@ class NewsFeedScreen extends React.Component {
 
   render() {
 
-    const username = this.props.location.state.username;
-
+    const authenticateduser = this.state.currentUser;
+    console.log(authenticateduser);
     return (
       <div id="pageFeed">
 
         {/*The menu bar is just reused from the Component MainMenuBar */}
-        <MainMenuBar username={username}/>
+        <MainMenuBar username={authenticateduser}/>
 
         {/*Form that takes in the input of users to search movies and reviews of movies */}
         <div className="searchMovieform">
@@ -71,7 +73,7 @@ class NewsFeedScreen extends React.Component {
         {/* Reviews List here to display all reviews from friends of current user */}
         <ReviewsList reviews={this.state.reviews}
                      queueComponent={this}
-                     authenticateduser= {username}/>
+                     authenticateduser= {authenticateduser}/>
 
       </div>
     );

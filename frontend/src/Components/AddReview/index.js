@@ -27,13 +27,13 @@ class AddReview extends React.Component {
    this.setState({turnAlert: false})
   }
 
-  async saveReview(queue, closeFunc, username) {
+  async saveReview(queue, closeFunc, authenticateduser) {
     if(this.state.newComment === "" || this.state.movie === ""){
       console.log("Can't post empty review")
       this.setState({error: "Cannot post an empty/incomplete review. Make sure to fill in all fields"})
       this.setState({turnAlert: true})
     } else {
-      const newReview = { username: username, movie_title: this.state.movie, content: this.state.review,
+      const newReview = { username: authenticateduser, movie_title: this.state.movie, content: this.state.review,
                           spoilers: false, date: new Date().toLocaleString(), movie_id: 1}
       const added = await addReview(newReview)
       queue.state.reviews.unshift(newReview)
@@ -51,7 +51,7 @@ class AddReview extends React.Component {
 
   render() {
 
-    const { queueComponent, cancelFunction, profImg, username } = this.props
+    const { queueComponent, cancelFunction, profImg, authenticateduser } = this.props
 
     return (
       <div id="addreviewmain">
@@ -63,7 +63,7 @@ class AddReview extends React.Component {
          <div className="add-review">
             <ul>
               <li className="reviewUserPicLi"><img className="reviewUserPic" src={profImg} alt="User DP"/></li>
-              <li>{username}</li>
+              <li>{authenticateduser}</li>
             </ul>
             <Form className="reviewForm">
               <Form.Group controlId="review.movieName">
@@ -81,7 +81,7 @@ class AddReview extends React.Component {
                 </Form.Check>
               </Form.Group>
             </Form>
-            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, username)} type="submit">Post Review</Button>
+            <Button variant="primary" className="saveReviewBtn" onClick={() => this.saveReview(queueComponent, cancelFunction, authenticateduser)} type="submit">Post Review</Button>
             <Button variant="primary" className="cancelAddRevPage" onClick={cancelFunction} type="submit">Cancel</Button>
             <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert} error={this.state.error}></ErrorModal>
         </div>

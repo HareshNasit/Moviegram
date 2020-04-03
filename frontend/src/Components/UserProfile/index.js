@@ -11,14 +11,14 @@ import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
-import { getAllReviews, getUser, getUserReviews, getUserImage } from './../../services/api'
+import { getAllReviews, getUser, getUserReviews, getUserImage, readCookie } from './../../services/api'
 
 class UserProfile extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
+    readCookie(this)
     this.state = {
-      username: this.props.location.state.username,
       profilePic: null,
       showModalFollowing: false,
       showModalFollows: false,
@@ -41,7 +41,7 @@ class UserProfile extends React.Component {
 
   async componentDidMount() {
     const reviews = await getAllReviews();
-    const username = this.props.location.state.username
+    const username = this.state.currentUser
     const userData = await getUser(username);
     const userReviewsData = await getUserReviews(username);
     let userReviews = userReviewsData.data;
@@ -55,7 +55,7 @@ class UserProfile extends React.Component {
       return bDate - aDate
     })
     this.setState({
-        username: username,
+        currentUser: username,
         profilePic: userData.data["image_url"],
         peopleFollow: userData.data["following"],
         peopleFollowing: userData.data["followers"],
@@ -118,7 +118,7 @@ class UserProfile extends React.Component {
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.currentUser, profileUser: person }}}>
           {person}
           </Link>
       </div>
@@ -127,13 +127,13 @@ class UserProfile extends React.Component {
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-      <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.username, profileUser: person }}}>
+      <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person, state: { username: this.state.currentUser, profileUser: person }}}>
       {person}
       </Link>
       </div>
     );
 
-    const username = this.props.location.state.username;
+    const username = this.state.currentUser;
     // let profile_url = '';
     // if (username === authenticateduser) {
     //   profile_url = '/UserProfile/'
@@ -160,7 +160,7 @@ class UserProfile extends React.Component {
                  contentLabel="Minimal Modal Example"
                  >
                  <AddReview queueComponent={this} cancelFunction={this.handleCloseAddRevModal} profImg={this.state.profilePic}
-                            username={username}
+                            authenticateduser={username}
                  />
                 </Modal>
 
