@@ -158,6 +158,7 @@ export const addMovieUpvoter = (id, upvoter) => axios.patch(baseURL + '/movies/a
 
 export const addMovieDownvoter = (id, downvoter) => axios.patch(baseURL + '/movies/add_downvoter/'+id+'/'+downvoter)
 
+export const getMovieByName = (title) => axios.get(baseURL + '/movies/movie_title/'+title)
 
 export const getReviewsByMovieID = async (id) => axios.get(baseURL + '/reviews/' + id + '/movie_id')
 

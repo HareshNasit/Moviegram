@@ -5,6 +5,7 @@ const {sessionCheckerAdmin, sessionCheckerRequestUsername} = require("../../auth
 /****** Movie routes *************************************/
 app.get('/', require("./all_movies"))
 app.get('/movie/:id', require("./get_movie"))
+app.get('/movie_title/:title', require("./get_movie_by_name"))
 app.get('/keypairs', require("./title_key_pairings"))
 app.get('/genre/:genre', require("./movie_by_genre"))
 app.get('/genre/', require("./all_genres"))
