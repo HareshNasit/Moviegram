@@ -8,12 +8,20 @@ import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
+import GenreSelector from '../GenreSelector'
 import { getAllReviews, getUser, getUserReviews, getUserImage, readCookie } from './../../services/api'
 
 class UserProfile extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
+    this.genreNames = ["Supernatural",
+                       "Fantasy",
+                       "Crime",
+                       "Action",
+                       "Horror",
+                       "Thriller",
+                       "Comedy"]
     this.state = {
       profilePic: null,
       showModalFollowing: false,
@@ -24,7 +32,17 @@ class UserProfile extends React.Component {
       peopleFollowing: [],
       showUpdateProfile: false,
       userDescription: "",
-      favoriteGenres: ""
+      favoriteGenres: "",
+      genres:
+            {Supernatural: false,
+              Horror: false,
+              Fantasy: false,
+              Crime: false,
+              Action: false,
+              Thriller: false,
+              Comedy: false
+    },
+    genresShow: false
     };
     this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -175,6 +193,14 @@ class UserProfile extends React.Component {
                 {follow_edit_button}
 
                 {add_review_button}
+                <Button variant="outline-primary"
+                              type="submit"
+                              className="editGenres"
+                              onClick={() => this.setState({genresShow: true})}
+                              >
+                              Edit Genres
+                </Button>
+                <GenreSelector signup={this}></GenreSelector>
                 <Modal className = "addRevModal"
                  overlayClassName="Overlay"
                  isOpen={this.state.showModalAddRev}
