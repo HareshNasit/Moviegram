@@ -59,7 +59,7 @@ app.use('/api/reviews', require('./backend/routes/reviews'))
 app.use('/api/signup', require('./backend/routes/signup'))
 app.use('/api/login', require('./backend/routes/login'))
 app.use('/api/admin', require('./backend/routes/admin'))
-app.use('/images', require('./routes/images'))
+app.use('/images', require('./backend/routes/images'))
 
 /*** Webpage routes below **********************************/
 // Serve the build
