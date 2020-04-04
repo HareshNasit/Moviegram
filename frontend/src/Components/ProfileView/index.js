@@ -46,7 +46,7 @@ class ProfileView extends React.Component {
 
   async componentDidMount() {
     await readCookie(this)
-    const profileUsername = this.props.location.state.profileUser
+    const profileUsername = this.props.match.params.id
     const authenticatedUsername = this.state.currentUser;
     const profileUserData = await getUser(profileUsername);
     const profileUserReviews = await getUserReviews(profileUsername);
@@ -170,7 +170,7 @@ class ProfileView extends React.Component {
     let follow_edit_button;
     let add_review_button;
     const authenticatedusername = this.state.currentUser;
-    const profileUser = this.props.location.state.profileUser
+    const profileUser = this.props.match.params.id
 
     follow_edit_button = <Button variant="outline-primary"
                   type="submit"
