@@ -85,7 +85,6 @@ class EditProfile extends React.Component {
 
   render() {
     const {queueComponent,cancelFunction} = this.props
-    console.log(this.props);
     return (
       <div id="editProfileModal">
         <div id="pageHeader">
