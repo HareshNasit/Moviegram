@@ -76,7 +76,7 @@ class ReviewGeneric extends React.Component {
     let profile_url = '';
     let add_comment_button;
     const { reviewId, authenticateduser, datetime, username,
-            userImg, movieName, movieId, reviewContent, spoiler, comments.length, queueComponent} = this.props;
+            userImg, movieName, movieId, reviewContent, spoiler, comments, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
