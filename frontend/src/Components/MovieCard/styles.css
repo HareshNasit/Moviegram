@@ -5,7 +5,12 @@
 .media {
   height: 500px;
 }
-
+.titleBack {
+  background-color: #202020;
+}
+.titleFont {
+  color: white;
+}
 .movie {
 	position: relative;
     margin-left: 5px;
@@ -16,4 +21,6 @@
 		color: white;
 		justify-content: center;
     float: left;
+    background-color: #202020;
+
 }

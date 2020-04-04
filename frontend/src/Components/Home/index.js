@@ -15,17 +15,8 @@ class Home extends React.Component {
   }
 
   splitMovies(movieList) {
-    // let temp = [];
-    // let movieGrouped = [];
-    // for (let i = 0, j = 0; i < movieList.length; i++){
-    //   if (i >= 3 && i%3 === 0){ j++; }
-    //   temp[j] = temp[j] || []
-    //   temp[j].push(movieList[i])
-    // }
-    // return [temp];
-
     let result = [];
-    for (let i = 0; i < movieList.length; i += 3) result.push(movieList.slice(i, i + 3));
+    for (let i = 0; i < movieList.length; i += 4) result.push(movieList.slice(i, i + 4));
     return result;
 
   }
@@ -40,7 +31,8 @@ class Home extends React.Component {
       const movieListGrouped = this.state.movies.map((group) =>
         <div className="movieList">
             <MovieCardList movies = {group}
-                           queueComponent = {this} />
+                           queueComponent = {this}
+                           history={this.props.history}/>
         </div>
       );
 

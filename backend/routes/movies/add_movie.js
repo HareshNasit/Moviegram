@@ -22,7 +22,8 @@ module.exports = async (req, res) => {
         "director": req.body.director,
         "stars": req.body.actors,
         "description": req.body.description,
-        "genres": req.body.genres
+        "genres": req.body.genres,
+        "imgsrc": req.body.imgsrc
       })
    return movie.save()
   }).then(movie =>

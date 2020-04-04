@@ -66,6 +66,9 @@ class Admin extends React.Component{
                  Add Movie
         </Button>
         </div>
+        <div className="spaceBox">
+
+        </div>
         <div id="Revs">
         <ReviewsList reviews={this.state.reviews}
                      type = "admin"
