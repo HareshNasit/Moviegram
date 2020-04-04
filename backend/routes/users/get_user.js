@@ -2,9 +2,9 @@
 const User = require('./../../models/user')
 
 module.exports = async (req, res) => {
-    User.findOne({_id: req.params.id}).then((user) => {
+    User.findById(req.params.id, {password: 0}).then((user) => {
       res.send(user)
-    }, (error) => {
+    }).catch((error) => {
       res.status(500).send(error) // server error
     })
   }
