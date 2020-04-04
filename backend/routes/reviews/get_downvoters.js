@@ -3,7 +3,7 @@ const { ObjectID } = require('mongodb')
 const { Reviews } = require('./../../models/review')
 
 module.exports = async (req, res) => {
-	
+
 	const id = req.params.id
 
 	console.log(req.params.id);
@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
 	}
 
 	Reviews.findById(id).then((review) => {
-		console.log(review);
+		// console.log(review);
 		res.send(review.downvoters)
 	}).catch((error) => {
 		res.status(404).send(error)

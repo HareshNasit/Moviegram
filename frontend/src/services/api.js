@@ -1,7 +1,7 @@
 import axios from 'axios'
 // const baseURL = 'https://moviegram-back.herokuapp.com'
-// const baseURL = 'http://localhost:5000'
-const baseURL = '/api'
+const baseURL = 'http://localhost:5000'
+// const baseURL = '/api'
 
 
 export const insertUserToMongo = async data => {
@@ -83,7 +83,7 @@ export const readCookie = async (app) => {
         }
     } catch (err) {
         // FOR DEV
-        app.setState({ currentUser: "admin", auth: false});
+        app.setState({ currentUser: "username1", auth: false});
         console.log(err)
     }
 };
@@ -260,7 +260,7 @@ export const addComment = async (comment, id) => {
 
 export const getUserImage = (username) => axios.get(baseURL + '/Images/'+username)
 
-export const addImage = (form, user_id) => {
+export const addImage = (form, user_id, userProfileComponent) => {
     // the URL for the request
     const url = `${baseURL}/images/` + user_id ;
 
@@ -275,18 +275,11 @@ export const addImage = (form, user_id) => {
 
     // Send the request with fetch()
     fetch(request)
-        .then(function (res) {
-            // Handle response we get from the API.
-            // Usually check the error codes to see what happened.
-            if (res.status === 200) {
-                // If image was added successfully, tell the user.
-                console.log("YaYY SUCCESS");
-            } else {
-                // If server couldn't add the image, tell the user.
-                // Here we are adding a generic message, but you could be more specific in your app.
-                console.log("NO NO FAILURE");
-            }
-        })
+    .then(response => response.json())
+      .then(function (json) {
+        console.log(json);
+        userProfileComponent.setState({ profilePic: json.image_url})
+      })
         .catch(error => {
             console.log(error);
         });

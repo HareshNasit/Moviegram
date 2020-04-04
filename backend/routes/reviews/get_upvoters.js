@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
 	}
 
 	Reviews.findById(id).then((review) => {
-		console.log(review);
+		// console.log(review);
 		res.send(review.upvoters)
 	}).catch((error) => {
 		res.status(404).send(error)

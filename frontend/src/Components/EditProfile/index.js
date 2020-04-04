@@ -52,11 +52,22 @@ class EditProfile extends React.Component {
     else {
        if (this.state.newDescription !== "") {
          updateDescription(this.state.currentUser, this.state.newDescription)
-      //   queueComponent.setState({
-      //     userDescription: this.state.newDescription});
+          queueComponent.setState({
+            userDescription: this.state.newDescription});
       }
     }
     updateFavoriteGenres(this.state.currentUser, this.state.genres)
+    console.log(this.state.genres);
+    let favGenText = "";
+    const genres = this.state.genres
+    for (const key of Object.keys(genres)) {
+        if (genres[key]) {
+          favGenText = favGenText + key +  ", "
+        }
+    }
+    favGenText = favGenText.slice(0,favGenText.length - 2)
+    queueComponent.setState({
+      favoriteGenres: favGenText});
     closeFunc()
 
   }

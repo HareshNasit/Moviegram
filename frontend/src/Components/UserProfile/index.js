@@ -138,7 +138,7 @@ class UserProfile extends React.Component {
   }
 
   handleCloseUpdateProfileModal () {
-    window.location.reload(false);
+    // window.location.reload(false);
     this.setState({showUpdateProfile: false})
   }
 
