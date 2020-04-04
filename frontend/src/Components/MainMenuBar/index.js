@@ -23,8 +23,8 @@ class MainMenuBar extends React.Component {
   }
 
   render() {
+    
     const { username } = this.props
-    const userProfileURL = '/UserProfile/'+  username ;
 
     if(username !== null && username === "admin"){
       return (

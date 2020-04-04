@@ -1,6 +1,6 @@
 // import all react libraries
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import { uid } from "react-uid";
 // import all stylesheets
@@ -22,6 +22,7 @@ class ReviewGeneric extends React.Component {
     super(props)
     this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
     this.getCommentsSection = this.getCommentsSection.bind(this)
+    this.userImageType = this.userImageType.bind(this)
   }
 
   async componentDidMount() {
@@ -34,6 +35,18 @@ class ReviewGeneric extends React.Component {
     downvotes = downvotes.data.length
     this.setState({upvotes: upvotes})
     this.setState({downvotes: downvotes})
+  }
+
+  userImageType(authenticateduser, userImg, profile_url, username) {
+    if (authenticateduser==null) {
+      return (<span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>);
+    } else if (authenticateduser != null) {
+      return (
+        <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
+        <span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
+        </Link>
+      )
+    }
   }
 
   // Creates and returns a unique comments section which contains the comments of each different review
@@ -63,25 +76,13 @@ class ReviewGeneric extends React.Component {
       profile_url = '/ProfileView/'
     }
 
-    const nulUserImage = () => {
-      if (authenticateduser==null) {
-        return (<span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>);
-      } else if (authenticateduser != null) {
-        return (
-          <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
-          <span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
-          </Link>
-        )
-      }
-    }
-
     return (
       <div id="review">
 
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li>
-            {nulUserImage}{username}
+            {this.userImageType(authenticateduser, userImg, profile_url, username)}{username}
           </li>
 
           <li>

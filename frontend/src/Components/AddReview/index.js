@@ -41,17 +41,20 @@ class AddReview extends React.Component {
   }
 
   async saveReview(queue, closeFunc, authenticateduser) {
-    if(this.state.newComment === "" || this.state.movie === "" || this.state.movie === "--Select Movie--"){
+    if(this.state.review === "" || this.state.movie === "" || this.state.movie === "--Select Movie--"){
       this.setState({error: "Cannot post an empty/incomplete review. Make sure to fill in all fields"})
       this.setState({turnAlert: true})
     } else {
 
       let movie = await getMovieByName(this.state.movie)
       movie = movie.data
-      const newReview = { username: authenticateduser, movie_title: this.state.movie, content: this.state.review,
+      let newReview = { username: authenticateduser, movie_title: this.state.movie, content: this.state.review,
                           spoilers: this.state.spoiler, date: new Date().toLocaleString(), movie_id: movie._id}
       const added = await addReview(newReview)
-      queue.state.reviews.unshift(newReview)
+      newReview.image_url = this.props.profImg
+      let existingRevs = queue.state.reviews
+      existingRevs.unshift(newReview)
+      queue.setState({reviews: existingRevs})
       closeFunc();
     }
   }

@@ -43,7 +43,7 @@ class AdminReview extends React.Component {
 
   // adds a comment to the review and to the db
   async addCommentFunc(reviewId, user, content) {
-    if (this.state.newComment.trim() != "") {
+    if (this.state.newComment.trim() !== "") {
       var newCom = {username: user, date: new Date().toLocaleString(), content: content}
     }
     const commentAdded = await addComment(newCom, reviewId)
