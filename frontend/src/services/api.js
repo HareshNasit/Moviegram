@@ -12,8 +12,6 @@ export const insertUserToMongo = async data => {
     }
 }
 
-export const getAllMovies = axios.get(baseURL+'/movies')
-
 export const getKeyMoviePairs = async () => {
     try {
         let res = await axios.get(baseURL + '/movies/keypairs')
@@ -85,8 +83,8 @@ export const readCookie = async (app) => {
         }
     } catch (err) {
         // FOR DEV
-        // app.setState({ currentUser: "username1", auth: false});
-        // console.log(err)
+        app.setState({ currentUser: "admin", auth: false});
+        console.log(err)
     }
 };
 
@@ -134,6 +132,8 @@ export const updateUserFollowInfo = async (user) => {
   // })
 }
 export const logout = () => axios.get(baseURL + "/session/logout")
+
+export const getAllMovies = () => axios.get(baseURL+'/movies')
 
 export const getAllReviews = () => axios.get(baseURL + '/admin')
 
