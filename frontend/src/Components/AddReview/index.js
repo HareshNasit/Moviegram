@@ -20,6 +20,7 @@ class AddReview extends React.Component {
     this.saveReview = this.saveReview.bind(this)
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleReviewContentChange = this.handleReviewContentChange.bind(this)
+    this.handleSpoilerChange = this.handleSpoilerChange.bind(this)
     this.closeModal = this.closeModal.bind(this)
   }
 
@@ -68,7 +69,7 @@ class AddReview extends React.Component {
   }
 
   handleSpoilerChange() {
-    this.setState({spoiler: !this.state.spoiler})
+    this.setState({spoiler: !(this.state.spoiler)})
   }
 
   render() {
@@ -106,7 +107,7 @@ class AddReview extends React.Component {
               </Form.Group>
               <Form.Group controlId="review.spoiler">
                 <Form.Check type="checkbox" id="spoilerCheck">
-                  <Form.Check.Input type="checkbox" isValid />
+                  <Form.Check.Input onChange={this.handleSpoilerChange} type="checkbox" isValid />
                   <Form.Check.Label>Spoilers?</Form.Check.Label>
                 </Form.Check>
               </Form.Group>

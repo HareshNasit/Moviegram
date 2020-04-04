@@ -23,6 +23,7 @@ class AdminReview extends React.Component {
     this.incrementUpvote = this.incrementUpvote.bind(this)
     this.incrementDownvote = this.incrementDownvote.bind(this)
     this.getCommentsSection = this.getCommentsSection.bind(this)
+    this.hasSpoiler = this.hasSpoiler.bind(this)
   }
 
   async componentDidMount() {
@@ -92,10 +93,23 @@ class AdminReview extends React.Component {
     }
   }
 
+  hasSpoiler(spoilerVal) {
+    if (spoilerVal === true) {
+      return (
+        <span id="spoilerTagRA">Spoilers !!!!</span>
+      )
+    } else {
+      return (
+        <span>             </span>
+      )
+    }
+  }
+
   render() {
 
     let profile_url = '';
-    const { admin, reviewId, authenticateduser, datetime, username, userImg, movieName, reviewContent, queueComponent} = this.props;
+    const { admin, reviewId, authenticateduser, datetime, username, userImg,
+            movieName, reviewContent, spoiler, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -110,10 +124,14 @@ class AdminReview extends React.Component {
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li><span className="reviewUserPicLi">
-          <Link to={{pathname:profile_url +username, state: { username: authenticateduser, profileUser: username }}}>
-          <img className="reviewUserPic" src={userImg} alt="User DP"/>
-          </Link>
-          </span>{username}</li>
+            <Link to={{pathname:profile_url +username, state: { username: authenticateduser, profileUser: username }}}>
+            <img className="reviewUserPic" src={userImg} alt="User DP"/>
+            </Link>
+            </span>{username}
+          </li>
+          <li>
+            {this.hasSpoiler(spoiler)}
+          </li>
           <li>{movieName}</li>
           <li><Button variant="primary" onClick={() => this.remove_Review(username, movieName)}>
           Remove Review</Button></li>

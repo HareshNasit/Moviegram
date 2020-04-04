@@ -24,6 +24,11 @@
 	padding-left: 20px;
 }
 
+#spoilerTagRG {
+	color: #ff9933;
+	text-align: center;
+}
+
 #votes-upRG {
 	margin: 5px;
 	margin-left: 10px;

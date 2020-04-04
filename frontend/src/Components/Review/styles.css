@@ -33,6 +33,11 @@
   flex: 0 1 auto;
 }
 
+#spoilerTagR {
+	color: #ff9933;
+	text-align: center;
+}
+
 #link {
 	color: white;
   text-decoration: none;

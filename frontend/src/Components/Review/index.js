@@ -24,6 +24,7 @@ class Review extends React.Component {
     this.incrementUpvote = this.incrementUpvote.bind(this)
     this.incrementDownvote = this.incrementDownvote.bind(this)
     this.getCommentsSection = this.getCommentsSection.bind(this)
+    this.hasSpoiler = this.hasSpoiler.bind(this)
   }
 
   async componentDidMount() {
@@ -88,11 +89,23 @@ class Review extends React.Component {
     }
   }
 
+  hasSpoiler(spoilerVal) {
+    if (spoilerVal === true) {
+      return (
+        <span id="spoilerTagR">Spoilers !!!!</span>
+      )
+    } else {
+      return (
+        <span>             </span>
+      )
+    }
+  }
+
   render() {
 
     let profile_url = '';
     const { admin, authenticateduser, reviewId, datetime, username,
-            userImg, movieName, movieId, reviewContent, queueComponent} = this.props;
+            userImg, movieName, movieId, reviewContent, spoiler, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -110,7 +123,11 @@ class Review extends React.Component {
           <img className="reviewUserPic" src={userImg} alt="User DP"/>
           </Link>
           </span>
-          {username}</li>
+          {username}
+          </li>
+          <li>
+            {this.hasSpoiler(spoiler)}
+          </li>
           <li>
             <Link id="link" to={{pathname: "/movie/" + movieId, state: { currentUser: authenticateduser }}}>
               {movieName}

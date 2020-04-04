@@ -23,6 +23,7 @@ class ReviewGeneric extends React.Component {
     this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
     this.getCommentsSection = this.getCommentsSection.bind(this)
     this.userImageType = this.userImageType.bind(this)
+    this.hasSpoiler = this.hasSpoiler.bind(this)
   }
 
   async componentDidMount() {
@@ -63,11 +64,23 @@ class ReviewGeneric extends React.Component {
     )
   }
 
+  hasSpoiler(spoilerVal) {
+    if (spoilerVal === true) {
+      return (
+        <span id="spoilerTagRG">Spoilers !!!!</span>
+      )
+    } else {
+      return (
+        <span>             </span>
+      )
+    }
+  }
+
   render() {
 
     let profile_url = '';
     const { admin, reviewId, authenticateduser, datetime, username,
-            userImg, movieName, movieId, reviewContent, queueComponent} = this.props;
+            userImg, movieName, movieId, reviewContent, spoiler, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -84,7 +97,9 @@ class ReviewGeneric extends React.Component {
           <li>
             {this.userImageType(authenticateduser, userImg, profile_url, username)}{username}
           </li>
-
+          <li>
+            {this.hasSpoiler(spoiler)}
+          </li>
           <li>
             <Link id="link" to={{pathname: "/movie/" + movieId, state: { currentUser: authenticateduser }}}>
               {movieName}
