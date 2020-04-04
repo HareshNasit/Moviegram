@@ -27,7 +27,7 @@ app.put("/:user_id", multipartMiddleware, (req, res) => {
         function (result) {
           console.log(result.url);
           if (result.url !== undefined) {
-            User.findByIdAndUpdate({"_id": username}, { "image_id": result.public_id, "image_url": result.url })
+            User.findByIdAndUpdate({"_id": username}, { "image_url": result.url })
               .then(user => {
                   if (!user) {
                       res.status(404).send();

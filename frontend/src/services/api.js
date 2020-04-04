@@ -110,7 +110,7 @@ export const login = (loginComp, app) => {
 };
 
 export const updateUserFollowInfo = async (user) => {
-  const url = `${baseURL}/users/user_update_follow/` + user.username
+  const url = `${baseURL}/users/user_update_follow/`
   const request = new Request(url, {
       method: "put",
       body: JSON.stringify(user),
