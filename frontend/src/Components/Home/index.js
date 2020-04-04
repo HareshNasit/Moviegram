@@ -16,7 +16,7 @@ class Home extends React.Component {
 
   splitMovies(movieList) {
     let result = [];
-    for (let i = 0; i < movieList.length; i += 3) result.push(movieList.slice(i, i + 3));
+    for (let i = 0; i < movieList.length; i += 4) result.push(movieList.slice(i, i + 4));
     return result;
 
   }
