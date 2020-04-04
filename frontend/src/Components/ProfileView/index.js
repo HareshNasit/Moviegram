@@ -49,7 +49,6 @@ class ProfileView extends React.Component {
     const profileUsername = this.props.match.params.id
     const authenticatedUsername = this.state.currentUser;
     const profileUserData = await getUser(profileUsername);
-    console.log(profileUserData.data);
     if (profileUserData.data == "") {
           this.setState({username: ""})
     }
@@ -129,8 +128,7 @@ class ProfileView extends React.Component {
 
     const profileUserData = await getUser(profileUser);
     const authUserData = await getUser(authenticateduser);
-    console.log(profileUserData.data);
-    console.log(authUserData.data);
+
     if (this.state.followUnfollowText === "Follow" && !(profileUserData.data.followers.includes(authenticateduser))) {
       const profileFollowers = profileUserData.data.followers
       profileFollowers.push(authenticateduser)
