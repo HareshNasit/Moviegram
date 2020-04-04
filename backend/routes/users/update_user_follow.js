@@ -2,7 +2,6 @@
 const User = require('./../../models/user')
 
 module.exports = async (req, res) => {
-    // res.send(req.body.username)
     const username = req.body.username
     const isFollowers = req.body.isFollowers
     const followers = req.body.followers
@@ -18,11 +17,6 @@ module.exports = async (req, res) => {
         .catch(error => {
             res.status(400).send(); // bad request for changing the student.
         });
-      // User.save(
-      //   {
-      //   "_id": username, "followers": followers
-      //   }
-      // )
     }
     else {
       User.findByIdAndUpdate({"_id": username}, { "following": followers })

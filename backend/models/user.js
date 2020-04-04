@@ -40,13 +40,10 @@ const UserSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
-	image_id: {
-        type: String,
-        required: true
-    },
   image_url: {
       type: String,
-      required: true
+	  required: true,
+	  default: "https://l.messenger.com/l.php?u=https%3A%2F%2Fres.cloudinary.com%2Fmoviegramcloud%2Fimage%2Fupload%2Fv1586015404%2Fdefault-profile-picture_lp2ict.png&h=AT0tYinbg8q0dr3mvekxlFpSF_VtAm_UeFGRrLNqV8o65p_0sYzeoCpZ3yqiOS5737ZIddvXGb3g3ONYfBetJPL3EkRToXpF4gFkJf_4OURAVAoBRc2uy84cMTIGIg"
   }
 })
 

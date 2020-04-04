@@ -55,8 +55,7 @@ class SignupScreen extends React.Component {
       this.setState({password: e.target.value});
   }
 
-  buttonClick(){
-    console.log(this.state.srcImage);
+  async buttonClick(){
     if(this.state.username === ""){
       this.setState({turnAlert: true})
       this.setState({error: "Please enter your username."})
@@ -67,7 +66,7 @@ class SignupScreen extends React.Component {
       this.setState({turnAlert: true})
       this.setState({error: "Please enter your password."})
     } else{
-      signup({username: this.state.username,
+      await signup({username: this.state.username,
         email: this.state.email,
         genres: this.state.genres,
         password: this.state.password,
@@ -78,9 +77,6 @@ class SignupScreen extends React.Component {
     // Change avatar image
     e.preventDefault();
     uploadImageDB(e.target, this);
-    // const object = e.target.files[0]
-    // const objectURL = URL.createObjectURL(object)
-    // this.setState({srcImage: objectURL})
   }
 
   // renderRedirect = () => {
@@ -135,9 +131,9 @@ class SignupScreen extends React.Component {
                       <Button
                           variant="primary"
                           type="submit"
-                          className="image-form__submit-button"
+                          id="uploadDP"
                       >
-                          Upload DP
+                          Upload Profile Picture
                       </Button>
 
                   </form>

@@ -21,18 +21,15 @@ app.put("/:user_id", multipartMiddleware, (req, res) => {
 
     const username = req.params.user_id;
     // Use uploader.upload API to upload image to cloudinary server.
-    console.log(username);
     cloudinary.uploader.upload(
         req.files.image.path, // req.files contains uploaded files
         function (result) {
-          console.log(result.url);
           if (result.url !== undefined) {
-            User.findByIdAndUpdate({"_id": username}, { "image_id": result.public_id, "image_url": result.url })
+            User.findByIdAndUpdate({"_id": username}, { "image_url": result.url })
               .then(user => {
                   if (!user) {
                       res.status(404).send();
                   } else {
-                      console.log(user);
                       res.send(user);
                   }
               })
@@ -49,9 +46,7 @@ app.post("/upload_image/",  multipartMiddleware, (req, res) => {
     cloudinary.uploader.upload(
         req.files.image.path, // req.files contains uploaded files
         function (result) {
-          console.log(result.url);
           if (result.url !== undefined) {
-              console.log(result.url);
               res.send({image_url: result.url});
           }
         });

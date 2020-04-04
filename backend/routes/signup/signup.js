@@ -15,9 +15,6 @@ module.exports = async (req, res) => {
     else if(!req.body.email){
       res.status(400).send("Missing email")
     }
-    else if(!req.body.image_url){
-      res.status(400).send("Missing Profile Pic")
-    }
     else{
     const password = req.body.password
     const username = req.body.username

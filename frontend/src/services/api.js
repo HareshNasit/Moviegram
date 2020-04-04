@@ -52,25 +52,13 @@ export const getMoviesByGenre = async genre => {
 
 export const signup = async (user, signupstate) => {
     const url = `${baseURL}/signup/`
-    const request = new Request(url, {
-        method: "post",
-        body: JSON.stringify(user),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    });
-    fetch(request).then(res =>{
-        console.log(res)
-        if(!res.ok){
-            throw new Error("Something went wrong...");
-        } else{
-            signupstate.props.history.push({pathname: "/login"})
-        }
-    }).catch(error => {
-        signupstate.setState({error: error})
+    try {
+        await axios.post(url, user)
+        signupstate.props.history.push({pathname: "/login"})
+    } catch (err) {
+        signupstate.setState({error: err.message})
         signupstate.setState({turnAlert: true})
-    })
+    }
 }
 
 export const readCookie = async (app) => {
@@ -84,7 +72,6 @@ export const readCookie = async (app) => {
     } catch (err) {
         // FOR DEV
         app.setState({ currentUser: "username1", auth: false});
-        console.log(err)
     }
 };
 
@@ -110,7 +97,7 @@ export const login = (loginComp, app) => {
 };
 
 export const updateUserFollowInfo = async (user) => {
-  const url = `${baseURL}/users/user_update_follow/` + user.username
+  const url = `${baseURL}/users/user_update_follow/`
   const request = new Request(url, {
       method: "put",
       body: JSON.stringify(user),

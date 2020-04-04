@@ -124,6 +124,8 @@ class ProfileView extends React.Component {
 
     const profileUserData = await getUser(profileUser);
     const authUserData = await getUser(authenticateduser);
+    console.log(profileUserData.data);
+    console.log(authUserData.data);
     if (this.state.followUnfollowText === "Follow" && !(profileUserData.data.followers.includes(authenticateduser))) {
       const profileFollowers = profileUserData.data.followers
       profileFollowers.push(authenticateduser)
@@ -137,6 +139,8 @@ class ProfileView extends React.Component {
         username: authenticateduser,
         isFollowers: false,
         followers: authUserFollowing})
+      const profileUserPic = profileUserData.data.image_url
+      this.state.peopleFollowing.push({username: authenticateduser, image_url: profileUserPic})
       this.setState({followUnfollowText: "UnFollow"})
     }
     else if (this.state.followUnfollowText === "UnFollow") {
@@ -154,22 +158,12 @@ class ProfileView extends React.Component {
         username: authenticateduser,
         isFollowers: false,
         followers: authUserFollowing})
-      this.setState({followUnfollowText: "Follow"})
+
+      const newFollowers =  this.state.peopleFollowing.filter(function(user) {
+        	return user.username != authenticateduser;
+      });
+      this.setState({followUnfollowText: "Follow", peopleFollowing: newFollowers})
     }
-    window.location.reload(false);
-    // console.log(event);
-    //   if (this.state.peopleFollow.includes(authenticateduser)) {
-    //     const peopleFollowNew = this.state.peopleFollow;
-    //     peopleFollowNew.pop(authenticateduser)
-    //     this.setState({peopleFollow: peopleFollowNew});
-    //     this.setState({followUnfollowText: "Follow"})
-    //   }
-    //   else {
-    //     const peopleFollowNew = this.state.peopleFollow;
-    //     peopleFollowNew.push(authenticateduser)
-    //     this.setState({peopleFollow: peopleFollowNew});
-    //     this.setState({followUnfollowText: "UnFollow"})
-    //   }
   }
 
   render() {
