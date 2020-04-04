@@ -49,6 +49,11 @@ class ProfileView extends React.Component {
     const profileUsername = this.props.match.params.id
     const authenticatedUsername = this.state.currentUser;
     const profileUserData = await getUser(profileUsername);
+    console.log(profileUserData.data);
+    if (profileUserData.data == "") {
+          this.setState({username: ""})
+    }
+    else {
     const profileUserReviews = await getUserReviews(profileUsername);
     const authUserData = await getUser(authenticatedUsername);
     const authUserFollowing = authUserData.data["following"]
@@ -99,7 +104,7 @@ class ProfileView extends React.Component {
         followUnfollowText: followUnfollowText,
         favoriteGenres: favGenText
       })
-
+    }
     Modal.setAppElement('body');
   }
 
@@ -167,6 +172,17 @@ class ProfileView extends React.Component {
   }
 
   render() {
+
+    if (this.state.username === "") {
+      return(<div>
+          <MainMenuBar username={this.state.currentUser}/>
+          <div>
+              <h1>
+              404 User Not Found
+              </h1>
+          </div>
+      </div>);
+    }
     let follow_edit_button;
     let add_review_button;
     const authenticatedusername = this.state.currentUser;
