@@ -1,6 +1,5 @@
 // import all react libraries
 import React from "react";
-import {Link} from 'react-router-dom';
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";

@@ -14,15 +14,11 @@ import ReviewAdmin from './../ReviewAdmin';
 // Class for a Review Component
 class ReviewsList extends React.Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
 
     const { reviews, type, authenticateduser, queueComponent} = this.props;
-    if(reviews.length!=0) {
-      if (type=="generic"){
+    if(reviews.length !== 0) {
+      if (type==="generic"){
         return (
           <div className="revs">
             {reviews.map((review) => (
@@ -40,7 +36,7 @@ class ReviewsList extends React.Component {
             ))}
           </div>
         );
-      } else if (type=="admin"){
+      } else if (type==="admin"){
         return (
           <div className="revs">
             {reviews.map((review) => (

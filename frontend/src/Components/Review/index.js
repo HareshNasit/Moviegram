@@ -44,7 +44,7 @@ class Review extends React.Component {
 
   // adds a comment to the review and to the db
   async addCommentFunc(reviewId, authenticateduser, content) {
-    if (this.state.newComment.trim() != "") {
+    if (this.state.newComment.trim() !== "") {
       var newCom = {username: authenticateduser, date: new Date().toLocaleString(), content: content}
     }
     const commentAdded = await addComment(newCom, reviewId)
@@ -65,7 +65,7 @@ class Review extends React.Component {
   // increase the number upvotes the review has by 1
   async incrementUpvote(reviewId, authenticateduser) {
     const upvoteAdded = await addUpvoter(reviewId, authenticateduser)
-    if (upvoteAdded != null) {
+    if (upvoteAdded !== null) {
       let upvotes = await getUpvoters(this.props.reviewId)
       let downvotes = await getDownvoters(this.props.reviewId)
       upvotes = upvotes.data.length
@@ -78,7 +78,7 @@ class Review extends React.Component {
   // increase the number downvotes the review has by 1
   async incrementDownvote(reviewId, authenticateduser) {
     const downvoteAdded = await addDownvoter(reviewId, authenticateduser)
-    if (downvoteAdded != null) {
+    if (downvoteAdded !== null) {
       let upvotes = await getUpvoters(this.props.reviewId)
       let downvotes = await getDownvoters(this.props.reviewId)
       upvotes = upvotes.data.length
