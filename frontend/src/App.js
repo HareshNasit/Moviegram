@@ -49,7 +49,7 @@ class App extends React.Component {
                             (<NewsFeedGeneric app={this} {...props} />)}/>
             <Route exact path='/AddReview' render={(props) =>
                             (<AddReview app={this} {...props} />)}/>
-            <Route exact path='/userProfile/:id' render={(props) =>
+            <Route exact path='/userProfile/' render={(props) =>
                             (<UserProfile app={this} {...props} />)}/>
             <Route exact path='/ProfileView/:id' render={(props) =>
                             (<ProfileView app={this} {...props} />)}/>
