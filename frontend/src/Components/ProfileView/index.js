@@ -26,7 +26,7 @@ class ProfileView extends React.Component {
     super(props);
     this.state = {
       followUnfollowText: "",
-      username: this.props.location.state.username,
+      username: "",
       profilePic: null,
       showModalFollowing: false,
       showModalFollows: false,

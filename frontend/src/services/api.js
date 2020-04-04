@@ -253,7 +253,6 @@ export const updateUserImage = async (form, user_id, userProfileComponent) => {
 
     // The data we are going to send in our request
     const imageData = new FormData(form);
-    // console.log(form);
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
         method: "put",
@@ -264,9 +263,7 @@ export const updateUserImage = async (form, user_id, userProfileComponent) => {
     fetch(request)
     .then(response => response.json())
       .then(function (json) {
-        console.log(json);
         userProfileComponent.setState({ profilePic: json.image_url})
-        console.log(userProfileComponent.state);
       })
         .catch(error => {
             console.log(error);
@@ -275,45 +272,23 @@ export const updateUserImage = async (form, user_id, userProfileComponent) => {
 
 export const updateDescription = async (username, newDescription) => {
   const url = `${baseURL}/users/user_update_description/` + username
-  console.log(newDescription);
-  // const body = {newDescription: newDescription}
-  const request = new Request(url, {
-      method: "put",
-      body: JSON.stringify({newDescription}),
-      headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"}
-  });
-  fetch(request).then(res =>{
-      console.log(res)
-      if(!res.ok){
-          throw new Error("Something went wrong...");
-      } else{
-          console.log("IT WORKSS YAYY");
-      }
-  })
+
+  try {
+    await axios.put(url, {newDescription})
+  } catch (err) {
+      console.log("ERROR while updating user description");
+  }
 }
 
 
 export const updateFavoriteGenres = async (username, favoriteGenres) => {
   const url = `${baseURL}/users/user_update_favoriteGenres/` + username
-  console.log(favoriteGenres);
-  // const body = {newDescription: newDescription}
-  const request = new Request(url, {
-      method: "put",
-      body: JSON.stringify({favoriteGenres}),
-      headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"}
-  });
-  fetch(request).then(res =>{
-      console.log(res)
-      if(!res.ok){
-          throw new Error("Something went wrong...");
-      } else{
-          console.log("IT WORKSS YAYY");
-      }
-  })
+
+  try {
+    await axios.put(url, {favoriteGenres})
+  } catch (err) {
+      console.log("ERROR while updating favorite genres");
+  }
 }
 
 
@@ -331,9 +306,7 @@ export const uploadImageDB = async (form, signupComponent) => {
     const url = `${baseURL}/images/upload_image` ;
 
     // The data we are going to send in our request
-    console.log(form);
     const imageData = new FormData(form);
-    console.log(imageData);
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
         method: "post",

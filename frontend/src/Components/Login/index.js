@@ -4,11 +4,16 @@ import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {login} from '../../services/api'
 import ErrorModal from '../ErrorModal'
-
+import MainMenuBar from './../MainMenuBar';
+import {readCookie} from '../../services/api'
 
 class LoginScreen extends React.Component {
     constructor(props) {
       super(props);
+      readCookie(this)
+
+      this.renderRedirect = this.renderRedirect.bind(this)
+
       this.state = {turnAlert: false, username: "", password: ""};
       this.changeUser = this.changeUser.bind(this);
       this.passwordChange = this.passwordChange.bind(this)
@@ -41,10 +46,18 @@ l
       this.setState({error: "Either the username or password is wrong."})
     })}
 
+    renderRedirect(){
+      if(this.state.currentUser){
+        this.props.history.push("/Newsfeed")
+      }
+    }
     render() {
       const { app } = this.props
       return (
-        <div className="pageM">
+        <div>
+          {this.renderRedirect()}
+          <MainMenuBar username={this.state.currentUser}/>
+          <div className="pageM">
           {/* {this.renderRedirect()} */}
           <Form className="form">
             <Form.Group className="welcomeText">
@@ -77,6 +90,8 @@ l
                 error={this.state.error}></ErrorModal>
         </div>
 
+        </div>
+       
 
 
       );

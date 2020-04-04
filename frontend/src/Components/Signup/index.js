@@ -2,21 +2,18 @@ import React from 'react';
 import './styles.css';
 import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-
+import {readCookie} from '../../services/api'
 import Avatar from '@material-ui/core/Avatar';
 import GenreSelector from '../GenreSelector'
 import ErrorModal from '../ErrorModal'
 import {signup, uploadImageDB} from '../../services/api'
-
-// <input
-//   accept="image/*"
-//   type="file"
-//   onChange={ (event) => this.handleUpload(event) }
-// />
+import MainMenuBar from './../MainMenuBar';
 
 class SignupScreen extends React.Component {
   constructor(props) {
     super(props);
+    readCookie(this)
+    this.renderRedirect = this.renderRedirect.bind(this)
     this.genreNames = ["Supernatural",
                        "Fantasy",
                        "Crime",
@@ -78,18 +75,19 @@ class SignupScreen extends React.Component {
     e.preventDefault();
     uploadImageDB(e.target, this);
   }
-
-  // renderRedirect = () => {
-  //   if (constants.acc.auth) {
-  //     return <Redirect to='/NewsFeed' />
-  //   }
-  // }
-
-
+  
+  renderRedirect(){
+    if(this.state.currentUser){
+      this.props.history.push("/Newsfeed")
+    }
+  }
   render() {
     return (
+    <div>
+      {this.renderRedirect()}
+      <MainMenuBar username={this.state.currentUser}/>
       <div className="formContainer">
-        {/* {this.renderRedirect()} */}
+        
 
         <Form className="form">
           <Form.Group className="welcomeText">
@@ -157,6 +155,9 @@ class SignupScreen extends React.Component {
         <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert}
                 error={this.state.error}></ErrorModal>
       </div>
+  
+    </div>
+      
 
 
 

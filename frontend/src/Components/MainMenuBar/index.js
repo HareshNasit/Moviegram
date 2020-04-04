@@ -25,7 +25,7 @@ class MainMenuBar extends React.Component {
   render() {
     
     const { username } = this.props
-
+    console.log(username)
     if(username !== null && username === "admin"){
       return (
         <div id="mainMenuBar">
@@ -66,7 +66,7 @@ class MainMenuBar extends React.Component {
 
         </div>
       );
-    } else if(username !== null && username !== "admin"){
+    } else if(username != null && username !== "admin"){
       return (
         <div id="mainMenuBar">
 
@@ -101,7 +101,7 @@ class MainMenuBar extends React.Component {
 
         </div>
       );
-    } else if (username === null){
+    } else if (username == null){
       return (
         <div id="mainMenuBar">
 
