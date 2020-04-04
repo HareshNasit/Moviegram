@@ -52,7 +52,6 @@ class ProfileView extends React.Component {
     const profileUserReviews = await getUserReviews(profileUsername);
     const authUserData = await getUser(authenticatedUsername);
     const authUserFollowing = authUserData.data["following"]
-    console.log(authenticatedUsername);
     let followUnfollowText = ""
     if (authUserFollowing.includes(profileUsername)) {
       followUnfollowText = "UnFollow";
@@ -134,7 +133,6 @@ class ProfileView extends React.Component {
         followers: profileFollowers})
       const authUserFollowing = authUserData.data.following
       authUserFollowing.push(profileUser)
-      console.log(authUserFollowing);
       updateUserFollowInfo({
         username: authenticateduser,
         isFollowers: false,
@@ -152,7 +150,6 @@ class ProfileView extends React.Component {
       const authUserFollowing = authUserData.data.following
       const profileUserIndex = authUserFollowing.indexOf(profileUser);
       authUserFollowing.splice(profileUserIndex,1)
-      console.log(authUserFollowing);
       updateUserFollowInfo({
         username: authenticateduser,
         isFollowers: false,
@@ -180,8 +177,6 @@ class ProfileView extends React.Component {
     let add_review_button;
     const authenticatedusername = this.state.currentUser;
     const profileUser = this.props.location.state.profileUser
-    console.log((authenticatedusername));
-    console.log(profileUser);
 
     follow_edit_button = <Button variant="outline-primary"
                   type="submit"

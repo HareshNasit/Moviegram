@@ -20,7 +20,6 @@ class MovieCard extends React.Component {
 render(){
   const { movieID, title, description, imageURL, queueComponent } = this.props;
   const url = "/movie/" + movieID;
-  console.log(url)
 
   return (
     <div className="movie">

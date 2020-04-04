@@ -41,7 +41,6 @@ class Movie extends React.Component {
 
         if(this.state.currentUser){
             const res2 = await isUpvoted(movie_id, this.state.currentUser)
-            console.log(res2)
             if(res2){
                 if(res2.data.thumbDown){
                     this.setState({thumbDown: true})

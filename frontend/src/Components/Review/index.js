@@ -21,7 +21,6 @@ class Review extends React.Component {
     this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
     this.newComContent = this.newComContent.bind(this)
     this.addCommentFunc = this.addCommentFunc.bind(this)
-    this.removeReview = this.removeReview.bind(this)
     this.incrementUpvote = this.incrementUpvote.bind(this)
     this.incrementDownvote = this.incrementDownvote.bind(this)
     this.getCommentsSection = this.getCommentsSection.bind(this)
@@ -61,17 +60,6 @@ class Review extends React.Component {
     let review = await getReview(this.props.reviewId)
     review = review.data
     this.setState({comments: review.comments})
-  }
-
-  removeReview(queue, review) {
-    console.log(review);
-    let reviewList = queue.state.reviews;
-    let index = reviewList.findIndex(a => a.reviewID === review.reviewID);
-
-    if (index === -1) return;
-    reviewList.splice(index, 1);
-
-    queue.setState({reviews: reviewList}); // This will update the state and trigger a rerender of the components
   }
 
   // increase the number upvotes the review has by 1

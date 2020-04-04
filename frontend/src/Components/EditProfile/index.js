@@ -57,7 +57,6 @@ class EditProfile extends React.Component {
       }
     }
     updateFavoriteGenres(this.state.currentUser, this.state.genres)
-    console.log(this.state.genres);
     let favGenText = "";
     const genres = this.state.genres
     for (const key of Object.keys(genres)) {
