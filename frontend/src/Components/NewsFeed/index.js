@@ -60,7 +60,7 @@ class NewsFeedScreen extends React.Component {
     const authenticateduser = this.state.currentUser;
     return (
       <div id="pageFeed">
-       
+
         {/*The menu bar is just reused from the Component MainMenuBar */}
         <MainMenuBar username={authenticateduser}/>
 
