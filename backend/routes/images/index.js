@@ -16,14 +16,10 @@ cloudinary.config({
 });
 /****** Review routes *************************************/
 
-// app.put('/:user_id', multipartMiddleware, require("./update_image"))
 app.get('/:user_id', require('./get_image'));
-app.post("/:user_id", multipartMiddleware, (req, res) => {
+app.put("/:user_id", multipartMiddleware, (req, res) => {
 
     const username = req.params.user_id;
-    // const image_id = req.body.image_id
-    // const image_url = req.body.image_url
-
     // Use uploader.upload API to upload image to cloudinary server.
     console.log(username);
     cloudinary.uploader.upload(
@@ -43,6 +39,20 @@ app.post("/:user_id", multipartMiddleware, (req, res) => {
               .catch(error => {
                   res.status(400).send(); // bad request for changing the student.
               });
+          }
+        });
+
+});
+
+app.post("/upload_image/",  multipartMiddleware, (req, res) => {
+
+    cloudinary.uploader.upload(
+        req.files.image.path, // req.files contains uploaded files
+        function (result) {
+          console.log(result.url);
+          if (result.url !== undefined) {
+              console.log(result.url);
+              res.send({image_url: result.url});
           }
         });
 

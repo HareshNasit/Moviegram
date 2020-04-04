@@ -260,7 +260,7 @@ export const addComment = async (comment, id) => {
 
 export const getUserImage = (username) => axios.get(baseURL + '/Images/'+username)
 
-export const addImage = async (form, user_id, userProfileComponent) => {
+export const updateUserImage = async (form, user_id, userProfileComponent) => {
     // the URL for the request
     const url = `${baseURL}/images/` + user_id ;
 
@@ -269,7 +269,7 @@ export const addImage = async (form, user_id, userProfileComponent) => {
     // console.log(form);
     // Create our request constructor with all the parameters we need
     const request = new Request(url, {
-        method: "post",
+        method: "put",
         body: imageData,
     });
 
@@ -279,6 +279,7 @@ export const addImage = async (form, user_id, userProfileComponent) => {
       .then(function (json) {
         console.log(json);
         userProfileComponent.setState({ profilePic: json.image_url})
+        console.log(userProfileComponent.state);
       })
         .catch(error => {
             console.log(error);
@@ -337,3 +338,29 @@ export const getRating = async id =>{
         console.log(err)
     }
 }
+
+export const uploadImageDB = async (form, signupComponent) => {
+    // the URL for the request
+    const url = `${baseURL}/images/upload_image` ;
+
+    // The data we are going to send in our request
+    console.log(form);
+    const imageData = new FormData(form);
+    console.log(imageData);
+    // Create our request constructor with all the parameters we need
+    const request = new Request(url, {
+        method: "post",
+        body: imageData,
+    });
+
+    // Send the request with fetch()
+    fetch(request)
+    .then(response => response.json())
+      .then(function (json) {
+        console.log(json);
+        signupComponent.setState({ srcImage: json.image_url})
+      })
+        .catch(error => {
+            console.log(error);
+        });
+};

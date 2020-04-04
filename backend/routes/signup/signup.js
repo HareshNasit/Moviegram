@@ -15,11 +15,15 @@ module.exports = async (req, res) => {
     else if(!req.body.email){
       res.status(400).send("Missing email")
     }
+    else if(!req.body.image_url){
+      res.status(400).send("Missing Profile Pic")
+    }
     else{
     const password = req.body.password
     const username = req.body.username
     const genres = req.body.genres
     const email = req.body.email
+    const image_url = req.body.image_url
     bcrypt.genSalt(saltRounds, function(err, salt) {
       bcrypt.hash(password, salt, function(err, hash) {
           if (err) {
@@ -29,7 +33,8 @@ module.exports = async (req, res) => {
               _id: username,
               password: hash,
               favoriteGenres: genres,
-              email: email
+              email: email,
+              image_url: image_url
             }
             const user = new User(newUser);
             user.save().then((result) => {
