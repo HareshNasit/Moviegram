@@ -37,7 +37,6 @@ const sessionCheckerReqUserBody = (req, res, next) => {
 
 const sessionCheckerAdmin = (req, res, next) => {
     if (req.session.user != "admin") {
-		console.log(req.session)
         res.redirect('/');
     } else {
         next(); // next() moves on to the route.

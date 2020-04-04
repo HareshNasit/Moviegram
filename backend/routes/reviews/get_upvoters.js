@@ -6,7 +6,6 @@ module.exports = async (req, res) => {
 
 	const id = req.params.id
 
-	console.log(req.params.id);
 
 	if (!ObjectID.isValid(req.params.id)) {
 		res.status(404).send()
@@ -14,7 +13,6 @@ module.exports = async (req, res) => {
 	}
 
 	Reviews.findById(id).then((review) => {
-		// console.log(review);
 		res.send(review.upvoters)
 	}).catch((error) => {
 		res.status(404).send(error)
