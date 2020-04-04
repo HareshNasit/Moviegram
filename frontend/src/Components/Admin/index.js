@@ -56,14 +56,14 @@ class Admin extends React.Component{
         <div id="pagesHeader">
          <h3 id="headersText">Admin Dashboard</h3>
         </div>
-        <div className="AddMovieButton">
+        <div id="AddMovieButton">
         <Button variant="primary"
                  type="click"
                  onClick={this.handleOpenAddMovieModal}>
                  Add Movie
         </Button>
         </div>
-        <div className="Revs">
+        <div id="Revs">
         <ReviewsList reviews={this.state.reviews}
                      type = "admin"
                      queueComponent={this}

@@ -1,7 +1,7 @@
 import axios from 'axios'
 // const baseURL = 'https://moviegram-back.herokuapp.com'
-const baseURL = 'http://localhost:5000'
-// const baseURL = '/api'
+// const baseURL = 'http://localhost:5000'
+const baseURL = '/api'
 
 
 export const insertUserToMongo = async data => {
@@ -131,6 +131,7 @@ export const updateUserFollowInfo = async (user) => {
   //     signupstate.setState({turnAlert: true})
   // })
 }
+export const logout = () => axios.get(baseURL + "/session/logout")
 
 export const getAllMovies = () => axios.get(baseURL+'/movies')
 
@@ -158,6 +159,7 @@ export const addMovieUpvoter = (id, upvoter) => axios.patch(baseURL + '/movies/a
 
 export const addMovieDownvoter = (id, downvoter) => axios.patch(baseURL + '/movies/add_downvoter/'+id+'/'+downvoter)
 
+export const getMovieByName = (title) => axios.get(baseURL + '/movies/movie_title/'+title)
 
 export const getReviewsByMovieID = async (id) => axios.get(baseURL + '/reviews/' + id + '/movie_id')
 
@@ -297,6 +299,28 @@ export const updateDescription = async (username, newDescription) => {
   const request = new Request(url, {
       method: "put",
       body: JSON.stringify({newDescription}),
+      headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"}
+  });
+  fetch(request).then(res =>{
+      console.log(res)
+      if(!res.ok){
+          throw new Error("Something went wrong...");
+      } else{
+          console.log("IT WORKSS YAYY");
+      }
+  })
+}
+
+
+export const updateFavoriteGenres = async (username, favoriteGenres) => {
+  const url = `${baseURL}/users/user_update_favoriteGenres/` + username
+  console.log(favoriteGenres);
+  // const body = {newDescription: newDescription}
+  const request = new Request(url, {
+      method: "put",
+      body: JSON.stringify({favoriteGenres}),
       headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json"}

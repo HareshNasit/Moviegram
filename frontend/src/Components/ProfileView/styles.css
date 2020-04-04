@@ -26,7 +26,7 @@
 #profileInfo {
 	/* background-color: red; */
 	height: 200px;
-	width: 500px;
+	width: 580px;
 	float: left;
 	margin-left: 100px;
 	margin-top: 20px;
@@ -48,10 +48,10 @@
 	margin-bottom: 10px;
 }
 
-.addRevButton {
+/* .addRevButton {
   margin-left: 20px;
 	margin-bottom: 10px;
-}
+} */
 
 #infoStats {
 	width: 100%;
@@ -79,10 +79,10 @@
 	/* background-color: blue; */
 }
 
-#editProfile {
+/* #editProfile {
 	width: 100px;
 	height: 200px;
-}
+} */
 
 .numFollowModel {
 	height: 400px;
@@ -129,7 +129,7 @@
   margin: 20px;
 }
 
-.updateProfile {
+/* .updateProfile {
 	height: 400px;
 	width: 450px;
 	position: absolute;
@@ -139,4 +139,4 @@
   bottom: 200px;
 	background-color: #008080;
 	border-radius: 12px;
-}
+} */

@@ -38,7 +38,7 @@
   text-decoration: none;
 }
 
-.content {
+#contentR {
 	display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -48,12 +48,12 @@
   text-align: justify;
 }
 
-.datetime {
+#datetimeR {
 	padding-left: 15px;
 	color: #484848;
 }
 
-.comments {
+#commentsR {
 	border-radius: 10px;
 	padding: 15px;
 	margin-top: 10px;
@@ -64,38 +64,32 @@
 	padding-left: 20px;
 }
 
-.newCom {
+#newCom {
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 1px;
 	padding-left: 20px;
 }
 
-.writeCom {
+#writeCom {
 	padding-left: 10px;
 }
 
-.writeIt {
+#writeIt {
 	width: 810px;
 	padding-right: 10px;
 }
 
-.comBar {
+#comBarR {
 	background-color: #303030;
 	color: white;
 }
 
-.showHideCom {
-	background-color: #008080;
-	border: 1px solid #008080;
-}
-
-.votes-up{
+#votes-upR{
 	margin: 5px;
 	margin-left: 10px;
-
 }
 
-.votes-down{
+#votes-downR{
 	margin: 5px;
 }

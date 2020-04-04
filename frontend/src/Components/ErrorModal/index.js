@@ -3,10 +3,6 @@ import React from 'react';
 import {Modal } from 'react-bootstrap';
 import './styles.css'
 class ErrorModal extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-
     render(){
         return(
           <div>

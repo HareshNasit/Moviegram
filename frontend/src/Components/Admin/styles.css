@@ -20,11 +20,11 @@
 	color: white;
 }
 
-.Revs {
+#Revs {
 
 }
 
-.AddMovieButton {
+#AddMovieButton {
   position: relative;
   top:30px;
   left: 47%;

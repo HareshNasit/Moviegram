@@ -49,9 +49,7 @@ class NewsFeedScreen extends React.Component {
   }
 
   render() {
-    
     const authenticateduser = this.state.currentUser;
-
     return (
       <div id="pageFeed">
 
@@ -59,16 +57,16 @@ class NewsFeedScreen extends React.Component {
         <MainMenuBar username={authenticateduser}/>
 
         {/*Form that takes in the input of users to search movies and reviews of movies */}
-        <div className="searchMovieform">
+        <div id="searchMovieform">
           <SearchBar history={this.props.history}/>
         </div>
-        <div className="searchMovieform">
+        <div id="searchGenreform">
           <GenreSearchBar history={this.props.history}/>
         </div>
 
         {/*Title of the review news feed page */}
-        <div className="pageHeader">
-         <h3 className="headerText">My Reviews Feed</h3>
+        <div id="pageHeaderNF">
+         <h3 id="headerTextNF">My Reviews Feed</h3>
         </div>
 
         {/* Reviews List here to display all reviews from friends of current user */}

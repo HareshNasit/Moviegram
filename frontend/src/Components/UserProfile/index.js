@@ -4,19 +4,24 @@ import "./../universalStyles.css"
 import { Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import MainMenuBar from './../MainMenuBar';
-import ronaldo_dp from './ballon_dor.jpg'
-import messi_dp from './messi_dp.jpg'
-import admin_dp from './admin_dp.jpg'
 import Modal from 'react-modal';
 import ReviewsList from './../ReviewsList';
 import AddReview from './../AddReview';
 import EditProfile from './../EditProfile';
+import GenreSelector from '../GenreSelector'
 import { getAllReviews, getUser, getUserReviews, getUserImage, readCookie } from './../../services/api'
 
 class UserProfile extends React.Component {
   constructor(props) {
     // When the componenet is created
     super(props);
+    this.genreNames = ["Supernatural",
+                       "Fantasy",
+                       "Crime",
+                       "Action",
+                       "Horror",
+                       "Thriller",
+                       "Comedy"]
     this.state = {
       profilePic: null,
       showModalFollowing: false,
@@ -27,7 +32,17 @@ class UserProfile extends React.Component {
       peopleFollowing: [],
       showUpdateProfile: false,
       userDescription: "",
-      favoriteGenres: ""
+      favoriteGenres: "",
+      genres:
+            {Supernatural: false,
+              Horror: false,
+              Fantasy: false,
+              Crime: false,
+              Action: false,
+              Thriller: false,
+              Comedy: false
+    },
+    genresShow: false
     };
     this.updateProfileClick = this.updateProfileClick.bind(this)
     this.handleOpenFollowingModal = this.handleOpenFollowingModal.bind(this);
@@ -91,6 +106,7 @@ class UserProfile extends React.Component {
         favoriteGenres: favGenText
       })
     Modal.setAppElement('body');
+    console.log(userReviews)
   }
 
   updateProfileClick () {
@@ -131,7 +147,7 @@ class UserProfile extends React.Component {
     let add_review_button;
     follow_edit_button = <Button variant="outline-primary"
                   type="submit"
-                  className="editButton"
+                  className="editButtonUserProfile"
                   onClick={this.updateProfileClick}
                   >
                   Edit Profile
@@ -146,8 +162,8 @@ class UserProfile extends React.Component {
     const userFollowingList = this.state.peopleFollow.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-          <img className="followUserPic" src={person.image_url} alt="User DP"/>
-          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          <img className="followUserPic" src={person.image_url}/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.currentUser, profileUser: person.username }}}>
           {person.username}
           </Link>
       </div>
@@ -156,8 +172,8 @@ class UserProfile extends React.Component {
     const userFollowersList = this.state.peopleFollowing.map((person, index) =>
       // expression goes here:
       <div key={index} className="followUserText">
-          <img className="followUserPic" src={person.image_url} alt="User DP"/>
-          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.username, profileUser: person.username }}}>
+          <img className="followUserPic" src={person.image_url}/>
+          <Link className="followInfoLink" to={{pathname:'/ProfileView/' + person.username, state: { username: this.state.currentUser, profileUser: person.username }}}>
           {person.username}
           </Link>
       </div>
@@ -178,6 +194,7 @@ class UserProfile extends React.Component {
                 {follow_edit_button}
 
                 {add_review_button}
+                <GenreSelector signup={this}></GenreSelector>
                 <Modal className = "addRevModal"
                  overlayClassName="Overlay"
                  isOpen={this.state.showModalAddRev}
