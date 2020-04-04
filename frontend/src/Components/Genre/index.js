@@ -2,7 +2,7 @@
 import React from 'react';
 import './styles.css';
 import MainMenuBar from './../MainMenuBar';
-import {getMoviesByGenre} from '../../services/api'
+import {getMoviesByGenre, readCookie} from '../../services/api'
 import "./../universalStyles.css"
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
