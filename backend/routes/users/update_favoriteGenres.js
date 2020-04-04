@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
     // res.send(req.body.username)
     const username = req.params.id
     const favoriteGenres = req.body.favoriteGenres
-      User.findByIdAndUpdate({"_id": username}, { "favoriteGenres": favoriteGenres })
+      User.findByIdAndUpdate(username, { "favoriteGenres": favoriteGenres })
         .then(user => {
             if (!user) {
                 res.status(404).send();
