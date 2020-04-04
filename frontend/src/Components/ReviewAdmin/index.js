@@ -70,7 +70,7 @@ class AdminReview extends React.Component {
       profile_url = '/UserProfile/'
     }
     else {
-      profile_url = '/ProfileView/'
+      profile_url = '/ProfileView/' + username
     }
 
     add_comment_button = <Button variant="secondary"
@@ -85,7 +85,7 @@ class AdminReview extends React.Component {
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li><span className="reviewUserPicLi">
-            <Link to={{pathname:profile_url +username}}>
+            <Link to={{pathname:profile_url}}>
             <img className="reviewUserPic" src={userImg} alt="User DP"/>
             </Link>
             </span>{username}

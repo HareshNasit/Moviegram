@@ -92,7 +92,7 @@ class Review extends React.Component {
       profile_url = '/UserProfile/'
     }
     else {
-      profile_url = '/ProfileView/'
+      profile_url = '/ProfileView/' + username
     }
 
     add_comment_button = <Button variant="secondary"
