@@ -72,7 +72,6 @@ export const readCookie = async (app) => {
     } catch (err) {
         // FOR DEV
         app.setState({ currentUser: "username1", auth: false});
-        console.log(err)
     }
 };
 
