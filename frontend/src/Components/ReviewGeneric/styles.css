@@ -13,17 +13,6 @@
 	color: #484848;
 }
 
-#commentsRG {
-	border-radius: 10px;
-	padding: 15px;
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-  border: 1px solid black;
-	padding-left: 20px;
-}
-
 #spoilerTagRG {
 	color: #ff9933;
 	text-align: center;
@@ -36,4 +25,15 @@
 
 #votes-downRG {
 	margin: 5px;
+}
+
+#commentsRG {
+	border-radius: 10px;
+	padding: 15px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+  border: 1px solid black;
+	padding-left: 20px;
 }

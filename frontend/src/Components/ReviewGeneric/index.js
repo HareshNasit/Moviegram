@@ -2,12 +2,13 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
+import Modal from 'react-modal';
 import { uid } from "react-uid";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
 // import needed components
-import Comment from './../Comment';
+import CommentsModal from './../CommentsModal';
 // backend db server api funcs
 import { getUpvoters,getDownvoters,getReview }  from './../../services/api'
 
@@ -20,10 +21,11 @@ class ReviewGeneric extends React.Component {
   // used to bind the implemented methods to this class that need to access variables of defined inside the constructor.
   constructor(props) {
     super(props)
-    this.state = { newComment: "", upvotes: 0, downvotes: 0, comments: []};
-    this.getCommentsSection = this.getCommentsSection.bind(this)
+    this.state = { upvotes: 0, downvotes: 0, showCommentsModal: false};
     this.userImageType = this.userImageType.bind(this)
     this.hasSpoiler = this.hasSpoiler.bind(this)
+    this.handleOpenCommentsModal = this.handleOpenCommentsModal.bind(this);
+    this.handleCloseCommentsModal = this.handleCloseCommentsModal.bind(this);
   }
 
   async componentDidMount() {
@@ -50,20 +52,6 @@ class ReviewGeneric extends React.Component {
     }
   }
 
-  // Creates and returns a unique comments section which contains the comments of each different review
-  getCommentsSection() {
-    const comments = this.state.comments;
-    return (
-      <div>
-        {comments.map((com) => (<Comment key={uid(com)}
-                                       date={com.date}
-                                       username={com.username}
-                                       content={com.content}
-                                       authenticateduser={this.props.authenticateduser}/>))}
-      </div>
-    )
-  }
-
   hasSpoiler(spoilerVal) {
     if (spoilerVal === true) {
       return (
@@ -76,9 +64,18 @@ class ReviewGeneric extends React.Component {
     }
   }
 
+  handleOpenCommentsModal () {
+    this.setState({showCommentsModal: true})
+  }
+
+  handleCloseCommentsModal () {
+    this.setState({showCommentsModal: false})
+  }
+
   render() {
 
     let profile_url = '';
+    let add_comment_button;
     const { admin, reviewId, authenticateduser, datetime, username,
             userImg, movieName, movieId, reviewContent, spoiler, queueComponent} = this.props;
 
@@ -88,6 +85,13 @@ class ReviewGeneric extends React.Component {
     else {
       profile_url = '/ProfileView/'
     }
+
+    add_comment_button = <Button variant="secondary"
+                         type="click"
+                         id="commentsButton"
+                         onClick={this.handleOpenCommentsModal}>
+                         See Comments
+                         </Button>
 
     return (
       <div id="review">
@@ -114,8 +118,16 @@ class ReviewGeneric extends React.Component {
         {/* The comments section for each review is displayed below */}
         <div id="commentsRG">
           <h6><b><u>Comments:</u></b></h6>
-          <span>{this.getCommentsSection()}</span>
+          <span>{add_comment_button}</span>
         </div>
+        <Modal
+         overlayClassName="Overlay"
+         isOpen={this.state.showCommentsModal}
+         contentLabel="Minimal Modal Example"
+         >
+         <CommentsModal queueComponent={this} reviewId={reviewId} cancelFunction={this.handleCloseCommentsModal}
+                        authenticateduser={authenticateduser} generic={true}/>
+        </Modal>
 
         {/* used to upvote or downvote a review */}
         <div>
