@@ -45,13 +45,10 @@ class Home extends React.Component {
               <img src={require("./static/Banner.jpg")} alt={"Welcome to MovieGram"}/>
 
             </div>
-            <div className="searchMovie">
+            <div id="searchMovie">
               <SearchBar history={this.props.history}/>
             </div>
-            <div className="spacingBox">
-
-            </div>
-            <div className="searchMovie">
+            <div id="searchMovie">
               <GenreSearchBar history={this.props.history}/>
             </div>
             <div className="spacingBox">
