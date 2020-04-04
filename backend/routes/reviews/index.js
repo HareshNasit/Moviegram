@@ -21,7 +21,7 @@ app.patch('/add_upvoter/:id/:username', sessionCheckerReqUserParam, require('./a
 app.patch('/add_downvoter/:id/:username', sessionCheckerReqUserParam,require('./addDownvoter'))
 
 // Routes related to review comenting
-app.patch('/add_comment/:id', sessionCheckerReqUserParam, require('./add_comment'))
+app.patch('/add_comment/:id', sessionCheckerReqUserBody, require('./add_comment'))
 
 // Route to add review
 app.post('/add_review', sessionCheckerReqUserBody, require('./add_review'))
