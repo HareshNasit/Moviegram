@@ -14,13 +14,13 @@ class Comment extends React.Component {
       profile_url = '/UserProfile/'
     }
     else {
-      profile_url = '/ProfileView/'
+      profile_url = '/ProfileView/' + username
     }
 
     return (
       <div id="comment">
         <span>{ date } </span><span>| <b><i>
-        <Link id="link" to={{pathname:profile_url + username, state: { username: authenticateduser, profileUser: username }}}>
+        <Link id="link" to={{pathname:profile_url, state: { username: authenticateduser, profileUser: username }}}>
         {username} :
         </Link>
         </i></b></span><span> { content } </span>
