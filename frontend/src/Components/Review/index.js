@@ -107,7 +107,7 @@ class Review extends React.Component {
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li><span>
-          <Link to={{pathname:profile_url +username}}>
+          <Link to={{pathname:profile_url}}>
           <img className="reviewUserPic" src={userImg} alt="User DP"/>
           </Link>
           </span>
