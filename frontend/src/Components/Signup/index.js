@@ -55,7 +55,7 @@ class SignupScreen extends React.Component {
       this.setState({password: e.target.value});
   }
 
-  buttonClick(){
+  async buttonClick(){
     console.log(this.state.srcImage);
     if(this.state.username === ""){
       this.setState({turnAlert: true})
@@ -67,7 +67,7 @@ class SignupScreen extends React.Component {
       this.setState({turnAlert: true})
       this.setState({error: "Please enter your password."})
     } else{
-      signup({username: this.state.username,
+      await signup({username: this.state.username,
         email: this.state.email,
         genres: this.state.genres,
         password: this.state.password,

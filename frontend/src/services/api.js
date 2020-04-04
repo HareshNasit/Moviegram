@@ -52,25 +52,33 @@ export const getMoviesByGenre = async genre => {
 
 export const signup = async (user, signupstate) => {
     const url = `${baseURL}/signup/`
-    const request = new Request(url, {
-        method: "post",
-        body: JSON.stringify(user),
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json"
-        }
-    });
-    fetch(request).then(res =>{
-        console.log(res)
-        if(!res.ok){
-            throw new Error("Something went wrong...");
-        } else{
-            signupstate.props.history.push({pathname: "/login"})
-        }
-    }).catch(error => {
-        signupstate.setState({error: error})
+    // const request = new Request(url, {
+    //     method: "post",
+    //     body: JSON.stringify(user),
+    //     headers: {
+    //         Accept: "application/json, text/plain, */*",
+    //         "Content-Type": "application/json"
+    //     }
+    // });
+    // fetch(request).then(res =>{
+    //     console.log(res)
+    //     if(!res.ok){
+    //         throw new Error("Something went wrong...");
+    //     } else{
+    //         signupstate.props.history.push({pathname: "/login"})
+    //     }
+    // }).catch(error => {
+    //     signupstate.setState({error: error})
+    //     signupstate.setState({turnAlert: true})
+    // })
+
+    try {
+        await axios.post(url, user)
+        signupstate.props.history.push({pathname: "/login"})
+    } catch (err) {
+        signupstate.setState({error: err.message})
         signupstate.setState({turnAlert: true})
-    })
+    }
 }
 
 export const readCookie = async (app) => {
