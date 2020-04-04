@@ -44,7 +44,7 @@ class MainMenuBar extends React.Component {
               </li>
 
               <li>
-                <Link to={{pathname:'/UserProfile/'+ username, state: { username: username }}}>
+                <Link to={{pathname:'/UserProfile/', state: { username: username }}}>
                   <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
                 </Link>
               </li>
@@ -79,7 +79,7 @@ class MainMenuBar extends React.Component {
               </li>
 
               <li>
-                <Link to={{pathname:'/UserProfile/'+ username, state: { username: username }}}>
+                <Link to={{pathname:'/UserProfile/', state: { username: username }}}>
                   <img src={profileimg} alt="Profile" className="mainMenu-btn"/>
                 </Link>
               </li>
