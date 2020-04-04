@@ -37,7 +37,6 @@ l
           state: {username: this.state.username}})
         }
     }).catch(error => {
-      console.log(error)
       this.setState({turnAlert: true})
       this.setState({error: "Either the username or password is wrong."})
     })}

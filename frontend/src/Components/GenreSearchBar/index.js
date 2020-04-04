@@ -13,9 +13,7 @@ class GenreSearchBar extends React.Component {
       }
     async componentDidMount(){
         const res = await getGenres()
-        console.log(res)
         if(!res){
-            console.log("Backend server is not running.")
             this.setState({data: []})
         } else{
             const data = res.data

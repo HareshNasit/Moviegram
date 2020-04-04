@@ -56,7 +56,6 @@ class SignupScreen extends React.Component {
   }
 
   async buttonClick(){
-    console.log(this.state.srcImage);
     if(this.state.username === ""){
       this.setState({turnAlert: true})
       this.setState({error: "Please enter your username."})
