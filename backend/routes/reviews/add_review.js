@@ -27,7 +27,6 @@ module.exports = async (req, res) => {
   const review = new Reviews(newReview)
 
   review.save().then((result) => {
-    console.log(username);
     res.send("Added Review")
   }, (error) => {
     res.status(400).send(error)
