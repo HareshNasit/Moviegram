@@ -81,7 +81,7 @@ class UserProfile extends React.Component {
         userFollowing["image_url"] = followingUserImg.data;
         usersFollowing.push(userFollowing)
     }
-    // console.log(userFollowers);
+
     userReviews = userReviews.sort((a, b) => {
       const aDate = new Date(a.date)
       const bDate = new Date(b.date)
@@ -106,7 +106,6 @@ class UserProfile extends React.Component {
         favoriteGenres: favGenText
       })
     Modal.setAppElement('body');
-    console.log(userReviews)
   }
 
   updateProfileClick () {

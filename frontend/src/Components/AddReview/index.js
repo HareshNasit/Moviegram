@@ -26,9 +26,7 @@ class AddReview extends React.Component {
   async componentDidMount() {
     await readCookie(this)
     const res = await getKeyMoviePairs()
-    console.log(res)
     if(!res){
-        console.log("Backend server is not running.")
         this.setState({movies: []})
     } else{
         const data = res.data
@@ -44,17 +42,14 @@ class AddReview extends React.Component {
 
   async saveReview(queue, closeFunc, authenticateduser) {
     if(this.state.newComment === "" || this.state.movie === "" || this.state.movie === "--Select Movie--"){
-      console.log(this.state.movie);
       this.setState({error: "Cannot post an empty/incomplete review. Make sure to fill in all fields"})
       this.setState({turnAlert: true})
     } else {
 
       let movie = await getMovieByName(this.state.movie)
       movie = movie.data
-      console.log(movie);
       const newReview = { username: authenticateduser, movie_title: this.state.movie, content: this.state.review,
                           spoilers: this.state.spoiler, date: new Date().toLocaleString(), movie_id: movie._id}
-      console.log(newReview)
       const added = await addReview(newReview)
       queue.state.reviews.unshift(newReview)
       closeFunc();
@@ -62,7 +57,6 @@ class AddReview extends React.Component {
   }
 
   handleMovieNameChange(event) {
-    console.log(event.target.value);
     this.setState({movie:event.target.value.trim()})
   }
 

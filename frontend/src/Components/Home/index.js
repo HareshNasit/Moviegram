@@ -32,7 +32,6 @@ class Home extends React.Component {
   async componentDidMount() {
     const movieList = await getAllMovies();
     const list = this.splitMovies(movieList.data)
-    console.log(list)
     this.setState({movies: list})
   }
 

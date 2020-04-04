@@ -1,4 +1,5 @@
 
+
 // Our own express middleware to check for
 // an active user on the session cookie (indicating a logged in user.)
 const authenticate = (req, res, next) => {

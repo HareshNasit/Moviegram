@@ -21,8 +21,6 @@ class ReviewsList extends React.Component {
   render() {
 
     const { reviews, type, authenticateduser, queueComponent} = this.props;
-    console.log(this.props);
-    console.log(authenticateduser);
     if(reviews.length!=0) {
       if (type=="generic"){
         return (

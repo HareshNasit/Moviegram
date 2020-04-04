@@ -66,8 +66,6 @@ class SignupScreen extends React.Component {
         genres: this.state.genres,
         password: this.state.password}, this)
     }
-    console.log(this.state.error)
-
   }
   handleUpload(e){
     // Change avatar image

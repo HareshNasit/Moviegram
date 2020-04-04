@@ -62,7 +62,6 @@ class AddMovie extends React.Component {
 
   async save_Movie (title, director, stars, description, genres, closeFunction) {
     if(this.state.director === "" || this.state.title === ""){
-      console.log("Can't post empty movie")
       this.setState({error: "Cannot post an empty/incomplete movie. Make sure to fill in all fields"})
       this.setState({turnAlert: true})
     } else {

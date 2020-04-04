@@ -26,7 +26,6 @@ class Admin extends React.Component{
     await readCookie(this)
     let allReviews = await getAllReviews()
     allReviews = allReviews.data
-    console.log(allReviews)
     // sort all the reviews from the curr users friends in order of latest to oldest
     for(let i=0; i<allReviews.length; i++) {
       const userImg = await getUserImage(allReviews[i].username)
@@ -38,7 +37,6 @@ class Admin extends React.Component{
       return bDate - aDate
     })
     this.setState({reviews: allReviews})
-    console.log(this.state.reviews)
   }
 
   handleOpenAddMovieModal () {
