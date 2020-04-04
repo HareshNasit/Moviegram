@@ -57,6 +57,7 @@ class UserProfile extends React.Component {
 
   async componentDidMount() {
     await readCookie(this)
+    this.renderRedirect()
     const reviews = await getAllReviews();
     const username = this.state.currentUser
     const userData = await getUser(username);
@@ -189,7 +190,6 @@ class UserProfile extends React.Component {
 
     return (
       <div id="userProfile">
-          {this.renderRedirect()}
           <MainMenuBar username={username} />
           <div id="bodyHeader">
             <div id="profilePicContainer">

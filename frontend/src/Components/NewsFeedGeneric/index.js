@@ -22,6 +22,7 @@ class NewsFeedGeneric extends React.Component {
 
   async componentDidMount() {
     await readCookie(this)
+    this.renderRedirect()
     let reviews = await getAllReviews()
     reviews = reviews.data
     // sort all the reviews from the curr users friends in order of latest to oldest
@@ -49,7 +50,7 @@ class NewsFeedGeneric extends React.Component {
 
     return (
       <div id="pageFeed">
-        {this.renderRedirect()}
+
         {/*The menu bar is just reused from the Component MainMenuBar */}
         <MainMenuBar username={authenticateduser}/>
 
