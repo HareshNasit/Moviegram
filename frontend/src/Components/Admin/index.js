@@ -6,7 +6,6 @@ import MainMenuBar from './../MainMenuBar';
 import AddMovie from './../AddMovie';
 import ReviewsList from './../ReviewsList';
 import Modal from 'react-modal';
-import photo from './../UserProfile/ballon_dor.jpg';
 
 import { getAllReviews, readCookie, getUserImage } from './../../services/api';
 
