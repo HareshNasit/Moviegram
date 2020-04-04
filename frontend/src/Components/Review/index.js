@@ -86,7 +86,7 @@ class Review extends React.Component {
     let profile_url = '';
     let add_comment_button;
     const { authenticateduser, reviewId, datetime, username,
-            userImg, movieName, movieId, reviewContent, spoiler, queueComponent} = this.props;
+            userImg, movieName, movieId, reviewContent, spoiler, comments, queueComponent} = this.props;
 
     if (username === authenticateduser) {
       profile_url = '/UserProfile/'
@@ -98,7 +98,7 @@ class Review extends React.Component {
     add_comment_button = <Button variant="secondary"
                          type="click"
                          onClick={this.handleOpenCommentsModal}>
-                         See Comments
+                         See Comments ({comments.length})
                          </Button>
 
     return (
