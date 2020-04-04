@@ -3,7 +3,7 @@ const User = require('./../../models/user')
 
 module.exports = async (req, res) => {
     // res.send(req.body.username)
-    const username = req.params.id
+    const username = req.params.username
     const description = req.body.newDescription
       User.findByIdAndUpdate(username, { "description": description })
         .then(user => {
