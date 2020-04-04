@@ -16,8 +16,7 @@ module.exports = async (req, res) => {
             movie.upvotes = movie.upvotes + 1
             movie.save().then((result) => {
       				res.send("Added upvoter")
-      			}, (error) => {
-					    console.log(error)
+      			}).catch((error) => {
       				res.status(400).send(error)
       			})
           } else if (movie.downvoters.includes(upvoter)) {
@@ -28,8 +27,7 @@ module.exports = async (req, res) => {
             movie.upvotes = movie.upvotes + 1
             movie.save().then((result) => {
       				res.send("Added upvoter")
-      			}, (error) => {
-					  
+      			}).catch((error) => {
       				res.status(400).send(error)
       			})
           }
