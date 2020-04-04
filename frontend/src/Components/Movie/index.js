@@ -141,7 +141,7 @@ class Movie extends React.Component {
         }
 
         let reviews;
-        if(this.state.reviews === []){
+        if(this.state.reviews !== []){
             reviews = <ReviewsList reviews={this.state.reviews}
             type={"generic"}
             queueComponent={this}

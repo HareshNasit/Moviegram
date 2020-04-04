@@ -2,8 +2,12 @@
 const User = require('./../../models/user')
 
 module.exports = async (req, res) => {
-    User.findOne({_id: req.params.user_id}).then((user) => {
-      res.send(user.image_url)
+    User.findById(req.params.user_id).then((user) => {
+      if(user){
+        res.send(user.image_url)
+      } else{
+        res.status(404).send()
+      }
     }, (error) => {
       res.status(500).send(error) // server error
     })

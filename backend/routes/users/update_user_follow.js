@@ -6,7 +6,6 @@ module.exports = async (req, res) => {
     const username = req.body.username
     const isFollowers = req.body.isFollowers
     const followers = req.body.followers
-    console.log(req.body);
     if (isFollowers) {
       User.findByIdAndUpdate({"_id": username}, { "followers": followers })
         .then(user => {
