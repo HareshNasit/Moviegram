@@ -23,9 +23,8 @@ class MainMenuBar extends React.Component {
   }
 
   render() {
-    
+
     const { username } = this.props
-    console.log(username)
     if(username !== null && username === "admin"){
       return (
         <div id="mainMenuBar">

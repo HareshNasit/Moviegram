@@ -23,7 +23,6 @@ class CommentsModal extends React.Component {
     let review = await getReview(this.props.reviewId)
     review = review.data
     this.setState({comments: review.comments})
-    console.log(this.state.comments);
   }
 
   closeModal() {
