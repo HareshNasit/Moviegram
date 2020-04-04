@@ -3,7 +3,6 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
 import Modal from 'react-modal';
-import { uid } from "react-uid";
 // import all stylesheets
 import "./styles.css";
 import "./../universalStyles.css";
@@ -76,7 +75,7 @@ class ReviewGeneric extends React.Component {
 
     let profile_url = '';
     let add_comment_button;
-    const { admin, reviewId, authenticateduser, datetime, username,
+    const { reviewId, authenticateduser, datetime, username,
             userImg, movieName, movieId, reviewContent, spoiler, queueComponent} = this.props;
 
     if (username === authenticateduser) {

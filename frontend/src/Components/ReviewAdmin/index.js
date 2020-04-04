@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
-import { uid } from "react-uid";
 import Modal from 'react-modal';
 // import all stylesheets
 import "./styles.css";
@@ -9,7 +8,7 @@ import "./../universalStyles.css";
 // import needed components
 import CommentsModal from './../CommentsModal';
 // backend db server api funcs
-import {getUpvoters,getDownvoters,addDownvoter,addUpvoter,removeReview}  from './../../services/api'
+import {getUpvoters,getDownvoters,removeReview}  from './../../services/api'
 
 class AdminReview extends React.Component {
 
@@ -36,35 +35,9 @@ class AdminReview extends React.Component {
   }
 
   async remove_Review(username, movie) {
-    const removed = await removeReview(username, movie)
+    await removeReview(username, movie)
     window.location.reload(false);
   }
-
-  // increase the number upvotes the review has by 1
-  // async incrementUpvote(reviewId, user) {
-  //   const upvoteAdded = await addUpvoter(reviewId, user)
-  //   if (upvoteAdded != null) {
-  //     let upvotes = await getUpvoters(this.props.reviewId)
-  //     let downvotes = await getDownvoters(this.props.reviewId)
-  //     upvotes = upvotes.data.length
-  //     downvotes = downvotes.data.length
-  //     this.setState({upvotes: upvotes})
-  //     this.setState({downvotes: downvotes})
-  //   }
-  // }
-  //
-  // // increase the number downvotes the review has by 1
-  // async incrementDownvote(reviewId, user) {
-  //   const downvoteAdded = await addDownvoter(reviewId, user)
-  //   if (downvoteAdded != null) {
-  //     let upvotes = await getUpvoters(this.props.reviewId)
-  //     let downvotes = await getDownvoters(this.props.reviewId)
-  //     upvotes = upvotes.data.length
-  //     downvotes = downvotes.data.length
-  //     this.setState({upvotes: upvotes})
-  //     this.setState({downvotes: downvotes})
-  //   }
-  // }
 
   hasSpoiler(spoilerVal) {
     if (spoilerVal === true) {
@@ -90,7 +63,7 @@ class AdminReview extends React.Component {
 
     let profile_url = '';
     let add_comment_button;
-    const { admin, reviewId, authenticateduser, datetime, username, userImg,
+    const { reviewId, authenticateduser, datetime, username, userImg,
             movieName, reviewContent, spoiler, queueComponent} = this.props;
 
     if (username === authenticateduser) {

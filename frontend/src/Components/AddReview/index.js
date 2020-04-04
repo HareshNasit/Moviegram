@@ -2,10 +2,9 @@ import React from "react";
 import "./styles.css";
 import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
-import ReactSearchBox from 'react-search-box';
 import { uid } from "react-uid";
 import ErrorModal from './../ErrorModal';
-import { addReview,getUserReviews,getMovieByName,getKeyMoviePairs,readCookie } from './../../services/api'
+import { addReview,getMovieByName,getKeyMoviePairs,readCookie } from './../../services/api'
 
 class AddReview extends React.Component {
 
@@ -51,7 +50,7 @@ class AddReview extends React.Component {
       movie = movie.data
       let newReview = { username: authenticateduser, movie_title: this.state.movie, content: this.state.review,
                           spoilers: this.state.spoiler, date: new Date().toLocaleString(), movie_id: movie._id}
-      const added = await addReview(newReview)
+      await addReview(newReview)
       newReview.image_url = this.props.profImg
       let existingRevs = queue.state.reviews
       existingRevs.unshift(newReview)

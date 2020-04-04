@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css'
 import { Button} from "react-bootstrap";
+import { uid } from "react-uid";
 import {Link} from 'react-router-dom';
 import SearchBar from '../SearchBar'
 import GenreSearchBar from '../GenreSearchBar'
@@ -30,7 +31,8 @@ class Home extends React.Component {
     render() {
       const movieListGrouped = this.state.movies.map((group) =>
         <div className="movieList">
-            <MovieCardList movies = {group}
+            <MovieCardList key={uid(group)}
+                           movies = {group}
                            queueComponent = {this}
                            history={this.props.history}/>
         </div>
@@ -40,7 +42,7 @@ class Home extends React.Component {
 
           <div className="HomeContent">
             <div className="Banner">
-              <img src={require("./static/Banner.jpg")} />
+              <img src={require("./static/Banner.jpg")} alt={"Welcome to MovieGram"}/>
 
             </div>
             <div className="searchMovie">

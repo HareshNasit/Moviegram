@@ -1,6 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {Link} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -19,9 +17,7 @@ class MovieCard extends React.Component {
       this.props.history.push({pathname: "/movie/" + movie})
     }
 render(){
-  const { movieID, title, description, imageURL, queueComponent } = this.props;
-  const url = "/movie/" + movieID;
-
+  const { movieID, title, imageURL } = this.props;
   return (
     <div className="movie">
     <Card className="root">

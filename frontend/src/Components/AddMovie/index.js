@@ -77,7 +77,7 @@ class AddMovie extends React.Component {
       this.setState({error: "Cannot post an empty/incomplete movie. Make sure to fill in all fields"})
       this.setState({turnAlert: true})
     } else {
-      const added = await addMovie(title, director, stars, description, genres, poster)
+      await addMovie(title, director, stars, description, genres, poster)
       closeFunction();
     }
   }

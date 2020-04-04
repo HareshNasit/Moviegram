@@ -165,7 +165,7 @@ class Movie extends React.Component {
                     <CardContent id="imgContainer">
                             <img src={this.state.data.imgsrc}
                             className="movieImage"
-                            alt="Movie Image"></img>
+                            alt=""></img>
                     </CardContent>
                     <CardContent id="movieDetails">
                             <CardContent>

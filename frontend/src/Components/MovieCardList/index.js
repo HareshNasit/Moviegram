@@ -5,21 +5,20 @@ import "./styles.css";
 import "./../universalStyles.css";
 // import all needed Components
 import MovieCard from './../MovieCard';
+import { uid } from "react-uid";
+
 
 class MovieCardList extends React.Component {
-  constructor(props) {
-    super(props)
-  }
   render(){
-    const {movies, queueComponent } = this.props;
-    if (movies.length != 0){
+    const {movies} = this.props;
+    if (movies.length !== 0){
       return (
         <div className="movies">
         {movies.map((movie) => (
-          <MovieCard movieID = {movie._id}
+          <MovieCard key={uid(movie)}
+                     movieID = {movie._id}
                      title = {movie.title}
                      imageURL = {movie.imgsrc}
-                     queueComponent = {queueComponent}
                      history={this.props.history}/>
         ))}
         </div>
