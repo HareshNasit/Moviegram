@@ -33,6 +33,7 @@ class ReviewsList extends React.Component {
                       movieId={review.movie_id}
                       reviewContent={review.content}
                       spoiler={review.spoilers}
+                      comments={review.comments}
                       queueComponent={queueComponent}/>
             ))}
           </div>
@@ -52,6 +53,7 @@ class ReviewsList extends React.Component {
                       movieId={review.movie_id}
                       reviewContent={review.content}
                       spoiler={review.spoilers}
+                      comments={review.comments}
                       queueComponent={queueComponent}/>
             ))}
           </div>
@@ -72,6 +74,7 @@ class ReviewsList extends React.Component {
                       movieId={review.movie_id}
                       reviewContent={review.content}
                       spoiler={review.spoilers}
+                      comments={review.comments}
                       queueComponent={queueComponent}/>
             ))}
           </div>
