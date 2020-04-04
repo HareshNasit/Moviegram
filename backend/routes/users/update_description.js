@@ -5,7 +5,6 @@ module.exports = async (req, res) => {
     // res.send(req.body.username)
     const username = req.params.id
     const description = req.body.newDescription
-    console.log(req.body);
       User.findByIdAndUpdate({"_id": username}, { "description": description })
         .then(user => {
             if (!user) {

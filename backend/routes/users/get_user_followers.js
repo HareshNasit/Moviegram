@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 			res.status(404).send()
 		}
 		// can wrap in object if want to add more properties
-	}, (error) => {
+	}).catch((error) => {
 		res.status(404).send(error) // server error
 	})
 }
