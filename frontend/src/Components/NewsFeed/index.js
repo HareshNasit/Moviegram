@@ -18,6 +18,7 @@ class NewsFeedScreen extends React.Component {
   // used to bind the used methods to this class.
   constructor(props) {
     super(props);
+    readCookie(this)
     this.state = {reviews: []};
     this.renderRedirect = this.renderRedirect.bind(this)
   }
@@ -25,6 +26,7 @@ class NewsFeedScreen extends React.Component {
   async componentDidMount() {
     // get all the reviews of the friends of the current user to display them in the NewsFeed
     await readCookie(this)
+    this.renderRedirect()
     const authenticateduser = this.state.currentUser
     const currUserFriendsTemp = await getFriendsOfUser(authenticateduser)
     const currUserFriends = currUserFriendsTemp.data
@@ -58,7 +60,7 @@ class NewsFeedScreen extends React.Component {
     const authenticateduser = this.state.currentUser;
     return (
       <div id="pageFeed">
-        {this.renderRedirect()}
+       
         {/*The menu bar is just reused from the Component MainMenuBar */}
         <MainMenuBar username={authenticateduser}/>
 

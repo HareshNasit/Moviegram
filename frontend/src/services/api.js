@@ -1,7 +1,7 @@
 import axios from 'axios'
 // const baseURL = 'https://moviegram-back.herokuapp.com'
-// const baseURL = 'http://localhost:5000'
-const baseURL = '/api'
+const baseURL = 'http://localhost:5000'
+// const baseURL = '/api'
 
 
 export const insertUserToMongo = async data => {
@@ -71,7 +71,7 @@ export const readCookie = async (app) => {
         }
     } catch (err) {
         // FOR DEV
-        // app.setState({ currentUser: "username1", auth: false});
+        app.setState({ currentUser: "username1", auth: false});
     }
 };
 
