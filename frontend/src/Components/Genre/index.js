@@ -22,6 +22,7 @@ class Genre extends React.Component {
         genre: ""
     }
     async componentDidMount() {
+        await readCookie(this);
         this.setState({genre: this.props.match.params.genre})
         const genre = this.props.match.params.genre
         const res = await getMoviesByGenre(genre)
