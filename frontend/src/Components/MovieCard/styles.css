@@ -1,0 +1,19 @@
+.root {
+  width: 345px;
+}
+
+.media {
+  height: 500px;
+}
+
+.movie {
+	position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    top: 50px;
+    bottom: 20px;
+		color: white;
+		justify-content: center;
+    float: left;
+}

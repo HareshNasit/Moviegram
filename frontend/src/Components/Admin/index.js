@@ -49,7 +49,7 @@ class Admin extends React.Component{
     const username = this.state.currentUser;
 
     return (
-      <div id="AdminFeed">
+      <div className="AdminFeed">
 
         <MainMenuBar username={username}></MainMenuBar>
 

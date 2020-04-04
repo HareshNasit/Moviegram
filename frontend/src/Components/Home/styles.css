@@ -32,9 +32,15 @@
 
 .HomeContent{
   display: flex;
-  width:50%;
+  justify-content: center;
+  width:100%;
   flex-direction: column;
   align-items: center;
+  background-color: #202020;
+  color: white;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 30px;
 }
 
 .Banner{
@@ -49,4 +55,19 @@
 
 .spacingBox{
   height: 50px;
+}
+
+.movieHeader {
+  position: relative;
+  width: 1000px;
+  top: 35px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#movieHeader{
+  text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 45px;
+  color: white;
 }

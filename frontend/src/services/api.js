@@ -1,7 +1,7 @@
 import axios from 'axios'
 // const baseURL = 'https://moviegram-back.herokuapp.com'
-// const baseURL = 'http://localhost:5000/api'
-const baseURL = '/api'
+const baseURL = 'http://localhost:5000'
+// const baseURL = '/api'
 
 
 export const insertUserToMongo = async data => {
@@ -11,8 +11,6 @@ export const insertUserToMongo = async data => {
         console.log(err)
     }
 }
-
-export const getAllMovies = axios.get(baseURL+'/movies')
 
 export const getKeyMoviePairs = async () => {
     try {
@@ -85,8 +83,8 @@ export const readCookie = async (app) => {
         }
     } catch (err) {
         // FOR DEV
-        // app.setState({ currentUser: "username1", auth: false});
-        // console.log(err)
+        app.setState({ currentUser: "admin", auth: false});
+        console.log(err)
     }
 };
 
@@ -133,6 +131,8 @@ export const updateUserFollowInfo = async (user) => {
   //     signupstate.setState({turnAlert: true})
   // })
 }
+
+export const getAllMovies = () => axios.get(baseURL+'/movies')
 
 export const getAllReviews = () => axios.get(baseURL + '/admin')
 
