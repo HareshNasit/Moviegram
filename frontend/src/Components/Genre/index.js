@@ -67,7 +67,7 @@ class Genre extends React.Component {
             return(
                 
                 <div id="pageFeed">
-                <MainMenuBar></MainMenuBar>
+                <MainMenuBar username={this.state.currentUser}></MainMenuBar>
                 
 
                 <div id="movieList">
