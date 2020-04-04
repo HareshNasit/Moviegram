@@ -44,7 +44,7 @@ class ReviewGeneric extends React.Component {
       return (<span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>);
     } else if (authenticateduser != null) {
       return (
-        <Link to={{pathname:profile_url +username, state: { currentUser: authenticateduser, profileUser: username }}}>
+        <Link to={{pathname:profile_url, state: { currentUser: authenticateduser, profileUser: username }}}>
         <span><img className="reviewUserPic" src={userImg} alt="User DP"/></span>
         </Link>
       )
@@ -82,7 +82,7 @@ class ReviewGeneric extends React.Component {
       profile_url = '/UserProfile/'
     }
     else {
-      profile_url = '/ProfileView/'
+      profile_url = '/ProfileView/' + username
     }
 
     add_comment_button = <Button variant="secondary"
