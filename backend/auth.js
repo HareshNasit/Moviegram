@@ -1,4 +1,5 @@
 
+
 // Our own express middleware to check for
 // an active user on the session cookie (indicating a logged in user.)
 const authenticate = (req, res, next) => {
@@ -20,7 +21,7 @@ const authenticate = (req, res, next) => {
 
 const sessionCheckerReqUserParam = (req, res, next) => {
     if (!req.session.user || req.session.user != req.params.username) {
-        res.redirect('/'); 
+        res.redirect('/');
     } else {
         next(); // next() moves on to the route.
     }
@@ -28,7 +29,7 @@ const sessionCheckerReqUserParam = (req, res, next) => {
 
 const sessionCheckerReqUserBody = (req, res, next) => {
     if (!req.session.user || req.session.user != req.body.username) {
-        res.redirect('/'); 
+        res.redirect('/');
     } else {
         next(); // next() moves on to the route.
     }
@@ -37,7 +38,7 @@ const sessionCheckerReqUserBody = (req, res, next) => {
 const sessionCheckerAdmin = (req, res, next) => {
     if (req.session.user != "admin") {
 		console.log(req.session)
-        res.redirect('/'); 
+        res.redirect('/');
     } else {
         next(); // next() moves on to the route.
     }
