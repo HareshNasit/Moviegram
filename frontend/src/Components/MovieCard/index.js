@@ -13,8 +13,9 @@ import "./styles.css";
 class MovieCard extends React.Component {
   constructor(props) {
       super(props);
+      this.goToMoviePage = this.goToMoviePage.bind(this);
   }
-  handleEvent(movie) {
+  goToMoviePage(movie) {
       this.props.history.push({pathname: "/movie/" + movie})
     }
 render(){
@@ -37,7 +38,7 @@ render(){
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" as={Link} to={url} type="submit">
+        <Button size="small" color="primary" onClick={() => this.goToMoviePage(movieID)}>
           Learn More
         </Button>
       </CardActions>

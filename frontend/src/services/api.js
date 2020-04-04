@@ -172,11 +172,11 @@ export const isUpvoted = async (movie_id, user_id) => {
     }
 }
 
-export const addMovie = async (title, director, stars, description, genres) => {
+export const addMovie = async (title, director, stars, description, genres, poster) => {
     const url = `${baseURL}/admin/add_movie`
     const request = new Request(url, {
       method: "post",
-      body: JSON.stringify({title: title, director: director, stars: stars, description: description, genres: genres}),
+      body: JSON.stringify({title: title, director: director, actors: stars, description: description, genres: genres, imgsrc: poster}),
       headers: {
           Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json"

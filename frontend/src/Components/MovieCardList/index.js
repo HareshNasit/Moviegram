@@ -19,7 +19,8 @@ class MovieCardList extends React.Component {
           <MovieCard movieID = {movie._id}
                      title = {movie.title}
                      imageURL = {movie.imgsrc}
-                     queueComponent = {queueComponent} />
+                     queueComponent = {queueComponent}
+                     history={this.props.history}/>
         ))}
         </div>
       )

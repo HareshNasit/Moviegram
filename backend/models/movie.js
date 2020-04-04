@@ -27,6 +27,10 @@ const Movies = mongoose.model('Movies', {
 		minlength: 1,
 		trim: true
 	},
+	imgsrc: {
+		type: String,
+		required: true
+	},
 	upvotes: {type: Number, default: 0},
 	downvotes: {type: Number, default: 0},
 	upvoters: [{type:String, required:true}],
