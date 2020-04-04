@@ -7,6 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import GenreSelector from '../GenreSelector'
 import ErrorModal from '../ErrorModal'
 import {signup, uploadImageDB} from '../../services/api'
+import MainMenuBar from './../MainMenuBar';
 
 // <input
 //   accept="image/*"
@@ -88,6 +89,8 @@ class SignupScreen extends React.Component {
 
   render() {
     return (
+    <div>
+      <MainMenuBar username={this.state.currentUser}/>
       <div className="formContainer">
         {/* {this.renderRedirect()} */}
 
@@ -157,6 +160,9 @@ class SignupScreen extends React.Component {
         <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert}
                 error={this.state.error}></ErrorModal>
       </div>
+  
+    </div>
+      
 
 
 

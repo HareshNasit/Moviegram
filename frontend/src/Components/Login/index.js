@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import {login} from '../../services/api'
 import ErrorModal from '../ErrorModal'
+import MainMenuBar from './../MainMenuBar';
 
 
 class LoginScreen extends React.Component {
@@ -44,7 +45,9 @@ l
     render() {
       const { app } = this.props
       return (
-        <div className="pageM">
+        <div>
+          <MainMenuBar username={this.state.currentUser}/>
+          <div className="pageM">
           {/* {this.renderRedirect()} */}
           <Form className="form">
             <Form.Group className="welcomeText">
@@ -77,6 +80,8 @@ l
                 error={this.state.error}></ErrorModal>
         </div>
 
+        </div>
+       
 
 
       );
