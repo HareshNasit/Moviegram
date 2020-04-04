@@ -8,7 +8,7 @@ import ReviewsList from './../ReviewsList';
 import Modal from 'react-modal';
 import photo from './../UserProfile/ballon_dor.jpg';
 
-import { getAllReviews, readCookie } from './../../services/api';
+import { getAllReviews, readCookie, getUserImage } from './../../services/api';
 
 
 class Admin extends React.Component{
@@ -27,6 +27,11 @@ class Admin extends React.Component{
     let allReviews = await getAllReviews()
     allReviews = allReviews.data
     console.log(allReviews)
+    // sort all the reviews from the curr users friends in order of latest to oldest
+    for(let i=0; i<allReviews.length; i++) {
+      const userImg = await getUserImage(allReviews[i].username)
+      allReviews[i]["image_url"] = userImg.data;
+    }
     allReviews = allReviews.sort((a, b) => {
       const aDate = new Date(a.date)
       const bDate = new Date(b.date)
