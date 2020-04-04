@@ -85,7 +85,7 @@ class AdminReview extends React.Component {
         {/* the unordered list that displays the user profile img, username of author and movie for a specific review */}
         <ul>
           <li><span className="reviewUserPicLi">
-            <Link to={{pathname:profile_url +username, state: { username: authenticateduser, profileUser: username }}}>
+            <Link to={{pathname:profile_url +username}}>
             <img className="reviewUserPic" src={userImg} alt="User DP"/>
             </Link>
             </span>{username}
