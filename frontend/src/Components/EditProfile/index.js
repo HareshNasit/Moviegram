@@ -84,7 +84,8 @@ class EditProfile extends React.Component {
   }
 
   render() {
-    const {queueComponent,cancelFunction,showFunc} = this.props
+    const {queueComponent,cancelFunction} = this.props
+    console.log(this.props);
     return (
       <div id="editProfileModal">
         <div id="pageHeader">
@@ -94,7 +95,7 @@ class EditProfile extends React.Component {
         <React.Fragment>
               <form className="image-form" onSubmit={(e) => {
                   e.preventDefault();
-                  addImage(e.target, this.state.currentUser);
+                  addImage(e.target, this.state.currentUser, queueComponent);
               }}>
                   <div className="image-form__field">
                       <label>Image:</label>

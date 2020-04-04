@@ -260,7 +260,7 @@ export const addComment = async (comment, id) => {
 
 export const getUserImage = (username) => axios.get(baseURL + '/Images/'+username)
 
-export const addImage = (form, user_id, userProfileComponent) => {
+export const addImage = async (form, user_id, userProfileComponent) => {
     // the URL for the request
     const url = `${baseURL}/images/` + user_id ;
 
