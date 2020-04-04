@@ -4,7 +4,7 @@ import "./../universalStyles.css"
 import { Button, Form } from "react-bootstrap";
 // import photo from './ballon_dor.jpg'
 import Modal from 'react-modal';
-import { addImage, updateDescription, readCookie, getUser, updateFavoriteGenres } from './../../services/api'
+import { updateUserImage, updateDescription, readCookie, getUser, updateFavoriteGenres } from './../../services/api'
 import GenreSelector from '../GenreSelector'
 
 
@@ -95,7 +95,7 @@ class EditProfile extends React.Component {
         <React.Fragment>
               <form className="image-form" onSubmit={(e) => {
                   e.preventDefault();
-                  addImage(e.target, this.state.currentUser, queueComponent);
+                  updateUserImage(e.target, this.state.currentUser, queueComponent);
               }}>
                   <div className="image-form__field">
                       <label>Image:</label>

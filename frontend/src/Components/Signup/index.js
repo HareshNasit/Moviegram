@@ -6,7 +6,13 @@ import {Link} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import GenreSelector from '../GenreSelector'
 import ErrorModal from '../ErrorModal'
-import {signup} from '../../services/api'
+import {signup, uploadImageDB} from '../../services/api'
+
+// <input
+//   accept="image/*"
+//   type="file"
+//   onChange={ (event) => this.handleUpload(event) }
+// />
 
 class SignupScreen extends React.Component {
   constructor(props) {
@@ -50,7 +56,7 @@ class SignupScreen extends React.Component {
   }
 
   buttonClick(){
-
+    console.log(this.state.srcImage);
     if(this.state.username === ""){
       this.setState({turnAlert: true})
       this.setState({error: "Please enter your username."})
@@ -64,14 +70,17 @@ class SignupScreen extends React.Component {
       signup({username: this.state.username,
         email: this.state.email,
         genres: this.state.genres,
-        password: this.state.password}, this)
+        password: this.state.password,
+        image_url: this.state.srcImage}, this)
     }
   }
   handleUpload(e){
     // Change avatar image
-    const object = e.target.files[0]
-    const objectURL = URL.createObjectURL(object)
-    this.setState({srcImage: objectURL})
+    e.preventDefault();
+    uploadImageDB(e.target, this);
+    // const object = e.target.files[0]
+    // const objectURL = URL.createObjectURL(object)
+    // this.setState({srcImage: objectURL})
   }
 
   // renderRedirect = () => {
@@ -115,11 +124,26 @@ class SignupScreen extends React.Component {
           </Form.Group>
           <Form.Group>
             <Form.Label className="selectImage">Select your profile picture</Form.Label>
-            <input
-              accept="image/*"
-              type="file"
-              onChange={ (event) => this.handleUpload(event) }
-            />
+            <div>
+            <React.Fragment>
+                  <form className="image-form" onSubmit={ (event) => this.handleUpload(event) }
+                  >
+                      <div className="image-form__field">
+
+                          <input name="image" type="file" />
+                      </div>
+                      <Button
+                          variant="primary"
+                          type="submit"
+                          className="image-form__submit-button"
+                      >
+                          Upload DP
+                      </Button>
+
+                  </form>
+
+              </React.Fragment>
+            </div>
           </Form.Group>
           {/* When the user presses this button, the data will be sent to the
           database and create a new user */}
