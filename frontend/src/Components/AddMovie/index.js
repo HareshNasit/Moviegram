@@ -16,7 +16,11 @@ class AddMovie extends React.Component {
                        "Action",
                        "Horror",
                        "Thriller",
-                       "Comedy"]
+                       "Comedy",
+                       "Drama",
+                       "Romantic",
+                       "Science Fiction",
+                       "Animation"]
     this.state = {title: "",
                   director: "",
                   stars: [],
@@ -32,7 +36,10 @@ class AddMovie extends React.Component {
                       Crime: false,
                       Action: false,
                       Thriller: false,
-                      Comedy: false}
+                      Comedy: false,
+                      Drama: false,
+                      Romantic: false,
+                      "Science Fiction": false}
                 }
     this.handleMovieNameChange = this.handleMovieNameChange.bind(this)
     this.handleDirectorChange = this.handleDirectorChange.bind(this)

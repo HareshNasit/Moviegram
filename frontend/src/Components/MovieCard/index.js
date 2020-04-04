@@ -25,19 +25,19 @@ render(){
   return (
     <div className="movie">
     <Card className="root">
-      <CardActionArea>
+      <CardActionArea className="titleBack">
         <CardMedia
           className="media"
           image={imageURL}
           title={title}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+        <CardContent className="titleBack">
+          <Typography gutterBottom variant="h5" component="h2" className="titleFont">
             {title}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      <CardActions className="titleBack">
         <Button size="small" color="primary" onClick={() => this.goToMoviePage(movieID)}>
           Learn More
         </Button>
