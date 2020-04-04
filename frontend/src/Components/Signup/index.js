@@ -75,7 +75,7 @@ class SignupScreen extends React.Component {
     e.preventDefault();
     uploadImageDB(e.target, this);
   }
-  
+
   renderRedirect(){
     if(this.state.currentUser){
       this.props.history.push("/Newsfeed")
@@ -87,7 +87,7 @@ class SignupScreen extends React.Component {
       {this.renderRedirect()}
       <MainMenuBar username={this.state.currentUser}/>
       <div className="formContainer">
-        
+
 
         <Form className="form">
           <Form.Group className="welcomeText">
@@ -155,9 +155,9 @@ class SignupScreen extends React.Component {
         <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert}
                 error={this.state.error}></ErrorModal>
       </div>
-  
+
     </div>
-      
+
 
 
 

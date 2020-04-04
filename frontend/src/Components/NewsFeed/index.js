@@ -19,7 +19,7 @@ class NewsFeedScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {reviews: []};
-
+    this.renderRedirect = this.renderRedirect.bind(this)
   }
 
   async componentDidMount() {
@@ -48,11 +48,17 @@ class NewsFeedScreen extends React.Component {
     this.setState({reviews: myNewsFeed})
   }
 
+  renderRedirect(){
+    if(!this.state.currentUser){
+      this.props.history.push("/")
+    }
+  }
+
   render() {
     const authenticateduser = this.state.currentUser;
     return (
       <div id="pageFeed">
-
+        {this.renderRedirect()}
         {/*The menu bar is just reused from the Component MainMenuBar */}
         <MainMenuBar username={authenticateduser}/>
 

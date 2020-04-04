@@ -52,6 +52,7 @@ class UserProfile extends React.Component {
     this.handleOpenAddRevModal = this.handleOpenAddRevModal.bind(this);
     this.handleCloseAddRevModal = this.handleCloseAddRevModal.bind(this);
     this.handleCloseUpdateProfileModal = this.handleCloseUpdateProfileModal.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this)
   }
 
   async componentDidMount() {
@@ -141,6 +142,12 @@ class UserProfile extends React.Component {
     this.setState({showUpdateProfile: false})
   }
 
+  renderRedirect(){
+    if(!this.state.currentUser){
+      this.props.history.push("/")
+    }
+  }
+
   render() {
     let follow_edit_button;
     let add_review_button;
@@ -182,6 +189,7 @@ class UserProfile extends React.Component {
 
     return (
       <div id="userProfile">
+          {this.renderRedirect()}
           <MainMenuBar username={username} />
           <div id="bodyHeader">
             <div id="profilePicContainer">
