@@ -7,6 +7,20 @@ Welcome to Moviegram. This is an interactive and social Movie Review Website.
 The app is supposed to be a social movie review website where users can search for movies and see the reviews about the movie written by other users as well as connect with other users with similar movie interests.
 
 * Link to app: https://movie-gram.herokuapp.com/
+## User credentials:
+* Normal User:
+    * Username: user Password: user
+    * Username: user2 Password: user2
+    * Username: username1 Password: password1
+* Admin:
+    * Username: admin Password admin
+
+## Directory structure
+* frontend/ is where all our frontend logic is stored
+    * Seperated components into individual folders
+* backend/ is where all our backend logic is stored and requires .env to be configured for local dev
+    * Seperated out routes into seperate folders to not clog up the top level server
+* frontend and backend are run seperately in development but for webapp purposes the root level is run.
 
 ## *Core Functionality*
 
@@ -27,7 +41,6 @@ User:
 
 
 Admin:
-* The credentials for logging in as an admin: Username: admin Password: admin
 * An admin is just another user on the database with some extra functionality.
 * The admin has the ability to remove any review from the database if it finds the review to be inappropriate. 
 * Each review on the admin's dashboard is displayed with a unique button for the admin to remove the review from the database.
@@ -68,6 +81,7 @@ Extra Functionalities:
 * When a user searches for any movies or navigates to a movie's page the user is also showed the reviews written by other people about the movie.
 * The logged in users have an option of viewing all the reviews in the database. That is, a person can view the reviews written by every other person on the database via the global news feed.
 * The reviews could get a lot of comments by other users which could occupy a lot of real estate. We have implemented floating models which display all the comments on a review to overcome the issue.
+* Any review that has a spoiler also shows a spoiler warning on top of the review as an alert to other readers that this review contains spoilers. The spoiler value of the review is set when the user clicks a spoiler checkbox in the add review page to note that their review contains spoilers.
 
 ## How to use:
 
@@ -259,5 +273,8 @@ Extra Functionalities:
     * Returns a list of reviews written by the user ":username".
 * GET /api/reviews/:id
     * Returns the review object that has a review id of “:id”.
+
+
+
 
 
