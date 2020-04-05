@@ -27,6 +27,7 @@ User:
 
 
 Admin:
+* The credentials for logging in as an admin: Username: admin Password: admin
 * An admin is just another user on the database with some extra functionality.
 * The admin has the ability to remove any review from the database if it finds the review to be inappropriate. 
 * Each review on the admin's dashboard is displayed with a unique button for the admin to remove the review from the database.
