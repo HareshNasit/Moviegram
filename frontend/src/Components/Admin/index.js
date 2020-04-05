@@ -19,10 +19,14 @@ class Admin extends React.Component{
                  };
     this.handleOpenAddMovieModal = this.handleOpenAddMovieModal.bind(this);
     this.handleCloseAddMovieModal = this.handleCloseAddMovieModal.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this)
+
   }
 
   async componentDidMount() {
     await readCookie(this)
+    this.renderRedirect()
+
     let allReviews = await getAllReviews()
     allReviews = allReviews.data
     // sort all the reviews from the curr users friends in order of latest to oldest
@@ -45,7 +49,11 @@ class Admin extends React.Component{
   handleCloseAddMovieModal () {
     this.setState({showModalAddMovie: false})
   }
-
+  renderRedirect(){
+    if(!this.state.currentUser || this.state.currentUser != "admin"){
+      this.props.history.push("/")
+    }
+  }
 
   render() {
     const username = this.state.currentUser;
