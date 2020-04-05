@@ -105,17 +105,10 @@ export const updateUserFollowInfo = async (user) => {
           "Content-Type": "application/json"}
   });
   fetch(request).then(res =>{
-      console.log(res)
       if(!res.ok){
           throw new Error("Something went wrong...");
-      } else{
-          console.log("IT WORKSS YAYY");
       }
   })
-  // .catch(error => {
-  //     signupstate.setState({error: error})
-  //     signupstate.setState({turnAlert: true})
-  // })
 }
 export const logout = () => axios.get(baseURL + "/session/logout")
 
