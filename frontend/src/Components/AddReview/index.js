@@ -52,6 +52,11 @@ class AddReview extends React.Component {
                           spoilers: this.state.spoiler, date: new Date().toLocaleString(), movie_id: movie._id}
       await addReview(newReview)
       newReview.image_url = this.props.profImg
+      newReview.comments = []
+      newReview.upvoters = []
+      newReview.downvoters = []
+      newReview.upvotes = 0
+      newReview.downvotes = 0
       let existingRevs = queue.state.reviews
       existingRevs.unshift(newReview)
       queue.setState({reviews: existingRevs})
