@@ -29,13 +29,14 @@ class CommentsModal extends React.Component {
    this.setState({turnAlert: false})
   }
 
-  async saveComment(reviewId, closeFunc, authenticateduser) {
+  async saveComment(reviewId, closeFunc, authenticateduser, queue) {
     if (this.state.newComment.trim() === "") {
       this.setState({error: "Cannot post an empty comment."})
       this.setState({turnAlert: true})
     } else {
         const addedComment = {username: authenticateduser, date: new Date().toLocaleString(), content: this.state.newComment}
         const commentAdded = await addComment(addedComment, reviewId)
+        queue.state.commentsSize = queue.state.commentsSize + 1
         let existingComs = this.state.comments
         existingComs.push(addedComment)
         this.setState({comments: existingComs})
@@ -47,7 +48,7 @@ class CommentsModal extends React.Component {
     this.setState({newComment:event.target.value.trim()})
   }
 
-  formOrNot(generic, reviewId, cancelFunction, authenticateduser) {
+  formOrNot(generic, reviewId, cancelFunction, authenticateduser, queue) {
     if (generic === false) {
       return (
         <Form id="new-Com" ref={commentForm => this.commentForm = commentForm}>
@@ -56,7 +57,7 @@ class CommentsModal extends React.Component {
               <Form.Control type="newComment" placeholder="Write a Comment" id="comBar" onChange={this.handleCommentChange}/>
             </Form.Group>
             <Form.Group>
-              <Button variant="primary" onClick={() => this.saveComment(reviewId, cancelFunction, authenticateduser)}>
+              <Button variant="primary" onClick={() => this.saveComment(reviewId, cancelFunction, authenticateduser, queue)}>
               Post Comment
               </Button>
               <Button variant="primary" id="comButtonCancel" onClick={cancelFunction} type="submit">Close</Button>
@@ -87,7 +88,7 @@ class CommentsModal extends React.Component {
                                                           authenticateduser={authenticateduser}/>))}
             </div>
             <div>
-              {this.formOrNot(generic, reviewId, cancelFunction, authenticateduser)}
+              {this.formOrNot(generic, reviewId, cancelFunction, authenticateduser, queueComponent)}
             </div>
             <ErrorModal closeModal={this.closeModal} show={this.state.turnAlert} error={this.state.error}></ErrorModal>
 

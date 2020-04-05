@@ -18,7 +18,7 @@ class Review extends React.Component {
   // used to bind the implemented methods to this class that need to access variables of defined inside the constructor.
   constructor(props) {
     super(props)
-    this.state = { upvotes: 0, downvotes: 0, showCommentsModal: false};
+    this.state = { upvotes: 0, downvotes: 0, showCommentsModal: false, commentsSize: 0};
     this.incrementUpvote = this.incrementUpvote.bind(this)
     this.incrementDownvote = this.incrementDownvote.bind(this)
     this.handleOpenCommentsModal = this.handleOpenCommentsModal.bind(this);
@@ -33,6 +33,7 @@ class Review extends React.Component {
     downvotes = downvotes.data.length
     this.setState({upvotes: upvotes})
     this.setState({downvotes: downvotes})
+    this.setState({commentsSize: this.props.comments.length})
   }
 
   // increase the number upvotes the review has by 1
@@ -98,7 +99,7 @@ class Review extends React.Component {
     add_comment_button = <Button variant="secondary"
                          type="click"
                          onClick={this.handleOpenCommentsModal}>
-                         See Comments ({comments.length})
+                         See Comments ({this.state.commentsSize})
                          </Button>
 
     return (
