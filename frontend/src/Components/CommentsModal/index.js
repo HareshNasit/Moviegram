@@ -42,6 +42,7 @@ class CommentsModal extends React.Component {
         existingComs.push(addedComment)
         this.setState({comments: existingComs})
         this.commentForm.reset()
+        this.setState({newComment: ""})
     }
   }
 
