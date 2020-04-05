@@ -17,6 +17,7 @@ class CommentsModal extends React.Component {
     this.saveComment = this.saveComment.bind(this)
     this.handleCommentChange = this.handleCommentChange.bind(this)
     this.formOrNot = this.formOrNot.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   async componentDidMount() {
